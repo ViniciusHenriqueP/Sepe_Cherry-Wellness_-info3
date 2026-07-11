@@ -1,4 +1,3 @@
-Aqui está o texto formatado de forma limpa, simples e sem emojis ou tabelas, mantendo a estrutura original das suas atas separada por tópicos para o seu `README.md`:
 
 ---
 
