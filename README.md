@@ -1,13 +1,10 @@
+Aqui está o texto formatado de forma limpa, simples e sem emojis ou tabelas, mantendo a estrutura original das suas atas separada por tópicos para o seu `README.md`:
 
 ---
 
-##  Histórico de Atas do Projeto – Cherry Wellness
+## Histórico de Atas do Projeto – Cherry Wellness
 
-Nesta seção estão registradas todas as decisões, divisões de tarefas e alinhamentos realizados pela equipe ao longo do desenvolvimento do projeto **Cherry Wellness**.
-
----
-
-###  Ata 1
+### Ata 1
 
 * 
 **Data:** 01/06/2026 
@@ -18,33 +15,36 @@ Nesta seção estão registradas todas as decisões, divisões de tarefas e alin
 
 
 
-####  Assuntos
+#### Assuntos
 
-Desenvolvemos primeiramente a divisão de tarefas uniformemente para o grupo. Vale relembrar que todos vão atuar em todas as áreas, porém cada um irá destacar-se em alguma função específica, podendo reajustar-se em outras funções para melhor desempenho e flexibilidade.
+Desenvolvemos primeiramente a divisão de tarefas uniformemente para o grupo. As funções principais designadas inicialmente serão as seguintes: JavaScript e programação interna para Vinícius e Lukas; Figma para Gabriela e Letícia; CSS para Murilo e Gabrieli. Relembrando que todos vão atuar em todas essas áreas, porém cada um irá destacar-se em alguma função específica, podendo reajustar-se em outras funções para melhor desempenho e flexibilidade.
 
-#### 🛠️ Atribuição de Funções Iniciais
+#### Responsabilidades
 
-| Integrantes | Função Principal Designada |
-| --- | --- |
-| Vinícius e Lukas | JavaScript e programação interna 
+* 
+**Criação do GitHub:** Vinícius 
 
- |
-| Gabriela e Letícia | Figma 
 
- |
-| Murilo e Gabrieli | CSS 
 
- |
+#### Prática
 
-> 
-> **Responsabilidade Adicional:** Criação do GitHub por Vinícius.
-> 
-> 
+* 
+**JavaScript e programação interna:** Vinícius e Lukas 
 
-####  Divisão de Temas Principais
+
+* 
+**Figma:** Gabriela e Letícia 
+
+
+* 
+**CSS:** Murilo e Gabrieli 
+
+
+
+#### 3 Tópicos Principais dos Temas
 
 1. 
-**Questões Biológicas** (exercício físico e seus efeitos): Lukas e Gabrieli 
+**Questões Biológicas (exercício físico e seus efeitos):** Lukas e Gabrieli 
 
 
 2. 
@@ -52,13 +52,13 @@ Desenvolvemos primeiramente a divisão de tarefas uniformemente para o grupo. Va
 
 
 3. 
-**Questões Psicológicas** (saúde cognitiva): Gabriela e Murilo 
+**Questões Psicológicas (saúde cognitiva):** Gabriela e Murilo 
 
 
 
 ---
 
-###  Ata 2
+### Ata 2
 
 * 
 **Data:** 08/07/2026 
@@ -69,13 +69,13 @@ Desenvolvemos primeiramente a divisão de tarefas uniformemente para o grupo. Va
 
 
 
-####  Assuntos
+#### Assuntos
 
-Já de início começamos a discutir a respeito da interface do site e a sua ideia principal, focando em melhorar a experiência do usuário e a sua interatividade. Tivemos ideias a respeito da futura interatividade do site, pensando em possíveis alternativas adicionais como joguinhos, quebra-cabeças e medalhas.
+Já de início começamos a discutir a respeito da interface do site e a sua ideia principal , focando em melhorar a experiência do usuário e a sua interatividade com o site, criando assim uma experiência única e divertida. Tivemos ideias a respeito da futura interatividade do nosso site, pensando em possíveis alternativas adicionais como joguinhos, quebra-cabeças, medalhas, etc.
 
-Definimos que o site se chamará **CHERRY WELLNESS**, nome escolhido pelo trocadilho da palavra *cherry* com "Ser" e "eja" ("Seja Saudável"). Os dois mascotes do site serão representados por cerejas.
+Decidimos os dois mascotes do site, sendo ambos uma cereja. O nome do site será: CHERRY WELLNESS. O nome foi escolhido pois é um trocadilho com a palavra "cherry", que faz um trocadilho com "Ser" (cer) e "eja" (eja) , ficando assim: "Seja Saudável".
 
-#### 🛠️ Responsabilidades do Período
+#### Responsabilidades
 
 * 
 **Criação dos mascotes:** Gabrieli e Murilo 
@@ -92,7 +92,7 @@ Definimos que o site se chamará **CHERRY WELLNESS**, nome escolhido pelo trocad
 
 ---
 
-###  Ata 3
+### Ata 3
 
 * 
 **Data:** 15/06/2026 
@@ -103,68 +103,68 @@ Definimos que o site se chamará **CHERRY WELLNESS**, nome escolhido pelo trocad
 
 
 
-#### 💬 Assuntos
+#### Assuntos
 
-A respeito das novas ideias, conseguimos separar os tópicos iniciais passados pelo professor no Classroom, integrando-os com a divisão dos temas. Estamos construindo uma ótima interface, com cada detalhe pensado no usuário.
+A respeito das novas ideias, conseguimos separar os tópicos iniciais passados pelo professor no Classroom, integrando-os com a separação dos temas. Estamos construindo uma ótima interface, com cada detalhe pensado no usuário.
 
-#### 🛠️ Responsabilidades do Período
+#### Responsabilidades
 
-* 
-**Desenvolvimento contínuo da interface:** Letícia, Gabriela e Murilo 
-
-
-* 
-**Organização dos tópicos:** Lukas 
+* Letícia, Gabriela e Murilo continuam trabalhando no desenvolvimento da interface.
 
 
 * 
-**Criação da Rede Social:** Murilo 
+**Organização dos tópicos:** Lukas.
+
+
+* 
+**Criação da Rede Social:** Murilo.
 
 
 
-####  Detalhamento dos Tópicos por Tema
+#### Tópicos por Conteúdo
 
-| 🧬 Questões Biológicas |  Questões Alimentares |  Questões Psicológicas |
-| --- | --- | --- |
-| • Roteiro de perguntas 
+**Questões Biológicas**
 
-<br>
+* Roteiro de perguntas 
 
-<br>• Benefícios de exercícios físicos 
 
-<br>
+* Benefícios de exercícios físicos 
 
-<br>• Sugestão de atividades pré-treino (aquecimento) 
 
-<br>
+* Sugestão de atividades pré-treino (aquecimento) 
 
-<br>• Sugestão de atividades de alongamento, relaxamento e meditação 
 
- | • Sugestões de alimentação 
+* Sugestão de atividades de alongamento, relaxamento e meditação 
 
-<br>
 
-<br>• Hidratação antes, durante e após o exercício 
 
-<br>
+**Questões Alimentares**
 
-<br>• Definição e funções de carboidratos, proteínas, gorduras, vitaminas e minerais no corpo 
+* Sugestões de alimentação 
 
- | • Redução do estresse e da ansiedade 
 
-<br>
+* Hidratação antes, durante e após o exercício 
 
-<br>• Melhor desempenho nos estudos e no trabalho 
 
-<br>
+* O que são carboidratos, proteínas, gorduras, vitaminas, minerais e suas funções no corpo 
 
-<br>• Proteção da saúde cerebral ao longo da vida 
 
- |
+
+**Questões Psicológicas**
+
+* Redução do estresse e da ansiedade 
+
+
+* Melhor desempenho nos estudos e no trabalho 
+
+
+* Proteção da saúde cerebral ao longo da vida 
+
+
 
 ---
 
-###  Ata 4
+### Ata 4
 
 * 
 **Data:** 22/06/2026 
@@ -175,28 +175,17 @@ A respeito das novas ideias, conseguimos separar os tópicos iniciais passados p
 
 
 
-####  Assuntos
+#### Assuntos
 
-Hoje a aula de projeto integrador terminou duas horas mais cedo devido à inauguração do ginásio, por isso produzimos bem menos.
+Hoje a aula de projeto integrador terminou duas horas mais cedo devido à inauguração do ginásio. Evidentemente produzimos bem menos. Vini ficará encarregado de continuar com a responsabilidade do GitHub. Murilo, Letícia e Gabriela continuam a trabalhar no design e na criação de páginas, buscando incessantemente a perfeição.
 
-####  Responsabilidades do Período
+#### Responsabilidades
 
-* 
-**GitHub:** Vinícius continuará com essa responsabilidade.
-
-
-* 
-**Design e Páginas:** Murilo, Letícia e Gabriela seguem trabalhando na criação das páginas.
-
-
-* 
-**Rede Social:** Murilo iniciou a criação da rede social. Realizamos uma sessão de fotos para a apresentação dos integrantes na rede social do Cherry Wellness.
-
-
+Murilo começou a criação da rede social e fizemos uma bela sessão de fotos para a apresentação dos integrantes na rede social do Cherry Wellness.
 
 ---
 
-###  Ata 5
+### Ata 5
 
 * 
 **Data:** 06/07/2026 
@@ -207,20 +196,20 @@ Hoje a aula de projeto integrador terminou duas horas mais cedo devido à inaugu
 
 
 
-####  Assuntos
+#### Assuntos
 
-Vinícius começou a desenvolver o projeto do jogo interativo e Lukas segue responsável pela redação das atas. Lukas propôs a exibição de dados estatísticos em forma de gráfico de pizza para ilustrar a porcentagem da população que possui ou não uma alimentação equilibrada.
+Para começar o dia de hoje muito bem, Vinícius começou a desenvolver o projeto do jogo interativo. Lukas continua com as atas, como de costume. Lukas deu uma ideia muito interessante de mostrar dados estatísticos em forma de gráfico de pizza, dando um exemplo compreensível de quantos por cento da população possui uma alimentação equilibrada ou não.
 
-Também foi integrada a ideia de Vinícius para criar um sistema de conquista de emblemas a cada jogo interativo completado, com metas de cerejas a serem desbloqueadas.
+Vale lembrar que Vinícius deu uma ideia muito interessante que vamos aplicar ao site: criar um sistema de conquista de emblemas a cada jogo interativo completado , estabelecendo uma meta de cerejas a serem desbloqueadas.
 
-####  Responsabilidades do Período
+#### Responsabilidades
 
 * 
 **Murilo:** Rede social 
 
 
 * 
-**Vinícius:** Jogo interativo e sistema de emblemas 
+**Vinícius:** Jogo interativo e sistemas de emblemas 
 
 
 * 
@@ -228,4 +217,4 @@ Também foi integrada a ideia de Vinícius para criar um sistema de conquista de
 
 
 * 
-**Lukas:** Atas e estruturação da ideia do gráfico
+**Lukas:** Atas e ideia do gráfico
