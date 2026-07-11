@@ -1,0 +1,545 @@
+/* RESET PADRÃO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+body {
+    background-color: #FDFBF4;
+    color: #4A1515;
+}
+
+/* ==========================================================================
+   ESTILOS PADRÃO (CELULAR / MOBILE)
+   ========================================================================== */
+/* 1. Criando a animação da "linha do tempo" */
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px); /* Começa 50px para a esquerda */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* Termina na posição original dele */
+    }
+
+}
+
+/* 2. Criando a classe que aplica a animação */
+.fade-in-left {
+    opacity: 0; /* Garante que o item comece invisível antes da animação rodar */
+    animation: fadeInLeft 1s ease-out forwards; /* 1s é o tempo (mude para 1.5s se quiser mais lento) */
+}
+
+/* 3. Criando atrasos (Delays) para os itens não aparecerem todos de uma vez */
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.5s; }
+.delay-3 { animation-delay: 0.8s; }
+.delay-4 { animation-delay: 1.1s; }
+.delay-5 { animation-delay: 1.4s; }
+/* NAVBAR MOBILE */
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: #3D1111;
+    padding: 20px;
+    border-radius: 0;
+    img {
+        width: 40px;
+        height: auto;
+    }
+}
+
+.nav-links a {
+    color: #E2D7C5;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 16px;
+    position: relative; /* Necessário para posicionar a linha em relação ao texto */
+    padding-bottom: 4px;
+}
+/* Procure e atualize esta parte nos estilos padrão (Mobile) */
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Garante que os botões fiquem centralizados um sob o outro */
+    gap: 12px;
+    margin-top: 30px;
+    width: 100%;
+}
+/* 1. Força o link ativo a ficar em negrito, branco e com a fonte correta */
+
+.btn-primary, .btn-secondary {
+    width: 100%;
+    max-width: 280px; /* Define um limite idêntico para os dois não ficarem gigantes ou desproporcionais */
+    padding: 14px;
+    border-radius: 0; /* Mantém os cantos retos */
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+}
+/* Criando a bordinha invisível por padrão */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px; /* Espessura da linha */
+    background-color: #FFFFFF; /* Cor da bordinha */
+    transform: scaleX(0); /* Começa com tamanho zero (escondida) */
+    transform-origin: right; /* Faz a animação recolher para a direita */
+    transition: transform 0.3s ease-in-out; /* Velocidade da animação */
+}
+
+/* Animação ao passar o mouse (Hover) */
+.nav-links a:hover::after {
+    transform: scaleX(1); /* Expande a linha até cobrir 100% do texto */
+    transform-origin: left; /* Faz a linha surgir da esquerda para a direita */
+}
+
+/* Estado Ativo (Fica permanentemente visível na página atual) */
+.nav-links a.active::after {
+    transform: scaleX(1);
+    background-color: #FFFFFF;
+}
+
+/* Garante que o texto ativo fique totalmente branco */
+.nav-links a:hover, 
+.nav-links a.active {
+    color: #FFFFFF;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+.logo-area:hover {
+    scale: 1.05;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.logo-text {
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.nav-links a.active{
+    font-size: 1.1rem;
+}
+
+
+.nav-links a {
+    color: #E2D7C5;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav-links a:hover {
+    color: #FFFFFF;
+    scale: 1.05;
+    transition: all 0.3s ease;
+}
+
+
+/* HERO SECTION MOBILE */
+.hero {
+    display: flex;
+    flex-direction: column-reverse; /* Imagem fica no topo no celular */
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    gap: 20px;
+}
+
+.hero-content {
+    width: 100%;
+}
+
+.hero-content h1 {
+    font-weight: bold;
+    font-size: 32px;
+    color: #3D1111;
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    color: #6E5A5A;
+    margin-bottom: 20px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #3D1111;
+    color: white;
+    border: none;
+}
+
+.btn-secondary {
+    color: #3D1111;
+    border: 1px solid #D1C4B2;
+    position: relative; /* FUNDAMENTAL: para alinhar o fundo interno */
+    overflow: hidden;   /* FUNDAMENTAL: para o fundo respeitar a borda arredondada do botão */
+    z-index: 1;         /* Cria um contexto de empilhamento para o z-index interno funcionar */
+    transition: color 0.3s ease; /* Transição suave para a cor do texto */
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #3D1111;
+    border-radius: 50px;
+    opacity: 0;
+    z-index: -1; /* Fica atrás do texto do botão */
+    transition: all 0.6s ease;
+}
+
+/* Quando passar o mouse, o fundo cresce */
+.btn-secondary:hover::before {
+    width: 100%;
+    opacity: 1;
+}
+
+/* Quando passar o mouse, O BOTÃO muda a cor do seu próprio texto */
+.btn-secondary:hover {
+    color: white; /* Movemos o color para cá */
+}
+.hero-image img {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+}
+
+/* DIVISOR QUADRICULADO */
+.checkerboard-divider {
+    height: 12px;
+    background-image: linear-gradient(45deg, #E6DEC9 25%, transparent 25%), 
+                      linear-gradient(-45deg, #E6DEC9 25%, transparent 25%), 
+                      linear-gradient(45deg, transparent 75%, #E6DEC9 75%), 
+                      linear-gradient(-45deg, transparent 75%, #E6DEC9 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    margin: 20px 0;
+}
+
+/* CARDS MOBILE (Empilhados na vertical) */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+}
+/* Isso vai remover as bolinhas pretas e o espaço invisível da lista que segura os cards */
+.cards-container > ul {
+    list-style: none; /* Remove a bolinha preta indesejada */
+    padding: 0;       /* Remove o recuo padrão do navegador */
+    margin: 0;        /* Remove margens padrão */
+    width: 100%;      /* Garante que ela ocupe todo o espaço */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Garante que o item da lista não empurre o card para o lado */
+.cards-container > ul > li {
+    list-style: none;
+    width: 100%;
+    max-width: 360px; /* Mantém o tamanho limite do card no mobile */
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.card {
+    background-color: #F9F5EB;
+    border: 1px solid #E6DEC9;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 360px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    
+}
+
+.card-icon {
+    font-size: 24px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-green .card-icon { background-color: #E2EFE0; }
+.card-red .card-icon { background-color: #FCE6E6; }
+.card-yellow .card-icon { background-color: #FDF1D6; }
+
+.card-header h3 {
+    font-size: 18px;
+    color: #3D1111;
+}
+
+.card-tagline {
+    font-size: 13px;
+    color: #8A7676;
+}
+
+.card-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.card-list li {
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding-left: 18px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    
+}
+.card-green .card-list li::before { color: #739E6B; }
+.card-red .card-list li::before { color: #A63232; }
+.card-yellow .card-list li::before { color: #D9A036; }
+
+.btn-card {
+    width: 100%;
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.green-btn { background-color: #1E3525; }
+.red-btn { background-color: #6B1D1D; }
+
+/* FRASE E RODAPÉ MOBILE */
+.phrase-bar {
+    background-color: #E6DEC9;
+    text-align: center;
+    padding: 12px;
+    border-radius: 0px;
+    margin: 20px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.footer {
+    background-color: #3D1111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer span {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 8px;
+}
+.icon img{
+    width: 100px;
+    height: auto;
+    max-width: 40px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.icon img:hover {
+    transform: scale(1.1);
+        transition: all 0.3s ease;
+    }
+    .btn-primary, .btn-secondary {
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+    }
+
+   .cards-container button:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+    }
+/* ==========================================================================
+   MUDANÇA DE LAYOUT (TELAS MAIORES QUE 600PX - TABLET / DESKTOP)
+   ========================================================================== */
+@media (min-width: 600px) {
+    
+    
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 50px;
+        border-bottom-left-radius: 00px;
+        border-bottom-right-radius: 00px;
+    }
+
+    .nav-links {
+        gap: 0;
+    }
+
+    .nav-links a {
+        margin-left: 25px;
+        font-size: 16px;
+    }
+
+    .hero {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 60px 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .hero-content {
+        max-width: 50%;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+        font-weight: bold
+    }
+
+    .hero-buttons {
+        flex-direction: row;
+    }
+
+    .btn-primary, .btn-secondary {
+        
+        width: auto;
+    }
+
+.hero-image img {
+    width: 100%;
+    /* Define um tamanho mínimo de 250px e máximo de 450px, adaptando-se no meio */
+    max-width: clamp(250px, 40vw, 1500px); 
+    height: auto; /* Mantém a proporção correta sem distorcer a imagem */
+    object-fit: contain;
+}
+    .cards-container > ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+        padding: 40px 20px;
+    }
+
+    .card {
+        width: 320px;
+    }
+    
+
+    .phrase-bar {
+        max-width: 600px;
+        margin: 40px auto;
+        font-size: 16px;
+    }
+}
+.hero-buttons ul{
+    
+    display: flex;
+    gap: 30px;
+}
+
+@media (min-width: 600px) {
+    /* ... seus outros códigos (navbar, hero, etc.) ... */
+
+    /* Força a lista externa a deixar os itens crescerem e ocuparem espaço */
+    .cards-container > ul {
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch; /* Faz todos os cards terem exatamente a mesma altura */
+        gap: 2vw;             /* Espaçamento responsivo baseado na largura da tela */
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Altera o comportamento do LI que segura o card */
+    .cards-container > ul > li {
+        width: 100%;
+        max-width: 380px; /* Limite máximo que o card pode chegar no PC */
+        flex: 1 1 280px;  /* Permite que o card encolha até 280px ou cresça dinamicamente */
+    }
+
+    /* Garante que o card ocupe 100% do LI flexível */
+    .card {
+        width: 100%;
+        max-width: 100%;
+        height: 100%; /* Faz o fundo preencher tudo certinho */
+    }
+}
+
+.cards-container ul li:hover {
+    scale: 1.05;
+    transition: all 0.3s ease;
+}
+
+.hero-buttons  {
+margin-top: 20px;
+}
