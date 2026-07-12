@@ -146,7 +146,7 @@ body {
     gap: 15px;
 }
 .nav-links a.active{
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 
@@ -309,17 +309,61 @@ body {
     align-items: center;
     gap: 12px;
     margin-bottom: 15px;
-    
+    transition: all 0.3s ease;
+}
+.card-header h3 {
+    font-size: 18px;
+    color: #3D1111;
+    transition: all 0.3s ease;
+}
+
+.card-header h3:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card-header p {
+    font-size: 13px;
+    color: #8A7676;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card-header p:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
 }
 
 .card-icon {
     font-size: 24px;
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     border-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+     transition: all 0.3s ease;
+}
+
+
+.card-icon img {
+    width: 55px;
+    height: auto;
+}
+.card-icon:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+#saudemental {
+    width: 105px;
+    height: auto;
+}
+
+#alimentacao {
+    transform: translateY(-4px);
+    width: 50px;
+    height: auto;
 }
 
 .card-green .card-icon { background-color: #E2EFE0; }
@@ -600,6 +644,8 @@ margin-top: 20px;
             padding: 20px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
+            border-radius: 15px;
+            align-items: center;
         }
 
         .nutriente-card-click:hover {
@@ -628,6 +674,42 @@ margin-top: 20px;
             margin-bottom: 40px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
+        /* Container que segura todos os blocos de nutrientes */
+.grid-nutrientes {
+    display: flex;
+    flex-direction: row;         /* Coloca os itens lado a lado na horizontal */
+    justify-content: center;     /* Centraliza o grupo de cards na tela */
+    align-items: stretch;        /* Força todos os cards a terem exatamente a mesma altura */
+    gap: 20px;                   /* Espaçamento perfeito de 20px entre cada card */
+    max-width: 1200px;
+    margin: 30px auto 60px auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Garante que o link ocupe o espaço correto e permita que o card cresça de forma igual */
+.nutriente-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;                     /* Faz com que todos os 4 cards dividam o espaço igualmente */
+    max-width: 260px;            /* Define uma largura máxima elegante para cada bloco */
+    display: flex;
+}
+
+/* O card interno preenche todo o espaço do link */
+.nutriente-card-click {
+    background-color: #F9F5EB;
+    border: 1px solid #E6DEC9;
+    padding: 24px 15px;
+    text-align: center;
+    width: 100%;                 /* Ocupa 100% da largura do link flexível */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+}
 
         .nutriente-bloco h3 {
             color: #3D1111;
@@ -660,5 +742,16 @@ margin-top: 20px;
             .hero-section-clean {
                 flex-direction: column;
                 text-align: center;
+                padding: 30px;
             }
+            .grid-nutrientes {
+        flex-direction: column;  /* Empilha um embaixo do outro no celular */
+        align-items: center;
+        padding: 0 10px;          /* Dá um pouco de espaço nas laterais para leitura */
+    }
+    
+    .nutriente-link {
+        width: 100%;             /* Faz o card ocupar a largura útil do celular */
+        max-width: 340px;        /* Mantém um tamanho limite confortável para leitura */
+    }
         }
