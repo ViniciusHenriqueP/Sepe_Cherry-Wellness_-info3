@@ -755,3 +755,24 @@ margin-top: 20px;
         max-width: 340px;        /* Mantém um tamanho limite confortável para leitura */
     }
         }
+
+
+                .content-escondido {
+    display: none !important;
+}
+
+/* Animação para o bloco surgir deslizando de leve para cima */
+.nutriente-bloco {
+    animation: surgimentoSuave 0.4s ease-out forwards;
+}
+
+@keyframes surgimentoSuave {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

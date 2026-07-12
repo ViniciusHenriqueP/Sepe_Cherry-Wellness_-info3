@@ -45,7 +45,7 @@
         
         <div class="grid-nutrientes">
             <a href="#proteinas" class="nutriente-link">
-                <div class="nutriente-card-click">
+                <div class="nutriente-card-click" onclick="mostrarNutriente('proteinas')">
                     <span style="font-size: 30px;">💪</span>
                     <h3 style="color: #3D1111; margin: 10px 0 5px 0;">Proteínas</h3>
                     <p style="font-size: 13px; color: #6E5A5A;">Construção e reparação de tecidos.</p>
@@ -53,14 +53,14 @@
             </a>
 
             <a href="#carboidratos" class="nutriente-link">
-                <div class="nutriente-card-click">
+                <div class="nutriente-card-click" onclick="mostrarNutriente('carboidratos')">
                     <span style="font-size: 30px;">🌾</span>
                     <h3 style="color: #3D1111; margin: 10px 0 5px 0;">Carboidratos</h3>
                     <p style="font-size: 13px; color: #6E5A5A;">A principal fonte de energia.</p>
                 </div>
             </a>
 
-            <a href="#gorduras" class="nutriente-link">
+            <a href="#gorduras" class="nutriente-link" onclick="mostrarNutriente('gorduras')">
                 <div class="nutriente-card-click">
                     <span style="font-size: 30px;">🥑</span>
                     <h3 style="color: #3D1111; margin: 10px 0 5px 0;">Gorduras Boas</h3>
@@ -68,8 +68,8 @@
                 </div>
             </a>
 
-            <a href="#vitaminas" class="nutriente-link">
-                <div class="nutriente-card-click">
+            <a href="#vitaminas" class="nutriente-link" >
+                <div class="nutriente-card-click" onclick="mostrarNutriente('vitaminas')">
                     <span style="font-size: 30px;">🍃</span>
                     <h3 style="color: #3D1111; margin: 10px 0 5px 0;">Vitaminas e Minerais</h3>
                     <p style="font-size: 13px; color: #6E5A5A;">Regulação das funções vitais.</p>
@@ -78,10 +78,14 @@
         </div>
     </section>
 
-    <section class="detalhes-nutrientes-section">
+<section class="detalhes-nutrientes-section">
         <div class="container-detalhes">
             
-            <div id="proteinas" class="nutriente-bloco">
+            <div id="mensagem-inicial" style="text-align: center; color: #8A7676; font-style: italic; padding: 40px 20px; background: #FFFFFF; border-left: 5px solid #E6DEC9;">
+                ✨ Selecione um dos nutrientes acima para exibir as informações completas e dicas práticas!
+            </div>
+            
+            <div id="content-proteinas" class="nutriente-bloco content-escondido">
                 <h3>💪 Proteínas: Os Blocos de Construção do Corpo</h3>
                 <p>As proteínas são macromoléculas essenciais formadas por aminoácidos. Elas desempenham um papel vital na construção, manutenção e reparação dos tecidos musculares, pele, órgãos e cabelo. Além disso, atuam na produção de enzimas digestivas, hormônios e no fortalecimento do sistema imunológico.</p>
                 <div class="dica-saudavel-box">
@@ -89,15 +93,15 @@
                 </div>
             </div>
 
-            <div id="carboidratos" class="nutriente-bloco">
+            <div id="content-carboidratos" class="nutriente-bloco content-escondido">
                 <h3>🌾 Carboidratos: O Combustível do Organismo</h3>
                 <p>Os carboidratos são a principal e mais eficiente fonte de energia para o corpo humano e para o funcionamento do cérebro. Quando consumidos, transformam-se em glicose para abastecer as células cotidianamente. O segredo está em escolher os tipos complexos, que possuem absorção lenta e evitam picos de açúcar no sangue.</p>
                 <div class="dica-saudavel-box">
-                    <strong>💡 Escolhas Práticas & Saudáveis:</strong> Substitua produtos refinados pelos integrais (arroz integral, aveia, pão integral) e consuma tubérculos como batata-doce, mandioca e inhame. Reduza o consumo de açúcar refinado e doces industriais.
+                    <strong>💡 Escolhas Práticas & Saudáveis:</strong> Substitua produtos refinados pelos integrais (arroz integral, aveia, pão integral) e consuma tubérculos como batata-docce, mandioca e inhame. Reduza o consumo de açúcar refinado e doces industriais.
                 </div>
             </div>
 
-            <div id="gorduras" class="nutriente-bloco">
+            <div id="content-gorduras" class="nutriente-bloco content-escondido">
                 <h3>🥑 Gorduras Boas: Protetoras do Coração e Cérebro</h3>
                 <p>Diferente do que muitos pensam, as gorduras insaturadas (boas) são fundamentais. Elas protegem o sistema cardiovascular controlando o colesterol, auxiliam na absorção de vitaminas lipossolúveis (A, D, E, K), isolam termicamente o corpo e mantêm a estrutura das membranas celulares e neurônios saudável.</p>
                 <div class="dpx-saudavel-box dica-saudavel-box">
@@ -105,7 +109,7 @@
                 </div>
             </div>
 
-            <div id="vitaminas" class="nutriente-bloco">
+            <div id="content-vitaminas" class="nutriente-bloco content-escondido">
                 <h3>🍃 Vitaminas e Minerais: Os Reguladores Invisíveis</h3>
                 <p>Conhecidos como micronutrientes, eles não fornecem energia direta, mas sem eles o corpo para de funcionar. Vitaminas (como C, D, Complexo B) e Minerais (Cálcio, Ferro, Zinco) controlam as reações químicas celulares, aceleram o metabolismo, evitam a fadiga mental e protegem o organismo contra vírus e bactérias externos.</p>
                 <div class="dica-saudavel-box">
@@ -115,6 +119,26 @@
 
         </div>
     </section>
+
+    <script>
+        function mostrarNutriente(idNutriente) {
+            // Esconde a frase de ajuda inicial
+            document.getElementById('mensagem-inicial').style.display = 'none';
+
+            // Seleciona todos os blocos de texto e garante que eles fiquem escondidos
+            let todosOsBlocos = document.querySelectorAll('.nutriente-bloco');
+            todosOsBlocos.forEach(function(bloco) {
+                bloco.classList.add('content-escondido');
+            });
+
+            // Mostra apenas o bloco do nutriente que foi clicado
+            let blocoAlvo = document.getElementById('content-' + idNutriente);
+            if (blocoAlvo) {
+                blocoAlvo.classList.remove('content-escondido');
+            }
+        }
+    </script>
+
 
 
 
