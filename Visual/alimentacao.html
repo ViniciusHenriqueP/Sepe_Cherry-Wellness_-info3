@@ -120,26 +120,40 @@
         </div>
     </section>
 
-    <script>
-        function mostrarNutriente(idNutriente) {
-            // Esconde a frase de ajuda inicial
-            document.getElementById('mensagem-inicial').style.display = 'none';
+ <script>
+    function mostrarNutriente(idNutriente) {
+        // Esconde a frase de ajuda inicial
+        let msgInicial = document.getElementById('mensagem-inicial');
+        if (msgInicial) msgInicial.style.display = 'none';
 
-            // Seleciona todos os blocos de texto e garante que eles fiquem escondidos
-            let todosOsBlocos = document.querySelectorAll('.nutriente-bloco');
-            todosOsBlocos.forEach(function(bloco) {
-                bloco.classList.add('content-escondido');
-            });
+        // Seleciona todos os blocos de texto e garante que eles fiquem escondidos
+        let todosOsBlocos = document.querySelectorAll('.nutriente-bloco');
+        todosOsBlocos.forEach(function(bloco) {
+            bloco.classList.add('content-escondido');
+        });
 
-            // Mostra apenas o bloco do nutriente que foi clicado
-            let blocoAlvo = document.getElementById('content-' + idNutriente);
-            if (blocoAlvo) {
-                blocoAlvo.classList.remove('content-escondido');
-            }
+        // Mostra apenas o bloco do nutriente que foi clicado
+        let blocoAlvo = document.getElementById('content-' + idNutriente);
+        if (blocoAlvo) {
+            blocoAlvo.classList.remove('content-escondido');
+            
+            // Faz a página rolar suavemente até o texto que apareceu
+            blocoAlvo.scrollIntoView({ behavior: 'smooth' });
         }
-    </script>
+    }
 
+    // MÁGICA RECONHECEDORA: Roda automaticamente assim que a página abre
+    window.addEventListener('DOMContentLoaded', () => {
+        // Pega os parâmetros do link (ex: ?nutriente=proteinas)
+        const URLParams = new URLSearchParams(window.location.search);
+        const nutrienteNoLink = URLParams.get('nutriente');
 
+        // Se tiver algum nutriente especificado no link, ele força o clique nele!
+        if (nutrienteNoLink) {
+            mostrarNutriente(nutrienteNoLink);
+        }
+    });
+</script>
 
 
 
