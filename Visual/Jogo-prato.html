@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Monte seu Prato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* CORREÇÃO DO FOOTER: html e body ocupando 100% da altura com comportamento flex */
+        html, body {
+            height: 100%;
+        }
+
+        body { 
+            font-family: 'Atkinson Hyperlegible', sans-serif; 
+            background-color: #FBF9F4; 
+            color: #3D1111; 
+            user-select: none; 
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .navbar-jogo {
+            background-color: #3D1111; 
+            color: #E2D7C5; 
+            padding: 15px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        .logo-area { font-weight: bold; font-size: 22px; }
+
+        .nav-links-jogo a {
+            color: #E2D7C5; 
+            margin-left: 20px; 
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links-jogo a.active { text-decoration: underline; font-weight: bold; }
+
+        /* O game-wrapper agora se expande para empurrar o rodapé para baixo */
+        .game-wrapper { 
+            display: flex; 
+            gap: 40px; 
+            padding: 50px 20px; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            justify-content: center; 
+            align-items: start; 
+            flex: 1; 
+        }
+        
+        .comidas-paleta { 
+            flex: 1; 
+            padding: 25px; 
+            background: #F9F5EB; 
+            border: 1px solid #E6DEC9; 
+            text-align: center; 
+        }
+
+        .comidas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .comida-card { 
+            border: 1px solid #E6DEC9; 
+            background: #FFFFFF; 
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comida-card span {
+            font-size: 14px;
+            color: #4A3E3E;
+            font-weight: bold;
+        }
+
+        .emoji-arrastavel {
+            font-size: 38px;
+            cursor: grab;
+            display: inline-block;
+            transition: transform 0.1s ease;
+            touch-action: none; 
+            z-index: 10;
+        }
+
+        /* AJUSTE: Emoji expande perfeitamente ao puxar */
+        .emoji-arrastavel:active {
+            cursor: grabbing;
+            transform: scale(1.5); 
+        }
+        
+        .prato-container { 
+            flex: 1; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 25px; 
+        }
+
+        .area-prato { 
+            width: 320px; 
+            height: 320px; 
+            background-color: #FFFFFF; 
+            border: 10px solid #3D1111; 
+            border-radius: 50%; 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 30px; 
+            position: relative; 
+            box-shadow: 0 8px 16px rgba(61, 17, 17, 0.08);
+            transition: background-color 0.2s;
+        }
+
+        .area-prato.prato-atencao { 
+            background-color: #F5EBE6; 
+        } 
+
+        .comida-no-prato { 
+            font-size: 45px; 
+            margin: 8px; 
+            animation: cairNoPrato 0.2s ease-out;
+        } 
+
+        @keyframes cairNoPrato {
+            from { transform: scale(2); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .botoes-grupo {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+
+        /* CORREÇÃO MOBILE: Centralização absoluta e responsiva */
+        .painel-resultado { 
+            width: 100%; 
+            max-width: 340px; 
+            padding: 20px; 
+            text-align: center; 
+            border: 1px solid #E6DEC9;
+            border-radius: 5px;
+            margin: 15px auto 0 auto; 
+            box-sizing: border-box;
+            background-color: #458b40;
+            transition: all 0.3s ease;
+        }
+
+        .painel-resultado:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        /* Botão para ir ver a página de emblemas */
+        .btn-ir-emblemas {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #275923;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ir-emblemas:hover {
+            background-color: #458b40;
+            transform: scale(1.1);
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .game-wrapper { flex-direction: column; align-items: center; gap: 30px; }
+            .comidas-paleta, .prato-container { width: 100%; }
+            .painel-resultado { max-width: 100%; } 
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="Index.html">Início</a>
+            <a href="#">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="#">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+    </header>
+
+    <main class="game-wrapper">
+        
+        <section class="comidas-paleta">
+            <h3 style="font-size: 22px;">Alimentos</h3>
+            <p style="color: #6E5A5A; font-size: 14px;">Arraste os emojis para o prato:</p>
+            
+            <div class="comidas-grid">
+                <div class="comida-card">
+                    <div id="alface" class="emoji-arrastavel">🥬</div>
+                    <span>Alface</span>
+                </div>
+                <div class="comida-card">
+                    <div id="file-frango" class="emoji-arrastavel">🍗</div>
+                    <span>Frango</span>
+                </div>
+                <div class="comida-card">
+                    <div id="arroz" class="emoji-arrastavel">🍚</div>
+                    <span>Arroz</span>
+                </div>
+                <div class="comida-card">
+                    <div id="azeite" class="emoji-arrastavel">🫒</div>
+                    <span>Azeite</span>
+                </div>
+                <div class="comida-card">
+                    <div id="linguica" class="emoji-arrastavel">🌭</div>
+                    <span>Linguiça</span>
+                </div>
+                <div class="comida-card">
+                    <div id="refrigerante" class="emoji-arrastavel">🥤</div>
+                    <span>Refri</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="prato-container">
+            <h3 style="font-size: 22px;">Seu Prato</h3>
+            
+            <div id="prato-alvo" class="area-prato">
+                <p id="texto-ajuda" style="color: #8A7676; font-style: italic; text-align: center; position: absolute;">
+                    Arraste até 4 itens para cá!
+                </p>
+            </div>
+            
+            <div class="botoes-grupo">
+                <button class="btn-secondary" onclick="calcularSaude()">
+                    Calcular Saúde
+                </button>
+                <button class="btn-secondary" onclick="recomecarJogo()">
+                    Tentar de Novo
+                </button>
+            </div>
+            
+            <div id="area-resultado" style="display: none; width: 100%;">
+                <div id="resultado-painel" class="painel-resultado"></div>
+            </div>
+        </section>
+        
+    </main>
+
+    <script>
+        const emojis = document.querySelectorAll('.emoji-arrastavel');
+        const prato = document.getElementById('prato-alvo');
+        let contadorComidas = 0;
+
+        emojis.forEach(emoji => {
+            emoji.addEventListener('mousedown', iniciarArrasto);
+            emoji.addEventListener('touchstart', iniciarArrasto, { passive: false });
+        });
+
+        function iniciarArrasto(e) {
+            if (contadorComidas >= 4) {
+                alert('Seu prato já está completo com 4 itens!');
+                return;
+            }
+
+            e.preventDefault();
+            const emoji = e.target;
+            const rectInicial = emoji.getBoundingClientRect();
+
+            emoji.style.position = 'fixed';
+            emoji.style.zIndex = '1000';
+            moverNaTela(e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY);
+
+            function moverNaTela(x, y) {
+                emoji.style.left = (x - rectInicial.width / 2) + 'px';
+                emoji.style.top = (y - rectInicial.height / 2) + 'px';
+
+                const rectPrato = prato.getBoundingClientRect();
+                if (x >= rectPrato.left && x <= rectPrato.right && y >= rectPrato.top && y <= rectPrato.bottom) {
+                    prato.classList.add('prato-atencao');
+                } else {
+                    prato.classList.remove('prato-atencao');
+                }
+            }
+
+            function aoMover(evento) {
+                moverNaTela(evento.clientX || evento.touches[0].clientX, evento.clientY || evento.touches[0].clientY);
+            }
+
+            function aoSoltar(evento) {
+                document.removeEventListener('mousemove', aoMover);
+                document.removeEventListener('mouseup', aoSoltar);
+                document.removeEventListener('touchmove', aoMover);
+                document.removeEventListener('touchend', aoSoltar);
+
+                prato.classList.remove('prato-atencao');
+
+                const xFinal = evento.clientX || (evento.changedTouches ? evento.changedTouches[0].clientX : 0);
+                const yFinal = evento.clientY || (evento.changedTouches ? evento.changedTouches[0].clientY : 0);
+
+                const rectPrato = prato.getBoundingClientRect();
+
+                if (xFinal >= rectPrato.left && xFinal <= rectPrato.right && yFinal >= rectPrato.top && yFinal <= rectPrato.bottom) {
+                    const textoAjuda = document.getElementById('texto-ajuda');
+                    if (textoAjuda) textoAjuda.remove();
+
+                    const novoItem = document.createElement('span');
+                    novoItem.classList.add('comida-no-prato');
+                    novoItem.innerText = emoji.innerText;
+                    novoItem.id = "final-" + emoji.id;
+                    prato.appendChild(novoItem);
+                    
+                    contadorComidas++;
+                }
+                emoji.style.position = 'static';
+            }
+
+            document.addEventListener('mousemove', aoMover);
+            document.addEventListener('mouseup', aoSoltar);
+            document.addEventListener('touchmove', aoMover, { passive: false });
+            document.addEventListener('touchend', aoSoltar);
+        }
+
+        function calcularSaude() {
+            let pontosTotais = 0;
+            const valoresNutricionais = {
+                'alface': 25, 'file-frango': 20, 'arroz': 15, 'azeite': 20, 'linguica': -10, 'refrigerante': -20
+            };
+
+            const comidasNoPratoArr = prato.querySelectorAll('.comida-no-prato');
+
+            if (comidasNoPratoArr.length === 0) {
+                alert('Coloque alimentos no prato antes de calcular!');
+                return;
+            }
+
+            comidasNoPratoArr.forEach(comidaNode => {
+                const idOriginal = comidaNode.id.replace('final-', '');
+                if (valoresNutricionais[idOriginal] !== undefined) {
+                    pontosTotais += valoresNutricionais[idOriginal];
+                }
+            });
+
+            let porcentagemTeste = Math.round((pontosTotais / 80) * 100);
+            if (porcentagemTeste < 0) porcentagemTeste = 0;
+            if (porcentagemTeste > 100) porcentagemTeste = 100;
+
+            const painel = document.getElementById('resultado-painel');
+            document.getElementById('area-resultado').style.display = 'block';
+            
+            painel.innerHTML = '<h3>Análise Nutricional</h3><p>Seu prato atingiu <strong>' + porcentagemTeste + '%</strong> saudável.</p>';
+            
+            if (porcentagemTeste >= 80) {
+                // SALVANDO NO LOCAL STORAGE E ADICIONANDO BOTÃO DE REDIRECIONAMENTO
+                localStorage.setItem('emblemaPrato', 'ganhou');
+
+                painel.innerHTML += '<p style="margin-top:10px;"> <strong>MUITO BEM!</strong> Você ganhou o <strong>Emblema do Prato Saudável</strong>!</p>';
+                painel.innerHTML += '<a href="emblemas.html" class="btn-ir-emblemas">Ver meus Emblemas</a>';
+                painel.style.backgroundColor = '#E2EFE0';
+                painel.style.borderColor = '#275923';
+                painel.style.color = '#275923';
+            } else {
+                painel.innerHTML += '<p style="margin-top:10px;"> <strong>Tente de novo!</strong> Seu prato precisa de mais itens naturais e menos industrializados.</p>';
+                painel.style.backgroundColor = '#FFF4E5';
+                painel.style.borderColor = '#CC9C70';
+                painel.style.color = '#CC9C70';
+            }
+        }
+
+        function recomecarJogo() {
+            const comidasNoPrato = prato.querySelectorAll('.comida-no-prato');
+            comidasNoPrato.forEach(item => item.remove());
+            contadorComidas = 0;
+            document.getElementById('area-resultado').style.display = 'none';
+            
+            if (!document.getElementById('texto-ajuda')) {
+                const textoAjuda = document.createElement('p');
+                textoAjuda.id = 'texto-ajuda';
+                textoAjuda.style.color = '#8A7676';
+                textoAjuda.style.fontStyle = 'italic';
+                textoAjuda.style.textAlign = 'center';
+                textoAjuda.style.position = 'absolute';
+                textoAjuda.innerText = 'Arraste até 4 itens para cá!';
+                prato.appendChild(textoAjuda);
+            }
+        }
+    </script>
+
+    <footer class="footer">
+        <span>Siga-nos</span>
+        <div class="social-icons">
+            <a href="#" class="icon"><img src="IMG/icons/instagram.png" alt="Instagram"></a>
+            <a href="#" class="icon"><img src="IMG/icons/github.png" alt="Github"></a>
+        </div>
+    </footer>
+</body>
+</html>

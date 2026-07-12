@@ -738,6 +738,9 @@ margin-top: 20px;
             color: #3D1111;
         }
 
+        .cards-container  .btn-secondary{
+            padding: 20px 20ox
+        }
         @media (max-width: 768px) {
             .hero-section-clean {
                 flex-direction: column;
