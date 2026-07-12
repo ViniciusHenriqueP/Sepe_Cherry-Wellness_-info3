@@ -15,6 +15,13 @@ body {
    ESTILOS PADRÃO (CELULAR / MOBILE)
    ========================================================================== */
 /* 1. Criando a animação da "linha do tempo" */
+
+
+@view-transition {
+  navigation: auto; /* Tenta animar as trocas de página nativamente */
+}
+
+
 @keyframes fadeInLeft {
     0% {
         opacity: 0;
@@ -544,3 +551,114 @@ body {
 .hero-buttons  {
 margin-top: 20px;
 }
+
+
+
+/* ==========================================================================
+   Alimentação.html
+   ========================================================================== */
+
+
+        /* Ajustes específicos de layout para esta página ficarem profissionais */
+        html {
+            scroll-behavior: smooth; /* Faz a página deslizar suavemente ao clicar no sumário */
+        }
+
+        .hero-section-clean {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-text-area {
+            max-width: 500px;
+        }
+
+        /* Transformando os blocos de nutrientes em botões de sumário clicáveis */
+        .grid-nutrientes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 30px auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .nutriente-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .nutriente-card-click {
+            background-color: #F9F5EB;
+            border: 1px solid #E6DEC9;
+            padding: 20px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nutriente-card-click:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(61, 17, 17, 0.1);
+            border-color: #3D1111;
+            transition: all 0.3s ease;
+        }
+
+        /* Estilo da nova seção detalhada de informações dos macronutrientes */
+        .detalhes-nutrientes-section {
+            background-color: #FBF9F4;
+            padding: 60px 20px;
+            border-top: 1px solid #E6DEC9;
+        }
+
+        .container-detalhes {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .nutriente-bloco {
+            background-color: #FFFFFF;
+            border-left: 5px solid #3D1111; /* Linha de destaque lateral chique e profissional */
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .nutriente-bloco h3 {
+            color: #3D1111;
+            font-size: 22px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nutriente-bloco p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #4A3E3E;
+            margin-bottom: 15px;
+        }
+
+        .dica-saudavel-box {
+            background-color: #F9F5EB;
+            padding: 15px;
+            border: 1px dashed #CDA3A3;
+            font-size: 14px;
+        }
+
+        .dica-saudavel-box strong {
+            color: #3D1111;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section-clean {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
