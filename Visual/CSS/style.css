@@ -475,6 +475,14 @@ body {
         transform: scale(1.05);
         transition: all 0.3s ease;
     }
+
+
+    .hero-info img{
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        display: block;
+    }
 /* ==========================================================================
    MUDANÇA DE LAYOUT (TELAS MAIORES QUE 600PX - TABLET / DESKTOP)
    ========================================================================== */
@@ -610,6 +618,16 @@ margin-top: 20px;
 
         .hero-section-clean {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-info {
+                        display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 40px;
@@ -758,7 +776,12 @@ margin-top: 20px;
         max-width: 340px;        /* Mantém um tamanho limite confortável para leitura */
     }
         }
-
+        @media (max-width: 768px) {
+            .hero-info{
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }}
 
                 .content-escondido {
     display: none !important;
