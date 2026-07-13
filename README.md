@@ -124,28 +124,27 @@ A respeito das novas ideias, conseguimos separar os tópicos iniciais passados p
 
 **Questões Biológicas**
 
-* Roteiro de perguntas 
+* Roteiro de perguntas.
 
+* 
 
-* Benefícios de exercícios físicos 
+* Benefícios de exercícios físicos. 
 
+* conceitos básicos de funcionamento do corpo. 
 
-* Sugestão de atividades pré-treino (aquecimento) 
-
-
-* Sugestão de atividades de alongamento, relaxamento e meditação 
+* Sugestão de atividades de alongamento, relaxamento e meditação.
 
 
 
 **Questões Alimentares**
 
-* Sugestões de alimentação 
+* Sugestões de alimentação. 
 
 
-* Hidratação antes, durante e após o exercício 
+* Hidratação antes, durante e após o exercício. 
 
 
-* O que são carboidratos, proteínas, gorduras, vitaminas, minerais e suas funções no corpo 
+* O que são carboidratos, proteínas, gorduras, vitaminas, minerais e suas funções no corpo.
 
 
 
@@ -217,3 +216,37 @@ Vale lembrar que Vinícius deu uma ideia muito interessante que vamos aplicar ao
 
 * 
 **Lukas:** Atas e ideia do gráfico
+
+
+
+### Ata 6
+
+**Data:** 13/07/2026 
+
+**Ausentes:** Ninguém
+
+#### Assuntos
+
+O grupo está a todo vapor, vini está desenvolvendo suas últimas partes, murilo segue desenvolvendo a nossa bela rede social, e também está implementando a apresentação de cada integrante do grupo. Estamos ainda discutindo onde colocaríamos nossas descrições, se seriam na rede social, ou no próprio site, ou nos dois. 
+Murilo pediu um breve texto de apresentação do que cada integrante gosta, para apresentar uma divertida  descontração por trás dos códigos.
+
+Lukas está pensando em marcar uma reunião para podermos se comunicar, e poder continuar a trabalhar com sincronia.
+
+#### Responsabilidades
+
+Gabi está trabalhando em seu figma, como também letícia e gabrieli.
+Lukas produzindo as atas como de costume.
+Vinícius praticamente terminou os códigos do jogo interativo, construindo um sistema básico de emblemas.
+Murilo criou um belo design de apresentação de cada membro.
+
+
+
+
+
+
+
+
+
+
+
+
