@@ -18,9 +18,9 @@
         <nav class="nav-links">
             <p class="fade-in-left delay-1"><a href="#" class="active">Início</a></p>
             <a href="#" class="fade-in-left delay-2">Vida em movimento</a>
-            <a href="#" class="fade-in-left delay-3">Prato & Saúde</a>
+            <a href="alimentacao.html" class="fade-in-left delay-3">Prato & Saúde</a>
             <a href="#" class="fade-in-left delay-4">Bem-Estar mental</a>
-            <a href="#" class="fade-in-left delay-5">Emblemas & Minijogos</a>
+            <a href="emblemas.html" class="fade-in-left delay-5">Emblemas & Minijogos</a>
         </nav>
     </header>
 
@@ -51,7 +51,7 @@
 <li class="fade-in-left delay-1" class="lista">
         <div class="card card-green">
             <div class="card-header">
-                <div class="card-icon">🏃‍♂️</div>
+                <div class="card-icon"><img src="IMG/home/academia.png" alt=""></div>
                 <div>
                     <h3>Vida em movimento</h3>
                     <p class="card-tagline">Corpo ativo, mente leve.</p>
@@ -69,25 +69,25 @@
 <li class="fade-in-left delay-2" class="lista">
         <div class="card card-red">
             <div class="card-header">
-                <div class="card-icon">🥗</div>
+                <div class="card-icon" id="prato"><img id="alimentacao" src="IMG/home/alimentacao.png" alt=""></div>
                 <div>
-                    <h3>Prato & Saúde</h3>
-                    <p class="card-tagline">Alimente-se bem, viva melhor.</p>
+                    <h3><a href="alimentacao.html">Prato & Saúde</a></h3>
+                    <p class="card-tagline"><a href="alimentacao.html">Alimente-se bem, viva melhor.</a></p>
                 </div>
             </div>
             <ul class="card-list">
-                <li>Nutrição esportiva</li>
-                <li>Controle de peso</li>
-                <li>Receitas saudáveis</li>
-                <li>Saúde nutricional</li>
+                <li><a href="alimentacao.html?nutriente=proteinas">Proteínas</a></li>
+                <li><a href="alimentacao.html?nutriente=carboidratos">Carboidratos</a></li>
+                <li><a href="alimentacao.html?nutriente=gorduras">Gorduras Boas</a></li>
+                <li><a href="alimentacao.html?nutriente=vitaminas">Vitaminas e Minerais</a></li>
             </ul>
-            <button class="btn-card red-btn">Saiba mais →</button>
+            <button class="btn-card red-btn" onclick="window.location.href='alimentacao.html'">Saiba mais →</button>
         </div>
 </li>
 <li class="fade-in-left delay-3" class="lista">
         <div class="card card-yellow">
             <div class="card-header">
-                <div class="card-icon">🧠</div>
+                <div class="card-icon"> <img id="saudemental" src="IMG/home/saudemental.png" alt=""></div>
                 <div>
                     <h3>Bem-Estar mental</h3>
                     <p class="card-tagline">Equilíbrio que transforma.</p>
@@ -106,7 +106,7 @@
     </section>
 
     <div class="phrase-bar">
-        <span>Pequenas escolhas hoje, grandes mudanças sempre.</span>
+        <span>Os mais aurudos do ifc araquari.</span>
     </div>
 
     <footer class="footer">

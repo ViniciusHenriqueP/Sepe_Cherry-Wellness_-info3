@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Emblemas & Minijogos</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* Mantém o footer no lugar certo assim como no jogo */
+        html, body {
+            height: 100%;
+        }
+
+        body { 
+            font-family: 'Atkinson Hyperlegible', sans-serif; 
+            background-color: #FBF9F4; 
+            color: #3D1111; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Container principal dos emblemas */
+        .emblemas-wrapper {
+            flex: 1;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .titulo-pagina {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .subtitulo-pagina {
+            color: #6E5A5A;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        /* Grid onde os cards de emblemas vão ficar */
+        .emblemas-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Estilo do Card do Emblema Conquistado */
+        .emblema-card {
+            background: #FFFFFF;
+            border: 1px solid #E6DEC9;
+            padding: 30px;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 4px 12px rgba(61, 17, 17, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            animation: surgirCard 0.4s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .emblema-card:hover{
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        .emblema-card h3{
+            transition: all 0.3s ease;
+        }
+
+        .emblema-card h3:hover{
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        /* Espaço da imagem do bonequinho/emoji */
+        .emblema-img-area {
+            font-size: 60px; /* Caso use emoji provisório */
+            width: 150px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Se for usar a imagem do bonequinho depois, é só ajustar a tag img aqui dentro */
+        }
+
+        .emblema-img-area img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .emblema-titulo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3D1111;
+        }
+
+        .emblema-descricao {
+            font-size: 14px;
+            color: #6E5A5A;
+            line-height: 1.4;
+        }
+
+        /* Botão para visitar o jogo novamente */
+
+
+        /* Mensagem de quando não tem conquistas */
+        .sem-emblemas {
+            color: #8A7676;
+            font-style: italic;
+            font-size: 16px;
+            padding: 40px;
+            border: 1px dashed #CC9C70;
+            background-color: #FFF4E5;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        @keyframes surgirCard {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="Index.html">Início</a>
+            <a href="#">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="#">Bem-Estar mental</a>
+            <a href="emblemas.html" class="active">Emblemas & Minijogos</a>
+        </nav>
+    </header>   
+  
+    <main class="emblemas-wrapper">
+        <h2 class="titulo-pagina">Seus Emblemas e Conquistas</h2>
+        <p class="subtitulo-pagina">Complete os desafios do site para desbloquear insígnias de saúde!</p>
+
+        <div id="container-conquistas" class="emblemas-grid"></div>
+    </main>
+  
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById('container-conquistas');
+            
+            // Verifica se o usuário ganhou o jogo do prato
+            const ganhouPrato = localStorage.getItem('emblemaPrato');
+
+            if (ganhouPrato === 'ganhou') {
+                // Se ganhou, renderiza o card do emblema
+                container.innerHTML = `
+                    <div class="emblema-card">
+                        <div class="emblema-img-area">
+                            <img src="IMG/Emblemas/Masterchef.png" alt="mastercheft">
+                            </div>
+                        <h3 class="emblema-titulo"><a href="alimentacao.html">Prato Saudável</a></h3>
+                        <p class="emblema-descricao">Concedido por montar um prato nutricionalmente balanceado com 80% ou mais de aproveitamento saudável.</p>
+                        <a href="jogo-prato.html" class="btn-primary">Visitar Jogo</a>
+                    </div>
+                `;
+            } else {
+                // Se não ganhou nenhum emblema ainda, mostra o aviso que você queria
+                container.innerHTML = `
+                    <div class="sem-emblemas">
+                        Você não tem nenhum emblema ainda! Jogue os minijogos para desbloquear.
+                    </div>
+                `;
+            }
+        });
+    </script>
+
+    <footer class="footer">
+        <span>Siga-nos</span>
+        <div class="social-icons">
+            <a href="#" class="icon"><img src="IMG/icons/instagram.png" alt="Instagram"></a>
+            <a href="#" class="icon"><img src="IMG/icons/github.png" alt="Github"></a>
+        </div>
+    </footer>
+</body>
+</html>
