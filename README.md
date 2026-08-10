@@ -239,6 +239,55 @@ Lukas produzindo as atas como de costume.
 Vinícius praticamente terminou os códigos do jogo interativo, construindo um sistema básico de emblemas.
 Murilo criou um belo design de apresentação de cada membro.
 
+### Ata 7
+
+**Data:** 03/08/2026
+
+**Ausentes:** Ninguém
+
+### Assuntos
+
+O grupo continua a desenvolver o site, cada trabalhando no que é melhor.
+
+### Responsabilidades
+
+Gabi trabalhando em seu figma, como também letícia e gabrieli.
+Lukas nas atas.
+Vini teve novas ideias a respeito de possíveis mais jogos interativos.
+Murilo segue a rede social.
+
+### Ata 8
+
+**Data:** 10/08/2026
+
+**Ausentes:** Ninguém
+
+### Assuntos
+
+Vini irá começar a desenvolver um novo jogo interativo, gabrieli e Murilo discutem a respeito de algumas opiniões sobre o que acham melhor no site.
+E Lukas comecará a trabalhar no Css a sua página, e depois encarregará para vini padronizar os códigos.
+Letícia, Gabriela e Murilo estão no figma.
+
+### Responsabilidades
+Letícia Gabriela e Murilo = Figma.
+Gabrieli = Html.
+Lukas = Css e Atas.
+Vinícios = Jogo interativo.
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
 
 
 
