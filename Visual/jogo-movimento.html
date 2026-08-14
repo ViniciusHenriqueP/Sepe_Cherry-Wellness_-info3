@@ -10,7 +10,7 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html, body { height: 100%; }
+        html, body { height: 100%; transition: background-color 0.5s ease; }
 
         body { 
             font-family: 'Atkinson Hyperlegible', sans-serif; 
@@ -19,6 +19,18 @@
             display: flex;
             flex-direction: column;
             user-select: none;
+        }
+
+        body.modo-escuro-osu {
+            background-color: #0A0505 !important;
+        }
+
+        body.modo-escuro-osu .navbar,
+        body.modo-escuro-osu .footer,
+        body.modo-escuro-osu .game-info {
+            opacity: 0.1;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
         }
 
         .game-screen {
@@ -31,11 +43,24 @@
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
+            z-index: 10;
         }
 
         .game-info {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+        }
+
+        /* Placar de Pontos */
+        .score-display {
+            font-size: 18px;
+            font-weight: bold;
+            color: #3D1111;
+            margin-bottom: 5px;
+        }
+
+        body.modo-escuro-osu .score-display {
+            color: #ffffff;
         }
 
         /* Barra de Vida */
@@ -57,7 +82,6 @@
             transition: width 0.2s ease, background-color 0.2s ease;
         }
 
-        /* Container Principal do Jogo */
         .game-container {
             position: relative;
             width: 100%;
@@ -67,15 +91,22 @@
             border: 4px solid #3D1111;
             overflow: hidden;
             border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: box-shadow 0.5s ease;
         }
 
-        /* Alinhamento das Trilhas */
+        body.modo-escuro-osu .game-container {
+            box-shadow: 0 0 35px rgba(255, 60, 60, 0.4);
+            border-color: #ff4747;
+        }
+
         .receptors {
             display: flex;
             width: 100%;
             height: 60px;
             border-bottom: 2px dashed #E6DEC9;
             background: #FDFBF4;
+            position: relative;
         }
 
         .receptor-lane {
@@ -83,6 +114,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
 
         .receptor {
@@ -93,7 +125,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
+
+        /* Movimentação Suave dos Receptores */
+        .mov-alt-0 { animation: mover0 3.0s ease-in-out infinite alternate; }
+        .mov-alt-1 { animation: mover1 3.4s ease-in-out infinite alternate; }
+        .mov-alt-2 { animation: mover2 2.8s ease-in-out infinite alternate; }
+        .mov-alt-3 { animation: mover3 3.2s ease-in-out infinite alternate; }
+
+        @keyframes mover0 { 0% { transform: translateY(0px); } 100% { transform: translateY(18px); } }
+        @keyframes mover1 { 0% { transform: translateY(16px); } 100% { transform: translateY(-5px); } }
+        @keyframes mover2 { 0% { transform: translateY(-5px); } 100% { transform: translateY(14px); } }
+        @keyframes mover3 { 0% { transform: translateY(12px); } 100% { transform: translateY(0px); } }
 
         .receptor.active {
             transform: scale(1.25);
@@ -101,7 +145,6 @@
             color: #3D1111;
         }
 
-        /* Setas Flutuantes */
         .note {
             position: absolute;
             width: 25%;
@@ -114,13 +157,31 @@
             z-index: 5;
         }
 
-        .note img, .receptor img {
-            max-width: 80%;
-            max-height: 80%;
-            object-fit: contain;
+        .note.teleport {
+            animation: flashTeleport 0.4s ease;
         }
 
-        /* Controles Touch */
+        @keyframes flashTeleport {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Texto Flutuante de Precisão (PERFECT, GOOD, OK) */
+        .hit-feedback {
+            position: absolute;
+            font-weight: bold;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 20;
+            animation: subirEsumir 0.6s ease-out forwards;
+        }
+
+        @keyframes subirEsumir {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            100% { opacity: 0; transform: translateY(-25px) scale(1.2); }
+        }
+
         .touch-controls {
             display: flex;
             width: 100%;
@@ -152,7 +213,7 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(61, 17, 17, 0.95);
-            display: none;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -163,6 +224,35 @@
             gap: 15px;
             overflow-y: auto;
         }
+
+        .dificuldade-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 220px;
+            margin-top: 10px;
+        }
+
+        .btn-dificuldade {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+            color: white;
+        }
+
+        .btn-dificuldade:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .btn-facil { background-color: #275923; }
+        .btn-medio { background-color: #C28200; }
+        .btn-dificil { background-color: #A62B2B; }
 
         .btn-game {
             display: inline-block;
@@ -211,12 +301,14 @@
             <p style="color: #6E5A5A; font-size: 14px;">Use <b>WASD</b>, <b>SETAS</b> ou toque nos botões!</p>
         </div>
 
+        <div class="score-display">Pontos: <span id="score-val">0</span></div>
+
         <div class="health-bar-container">
             <div id="health-fill" class="health-bar-fill"></div>
         </div>
 
         <div class="game-container" id="game-container">
-            <div class="receptors">
+            <div id="receptors-bar" class="receptors">
                 <div class="receptor-lane"><div id="receptor-0" class="receptor">⬅️</div></div>
                 <div class="receptor-lane"><div id="receptor-1" class="receptor">⬇️</div></div>
                 <div class="receptor-lane"><div id="receptor-2" class="receptor">⬆️</div></div>
@@ -224,9 +316,13 @@
             </div>
 
             <div id="feedback-overlay" class="feedback-overlay">
-                <h2 id="final-status" style="font-size: 26px; font-weight: bold;"></h2>
-                <p id="final-msg" style="font-size: 15px; line-height: 1.4;"></p>
-                <div id="btn-area"></div>
+                <h2 id="final-status" style="font-size: 24px; font-weight: bold;">Escolha a Dificuldade</h2>
+                <p id="final-msg" style="font-size: 14px; line-height: 1.4;">Selecione o ritmo desejado para começar:</p>
+                <div id="btn-area" class="dificuldade-container">
+                    <button class="btn-dificuldade btn-facil" onclick="iniciarComDificuldade('facil')"> Fácil</button>
+                    <button class="btn-dificuldade btn-medio" onclick="iniciarComDificuldade('medio')"> Médio</button>
+                    <button class="btn-dificuldade btn-dificil" onclick="iniciarComDificuldade('dificil')"> Difícil (bem aurudo e dificil mesmo)</button>
+                </div>
             </div>
         </div>
 
@@ -236,14 +332,13 @@
             <button class="touch-btn" id="btn-2">⬆️</button>
             <button class="touch-btn" id="btn-3">➡️</button>
         </div>
-        
-        <button id="start-btn" class="btn-primary" style="margin-top: 20px; width: 220px;">Começar Exercício</button>
     </main>
 
     <script>
         const container = document.getElementById('game-container');
         const healthFill = document.getElementById('health-fill');
-        const startBtn = document.getElementById('start-btn');
+        const scoreVal = document.getElementById('score-val');
+        const receptorsBar = document.getElementById('receptors-bar');
         const overlay = document.getElementById('feedback-overlay');
         const receptors = [
             document.getElementById('receptor-0'),
@@ -252,7 +347,7 @@
             document.getElementById('receptor-3')
         ];
 
-        // --- SISTEMA DE ÁUDIOS ---
+        // Áudios
         const somAcerto = new Audio('AUDIO/du-bist-gut-genug.mp3');
         const somErro = new Audio('AUDIO/fnf-missnote-1.mp3');
         const somDerrota = new Audio('AUDIO/67.mp3');
@@ -261,43 +356,34 @@
         let timerAcerto = null;
 
         function tocarSomAcerto() {
-            // Se o áudio já tiver chegado ao final, volta pro início
             if (somAcerto.ended) {
                 somAcerto.currentTime = 0;
             }
-
-            // Cancela o temporizador anterior para poder rodar +0.67s a partir de agora
             if (timerAcerto) clearTimeout(timerAcerto);
-
             somAcerto.play().catch(() => {});
-
-            // Pausa exatamente após 0.67 segundos (670 ms) mantendo a posição de pause
             timerAcerto = setTimeout(() => {
                 somAcerto.pause();
             }, 670);
         }
 
         function tocarSomErro() {
-            // Pausa a música de acerto se estiver tocando
             if (timerAcerto) clearTimeout(timerAcerto);
             somAcerto.pause();
-
-            // Reseta e toca o som de erro
             somErro.currentTime = 0;
             somErro.play().catch(() => {});
         }
-
-        // --- FIM SISTEMA DE ÁUDIOS ---
 
         const setasMidia = ['⬅️', '⬇️', '⬆️', '➡️']; 
 
         let gameActive = false;
         let health = 50;
+        let score = 0;
         let notes = [];
         
-        let baseSpeed = 2;
-        let currentSpeed = 2;
-        let spawnRate = 35; 
+        let modoAtual = 'medio';
+        let baseSpeed = 1.0;
+        let currentSpeed = 1.0;
+        let spawnRate = 110; 
         let frameCount = 0;
 
         const keys = {
@@ -307,32 +393,57 @@
             'ArrowRight': 3, 'd': 3, 'D': 3
         };
 
-        startBtn.addEventListener('click', () => {
-            startBtn.style.display = 'none';
+        function aplicarMovimentoAlternado(ativar) {
+            receptors.forEach((rec, i) => {
+                if (ativar) rec.classList.add(`mov-alt-${i}`);
+                else rec.classList.remove(`mov-alt-${i}`);
+            });
+        }
+
+        function iniciarComDificuldade(nivel) {
+            modoAtual = nivel;
+            
+            // DIFICULDADES E VELOCIDADES REAJUSTADAS
+            if (nivel === 'facil') {
+                baseSpeed = 0.8;
+                spawnRate = 130;
+                aplicarMovimentoAlternado(false);
+                document.body.classList.remove('modo-escuro-osu');
+            } else if (nivel === 'medio') {
+                baseSpeed = 1.4;
+                spawnRate = 100;
+                aplicarMovimentoAlternado(false);
+                document.body.classList.remove('modo-escuro-osu');
+            } else if (nivel === 'dificil') {
+                baseSpeed = 2.8; // Velocidade bem amigável para reação
+                spawnRate = 70;
+                aplicarMovimentoAlternado(true);
+                document.body.classList.add('modo-escuro-osu');
+            }
+
             gameActive = true;
             health = 50;
+            score = 0;
+            scoreVal.innerText = score;
             frameCount = 0;
             currentSpeed = baseSpeed;
-            spawnRate = 55;
             notes.forEach(n => n.el.remove());
             notes = [];
             overlay.style.display = 'none';
-            
-            // Reseta posições de áudio
             somAcerto.currentTime = 0;
 
             gameLoop();
-        });
+        }
 
         function gameLoop() {
             if (!gameActive) return;
 
             frameCount++;
 
-            if (frameCount % 180 === 0) {
-                currentSpeed += 0.3; 
-                if (spawnRate > 25) {
-                    spawnRate -= 3; 
+            if (frameCount % 300 === 0) {
+                currentSpeed += 0.1; 
+                if (spawnRate > 40) {
+                    spawnRate -= 2; 
                 }
             }
 
@@ -345,12 +456,11 @@
                 n.y -= currentSpeed; 
                 n.el.style.top = n.y + 'px';
 
-                // Se a nota passar do topo (errou por deixar passar)
-                if (n.y < 5) {
+                if (n.y < -20) {
                     n.el.remove();
                     notes.splice(i, 1);
-                    tocarSomErro(); // 🔊 Toca o som de erro ao deixar passar
-                    updateHealth(-8);
+                    tocarSomErro();
+                    updateHealth(-6);
                 }
             }
 
@@ -366,10 +476,31 @@
             el.className = 'note';
             el.innerHTML = setasMidia[lane];
             el.style.left = (lane * 25) + '%'; 
-            el.style.top = '420px';
+            
+            let startY = 420;
+
+            // Teleporte mais previsível no modo Difícil (só surge na metade inferior da tela)
+            if (modoAtual === 'dificil' && Math.random() < 0.20) {
+                startY = 240 + Math.random() * 60;
+                el.classList.add('teleport');
+            }
+
+            el.style.top = startY + 'px';
             
             container.appendChild(el);
-            notes.push({ el, lane, y: 420 });
+            notes.push({ el, lane, y: startY });
+        }
+
+        function mostrarFeedbackTexto(texto, cor, lane, y) {
+            const fb = document.createElement('div');
+            fb.className = 'hit-feedback';
+            fb.innerText = texto;
+            fb.style.color = cor;
+            fb.style.left = (lane * 25 + 5) + '%';
+            fb.style.top = y + 'px';
+            container.appendChild(fb);
+
+            setTimeout(() => fb.remove(), 600);
         }
 
         function updateHealth(amount) {
@@ -413,30 +544,59 @@
         });
 
         function checkHit(lane) {
-            const hitZoneMin = 0;
-            const hitZoneMax = 65;
+            const receptorEl = receptors[lane];
+            const receptorRect = receptorEl.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            
+            const receptorY = receptorRect.top - containerRect.top;
+
+            // 🎯 AREA DE ACERTO BEM AMPLA (HITBOX EXPANDIDA)
+            const hitZoneMin = receptorY - 50;
+            const hitZoneMax = receptorY + 90;
 
             for (let i = 0; i < notes.length; i++) {
                 let n = notes[i];
                 if (n.lane === lane && n.y >= hitZoneMin && n.y <= hitZoneMax) {
+                    
+                    // Distância exata do centro do receptor
+                    const distancia = Math.abs(n.y - receptorY);
+
                     n.el.remove();
                     notes.splice(i, 1);
-                    
-                    tocarSomAcerto(); // 🔊 Toca 0.67s do som de acerto continuando de onde parou
-                    
-                    updateHealth(6);
+                    tocarSomAcerto();
+
+                    // SISTEMA DE PONTUAÇÃO E CURA POR PRECISÃO
+                    if (distancia <= 15) {
+                        // PERFECT!
+                        score += 100;
+                        updateHealth(8);
+                        mostrarFeedbackTexto('PERFECT!', '#2eec71', lane, receptorY);
+                    } else if (distancia <= 35) {
+                        // GOOD!
+                        score += 50;
+                        updateHealth(5);
+                        mostrarFeedbackTexto('GOOD', '#f1c40f', lane, receptorY);
+                    } else {
+                        // OK
+                        score += 20;
+                        updateHealth(2);
+                        mostrarFeedbackTexto('OK', '#e67e22', lane, receptorY);
+                    }
+
+                    scoreVal.innerText = score;
                     return;
                 }
             }
             
-            tocarSomErro(); // 🔊 Toca o som de erro ao clicar errado
+            tocarSomErro();
             updateHealth(-3);
         }
 
         function endGame(win) {
             gameActive = false;
-            
-            // Interrompe o som de acerto caso esteja rodando
+            aplicarMovimentoAlternado(false);
+            document.body.classList.remove('modo-escuro-osu');
+
             if (timerAcerto) clearTimeout(timerAcerto);
             somAcerto.pause();
 
@@ -444,24 +604,29 @@
             const status = document.getElementById('final-status');
             const msg = document.getElementById('final-msg');
             const btnArea = document.getElementById('btn-area');
-            btnArea.innerHTML = '';
 
             if (win) {
-                // 🔊 Toca som de vitória (Manoel Gomes)
                 somVitoria.currentTime = 0;
                 somVitoria.play().catch(() => {});
 
                 localStorage.setItem('emblemaMovimento', 'ganhou');
                 status.innerText = "RITMO PERFEITO!";
-                msg.innerText = "Parabéns! Você acompanhou a aceleração do ritmo e conquistou o emblema Vida em Movimento.";
-                btnArea.innerHTML = '<a href="emblemas.html" class="btn-game">Ver meu Emblema</a>';
+                msg.innerText = `Parabéns! Você fez ${score} pontos no modo ${modoAtual.toUpperCase()} e conquistou o emblema Vida em Movimento.`;
+                
+                btnArea.className = '';
+                btnArea.innerHTML = `
+                    <a href="emblemas.html" class="btn-game">Ver meu Emblema</a>
+                    <br>
+                    <button class="btn-game" onclick="location.reload()" style="margin-top:10px;">Jogar Novamente</button>
+                `;
             } else {
-                // 🔊 Toca som de derrota (67)
                 somDerrota.currentTime = 0;
                 somDerrota.play().catch(() => {});
 
                 status.innerText = "FORA DE RITMO!";
-                msg.innerText = "Sua barra de energia acabou. Conforme o tempo passa o ritmo acelera, tente de novo para melhorar seus reflexos!";
+                msg.innerText = `Sua barra de energia acabou. Você fez ${score} pontos no modo ${modoAtual.toUpperCase()}. Tente novamente!`;
+                
+                btnArea.className = '';
                 btnArea.innerHTML = '<button class="btn-game" onclick="location.reload()">Tentar Novamente</button>';
             }
         }

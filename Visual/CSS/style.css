@@ -34,6 +34,7 @@ body {
 
 }
 
+
 /* 2. Criando a classe que aplica a animação */
 .fade-in-left {
     opacity: 0; /* Garante que o item comece invisível antes da animação rodar */
