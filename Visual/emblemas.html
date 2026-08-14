@@ -132,6 +132,56 @@
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+
+
+        /* Ajuste no Card para evitar sobreposição */
+.emblema-card {
+    background: #FFFFFF;
+    border: 1px solid #E6DEC9;
+    padding: 25px; /* Um pouco mais de respiro interno */
+    width: 100%;
+    max-width: 320px;
+    min-height: 400px; /* Garante um tamanho mínimo padrão para os cards */
+    box-shadow: 0 4px 12px rgba(61, 17, 17, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Distribui os itens (imagem topo, texto meio, botão baixo) */
+    animation: surgirCard 0.4s ease-out;
+    transition: all 0.3s ease;
+}
+
+/* Área da Imagem - O segredo para não sobrepor */
+.emblema-img-area {
+    width: 100%;
+    height: 160px; /* Aumentamos a altura para caber a cereja inteira */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px; /* Espaço entre a imagem e o título */
+}
+
+.emblema-img-area img {
+    max-width: 100%;
+    max-height: 150px; /* Limita a altura da cereja para não estourar */
+    object-fit: contain; /* Mantém a proporção sem achatar */
+}
+
+.emblema-titulo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #3D1111;
+    margin-bottom: 8px;
+    text-decoration: none;
+}
+
+.emblema-descricao {
+    font-size: 14px;
+    color: #6E5A5A;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Faz o texto ocupar o espaço central */
+}
     </style>
 </head>
 <body>
@@ -194,5 +244,55 @@
             <a href="#" class="icon"><img src="IMG/icons/github.png" alt="Github"></a>
         </div>
     </footer>
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.getElementById('container-conquistas');
+    
+    // Puxa as conquistas do localStorage
+    const ganhouPrato = localStorage.getItem('emblemaPrato');
+    const ganhouMovimento = localStorage.getItem('emblemaMovimento');
+
+    let htmlFinal = '';
+
+    // Card do Prato Saudável
+    if (ganhouPrato === 'ganhou') {
+        htmlFinal += `
+            <div class="emblema-card">
+                <div class="emblema-img-area">
+                    <img src="IMG/Emblemas/Masterchef.png" alt="Prato Saudável">
+                </div>
+                <h3 class="emblema-titulo">Prato Saudável</h3>
+                <p class="emblema-descricao">Concedido por montar um prato nutricionalmente balanceado com 80% ou mais de aproveitamento saudável.</p>
+                <a href="jogo-prato.html" class="btn-primary">Visitar Jogo</a>
+            </div>
+        `;
+    }
+
+    // Card do Ritmo em Movimento (Cereja Dançarina)
+    if (ganhouMovimento === 'ganhou') {
+        htmlFinal += `
+            <div class="emblema-card">
+                <div class="emblema-img-area">
+                    <img src="IMG/Emblemas/Ritmo.png" alt="Ritmo em Movimento">
+                </div>
+                <h3 class="emblema-titulo">Ritmo em Movimento</h3>
+                <p class="emblema-descricao">Concedido por manter a agilidade e acompanhar a aceleração do ritmo no jogo de movimento!</p>
+                <a href="jogo-movimento.html" class="btn-primary">Visitar Jogo</a>
+            </div>
+        `;
+    }
+
+    // Se não tiver nada, mostra a mensagem de aviso
+    if (!ganhouPrato && !ganhouMovimento) {
+        htmlFinal = `
+            <div class="sem-emblemas">
+                Você não tem nenhum emblema ainda! Jogue os minijogos para desbloquear.
+            </div>
+        `;
+    }
+
+    container.innerHTML = htmlFinal;
+});
+</script>
 </body>
 </html>
