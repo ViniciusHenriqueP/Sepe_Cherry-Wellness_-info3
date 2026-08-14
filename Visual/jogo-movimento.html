@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Ritmo em Movimento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body { height: 100%; }
+
+        body { 
+            font-family: 'Atkinson Hyperlegible', sans-serif; 
+            background-color: #FBF9F4; 
+            color: #3D1111; 
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+        }
+
+        .game-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px 10px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .game-info {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Barra de Vida */
+        .health-bar-container {
+            width: 100%;
+            max-width: 360px;
+            height: 20px;
+            background: #E6DEC9;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 2px solid #3D1111;
+        }
+
+        .health-bar-fill {
+            width: 50%;
+            height: 100%;
+            background-color: #458b40;
+            transition: width 0.2s ease, background-color 0.2s ease;
+        }
+
+        /* Container Principal do Jogo */
+        .game-container {
+            position: relative;
+            width: 100%;
+            max-width: 360px;
+            height: 420px;
+            background-color: #F9F5EB;
+            border: 4px solid #3D1111;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        /* Alinhamento das Trilhas */
+        .receptors {
+            display: flex;
+            width: 100%;
+            height: 60px;
+            border-bottom: 2px dashed #E6DEC9;
+            background: #FDFBF4;
+        }
+
+        .receptor-lane {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .receptor {
+            font-size: 32px;
+            color: #D1C4B2;
+            transition: transform 0.1s ease, opacity 0.1s ease;
+            opacity: 0.4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .receptor.active {
+            transform: scale(1.25);
+            opacity: 1;
+            color: #3D1111;
+        }
+
+        /* Setas Flutuantes */
+        .note {
+            position: absolute;
+            width: 25%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            z-index: 5;
+        }
+
+        .note img, .receptor img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        /* Controles Touch */
+        .touch-controls {
+            display: flex;
+            width: 100%;
+            max-width: 360px;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .touch-btn {
+            flex: 1;
+            padding: 15px 0;
+            background-color: #3D1111;
+            color: #FDFBF4;
+            border: none;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: background-color 0.1s, transform 0.1s;
+        }
+
+        .touch-btn:active {
+            background-color: #6E5A5A;
+            transform: scale(0.95);
+        }
+
+        .feedback-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(61, 17, 17, 0.95);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 100;
+            text-align: center;
+            padding: 25px;
+            gap: 15px;
+            overflow-y: auto;
+        }
+
+        .btn-game {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 24px;
+            background-color: #FDFBF4;
+            color: #3D1111;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-game:hover {
+            transform: scale(1.05);
+            background-color: #E2D7C5;
+        }
+
+        @media (min-width: 768px) {
+            .game-container { height: 480px; }
+            .touch-controls { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="movimento.html" class="active">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="#">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+    </header>
+
+    <main class="game-screen">
+        <div class="game-info">
+            <h2 style="font-weight: bold; font-size: 22px;">Ritmo em Movimento</h2>
+            <p style="color: #6E5A5A; font-size: 14px;">Use <b>WASD</b>, <b>SETAS</b> ou toque nos botões!</p>
+        </div>
+
+        <div class="health-bar-container">
+            <div id="health-fill" class="health-bar-fill"></div>
+        </div>
+
+        <div class="game-container" id="game-container">
+            <div class="receptors">
+                <div class="receptor-lane"><div id="receptor-0" class="receptor">⬅️</div></div>
+                <div class="receptor-lane"><div id="receptor-1" class="receptor">⬇️</div></div>
+                <div class="receptor-lane"><div id="receptor-2" class="receptor">⬆️</div></div>
+                <div class="receptor-lane"><div id="receptor-3" class="receptor">➡️</div></div>
+            </div>
+
+            <div id="feedback-overlay" class="feedback-overlay">
+                <h2 id="final-status" style="font-size: 26px; font-weight: bold;"></h2>
+                <p id="final-msg" style="font-size: 15px; line-height: 1.4;"></p>
+                <div id="btn-area"></div>
+            </div>
+        </div>
+
+        <div class="touch-controls">
+            <button class="touch-btn" id="btn-0">⬅️</button>
+            <button class="touch-btn" id="btn-1">⬇️</button>
+            <button class="touch-btn" id="btn-2">⬆️</button>
+            <button class="touch-btn" id="btn-3">➡️</button>
+        </div>
+        
+        <button id="start-btn" class="btn-primary" style="margin-top: 20px; width: 220px;">Começar Exercício</button>
+    </main>
+
+    <script>
+        const container = document.getElementById('game-container');
+        const healthFill = document.getElementById('health-fill');
+        const startBtn = document.getElementById('start-btn');
+        const overlay = document.getElementById('feedback-overlay');
+        const receptors = [
+            document.getElementById('receptor-0'),
+            document.getElementById('receptor-1'),
+            document.getElementById('receptor-2'),
+            document.getElementById('receptor-3')
+        ];
+
+        // --- SISTEMA DE ÁUDIOS ---
+        const somAcerto = new Audio('AUDIO/du-bist-gut-genug.mp3');
+        const somErro = new Audio('AUDIO/fnf-missnote-1.mp3');
+        const somDerrota = new Audio('AUDIO/67.mp3');
+        const somVitoria = new Audio('AUDIO/manoel-gomes-parabens.mp3');
+
+        let timerAcerto = null;
+
+        function tocarSomAcerto() {
+            // Se o áudio já tiver chegado ao final, volta pro início
+            if (somAcerto.ended) {
+                somAcerto.currentTime = 0;
+            }
+
+            // Cancela o temporizador anterior para poder rodar +0.67s a partir de agora
+            if (timerAcerto) clearTimeout(timerAcerto);
+
+            somAcerto.play().catch(() => {});
+
+            // Pausa exatamente após 0.67 segundos (670 ms) mantendo a posição de pause
+            timerAcerto = setTimeout(() => {
+                somAcerto.pause();
+            }, 670);
+        }
+
+        function tocarSomErro() {
+            // Pausa a música de acerto se estiver tocando
+            if (timerAcerto) clearTimeout(timerAcerto);
+            somAcerto.pause();
+
+            // Reseta e toca o som de erro
+            somErro.currentTime = 0;
+            somErro.play().catch(() => {});
+        }
+
+        // --- FIM SISTEMA DE ÁUDIOS ---
+
+        const setasMidia = ['⬅️', '⬇️', '⬆️', '➡️']; 
+
+        let gameActive = false;
+        let health = 50;
+        let notes = [];
+        
+        let baseSpeed = 2;
+        let currentSpeed = 2;
+        let spawnRate = 35; 
+        let frameCount = 0;
+
+        const keys = {
+            'ArrowLeft': 0, 'a': 0, 'A': 0,
+            'ArrowDown': 1, 's': 1, 'S': 1,
+            'ArrowUp': 2, 'w': 2, 'W': 2,
+            'ArrowRight': 3, 'd': 3, 'D': 3
+        };
+
+        startBtn.addEventListener('click', () => {
+            startBtn.style.display = 'none';
+            gameActive = true;
+            health = 50;
+            frameCount = 0;
+            currentSpeed = baseSpeed;
+            spawnRate = 55;
+            notes.forEach(n => n.el.remove());
+            notes = [];
+            overlay.style.display = 'none';
+            
+            // Reseta posições de áudio
+            somAcerto.currentTime = 0;
+
+            gameLoop();
+        });
+
+        function gameLoop() {
+            if (!gameActive) return;
+
+            frameCount++;
+
+            if (frameCount % 180 === 0) {
+                currentSpeed += 0.3; 
+                if (spawnRate > 25) {
+                    spawnRate -= 3; 
+                }
+            }
+
+            if (frameCount % Math.round(spawnRate) === 0) {
+                createNote();
+            }
+
+            for (let i = notes.length - 1; i >= 0; i--) {
+                let n = notes[i];
+                n.y -= currentSpeed; 
+                n.el.style.top = n.y + 'px';
+
+                // Se a nota passar do topo (errou por deixar passar)
+                if (n.y < 5) {
+                    n.el.remove();
+                    notes.splice(i, 1);
+                    tocarSomErro(); // 🔊 Toca o som de erro ao deixar passar
+                    updateHealth(-8);
+                }
+            }
+
+            if (health <= 0) endGame(false);
+            if (health >= 100) endGame(true);
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        function createNote() {
+            const lane = Math.floor(Math.random() * 4);
+            const el = document.createElement('div');
+            el.className = 'note';
+            el.innerHTML = setasMidia[lane];
+            el.style.left = (lane * 25) + '%'; 
+            el.style.top = '420px';
+            
+            container.appendChild(el);
+            notes.push({ el, lane, y: 420 });
+        }
+
+        function updateHealth(amount) {
+            health += amount;
+            if (health > 100) health = 100;
+            if (health < 0) health = 0;
+            healthFill.style.width = health + '%';
+            
+            if (health > 70) healthFill.style.backgroundColor = '#458b40';
+            else if (health > 30) healthFill.style.backgroundColor = '#d9a036';
+            else healthFill.style.backgroundColor = '#a63232';
+        }
+
+        function triggerInput(lane) {
+            if (!gameActive) return;
+            receptors[lane].classList.add('active');
+            checkHit(lane);
+            setTimeout(() => receptors[lane].classList.remove('active'), 100);
+        }
+
+        // Teclado
+        window.addEventListener('keydown', (e) => {
+            const lane = keys[e.key];
+            if (lane !== undefined && gameActive) {
+                triggerInput(lane);
+            }
+        });
+
+        // Touch (Mobile)
+        [0, 1, 2, 3].forEach(lane => {
+            const btn = document.getElementById(`btn-${lane}`);
+            
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                triggerInput(lane);
+            });
+
+            btn.addEventListener('click', () => {
+                triggerInput(lane);
+            });
+        });
+
+        function checkHit(lane) {
+            const hitZoneMin = 0;
+            const hitZoneMax = 65;
+
+            for (let i = 0; i < notes.length; i++) {
+                let n = notes[i];
+                if (n.lane === lane && n.y >= hitZoneMin && n.y <= hitZoneMax) {
+                    n.el.remove();
+                    notes.splice(i, 1);
+                    
+                    tocarSomAcerto(); // 🔊 Toca 0.67s do som de acerto continuando de onde parou
+                    
+                    updateHealth(6);
+                    return;
+                }
+            }
+            
+            tocarSomErro(); // 🔊 Toca o som de erro ao clicar errado
+            updateHealth(-3);
+        }
+
+        function endGame(win) {
+            gameActive = false;
+            
+            // Interrompe o som de acerto caso esteja rodando
+            if (timerAcerto) clearTimeout(timerAcerto);
+            somAcerto.pause();
+
+            overlay.style.display = 'flex';
+            const status = document.getElementById('final-status');
+            const msg = document.getElementById('final-msg');
+            const btnArea = document.getElementById('btn-area');
+            btnArea.innerHTML = '';
+
+            if (win) {
+                // 🔊 Toca som de vitória (Manoel Gomes)
+                somVitoria.currentTime = 0;
+                somVitoria.play().catch(() => {});
+
+                localStorage.setItem('emblemaMovimento', 'ganhou');
+                status.innerText = "RITMO PERFEITO!";
+                msg.innerText = "Parabéns! Você acompanhou a aceleração do ritmo e conquistou o emblema Vida em Movimento.";
+                btnArea.innerHTML = '<a href="emblemas.html" class="btn-game">Ver meu Emblema</a>';
+            } else {
+                // 🔊 Toca som de derrota (67)
+                somDerrota.currentTime = 0;
+                somDerrota.play().catch(() => {});
+
+                status.innerText = "FORA DE RITMO!";
+                msg.innerText = "Sua barra de energia acabou. Conforme o tempo passa o ritmo acelera, tente de novo para melhorar seus reflexos!";
+                btnArea.innerHTML = '<button class="btn-game" onclick="location.reload()">Tentar Novamente</button>';
+            }
+        }
+    </script>
+
+    <footer class="footer">
+        <span>Siga-nos</span>
+        <div class="social-icons">
+            <a href="#" class="icon"><img src="IMG/icons/instagram.png" alt="Instagram"></a>
+            <a href="#" class="icon"><img src="IMG/icons/github.png" alt="Github"></a>
+        </div>
+    </footer>
+</body>
+</html>

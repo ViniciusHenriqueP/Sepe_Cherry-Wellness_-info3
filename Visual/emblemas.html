@@ -194,5 +194,56 @@
             <a href="#" class="icon"><img src="IMG/icons/github.png" alt="Github"></a>
         </div>
     </footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const container = document.getElementById('container-conquistas');
+        
+        // 1. Puxa as duas chaves salvas no localStorage
+        const ganhouPrato = localStorage.getItem('emblemaPrato');
+        const ganhouMovimento = localStorage.getItem('emblemaMovimento');
+
+        let htmlConteudo = '';
+
+        // 2. Se ganhou o jogo do Prato, adiciona o card do Prato
+        if (ganhouPrato === 'ganhou') {
+            htmlConteudo += `
+                <div class="emblema-card">
+                    <div class="emblema-img-area">
+                        <img src="IMG/Emblemas/Masterchef.png" alt="Masterchef">
+                    </div>
+                    <h3 class="emblema-titulo"><a href="alimentacao.html">Prato Saudável</a></h3>
+                    <p class="emblema-descricao">Concedido por montar um prato nutricionalmente balanceado com 80% ou mais de aproveitamento saudável.</p>
+                    <a href="jogo-prato.html" class="btn-primary">Visitar Jogo</a>
+                </div>
+            `;
+        }
+
+        // 3. Se ganhou o jogo de Ritmo, adiciona o card de Movimento
+        if (ganhouMovimento === 'ganhou') {
+            htmlConteudo += `
+                <div class="emblema-card">
+                    <div class="emblema-img-area">
+                        <span style="font-size: 50px;">🏃</span>
+                    </div>
+                    <h3 class="emblema-titulo"><a href="movimento.html">Ritmo em Movimento</a></h3>
+                    <p class="emblema-descricao">Concedido por manter a agilidade e acompanhar a aceleração do ritmo no jogo de movimento!</p>
+                    <a href="jogo-movimento.html" class="btn-primary">Visitar Jogo</a>
+                </div>
+            `;
+        }
+
+        // 4. Se não tiver ganho NENHUM dos dois emblemas ainda
+        if (!ganhouPrato && !ganhouMovimento) {
+            htmlConteudo = `
+                <div class="sem-emblemas">
+                    Você não tem nenhum emblema ainda! Jogue os minijogos para desbloquear.
+                </div>
+            `;
+        }
+
+        // Injeta o resultado final na tela
+        container.innerHTML = htmlConteudo;
+    });
+</script>
 </body>
 </html>
