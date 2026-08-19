@@ -1,195 +1,202 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cherry Wellness</title>
+    <title>Cherry Wellness - Prato & Saúde</title>
     <link rel="stylesheet" href="CSS/reset.css">
-    <link rel="stylesheet" href="CSS/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/home.css">
+    <link rel="stylesheet" href="CSS/pages/alimentacao.css">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
 </head>
+
 <body>
 
     <header class="navbar">
-        <div class="logo-area"  class="fade-in-left delay-3">
+        <div class="logo-area">
             <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
             <span class="logo-text">Cherry Wellness</span>
         </div>
         <nav class="nav-links">
             <a href="index.html">Início</a>
-            <a href="#" >Vida em movimento</a>
-            <p ><a href="#" class="active">Prato & Saúde</a></p>
-            <a href="#" >Bem-Estar mental</a>
-            <a href="emblemas.html" >Emblemas & Minijogos</a>
+            <a href="jogo-movimento.html">Vida em movimento</a>
+            <a href="alimentacao.html" class="active">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
         </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
     </header>
-<section class="hero-section-clean">
-        <div class="hero-text-area">
-            <h1 class="hero-title" style="color: #3D1111; font-size: 42px; margin: 10px 0; font-weight: bold;">Prato & Saúde</h1>
-            <p class="hero-subtitle" style="font-weight: bold; color: #3D1111;">Comer bem é um ato de cuidado com você.</p>
-            <p style="color: #6E5A5A; line-height: 1.6; margin-top: 15px;">Uma alimentação equilibrada fornece os nutrientes que seu corpo precisa para funcionar bem todos os dias. Aqui você encontra informações científicas, inspirações e dicas práticas para fazer escolhas mais saudáveis.</p>
+
+    <section class="hero-section-clean">
+        <div class="hero-text-area" data-reveal="left">
+            <h1 class="hero-title">Prato & Saúde</h1>
+            <p class="hero-subtitle">Comer bem é um ato de cuidado com você.</p>
+            <p>Uma alimentação equilibrada fornece os nutrientes que seu corpo precisa para funcionar bem todos os
+                dias. Aqui você encontra informações científicas, inspirações e dicas práticas para fazer escolhas
+                mais saudáveis.</p>
         </div>
-        <div class="hero-image-area">
-            <img src="IMG/alimentacao/prato.png" alt="img" style="width: 100%; max-width: 450px; border-radius: 0;">
+        <div class="hero-image-area" data-reveal="scale">
+            <img src="IMG/alimentacao/prato.png" alt="Prato equilibrado com alimentos saudáveis">
         </div>
     </section>
 
     <div class="checkerboard-divider"></div>
 
-<section class="hero-info">
-     <div class="hero-image-area">
-            <img src="IMG/alimentacao/Comidas.webp"  alt="img" style="width: 100%;  max-width: 450px; border-radius: 0;">
+    <section class="hero-info">
+        <div class="hero-image-area" data-reveal="scale">
+            <img src="IMG/alimentacao/Comidas.webp" alt="Variedade de alimentos saudáveis">
         </div>
-        <div class="hero-text-area">
-            <h1 class="hero-title" style="color: #3D1111; font-size: 42px; margin: 10px 0; font-weight: bold;">Aura texto</h1>
-            <p class="hero-subtitle" style="font-weight: bold; color: #3D1111;">subtitulo aura sobre o assunto.</p>
-            <p style="color: #6E5A5A; line-height: 1.6; margin-top: 15px;">aura muita aura aura muita auram texto sobre informações basicas sobre alimentação saudável, a importância de uma dieta equilibrada e como ela impacta diretamente na saúde física e mental. Além disso, serão abordados os principais grupos alimentares, suas funções no organismo e dicas práticas para incorporar hábitos alimentares mais saudáveis no dia a dia.</p>
-        </section>
+        <div class="hero-text-area" data-reveal="right">
+            <h1 class="hero-title">Escolhas que fazem a diferença</h1>
+            <p class="hero-subtitle">Pequenas mudanças, grandes resultados.</p>
+            <p>Conhecer os grupos alimentares e o papel de cada nutriente ajuda a montar refeições mais equilibradas
+                no dia a dia. Abaixo você encontra um resumo prático sobre proteínas, carboidratos, gorduras boas,
+                vitaminas e minerais — e como incorporá-los sem complicação na sua rotina.</p>
+        </div>
+    </section>
 
-    <section style="max-width: 1200px; margin: 0 auto; padding: 0px 0px;">
-        </section>
+    <section class="nutrientes-intro">
+        <h2>Nutrientes que fazem a diferença</h2>
+        <p>Clique em um nutriente abaixo para ler a sua explicação detalhada.</p>
 
-    <section style="text-align: center; padding-top: 40px;">
-        <h2 style="color: #3D1111; font-size: 28px; font-weight: bold;">Nutrientes que fazem a diferença</h2>
-        <p style="color: #6E5A5A; margin-bottom: 20px;">Clique em um nutriente abaixo para ler a sua explicação detalhada.</p>
-        
-        <div class="grid-nutrientes">
-            <a href="#proteinas" class="nutriente-link">
-                <div class="nutriente-card-click" onclick="mostrarNutriente('proteinas')">
-                    <span style="font-size: 30px;">💪</span>
-                    <h3 style="color: #3D1111; margin: 10px 0 5px 0;">Proteínas</h3>
-                    <p style="font-size: 13px; color: #6E5A5A;">Construção e reparação de tecidos.</p>
-                </div>
-            </a>
-
-            <a href="#carboidratos" class="nutriente-link">
-                <div class="nutriente-card-click" onclick="mostrarNutriente('carboidratos')">
-                    <span style="font-size: 30px;">🌾</span>
-                    <h3 style="color: #3D1111; margin: 10px 0 5px 0;">Carboidratos</h3>
-                    <p style="font-size: 13px; color: #6E5A5A;">A principal fonte de energia.</p>
-                </div>
-            </a>
-
-            <a href="#gorduras" class="nutriente-link" onclick="mostrarNutriente('gorduras')">
+        <div class="grid-nutrientes" data-reveal-group>
+            <a href="#proteinas" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('proteinas')">
                 <div class="nutriente-card-click">
-                    <span style="font-size: 30px;">🥑</span>
-                    <h3 style="color: #3D1111; margin: 10px 0 5px 0;">Gorduras Boas</h3>
-                    <p style="font-size: 13px; color: #6E5A5A;">Saúde hormonal e do coração.</p>
+                    <span class="emoji-nutriente">💪</span>
+                    <h3>Proteínas</h3>
+                    <p>Construção e reparação de tecidos.</p>
                 </div>
             </a>
 
-            <a href="#vitaminas" class="nutriente-link" >
-                <div class="nutriente-card-click" onclick="mostrarNutriente('vitaminas')">
-                    <span style="font-size: 30px;">🍃</span>
-                    <h3 style="color: #3D1111; margin: 10px 0 5px 0;">Vitaminas e Minerais</h3>
-                    <p style="font-size: 13px; color: #6E5A5A;">Regulação das funções vitais.</p>
+            <a href="#carboidratos" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('carboidratos')">
+                <div class="nutriente-card-click">
+                    <span class="emoji-nutriente">🌾</span>
+                    <h3>Carboidratos</h3>
+                    <p>A principal fonte de energia.</p>
+                </div>
+            </a>
+
+            <a href="#gorduras" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('gorduras')">
+                <div class="nutriente-card-click">
+                    <span class="emoji-nutriente">🥑</span>
+                    <h3>Gorduras Boas</h3>
+                    <p>Saúde hormonal e do coração.</p>
+                </div>
+            </a>
+
+            <a href="#vitaminas" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('vitaminas')">
+                <div class="nutriente-card-click">
+                    <span class="emoji-nutriente">🍃</span>
+                    <h3>Vitaminas e Minerais</h3>
+                    <p>Regulação das funções vitais.</p>
                 </div>
             </a>
         </div>
     </section>
 
-<section class="detalhes-nutrientes-section">
+    <section class="detalhes-nutrientes-section">
         <div class="container-detalhes">
-            
-            <div id="mensagem-inicial" style="text-align: center; color: #8A7676; font-style: italic; padding: 40px 20px; background: #FFFFFF; border-left: 5px solid #E6DEC9;">
-                 Selecione um dos nutrientes acima para exibir as informações completas e dicas práticas!
+
+            <div id="mensagem-inicial" class="mensagem-inicial">
+                Selecione um dos nutrientes acima para exibir as informações completas e dicas práticas!
             </div>
-            
+
             <div id="content-proteinas" class="nutriente-bloco content-escondido">
-                <h3 style="font-weight: bold;">Proteínas</h3>
-                <p>Texto sobre proteínas</p>
+                <h3>Proteínas: Construção e Reparo</h3>
+                <p>As proteínas são responsáveis pela construção e reparação de músculos, pele e órgãos, além de
+                    participarem da produção de enzimas e hormônios. Estão presentes em carnes, ovos, leguminosas e
+                    laticínios.</p>
                 <div class="dica-saudavel-box">
-                    <strong> Escolhas Práticas & Saudáveis:</strong>Dicas
+                    <strong>Escolhas Práticas & Saudáveis:</strong> prefira fontes magras como frango, peixe, ovos e
+                    feijão, distribuindo o consumo ao longo do dia.
                 </div>
             </div>
 
             <div id="content-carboidratos" class="nutriente-bloco content-escondido">
-                <h3 style="font-weight: bold;">Carboidratos</h3>
-                <p>texto sobre carboidratos</p>
+                <h3>Carboidratos: Combustível do Corpo</h3>
+                <p>São a principal fonte de energia para o corpo e o cérebro. Carboidratos complexos, como grãos
+                    integrais e tubérculos, liberam energia de forma gradual e ajudam a manter a saciedade.</p>
                 <div class="dica-saudavel-box">
-                    <strong> Escolhas Práticas & Saudáveis:</strong> Dicas
+                    <strong>Escolhas Práticas & Saudáveis:</strong> prefira arroz integral, aveia e batata-doce no
+                    lugar de versões muito refinadas.
                 </div>
             </div>
 
             <div id="content-gorduras" class="nutriente-bloco content-escondido">
-                <h3 style="font-weight: bold;">Gorduras Boas: Protetoras do Coração e Cérebro</h3>
-                <p>Texto sobre gorduras</p>
-                <div class="dpx-saudavel-box dica-saudavel-box">
-                    <strong> Escolhas Práticas & Saudáveis:</strong> Dicas
+                <h3>Gorduras Boas: Protetoras do Coração e Cérebro</h3>
+                <p>Gorduras insaturadas, presentes no azeite, abacate e oleaginosas, ajudam na absorção de vitaminas e
+                    na saúde cardiovascular, além de serem essenciais para o funcionamento do cérebro.</p>
+                <div class="dica-saudavel-box">
+                    <strong>Escolhas Práticas & Saudáveis:</strong> use azeite de oliva, castanhas e abacate no lugar
+                    de gorduras industrializadas.
                 </div>
             </div>
 
             <div id="content-vitaminas" class="nutriente-bloco content-escondido">
-                <h3 style="font-weight: bold;">Vitaminas e Minerais: Os Reguladores Invisíveis</h3>
-                <p>Texto sobre vitaminas e minerais</p>
+                <h3>Vitaminas e Minerais: Os Reguladores Invisíveis</h3>
+                <p>Vitaminas e minerais regulam funções vitais do organismo, do sistema imunológico à saúde dos ossos.
+                    Frutas, verduras e legumes coloridos garantem uma boa variedade desses nutrientes.</p>
                 <div class="dica-saudavel-box">
-                    <strong> Escolhas Práticas & Saudáveis</strong> Dicas
+                    <strong>Escolhas Práticas & Saudáveis:</strong> monte o prato com cores variadas de frutas e
+                    vegetais para cobrir diferentes vitaminas e minerais.
                 </div>
             </div>
 
         </div>
     </section>
 
-
-
- <script>
-    function mostrarNutriente(idNutriente) {
-        // Esconde a frase de ajuda inicial
-        let msgInicial = document.getElementById('mensagem-inicial');
-        if (msgInicial) msgInicial.style.display = 'none';
-
-        // Seleciona todos os blocos de texto e garante que eles fiquem escondidos
-        let todosOsBlocos = document.querySelectorAll('.nutriente-bloco');
-        todosOsBlocos.forEach(function(bloco) {
-            bloco.classList.add('content-escondido');
-        });
-
-        // Mostra apenas o bloco do nutriente que foi clicado
-        let blocoAlvo = document.getElementById('content-' + idNutriente);
-        if (blocoAlvo) {
-            blocoAlvo.classList.remove('content-escondido');
-            
-            // Faz a página rolar suavemente até o texto que apareceu
-            blocoAlvo.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    // MÁGICA RECONHECEDORA: Roda automaticamente assim que a página abre
-    window.addEventListener('DOMContentLoaded', () => {
-        // Pega os parâmetros do link (ex: ?nutriente=proteinas)
-        const URLParams = new URLSearchParams(window.location.search);
-        const nutrienteNoLink = URLParams.get('nutriente');
-
-        // Se tiver algum nutriente especificado no link, ele força o clique nele!
-        if (nutrienteNoLink) {
-            mostrarNutriente(nutrienteNoLink);
-        }
-    });
-</script>
-
-
-<section class="cards-container" style="padding: 60px 20px; text-align: center;">
-        <div class="card card-red" style="max-width: 700px; margin: 0 auto; padding: 30px; text-align: center;">
-            
-            <h2 style="font-size: 28px; font-weight: bold; margin-bottom: 12px; color: #3D1111;">
-                 Minijogo: Monte seu Prato Saudável
-            </h2>
-            
-            <p style="font-size: 15px; line-height: 1.6; margin-bottom: 25px; color: #6E5A5A;">
-                Você aprendeu os segredos dos nutrientes. Agora é hora de provar que você é um Mestre do Prato Saudável! <br>
-                Arraste os melhores alimentos para o seu prato e tente conseguir mais de 80% de saúde para conquistar um Emblema exclusivo no seu perfil.
+    <section class="minijogo-cta">
+        <div class="card card-red" data-reveal="scale">
+            <h2>Minijogo: Monte seu Prato Saudável</h2>
+            <p>
+                Você aprendeu os segredos dos nutrientes. Agora é hora de provar que você é um Mestre do Prato
+                Saudável! <br>
+                Arraste os melhores alimentos para o seu prato e tente conseguir mais de 80% de saúde para conquistar
+                um Emblema exclusivo no seu perfil.
             </p>
-            
             <a href="jogo-prato.html" style="text-decoration: none;">
                 <button class="btn-secondary">Jogar Agora →</button>
             </a>
-            
         </div>
     </section>
 
-
     <footer class="footer">
-        <span>siga nos</span>
-        <div class="social-icons">
-            <a href="#" class="icon"><img src="IMG/icons/instagram.png" alt=""></a>
-            <a href="#" class="icon"><img src="IMG/icons/github.png" alt=""></a></div>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="#" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">Projeto Integrador &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/reveal.js"></script>
+    <script src="JS/pages/alimentacao.js"></script>
+</body>
+
+</html>

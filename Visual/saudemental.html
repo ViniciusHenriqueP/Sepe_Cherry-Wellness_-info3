@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Bem-Estar mental</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/saudemental.css">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar navbar--mental">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="jogo-movimento.html">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html" class="active">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="mental-page">
+
+        <section class="mental-layout">
+            <div class="mental-intro">
+                <h2 data-reveal="left">Não guarde tudo para você</h2>
+                <div class="mental-intro-grid" data-reveal-group>
+                    <div class="mental-media" data-reveal="scale">
+                        <img src="IMG/home/saudemental.png"
+                            alt="Mascotes de cereja do Cherry Wellness representando o cuidado com a saúde mental">
+                    </div>
+                    <div class="mental-card" data-reveal="up">
+                        <p>Conversar com alguém de confiança pode fazer toda a diferença quando algo está pesando
+                            demais.</p>
+                    </div>
+                    <div class="mental-card" data-reveal="up">
+                        <p>Quando os sentimentos estiverem atrapalhando sua rotina ou causando sofrimento, procurar um
+                            profissional de saúde mental também é uma forma de cuidado!</p>
+                    </div>
+                    <div class="mental-avatar-duo" data-reveal="scale">
+                        <span class="fala-bolha" aria-hidden="true">💬</span>
+                        <span class="cereja-avatar" aria-hidden="true">🍒</span>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="mental-aside">
+                <div class="lembrete-card" id="lembrete-card" data-reveal="right">
+                    <span class="lembrete-header">Lembrete!</span>
+                    <div class="lembrete-frase-wrap">
+                        <p class="lembrete-frase" id="lembrete-frase">Cuidar da mente é tão importante quanto cuidar
+                            do corpo.</p>
+                    </div>
+                    <button class="lembrete-ok" id="lembrete-ok" type="button">OK</button>
+                </div>
+
+                <div class="card card-sage minijogo-card" data-reveal="right">
+                    <h3>Minijogo: Respire e Recarregue</h3>
+                    <p>Em breve você vai poder testar técnicas de respiração e relaxamento em um minijogo exclusivo
+                        e conquistar um Emblema de Bem-Estar Mental.</p>
+                    <button class="btn-secondary" id="minijogo-btn" type="button">Jogar Agora →</button>
+                </div>
+            </aside>
+        </section>
+
+        <section class="mood-section" data-reveal="up">
+            <span class="mood-pill">Conheça suas emoções:</span>
+            <div class="mood-question">
+                <p>Como está se sentindo hoje?</p>
+                <div class="mood-tracker" role="group" aria-label="Selecione como você está se sentindo hoje">
+                    <button class="mood-option" type="button" data-mood="triste" aria-pressed="false"
+                        aria-label="Triste">😢</button>
+                    <button class="mood-option" type="button" data-mood="chateado" aria-pressed="false"
+                        aria-label="Chateado">😟</button>
+                    <button class="mood-option" type="button" data-mood="neutro" aria-pressed="false"
+                        aria-label="Neutro">😐</button>
+                    <button class="mood-option" type="button" data-mood="bem" aria-pressed="false"
+                        aria-label="Bem">🙂</button>
+                    <button class="mood-option" type="button" data-mood="otimo" aria-pressed="false"
+                        aria-label="Ótimo">😄</button>
+                </div>
+                <p class="mood-feedback" id="mood-feedback"></p>
+            </div>
+        </section>
+
+        <section class="praticas-section">
+            <span class="praticas-pill" data-reveal="up">Práticas para o dia a dia:</span>
+            <div class="praticas-grid" data-reveal-group>
+                <div class="pratica-card" data-reveal="up">
+                    <div class="pratica-icon" aria-hidden="true">🫁</div>
+                    <h3>Respiração</h3>
+                    <p>Técnicas de respiração ajudam a acalmar a mente e reduzir a ansiedade.</p>
+                </div>
+                <div class="pratica-card" data-reveal="up">
+                    <div class="pratica-icon" aria-hidden="true">📵</div>
+                    <h3>Desconecte-se</h3>
+                    <p>Pausas das telas ajudam a reduzir o estresse, melhorar o foco e trazer equilíbrio para o dia a
+                        dia.</p>
+                </div>
+                <div class="pratica-card" data-reveal="up">
+                    <div class="pratica-icon" aria-hidden="true">🗂️</div>
+                    <h3>Organização mental</h3>
+                    <p>Organizar pensamentos, prioridades e tarefas ajuda a tomar decisões mais claras.</p>
+                </div>
+                <div class="pratica-card" data-reveal="up">
+                    <div class="pratica-icon" aria-hidden="true">🧴</div>
+                    <h3>Cuide-se</h3>
+                    <p>Reconhecer suas qualidades e celebrar pequenas conquistas ajuda a ter mais confiança e
+                        segurança no dia a dia.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="mental-toast" id="mental-toast" role="status" aria-live="polite"></div>
+
+    <footer class="footer footer--mental">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="#" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">Projeto Integrador &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/reveal.js"></script>
+    <script src="JS/pages/saudemental.js"></script>
+</body>
+
+</html>

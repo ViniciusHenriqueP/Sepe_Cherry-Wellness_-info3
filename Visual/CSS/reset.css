@@ -130,7 +130,6 @@ progress {
 /*
   Add the correct display in Chrome and Safari.
 */
-Home
 summary {
   display: list-item;
 }
@@ -140,7 +139,7 @@ summary {
 */
 
 ol,
-ul,Home
+ul,
 menu {
   list-style: none;
 }
@@ -170,7 +169,7 @@ object {
 /*
   Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */
-Home
+
 img,
 video {
   max-width: 100%;
