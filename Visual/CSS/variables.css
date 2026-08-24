@@ -1,0 +1,162 @@
+/* ==========================================================================
+   TOKENS DE DESIGN (cores, raios, sombras, transições)
+   Toda a paleta do site vive aqui. As páginas usam var(--nome) em vez de
+   cores fixas, então o modo escuro só precisa redefinir estas variáveis.
+   ========================================================================== */
+
+:root {
+    /* Fundo e superfícies */
+    --color-bg: #FDFBF4;
+    --color-bg-alt: #F9F5EB;
+    --color-bg-elevated: #FFFFFF;
+    --color-bg-soft: #FBF9F4;
+    --color-border: #E6DEC9;
+
+    /* Texto */
+    --color-text: #4A1515;
+    --color-text-strong: #3D1111;
+    --color-text-muted: #6E5A5A;
+    --color-text-soft: #8A7676;
+    --color-text-on-dark: #E2D7C5;
+
+    /* Marca / navbar / footer */
+    --color-brand: #3D1111;
+    --color-brand-strong: #0A0505;
+    /* Navbar/rodapé da aba Bem-Estar mental — fixa, não muda com o tema, igual --color-brand */
+    --color-brand-mental: #24371E;
+
+    /* Verde (Vida em movimento / positivo) */
+    --color-green: #1E3525;
+    --color-green-strong: #275923;
+    --color-green-mid: #458b40;
+    --color-green-accent: #739E6B;
+    --color-green-soft: #E2EFE0;
+
+    /* Vermelho (Prato & Saúde / alertas) */
+    --color-red: #6B1D1D;
+    --color-red-accent: #A63232;
+    --color-red-soft: #FCE6E6;
+
+    /* Amarelo (avisos) */
+    --color-yellow-accent: #D9A036;
+    --color-yellow-soft: #FDF1D6;
+    --color-yellow-dashed: #CC9C70;
+    --color-yellow-bg: #FFF4E5;
+
+    /* Sálvia (Bem-estar mental) */
+    --color-sage: #92A987;
+    --color-sage-panel: #B9CBAF;
+    --color-sage-panel-soft: #D6E2CE;
+    --color-sage-deep: #24371E;
+
+    /* Sombras e raios */
+    --shadow-sm: 0 2px 4px rgba(61, 17, 17, 0.06);
+    --shadow-md: 0 4px 12px rgba(61, 17, 17, 0.08);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 20px;
+    --radius-pill: 50px;
+
+    /* Movimento */
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.6s ease;
+
+    color-scheme: light;
+}
+
+/* Preferência do sistema, só entra em ação se o usuário não escolheu nada explicitamente */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --color-bg: #171010;
+        --color-bg-alt: #1E1616;
+        --color-bg-elevated: #241B1B;
+        --color-bg-soft: #1A1313;
+        --color-border: #3A2A2A;
+
+        --color-text: #F1E6DC;
+        --color-text-strong: #FBEFE2;
+        --color-text-muted: #C9B4A9;
+        --color-text-soft: #A6897C;
+        --color-text-on-dark: #F1E6DC;
+
+        --color-brand: #150C0C;
+        --color-brand-strong: #050202;
+
+        --color-green: #6FBE66;
+        --color-green-strong: #4E9A47;
+        --color-green-mid: #5EAA57;
+        --color-green-accent: #8FC988;
+        --color-green-soft: #22321F;
+
+        --color-red: #E27373;
+        --color-red-accent: #E68A8A;
+        --color-red-soft: #351D1D;
+
+        --color-yellow-accent: #E7B75B;
+        --color-yellow-soft: #332918;
+        --color-yellow-dashed: #A67A3F;
+        --color-yellow-bg: #2E2415;
+
+        --color-sage: #7FA072;
+        --color-sage-panel: #2C3B27;
+        --color-sage-panel-soft: #23301F;
+        --color-sage-deep: #C9DABE;
+
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
+        --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 10px 34px rgba(0, 0, 0, 0.5);
+
+        color-scheme: dark;
+    }
+}
+
+/* Escolha manual do usuário (botão de tema), sempre vence a preferência do sistema */
+:root[data-theme="dark"] {
+    --color-bg: #171010;
+    --color-bg-alt: #1E1616;
+    --color-bg-elevated: #241B1B;
+    --color-bg-soft: #1A1313;
+    --color-border: #3A2A2A;
+
+    --color-text: #F1E6DC;
+    --color-text-strong: #FBEFE2;
+    --color-text-muted: #C9B4A9;
+    --color-text-soft: #A6897C;
+    --color-text-on-dark: #F1E6DC;
+
+    --color-brand: #150C0C;
+    --color-brand-strong: #050202;
+
+    --color-green: #6FBE66;
+    --color-green-strong: #4E9A47;
+    --color-green-mid: #5EAA57;
+    --color-green-accent: #8FC988;
+    --color-green-soft: #22321F;
+
+    --color-red: #E27373;
+    --color-red-accent: #E68A8A;
+    --color-red-soft: #351D1D;
+
+    --color-yellow-accent: #E7B75B;
+    --color-yellow-soft: #332918;
+    --color-yellow-dashed: #A67A3F;
+    --color-yellow-bg: #2E2415;
+
+    --color-sage: #7FA072;
+    --color-sage-panel: #2C3B27;
+    --color-sage-panel-soft: #23301F;
+    --color-sage-deep: #C9DABE;
+
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 34px rgba(0, 0, 0, 0.5);
+
+    color-scheme: dark;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color var(--transition-base), color var(--transition-base);
+}

@@ -1,0 +1,259 @@
+/* ==========================================================================
+   PÁGINA INICIAL (index.html)
+   ========================================================================== */
+
+/* HERO */
+.hero {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    gap: 20px;
+}
+
+.hero-content {
+    width: 100%;
+}
+
+.hero-content h1 {
+    font-weight: bold;
+    font-size: 32px;
+    color: var(--color-text-strong);
+    margin-bottom: 15px;
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.hero-buttons ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.hero-image img {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+}
+
+@media (min-width: 600px) {
+    .hero {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 60px 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .hero-content {
+        max-width: 50%;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+    }
+
+    .hero-buttons,
+    .hero-buttons ul {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: clamp(250px, 40vw, 500px);
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+/* CARDS DE PILARES */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+}
+
+.cards-container>ul {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.cards-container>ul>li {
+    list-style: none;
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    justify-content: center;
+    transition: transform var(--transition-base);
+}
+
+.cards-container ul li:hover {
+    transform: scale(1.03);
+}
+
+.card {
+    width: 100%;
+    max-width: 360px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    color: var(--color-text-strong);
+    transition: transform var(--transition-base);
+}
+
+.card-header h3:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.card-header p {
+    font-size: 13px;
+    color: var(--color-text-soft);
+    cursor: pointer;
+    transition: transform var(--transition-base);
+}
+
+.card-header p:hover {
+    transform: scale(1.05);
+}
+
+.card-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: var(--radius-pill);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-base);
+}
+
+.card-icon img {
+    width: 55px;
+    height: auto;
+}
+
+.card-icon:hover {
+    transform: scale(1.1);
+}
+
+#saudemental-icon {
+    width: 105px;
+    height: auto;
+}
+
+#alimentacao-icon {
+    transform: translateY(-4px);
+    width: 50px;
+    height: auto;
+}
+
+.card-green .card-icon {
+    background-color: var(--color-green-soft);
+}
+
+.card-red .card-icon {
+    background-color: var(--color-red-soft);
+}
+
+.card-yellow .card-icon {
+    background-color: var(--color-yellow-soft);
+}
+
+.card-tagline {
+    font-size: 13px;
+    color: var(--color-text-soft);
+}
+
+.card-list {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.card-list li {
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding-left: 18px;
+    position: relative;
+    cursor: pointer;
+    transition: transform var(--transition-base);
+}
+
+.card-list li:hover {
+    transform: translateX(3px);
+}
+
+.card-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    font-size: 18px;
+}
+
+.card-green .card-list li::before {
+    color: var(--color-green-accent);
+}
+
+.card-red .card-list li::before {
+    color: var(--color-red-accent);
+}
+
+.card-yellow .card-list li::before {
+    color: var(--color-yellow-accent);
+}
+
+@media (min-width: 600px) {
+    .cards-container>ul {
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 2vw;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .cards-container>ul>li {
+        width: 100%;
+        max-width: 380px;
+        flex: 1 1 280px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+    }
+}
