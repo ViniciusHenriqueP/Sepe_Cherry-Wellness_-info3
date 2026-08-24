@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Vida em Movimento</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="../CSS/variables.css">
+    <link rel="stylesheet" href="../CSS/base.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="../JS/theme.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="../IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="../index.html">Início</a>
+            <a href="index.html" class="active">Vida em movimento</a>
+            <a href="../alimentacao.html">Prato & Saúde</a>
+            <a href="../saudemental.html">Bem-Estar mental</a>
+            <a href="../emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="movimento-page">
+
+        <section class="movimento-hero">
+            <div class="movimento-hero-content" data-reveal="left">
+                <span class="movimento-pill">Vida em movimento</span>
+                <h1>Corpo ativo, mente leve.</h1>
+                <p>Mexer o corpo todos os dias melhora seu ânimo, sua saúde e seu sono. Não precisa ser
+                    perfeito nem virar atleta: qualquer movimento já é um passo a mais na direção do
+                    bem-estar.</p>
+            </div>
+            <div class="movimento-hero-media" data-reveal="scale">
+                <img src="img/musculo-removebg-preview.png" alt="Ilustração de músculo representando força e atividade física">
+            </div>
+        </section>
+
+        <div class="checkerboard-divider"></div>
+
+        <section class="movimento-beneficios">
+            <span class="movimento-pill">Benefícios para o seu corpo:</span>
+            <div class="movimento-grid" data-reveal-group>
+                <div class="movimento-card" data-reveal="up">
+                    <div class="movimento-icon"><img src="img/corção-removebg-preview 1.png" alt=""></div>
+                    <h3>Coração</h3>
+                    <p>Fortalece o coração e melhora a circulação sanguínea.</p>
+                </div>
+                <div class="movimento-card" data-reveal="up">
+                    <div class="movimento-icon"><img src="img/pulmão_3-removebg-preview 1.png" alt=""></div>
+                    <h3>Pulmões</h3>
+                    <p>Aumenta o fôlego e a capacidade respiratória.</p>
+                </div>
+                <div class="movimento-card" data-reveal="up">
+                    <div class="movimento-icon"><img src="img/musculo-removebg-preview.png" alt=""></div>
+                    <h3>Músculos</h3>
+                    <p>Ganha força, resistência e mais disposição no dia a dia.</p>
+                </div>
+                <div class="movimento-card" data-reveal="up">
+                    <div class="movimento-icon"><img src="img/osso2-removebg-preview 1.png" alt=""></div>
+                    <h3>Ossos</h3>
+                    <p>Deixa os ossos mais fortes e reduz o risco de lesões.</p>
+                </div>
+                <div class="movimento-card" data-reveal="up">
+                    <div class="movimento-icon"><img src="img/estomago-removebg-preview 1.png" alt=""></div>
+                    <h3>Digestão</h3>
+                    <p>Ajuda o metabolismo e melhora a digestão.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="movimento-cta" data-reveal="up">
+            <img class="movimento-cta-icon" src="img/sim-removebg-preview 1.png" alt="">
+            <h2>Bora se mexer?</h2>
+            <p>Teste seu ritmo no minijogo Vida em Movimento e desbloqueie seu emblema!</p>
+            <button class="btn-primary" type="button" onclick="window.location.href='../jogo-movimento.html'">Jogar
+                agora →</button>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="#" class="icon" aria-label="Instagram"><img src="../IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="../IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">Projeto Integrador &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="../JS/reveal.js"></script>
+</body>
+
+</html>
