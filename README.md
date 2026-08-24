@@ -217,7 +217,7 @@ Vale lembrar que Vinícius deu uma ideia muito interessante que vamos aplicar ao
 * 
 **Lukas:** Atas e ideia do gráfico
 
-
+---
 
 ### Ata 6
 
@@ -239,6 +239,8 @@ Lukas produzindo as atas como de costume.
 Vinícius praticamente terminou os códigos do jogo interativo, construindo um sistema básico de emblemas.
 Murilo criou um belo design de apresentação de cada membro.
 
+---
+
 ### Ata 7
 
 **Data:** 03/08/2026
@@ -255,6 +257,8 @@ Gabi trabalhando em seu figma, como também letícia e gabrieli.
 Lukas nas atas.
 Vini teve novas ideias a respeito de possíveis mais jogos interativos.
 Murilo segue a rede social.
+
+---
 
 ### Ata 8
 
@@ -273,6 +277,29 @@ Letícia Gabriela e Murilo = Figma.
 Gabrieli = Html.
 Lukas = Css e Atas.
 Vinícios = Jogo interativo.
+
+---
+
+### Ata 8
+
+**Data:** 10/08/2026
+
+**Ausentes:** Ninguém
+
+### Assuntos
+
+Hoje estamos se organizando com os documentos e mandar para o professor todos os dados necessários para a verificação das notas e a avaliação de cada indivíduo.
+Estamos todos logando nas contas, e trabalhando.
+
+
+### responsabilidades 
+
+Todo o grupo: Trabalhando no github e se familiarizando com a plataforma.
+
+
+
+
+
 
 
 
