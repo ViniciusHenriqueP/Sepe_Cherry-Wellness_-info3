@@ -296,6 +296,20 @@ Estamos todos logando nas contas, e trabalhando.
 
 Todo o grupo: Trabalhando no github e se familiarizando com a plataforma.
 
+### Ata 10
+
+**Data:** 27/08/2026
+
+**Ausentes:** Ninguém
+
+### Assuntos
+
+O grupo se mantém ativo no trabalho.
+
+### Responsabilidades
+
+Todo o grupo mantém o ritmo,trabalhando com base nas respectivas divisões de tarefas atribuídas anteriormente.
+
 
 
 
