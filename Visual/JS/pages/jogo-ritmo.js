@@ -36,18 +36,28 @@ function tocarSomErro() {
     somErro.play().catch(() => { });
 }
 
-const setasMidia = ['⬅️', '⬇️', '⬆️', '➡️'];
-
 let gameActive = false;
 let health = 50;
 let score = 0;
 let notes = [];
 
 let modoAtual = 'medio';
-let baseSpeed = 1.0;
-let currentSpeed = 1.0;
-let spawnRate = 110;
-let frameCount = 0;
+
+// Velocidades em pixels/segundo e tempos em milissegundos: independentes da
+// taxa de atualização do monitor (Hz). Antes o jogo avançava um valor fixo
+// por frame, então em telas de 144Hz ficava muito mais rápido e em telas de
+// 30Hz muito mais lento que o pretendido.
+let baseSpeed = 60;
+let currentSpeed = 60;
+let spawnInterval = 1650;
+let lastTimestamp = null;
+let spawnTimer = 0;
+let speedUpTimer = 0;
+
+const SPEEDUP_INTERVAL_MS = 5000;
+const SPEEDUP_AMOUNT = 6;
+const SPAWN_DECREASE_MS = 33;
+const SPAWN_MIN_MS = 667;
 
 const keys = {
     'ArrowLeft': 0, 'a': 0, 'A': 0,
@@ -66,20 +76,20 @@ function aplicarMovimentoAlternado(ativar) {
 function iniciarComDificuldade(nivel) {
     modoAtual = nivel;
 
-    // DIFICULDADES E VELOCIDADES REAJUSTADAS
+    // DIFICULDADES E VELOCIDADES REAJUSTADAS (px/s e ms, não por frame)
     if (nivel === 'facil') {
-        baseSpeed = 0.8;
-        spawnRate = 130;
+        baseSpeed = 48;
+        spawnInterval = 2170;
         aplicarMovimentoAlternado(false);
         document.body.classList.remove('modo-escuro-osu');
     } else if (nivel === 'medio') {
-        baseSpeed = 1.4;
-        spawnRate = 100;
+        baseSpeed = 84;
+        spawnInterval = 1670;
         aplicarMovimentoAlternado(false);
         document.body.classList.remove('modo-escuro-osu');
     } else if (nivel === 'dificil') {
-        baseSpeed = 2.8; // Velocidade bem amigável para reação
-        spawnRate = 70;
+        baseSpeed = 168; // Velocidade bem amigável para reação
+        spawnInterval = 1170;
         aplicarMovimentoAlternado(true);
         document.body.classList.add('modo-escuro-osu');
     }
@@ -88,35 +98,44 @@ function iniciarComDificuldade(nivel) {
     health = 50;
     score = 0;
     scoreVal.innerText = score;
-    frameCount = 0;
     currentSpeed = baseSpeed;
+    lastTimestamp = null;
+    spawnTimer = 0;
+    speedUpTimer = 0;
     notes.forEach(n => n.el.remove());
     notes = [];
     overlay.style.display = 'none';
     somAcerto.currentTime = 0;
 
-    gameLoop();
+    requestAnimationFrame(gameLoop);
 }
 
-function gameLoop() {
+function gameLoop(timestamp) {
     if (!gameActive) return;
 
-    frameCount++;
+    if (lastTimestamp === null) lastTimestamp = timestamp;
+    // Trava o salto em 100ms (ex: aba fora de foco) para não teleportar as notas.
+    const deltaMs = Math.min(timestamp - lastTimestamp, 100);
+    lastTimestamp = timestamp;
 
-    if (frameCount % 300 === 0) {
-        currentSpeed += 0.1;
-        if (spawnRate > 40) {
-            spawnRate -= 2;
-        }
+    spawnTimer += deltaMs;
+    speedUpTimer += deltaMs;
+
+    if (speedUpTimer >= SPEEDUP_INTERVAL_MS) {
+        speedUpTimer -= SPEEDUP_INTERVAL_MS;
+        currentSpeed += SPEEDUP_AMOUNT;
+        spawnInterval = Math.max(SPAWN_MIN_MS, spawnInterval - SPAWN_DECREASE_MS);
     }
 
-    if (frameCount % Math.round(spawnRate) === 0) {
+    if (spawnTimer >= spawnInterval) {
+        spawnTimer -= spawnInterval;
         createNote();
     }
 
+    const moveAmount = currentSpeed * (deltaMs / 1000);
     for (let i = notes.length - 1; i >= 0; i--) {
         let n = notes[i];
-        n.y -= currentSpeed;
+        n.y -= moveAmount;
         n.el.style.top = n.y + 'px';
 
         if (n.y < -20) {
@@ -124,6 +143,7 @@ function gameLoop() {
             notes.splice(i, 1);
             tocarSomErro();
             updateHealth(-6);
+            triggerReceptorEffect(n.lane, 'miss', 320);
         }
     }
 
@@ -136,8 +156,7 @@ function gameLoop() {
 function createNote() {
     const lane = Math.floor(Math.random() * 4);
     const el = document.createElement('div');
-    el.className = 'note';
-    el.innerHTML = setasMidia[lane];
+    el.className = `note lane-${lane}`;
     el.style.left = (lane * 25) + '%';
 
     let startY = 420;
@@ -166,15 +185,34 @@ function mostrarFeedbackTexto(texto, cor, lane, y) {
     setTimeout(() => fb.remove(), 600);
 }
 
+function mostrarAcertoBurst(lane, y) {
+    const burst = document.createElement('div');
+    burst.className = 'hit-burst';
+    burst.style.setProperty('--burst-color', `var(--lane-${lane})`);
+    burst.style.left = (lane * 25 + 12.5) + '%';
+    burst.style.top = (y + 25) + 'px';
+    container.appendChild(burst);
+    setTimeout(() => burst.remove(), 450);
+}
+
+function triggerReceptorEffect(lane, classe, duracao) {
+    const rec = receptors[lane];
+    rec.classList.remove(classe);
+    void rec.offsetWidth; // força reflow para reiniciar a animação
+    rec.classList.add(classe);
+    setTimeout(() => rec.classList.remove(classe), duracao);
+}
+
 function updateHealth(amount) {
     health += amount;
     if (health > 100) health = 100;
     if (health < 0) health = 0;
     healthFill.style.width = health + '%';
 
-    if (health > 70) healthFill.style.backgroundColor = '#458b40';
-    else if (health > 30) healthFill.style.backgroundColor = '#d9a036';
-    else healthFill.style.backgroundColor = '#a63232';
+    healthFill.classList.remove('health-high', 'health-mid', 'health-low');
+    if (health > 70) healthFill.classList.add('health-high');
+    else if (health > 30) healthFill.classList.add('health-mid');
+    else healthFill.classList.add('health-low');
 }
 
 function triggerInput(lane) {
@@ -227,6 +265,8 @@ function checkHit(lane) {
             n.el.remove();
             notes.splice(i, 1);
             tocarSomAcerto();
+            mostrarAcertoBurst(lane, receptorY);
+            triggerReceptorEffect(lane, 'hit', 260);
 
             // Sistema de pontuação e cura por precisão
             if (distancia <= 15) {
@@ -253,6 +293,7 @@ function checkHit(lane) {
 
     tocarSomErro();
     updateHealth(-3);
+    triggerReceptorEffect(lane, 'miss', 320);
 }
 
 function endGame(win) {

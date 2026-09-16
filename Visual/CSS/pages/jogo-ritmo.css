@@ -1,6 +1,17 @@
 /* ==========================================================================
-   PÁGINA RITMO EM MOVIMENTO (jogo-movimento.html)
+   PÁGINA RITMO EM MOVIMENTO (jogo-ritmo.html)
    ========================================================================== */
+
+.game-screen {
+    --lane-0: #ef5678;
+    /* esquerda */
+    --lane-1: #3fa7e6;
+    /* baixo */
+    --lane-2: #3ec97a;
+    /* cima */
+    --lane-3: #a978f0;
+    /* direita */
+}
 
 html,
 body {
@@ -55,10 +66,11 @@ body.modo-escuro-osu .game-info {
 }
 
 .score-display {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
+    letter-spacing: 0.5px;
     color: var(--color-text-strong);
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 body.modo-escuro-osu .score-display {
@@ -80,7 +92,19 @@ body.modo-escuro-osu .score-display {
     width: 50%;
     height: 100%;
     background-color: #458b40;
-    transition: width 0.2s ease, background-color 0.2s ease;
+    transition: width 0.25s ease, background-color 0.2s ease;
+}
+
+.health-bar-fill.health-high {
+    background-color: #458b40;
+}
+
+.health-bar-fill.health-mid {
+    background-color: #d9a036;
+}
+
+.health-bar-fill.health-low {
+    background-color: #a63232;
 }
 
 .game-container {
@@ -92,13 +116,13 @@ body.modo-escuro-osu .score-display {
     border: 4px solid #3D1111;
     overflow: hidden;
     border-radius: var(--radius-lg);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.5s ease;
+    box-shadow: var(--shadow-lg);
+    transition: box-shadow 0.5s ease, border-color 0.5s ease, background-color 0.5s ease;
 }
 
 body.modo-escuro-osu .game-container {
-    box-shadow: 0 0 35px rgba(255, 60, 60, 0.4);
-    border-color: #ff4747;
+    background-color: #0A0505;
+    border-color: #7a2323;
 }
 
 .receptors {
@@ -106,8 +130,14 @@ body.modo-escuro-osu .game-container {
     width: 100%;
     height: 60px;
     border-bottom: 2px dashed #E6DEC9;
-    background: #FDFBF4;
+    background-color: #FDFBF4;
     position: relative;
+    z-index: 6;
+}
+
+body.modo-escuro-osu .receptors {
+    background-color: #150a0a;
+    border-bottom-color: #341717;
 }
 
 .receptor-lane {
@@ -118,11 +148,30 @@ body.modo-escuro-osu .game-container {
     position: relative;
 }
 
+.receptor-lane:nth-child(1) {
+    --lane-color: var(--lane-0);
+}
+
+.receptor-lane:nth-child(2) {
+    --lane-color: var(--lane-1);
+}
+
+.receptor-lane:nth-child(3) {
+    --lane-color: var(--lane-2);
+}
+
+.receptor-lane:nth-child(4) {
+    --lane-color: var(--lane-3);
+}
+
 .receptor {
-    font-size: 32px;
-    color: #D1C4B2;
-    transition: transform 0.1s ease, opacity 0.1s ease;
-    opacity: 0.4;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--lane-color) 12%, transparent);
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lane-color) 35%, transparent);
+    transition: transform 0.12s ease, opacity 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    opacity: 0.55;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -186,9 +235,79 @@ body.modo-escuro-osu .game-container {
 }
 
 .receptor.active {
-    transform: scale(1.25);
+    transform: scale(1.3);
     opacity: 1;
-    color: #3D1111;
+    background: color-mix(in srgb, var(--lane-color) 30%, transparent);
+    box-shadow: inset 0 0 0 2px var(--lane-color);
+}
+
+.receptor.hit {
+    animation: receptorHit 0.26s ease-out;
+}
+
+@keyframes receptorHit {
+    0% {
+        transform: scale(1.3);
+    }
+
+    45% {
+        transform: scale(1.55);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.receptor.miss {
+    animation: receptorMiss 0.32s ease-in-out;
+}
+
+@keyframes receptorMiss {
+    0% {
+        transform: translateX(0) scale(1);
+    }
+
+    20% {
+        transform: translateX(-5px) scale(0.94);
+        box-shadow: inset 0 0 0 2px var(--color-red-accent);
+    }
+
+    45% {
+        transform: translateX(5px) scale(0.94);
+    }
+
+    70% {
+        transform: translateX(-3px);
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+    }
+}
+
+.hit-burst {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 3px solid var(--burst-color, #fff);
+    pointer-events: none;
+    z-index: 16;
+    animation: burstRing 0.45s ease-out forwards;
+}
+
+@keyframes burstRing {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.9);
+        opacity: 0;
+    }
 }
 
 .note {
@@ -198,9 +317,33 @@ body.modo-escuro-osu .game-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
-    font-weight: bold;
-    z-index: 5;
+    z-index: 7;
+}
+
+.note::before {
+    content: '';
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--note-color, #999) 22%, #fff);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--note-color, #999) 55%, transparent);
+}
+
+.note.lane-0 {
+    --note-color: var(--lane-0);
+}
+
+.note.lane-1 {
+    --note-color: var(--lane-1);
+}
+
+.note.lane-2 {
+    --note-color: var(--lane-2);
+}
+
+.note.lane-3 {
+    --note-color: var(--lane-3);
 }
 
 .note.teleport {
@@ -226,7 +369,8 @@ body.modo-escuro-osu .game-container {
 .hit-feedback {
     position: absolute;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
     pointer-events: none;
     z-index: 20;
     animation: subirEsumir 0.6s ease-out forwards;
@@ -235,12 +379,16 @@ body.modo-escuro-osu .game-container {
 @keyframes subirEsumir {
     0% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(0.8);
+    }
+
+    20% {
+        transform: translateY(0) scale(1.15);
     }
 
     100% {
         opacity: 0;
-        transform: translateY(-25px) scale(1.2);
+        transform: translateY(-25px) scale(1.1);
     }
 }
 
@@ -268,7 +416,7 @@ body.modo-escuro-osu .game-container {
 
 .touch-btn:active {
     background-color: #6E5A5A;
-    transform: scale(0.95);
+    transform: scale(0.93);
 }
 
 .feedback-overlay {
@@ -277,7 +425,7 @@ body.modo-escuro-osu .game-container {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(61, 17, 17, 0.95);
+    background-color: rgba(61, 17, 17, 0.95);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -291,13 +439,14 @@ body.modo-escuro-osu .game-container {
 }
 
 .feedback-overlay h2 {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
 }
 
 .feedback-overlay p {
     font-size: 14px;
     line-height: 1.4;
+    color: #E2D7C5;
 }
 
 .dificuldade-container {
@@ -310,19 +459,22 @@ body.modo-escuro-osu .game-container {
 }
 
 .btn-dificuldade {
-    padding: 12px 20px;
+    padding: 13px 20px;
     border: none;
     border-radius: var(--radius-pill);
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
-    transition: transform 0.2s, filter 0.2s;
+    transition: transform 0.2s;
     color: white;
 }
 
 .btn-dificuldade:hover {
     transform: scale(1.05);
-    filter: brightness(1.1);
+}
+
+.btn-dificuldade:active {
+    transform: scale(0.97);
 }
 
 .btn-facil {
