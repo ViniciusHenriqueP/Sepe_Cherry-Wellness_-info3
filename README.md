@@ -321,19 +321,29 @@ Todo o grupo mantém o ritmo,trabalhando com base nas respectivas divisões de t
 ### Assuntos
 
 Murilo e gabrieli estão cuidando a respeito das decorações que iremos fazer, da temática da apresentação e de todo o ritmo.
+
 Lukas irá finalizar sua página no figma.
+
 Vini está codando e padronizando todas as páginas do site.
-Lukas, gabrieli e o resto do grupo manterão contato para manter a harmonia das páginas
+
+Lukas, gabrieli e o resto do grupo manterão contato para manter a harmonia das páginas.
+
 Gabriela e murilo estão fazendo o design dos posts das páginas do instagram para aumentar a visibilidade do nosso trabalho.
+
 Lukas novamente conversa com alguns membros do grupo para a coleta de informações para as atas.
+
 Lukas também marca uma pequena reunião com vini para conversar a respeito de como vai o grupo, como está ficando as páginas e todo o resto.
 
 ### Responsabilidades
 
-Murilo e Gabrieli= Decorações
+Murilo e Gabrieli= Decorações.
+
 Murilo e gabriela=Posts das páginas. (canva)
+
 vini= códigos e padronização e reunião 
+
 Lukas= Atas,página, coleta de informações e reunião.
+
 Gabrieli=Wireframe da sua página.
 
 
