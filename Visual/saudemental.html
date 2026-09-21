@@ -62,10 +62,6 @@
                         <p>Quando os sentimentos estiverem atrapalhando sua rotina ou causando sofrimento, procurar um
                             profissional de saúde mental também é uma forma de cuidado!</p>
                     </div>
-                    <div class="mental-avatar-duo" data-reveal="scale">
-                        <span class="fala-bolha" aria-hidden="true">💬</span>
-                        <span class="cereja-avatar" aria-hidden="true">🍒</span>
-                    </div>
                 </div>
             </div>
 
@@ -81,11 +77,39 @@
 
                 <div class="card card-sage minijogo-card" data-reveal="right">
                     <h3>Minijogo: Respire e Recarregue</h3>
-                    <p>Em breve você vai poder testar técnicas de respiração e relaxamento em um minijogo exclusivo
-                        e conquistar um Emblema de Bem-Estar Mental.</p>
-                    <button class="btn-secondary" id="minijogo-btn" type="button">Jogar Agora →</button>
+                    <p>Acompanhe o ritmo da respiração e clique no momento certo para encher o pulmão e conquistar o
+                        Emblema de Bem-Estar Mental.</p>
+                    <a href="jogo-respiracao.html" style="text-decoration: none;">
+                        <button class="btn-secondary" type="button">Jogar Agora →</button>
+                    </a>
                 </div>
             </aside>
+        </section>
+
+        <section class="mental-dados" data-reveal-group>
+            <h2 class="mental-dados-intro" data-reveal="up">Saúde mental em números</h2>
+            <p class="mental-dados-sub" data-reveal="up">Falar sobre o assunto ajuda a entender que ansiedade e
+                tristeza fazem parte da experiência de muita gente — e que buscar apoio é um passo válido.</p>
+            <div class="stats-grid">
+                <div class="stat-tile" style="--stat-accent: var(--color-sage-deep);" data-reveal="up">
+                    <span class="stat-number">1 em cada 7</span>
+                    <p class="stat-desc">adolescentes de 10 a 19 anos vive com algum transtorno mental — cerca de
+                        15% de toda a carga de doenças nessa faixa etária.</p>
+                    <span class="stat-source">OMS, agência da ONU</span>
+                </div>
+                <div class="stat-tile" style="--stat-accent: var(--color-sage-deep);" data-reveal="up">
+                    <span class="stat-number">470 milhões</span>
+                    <p class="stat-desc">de pessoas convivem com algum transtorno de ansiedade no mundo, sendo 146
+                        milhões crianças e adolescentes.</p>
+                    <span class="stat-source">OMS, 2023</span>
+                </div>
+                <div class="stat-tile" style="--stat-accent: var(--color-sage-deep);" data-reveal="up">
+                    <span class="stat-number">1 em cada 3</span>
+                    <p class="stat-desc">é a proporção de pessoas com depressão que recebe tratamento formal no
+                        mundo — por isso conversar e pedir ajuda faz diferença.</p>
+                    <span class="stat-source">OMS</span>
+                </div>
+            </div>
         </section>
 
         <section class="mood-section" data-reveal="up">
@@ -109,26 +133,55 @@
         </section>
 
         <section class="praticas-section">
-            <span class="praticas-pill" data-reveal="up">Práticas para o dia a dia:</span>
+            <h2 data-reveal="up">Práticas para o dia a dia</h2>
+            <p class="praticas-sub" data-reveal="up">Pequenos hábitos que ajudam a cuidar da mente na rotina.</p>
             <div class="praticas-grid" data-reveal-group>
                 <div class="pratica-card" data-reveal="up">
-                    <div class="pratica-icon" aria-hidden="true">🫁</div>
+                    <div class="pratica-icon" aria-hidden="true">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 9c2 0 2 3 4 3s2-3 4-3 2 3 4 3 2-3 4-3 2 3 4 3"></path>
+                            <path d="M2 15c2 0 2 3 4 3s2-3 4-3 2 3 4 3 2-3 4-3 2 3 4 3"></path>
+                        </svg>
+                    </div>
                     <h3>Respiração</h3>
                     <p>Técnicas de respiração ajudam a acalmar a mente e reduzir a ansiedade.</p>
                 </div>
                 <div class="pratica-card" data-reveal="up">
-                    <div class="pratica-icon" aria-hidden="true">📵</div>
+                    <div class="pratica-icon" aria-hidden="true">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="6" y="2" width="12" height="20" rx="2"></rect>
+                            <line x1="10" y1="18" x2="14" y2="18"></line>
+                            <line x1="3" y1="3" x2="21" y2="21"></line>
+                        </svg>
+                    </div>
                     <h3>Desconecte-se</h3>
                     <p>Pausas das telas ajudam a reduzir o estresse, melhorar o foco e trazer equilíbrio para o dia a
                         dia.</p>
                 </div>
                 <div class="pratica-card" data-reveal="up">
-                    <div class="pratica-icon" aria-hidden="true">🗂️</div>
+                    <div class="pratica-icon" aria-hidden="true">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 6h11M9 12h11M9 18h11"></path>
+                            <path d="M3.5 6.5 4.5 7.5 6.5 5.5"></path>
+                            <path d="M3.5 12.5 4.5 13.5 6.5 11.5"></path>
+                            <path d="M3.5 18.5 4.5 19.5 6.5 17.5"></path>
+                        </svg>
+                    </div>
                     <h3>Organização mental</h3>
                     <p>Organizar pensamentos, prioridades e tarefas ajuda a tomar decisões mais claras.</p>
                 </div>
                 <div class="pratica-card" data-reveal="up">
-                    <div class="pratica-icon" aria-hidden="true">🧴</div>
+                    <div class="pratica-icon" aria-hidden="true">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M12 7C10.5 4 7 3 4.5 5.5 1.5 8.5 3 12 12 20 21 12 22.5 8.5 19.5 5.5 17 3 13.5 4 12 7Z">
+                            </path>
+                        </svg>
+                    </div>
                     <h3>Cuide-se</h3>
                     <p>Reconhecer suas qualidades e celebrar pequenas conquistas ajuda a ter mais confiança e
                         segurança no dia a dia.</p>
@@ -138,7 +191,17 @@
 
     </main>
 
-    <div class="mental-toast" id="mental-toast" role="status" aria-live="polite"></div>
+    <section class="fontes-section">
+        <h2>Fontes</h2>
+        <ul class="fontes-list">
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/mental-disorders" target="_blank"
+                    rel="noopener">Organização Mundial da Saúde (OMS) — Mental disorders</a>, ficha técnica sobre
+                transtornos mentais no mundo.</li>
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health" target="_blank"
+                    rel="noopener">Organização Mundial da Saúde (OMS) — Mental health of adolescents</a>, ficha
+                técnica sobre saúde mental na adolescência.</li>
+        </ul>
+    </section>
 
     <footer class="footer footer--mental">
         <div class="footer-inner">

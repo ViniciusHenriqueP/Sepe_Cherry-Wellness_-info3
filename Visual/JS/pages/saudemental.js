@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     iniciarLembrete();
     iniciarHumor();
-    iniciarMinijogoToast();
 });
 
 /* ---------- Card "Lembrete!" com frases rotativas ---------- */
@@ -90,22 +89,5 @@ function iniciarHumor() {
 
             if (feedback) feedback.textContent = mensagens[mood] || '';
         });
-    });
-}
-
-/* ---------- Botão do minijogo (placeholder) ---------- */
-function iniciarMinijogoToast() {
-    const botao = document.getElementById('minijogo-btn');
-    const toast = document.getElementById('mental-toast');
-    if (!botao || !toast) return;
-
-    let timer = null;
-
-    botao.addEventListener('click', function () {
-        toast.textContent = 'Minijogo em construção — volte em breve! 🍒';
-        toast.classList.add('is-visible');
-
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(() => toast.classList.remove('is-visible'), 3200);
     });
 }

@@ -112,6 +112,13 @@ body {
 /* ==========================================================================
    NAVBAR
    ========================================================================== */
+/* Navbar/rodapé da trilha "Bem-Estar mental" (saudemental.html e seu minijogo)
+   seguem o verde da identidade, fixo independente do modo claro/escuro */
+.navbar--mental,
+.footer--mental {
+    background-color: var(--color-brand-mental);
+}
+
 .navbar {
     display: flex;
     flex-direction: column;
@@ -479,4 +486,212 @@ a:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--color-yellow-accent);
     outline-offset: 3px;
+}
+
+/* ==========================================================================
+   ÍCONES DE LINHA — substituem emojis decorativos nos cards
+   Mesmo traço do ícone de sol/lua da navbar (stroke, sem preenchimento)
+   ========================================================================== */
+.icon-line {
+    width: 30px;
+    height: 30px;
+    stroke: currentColor;
+    fill: none;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   NÚMERO EM DESTAQUE — estatística com fonte, usado na home e em Bem-Estar Mental
+   ========================================================================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.stat-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--stat-accent, var(--color-brand));
+    border-radius: var(--radius-lg);
+    padding: 22px 22px 18px;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+a.stat-tile:hover,
+a.stat-tile:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-number {
+    font-size: clamp(28px, 7vw, 40px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--stat-accent, var(--color-text-strong));
+}
+
+.stat-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+.stat-link {
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-strong);
+}
+
+.stat-source {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+}
+
+@media (min-width: 700px) {
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==========================================================================
+   GRÁFICO DE BARRAS — HTML/CSS puro, valores sempre em texto real
+   ========================================================================== */
+.data-chart {
+    background-color: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    box-shadow: var(--shadow-sm);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.chart-title {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-strong);
+    margin-bottom: 4px;
+}
+
+.chart-note {
+    display: block;
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+}
+
+.chart-bars {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.chart-bar-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+
+.chart-bar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.chart-bar-label {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.chart-bar-value {
+    color: var(--color-text-strong);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.chart-bar-track {
+    height: 12px;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-bg-soft);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+.chart-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-pill);
+    background-color: var(--chart-color, var(--color-brand));
+    width: 0;
+}
+
+.chart-source {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+
+.chart-source a {
+    color: inherit;
+}
+
+/* ==========================================================================
+   FONTES — bloco de referências no fim de cada página de conteúdo
+   ========================================================================== */
+.fontes-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.fontes-section h2 {
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-soft);
+    margin-bottom: 14px;
+}
+
+.fontes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 14px;
+}
+
+.fontes-list li {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.fontes-list a {
+    color: var(--color-text-strong);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 3px;
+}
+
+.fontes-list a:hover {
+    text-decoration-color: currentColor;
 }

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Respire e Recarregue</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/jogo-respiracao.css">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body class="corpo-respiracao">
+
+    <!-- Peça de pulmão compartilhada: a mesma forma é reaproveitada na peça
+         central (inteira) e nas notas que viajam pelas pistas esquerda/direita -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+        <symbol id="lobo-pulmao" viewBox="0 0 60 100">
+            <path
+                d="M16 8C34 2 50 14 52 34 54 50 50 64 44 76 38 88 28 96 18 92 10 89 10 80 14 72 20 60 20 52 14 44 8 36 8 24 16 8Z">
+            </path>
+        </symbol>
+    </svg>
+
+    <header class="navbar navbar--mental">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="jogo-movimento.html">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="game-screen">
+        <div class="game-info">
+            <h2>Respire e Recarregue</h2>
+            <p>Aperte <b>Q</b> quando a metade da esquerda chegar ao centro e <b>E</b> quando for a da direita — ou
+                toque nos botões.</p>
+        </div>
+
+        <div class="score-display">Pontos: <span id="score-val">0</span></div>
+
+        <div class="breath-bar-container">
+            <div id="breath-fill" class="breath-bar-fill"></div>
+        </div>
+
+        <div class="game-container" id="game-container">
+
+            <div class="trilha-central" aria-hidden="true"></div>
+
+            <div class="pulmao-central" id="pulmao-central">
+                <svg class="pulmao-svg" id="pulmao-svg" viewBox="0 0 200 220" fill="none" stroke="currentColor"
+                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M100 14 L100 62" />
+                    <path d="M100 62 L76 78" />
+                    <path d="M100 62 L124 78" />
+                    <g transform="translate(100,68)">
+                        <use href="#lobo-pulmao" width="66" height="112" fill="currentColor" fill-opacity="0.22" />
+                    </g>
+                    <g transform="translate(100,68) scale(-1,1)">
+                        <use href="#lobo-pulmao" width="66" height="112" fill="currentColor" fill-opacity="0.22" />
+                    </g>
+                </svg>
+            </div>
+
+            <div id="feedback-overlay" class="feedback-overlay">
+                <h2 id="final-status">Respire e Recarregue</h2>
+                <p id="final-msg">Encha a barra de fôlego acertando o tempo certo de cada lado do pulmão. Aperte
+                    <b>Q</b> para a esquerda e <b>E</b> para a direita.
+                </p>
+                <div id="btn-area" class="dificuldade-container">
+                    <button class="btn-primary" onclick="iniciarJogo()" type="button">Começar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="touch-controls">
+            <button class="touch-btn" id="btn-left" aria-label="Pulmão esquerdo">
+                <svg viewBox="0 0 60 100" fill="currentColor" fill-opacity="0.25" stroke="currentColor"
+                    stroke-width="6">
+                    <g transform="translate(60,0) scale(-1,1)">
+                        <use href="#lobo-pulmao" />
+                    </g>
+                </svg>
+                <span>Q</span>
+            </button>
+            <button class="touch-btn" id="btn-right" aria-label="Pulmão direito">
+                <svg viewBox="0 0 60 100" fill="currentColor" fill-opacity="0.25" stroke="currentColor"
+                    stroke-width="6">
+                    <use href="#lobo-pulmao" />
+                </svg>
+                <span>E</span>
+            </button>
+        </div>
+    </main>
+
+    <footer class="footer footer--mental">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="#" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">Projeto Integrador &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/pages/jogo-respiracao.js"></script>
+</body>
+
+</html>

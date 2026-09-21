@@ -54,6 +54,14 @@
 
 .legenda-hidratado {
     color: var(--color-green-mid);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.legenda-hidratado .icon-line {
+    width: 16px;
+    height: 16px;
 }
 
 .beneficios-intro {
@@ -113,13 +121,57 @@
 }
 
 .beneficio-card .emoji-beneficio {
-    font-size: 30px;
+    display: inline-flex;
+    color: var(--color-green-strong);
 }
 
 .beneficio-card:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-md);
     border-color: var(--color-text-strong);
+}
+
+/* Seção "Atividade física em números" */
+.dados-intro {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.dados-intro h2 {
+    color: var(--color-text-strong);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.dados-intro p {
+    color: var(--color-text-muted);
+    margin-bottom: 20px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dados-grid {
+    max-width: 700px;
+    margin: 30px auto 10px;
+    padding: 0 20px;
+}
+
+.dados-contexto-global {
+    max-width: 700px;
+    margin: 24px auto 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    background-color: var(--color-green-soft);
+    border: 1px dashed var(--color-green-accent);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+}
+
+.dados-contexto-global strong {
+    color: var(--color-text-strong);
 }
 
 /* Chamada para o minijogo */
