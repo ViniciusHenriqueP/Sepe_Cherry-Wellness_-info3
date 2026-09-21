@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
                 <h3 class="emblema-titulo">Ritmo em Movimento</h3>
                 <p class="emblema-descricao">Concedido por manter a agilidade e acompanhar a aceleração do ritmo no jogo de movimento!</p>
-                <a href="jogo-movimento.html" class="btn-primary">Visitar Jogo</a>
+                <a href="jogo-ritmo.html" class="btn-primary">Visitar Jogo</a>
             </div>
         `;
     }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cherry Wellness - Ritmo em Movimento</title>
+    <title>Cherry Wellness - Vida em Movimento</title>
     <link rel="stylesheet" href="CSS/reset.css">
     <link rel="stylesheet" href="CSS/variables.css">
     <link rel="stylesheet" href="CSS/base.css">
@@ -44,53 +44,182 @@
         </button>
     </header>
 
-    <main class="game-screen">
-        <div class="game-info">
-            <h2>Ritmo em Movimento</h2>
-            <p>Use <b>WASD</b>, <b>SETAS</b> ou toque nos botões!</p>
+    <section class="hero-section-clean">
+        <div class="hero-text-area" data-reveal="left">
+            <h1 class="hero-title">Vida em Movimento</h1>
+            <p class="hero-subtitle">Corpo ativo, mente leve.</p>
+            <p>Os exercícios físicos fortalecem o corpo e ajudam a prevenir doenças crônicas, como diabetes tipo 2 e
+                hipertensão. A Organização Mundial da Saúde (OMS), agência da ONU responsável pela saúde, recomenda
+                pelo menos 150 minutos por semana de atividade moderada — como uma caminhada rápida — ou 75 minutos
+                de atividade vigorosa, como corrida. Praticados com regularidade, os exercícios aumentam a disposição
+                para o dia a dia e promovem bem-estar físico e mental.</p>
         </div>
-
-        <div class="score-display">Pontos: <span id="score-val">0</span></div>
-
-        <div class="health-bar-container">
-            <div id="health-fill" class="health-bar-fill"></div>
+        <div class="hero-image-area" data-reveal="scale">
+            <img src="IMG/vida-movimento/mascotes-ativos.png" alt="Mascotes Cherry Wellness caminhando ativamente">
         </div>
+    </section>
 
-        <div class="game-container" id="game-container">
-            <div id="receptors-bar" class="receptors">
-                <div class="receptor-lane">
-                    <div id="receptor-0" class="receptor">⬅️</div>
-                </div>
-                <div class="receptor-lane">
-                    <div id="receptor-1" class="receptor">⬇️</div>
-                </div>
-                <div class="receptor-lane">
-                    <div id="receptor-2" class="receptor">⬆️</div>
-                </div>
-                <div class="receptor-lane">
-                    <div id="receptor-3" class="receptor">➡️</div>
-                </div>
-            </div>
+    <div class="checkerboard-divider"></div>
 
-            <div id="feedback-overlay" class="feedback-overlay">
-                <h2 id="final-status">Escolha a Dificuldade</h2>
-                <p id="final-msg">Selecione o ritmo desejado para começar:</p>
-                <div id="btn-area" class="dificuldade-container">
-                    <button class="btn-dificuldade btn-facil" onclick="iniciarComDificuldade('facil')"> Fácil</button>
-                    <button class="btn-dificuldade btn-medio" onclick="iniciarComDificuldade('medio')"> Médio</button>
-                    <button class="btn-dificuldade btn-dificil" onclick="iniciarComDificuldade('dificil')"> Difícil
-                        (bem aurudo e dificil mesmo)</button>
-                </div>
+    <section class="hero-info">
+        <div class="hero-image-area" data-reveal="scale">
+            <img src="IMG/vida-movimento/hidratacao-muscular.png"
+                alt="Comparação entre um músculo hidratado e um músculo desidratado">
+            <div class="hidratacao-legendas">
+                <span class="legenda-hidratado">
+                    <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 2C12 2 5 11 5 15a7 7 0 0 0 14 0C19 11 12 2 12 2Z"></path>
+                    </svg>
+                    Músculo hidratado
+                </span>
+                <span class="legenda-desidratado">Músculo desidratado</span>
             </div>
         </div>
-
-        <div class="touch-controls">
-            <button class="touch-btn" id="btn-0">⬅️</button>
-            <button class="touch-btn" id="btn-1">⬇️</button>
-            <button class="touch-btn" id="btn-2">⬆️</button>
-            <button class="touch-btn" id="btn-3">➡️</button>
+        <div class="hero-text-area" data-reveal="right">
+            <h1 class="hero-title">Atividades pré-treino</h1>
+            <p class="hero-subtitle">Preparar o corpo evita lesões.</p>
+            <p>Antes do treino, é importante fazer um aquecimento — corrida leve, caminhada ou exercícios de
+                mobilidade — para aumentar a temperatura corporal, melhorar a circulação e prevenir lesões. Manter
+                uma boa hidratação também faz diferença: um músculo hidratado responde melhor ao esforço e tem menor
+                risco de cãibras. Vale ainda manter uma alimentação leve antes de treinar, para favorecer o
+                desempenho.</p>
         </div>
-    </main>
+    </section>
+
+    <section class="beneficios-intro">
+        <h2>Mais benefícios da atividade física</h2>
+        <p>Além de fortalecer o corpo, os exercícios físicos fazem bem para a mente e para a rotina.</p>
+
+        <div class="grid-beneficios" data-reveal-group>
+            <div class="beneficio-card" data-reveal="up">
+                <span class="emoji-beneficio">
+                    <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M8 13c1 2 2.6 3 4 3s3-1 4-3"></path>
+                        <circle cx="9" cy="9.5" r="0.6" fill="currentColor" stroke="none"></circle>
+                        <circle cx="15" cy="9.5" r="0.6" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                </span>
+                <h3>Melhora o humor</h3>
+                <p>Libera hormônios que trazem sensação de bem-estar.</p>
+            </div>
+
+            <div class="beneficio-card" data-reveal="up">
+                <span class="emoji-beneficio">
+                    <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 8h11a3 3 0 1 0-3-3"></path>
+                        <path d="M3 12h15a3 3 0 1 1-3 3"></path>
+                        <path d="M3 16h8"></path>
+                    </svg>
+                </span>
+                <h3>Reduz o estresse</h3>
+                <p>Ajuda o corpo e a mente a relaxarem depois de um dia cheio.</p>
+            </div>
+
+            <div class="beneficio-card" data-reveal="up">
+                <span class="emoji-beneficio">
+                    <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"></path>
+                    </svg>
+                </span>
+                <h3>Aumenta a disposição</h3>
+                <p>Mais energia para as tarefas do dia a dia.</p>
+            </div>
+
+            <div class="beneficio-card" data-reveal="up">
+                <span class="emoji-beneficio">
+                    <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                </span>
+                <h3>Favorece a concentração</h3>
+                <p>Contribui para clareza mental e foco nas atividades.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="dados-intro" data-reveal-group>
+        <h2 data-reveal="up">Atividade física em números</h2>
+        <p data-reveal="up">Entre os adolescentes brasileiros, poucos alcançam o nível de atividade física
+            recomendado para a idade.</p>
+
+        <div class="dados-grid">
+            <figure class="data-chart" data-reveal="up" style="--chart-color: var(--color-green-strong);"
+                aria-labelledby="chart-atividade-titulo">
+                <figcaption>
+                    <span class="chart-title" id="chart-atividade-titulo">Nível de atividade física em adolescentes
+                        (13 a 17 anos)</span>
+                    <span class="chart-note">Percentual de estudantes brasileiros em cada grupo</span>
+                </figcaption>
+                <ul class="chart-bars">
+                    <li class="chart-bar-row">
+                        <div class="chart-bar-top">
+                            <span class="chart-bar-label">Ativos (300 min/semana ou mais)</span>
+                            <span class="chart-bar-value">28,1%</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 28.1%;"></div>
+                        </div>
+                    </li>
+                    <li class="chart-bar-row">
+                        <div class="chart-bar-top">
+                            <span class="chart-bar-label">Insuficientemente ativos (1 a 299 min/semana)</span>
+                            <span class="chart-bar-value">61,8%</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 61.8%; opacity: 0.7;"></div>
+                        </div>
+                    </li>
+                    <li class="chart-bar-row">
+                        <div class="chart-bar-top">
+                            <span class="chart-bar-label">Inativos (0 min/semana)</span>
+                            <span class="chart-bar-value">8,7%</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 8.7%; opacity: 0.45;"></div>
+                        </div>
+                    </li>
+                </ul>
+                <p class="chart-source">Fonte: IBGE, Pesquisa Nacional de Saúde do Escolar (PeNSE), 2019.</p>
+            </figure>
+        </div>
+
+        <p class="dados-contexto-global" data-reveal="up">No mundo, <strong>81% dos adolescentes</strong> de 11 a 17
+            anos não atingem o nível de atividade física recomendado, segundo a Organização Mundial da Saúde (OMS,
+            2024) — um desafio global, não só brasileiro.</p>
+    </section>
+
+    <section class="minijogo-cta">
+        <div class="card card-green" data-reveal="scale">
+            <h2>Minijogo: Ritmo em Movimento</h2>
+            <p>
+                Agora é hora de testar seus reflexos! Acompanhe o ritmo, acerte as setas no tempo certo e tente
+                chegar ao final da barra de energia para conquistar o Emblema Vida em Movimento.
+            </p>
+            <a href="jogo-ritmo.html" style="text-decoration: none;">
+                <button class="btn-secondary">Jogar Agora →</button>
+            </a>
+        </div>
+    </section>
+
+    <section class="fontes-section">
+        <h2>Fontes</h2>
+        <ul class="fontes-list">
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/physical-activity" target="_blank"
+                    rel="noopener">Organização Mundial da Saúde (OMS) — Physical activity</a>, ficha técnica sobre
+                atividade física (recomendações e níveis de inatividade no mundo).</li>
+            <li><a href="https://agenciadenoticias.ibge.gov.br/media/com_mediaibge/arquivos/ad542e8a6ea81cd154e61fc7edf39d00.pdf"
+                    target="_blank" rel="noopener">IBGE — Pesquisa Nacional de Saúde do Escolar (PeNSE), 2019</a>,
+                levantamento sobre a saúde de estudantes brasileiros de 13 a 17 anos.</li>
+        </ul>
+    </section>
 
     <footer class="footer">
         <div class="footer-inner">
@@ -109,7 +238,7 @@
         <p class="footer-copy">Projeto Integrador &mdash; IFC Araquari</p>
     </footer>
 
-    <script src="JS/pages/jogo-movimento.js"></script>
+    <script src="JS/reveal.js"></script>
 </body>
 
 </html>

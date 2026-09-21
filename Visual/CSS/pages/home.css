@@ -84,6 +84,25 @@
     }
 }
 
+/* SEÇÃO "POR QUE ISSO IMPORTA" */
+.stats-section {
+    padding: 30px 15px 10px;
+    text-align: center;
+}
+
+.stats-section h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--color-text-strong);
+    margin-bottom: 6px;
+}
+
+.stats-section .stats-section-sub {
+    color: var(--color-text-muted);
+    max-width: 560px;
+    margin: 0 auto 28px;
+}
+
 /* CARDS DE PILARES */
 .cards-container {
     display: flex;

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Ritmo em Movimento</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/jogo-ritmo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="jogo-movimento.html">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="game-screen">
+        <div class="game-info">
+            <h2>Ritmo em Movimento</h2>
+            <p>Use <b>WASD</b>, <b>SETAS</b> ou toque nos botões!</p>
+        </div>
+
+        <div class="score-display">Pontos: <span id="score-val">0</span></div>
+
+        <div class="health-bar-container">
+            <div id="health-fill" class="health-bar-fill"></div>
+        </div>
+
+        <div class="game-container" id="game-container">
+            <div id="receptors-bar" class="receptors">
+                <div class="receptor-lane">
+                    <div id="receptor-0" class="receptor"></div>
+                </div>
+                <div class="receptor-lane">
+                    <div id="receptor-1" class="receptor"></div>
+                </div>
+                <div class="receptor-lane">
+                    <div id="receptor-2" class="receptor"></div>
+                </div>
+                <div class="receptor-lane">
+                    <div id="receptor-3" class="receptor"></div>
+                </div>
+            </div>
+
+            <div id="feedback-overlay" class="feedback-overlay">
+                <h2 id="final-status">Escolha a Dificuldade</h2>
+                <p id="final-msg">Selecione o ritmo desejado para começar:</p>
+                <div id="btn-area" class="dificuldade-container">
+                    <button class="btn-dificuldade btn-facil" onclick="iniciarComDificuldade('facil')"> Fácil</button>
+                    <button class="btn-dificuldade btn-medio" onclick="iniciarComDificuldade('medio')"> Médio</button>
+                    <button class="btn-dificuldade btn-dificil" onclick="iniciarComDificuldade('dificil')"> Difícil
+                        (bem aurudo e dificil mesmo)</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="touch-controls">
+            <button class="touch-btn" id="btn-0">⬅️</button>
+            <button class="touch-btn" id="btn-1">⬇️</button>
+            <button class="touch-btn" id="btn-2">⬆️</button>
+            <button class="touch-btn" id="btn-3">➡️</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="#" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">Projeto Integrador &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/pages/jogo-ritmo.js"></script>
+</body>
+
+</html>
