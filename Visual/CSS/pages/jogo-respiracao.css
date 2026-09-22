@@ -113,7 +113,9 @@ body.corpo-respiracao {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 130px;
+    /* Largura escolhida para que cada lobo tenha o mesmo tamanho das notas
+       (lobo = 66/200 da largura do SVG → 158px × 0,33 ≈ 52px) */
+    width: 158px;
     transform: translate(-50%, -50%);
     animation: respirarAmbiente 4.2s ease-in-out infinite;
     z-index: 5;
@@ -207,14 +209,18 @@ body.corpo-respiracao {
     width: 52px;
     height: auto;
     transform: translateY(-50%);
-    color: var(--color-sage-deep);
+    color: var(--color-sage);
     opacity: 0.85;
     z-index: 4;
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.14));
 }
 
-.nota-pulmao.lane-right {
-    color: var(--color-sage);
+/* block evita o espaço de linha abaixo do SVG inline, que empurrava a nota
+   alguns pixels para cima do centro */
+.nota-pulmao svg {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 /* ---------- Feedback de acerto/erro ---------- */
@@ -316,6 +322,49 @@ body.corpo-respiracao {
 
 /* O overlay é sempre escuro, então o botão contorno precisa de texto claro
    fixo aqui, independente do tema claro/escuro do site */
+/* Na escolha de dificuldade os botões ficam lado a lado para caber na área
+   de jogo, que é baixa */
+.dificuldade-container.dificuldade-linha {
+    flex-direction: row;
+    max-width: 380px;
+}
+
+.dificuldade-linha .btn-dificuldade {
+    flex: 1;
+    padding: 11px 8px;
+}
+
+.btn-dificuldade {
+    padding: 13px 20px;
+    border: none;
+    border-radius: var(--radius-pill);
+    font-weight: bold;
+    font-size: 15px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-dificuldade:hover {
+    transform: scale(1.05);
+}
+
+.btn-dificuldade:active {
+    transform: scale(0.97);
+}
+
+.btn-facil {
+    background-color: var(--color-green-mid);
+}
+
+.btn-medio {
+    background-color: #C28200;
+}
+
+.btn-dificil {
+    background-color: var(--color-red-accent);
+}
+
 .feedback-overlay .btn-secondary {
     color: #F4F8F0;
     border-color: rgba(244, 248, 240, 0.35);
@@ -375,7 +424,7 @@ body.corpo-respiracao {
     }
 
     .pulmao-central {
-        width: 104px;
+        width: 133px;
     }
 
     .nota-pulmao {

@@ -3,27 +3,34 @@ const breathFill = document.getElementById('breath-fill');
 const scoreVal = document.getElementById('score-val');
 const overlay = document.getElementById('feedback-overlay');
 const pulmaoSvg = document.getElementById('pulmao-svg');
+const pulmaoCentral = document.getElementById('pulmao-central');
 
 let gameActive = false;
 let breath = 50;
 let score = 0;
 let notes = [];
 
-const NOTE_WIDTH = 52;
+// Distância do centro de cada lobo até o meio do pulmão central, como fração
+// da largura do SVG (lobos centrados em x = 100 ± 39,4 no viewBox de 200).
+const LOBE_OFFSET_RATIO = 39.4 / 200;
 
 // Velocidade em pixels/segundo e tempos em milissegundos — independente da
 // taxa de atualização da tela, como no minijogo de ritmo.
-let baseSpeed = 108;
-let currentSpeed = baseSpeed;
-let spawnInterval = 1150;
+const DIFICULDADES = {
+    facil: { nome: 'Fácil', velocidade: 80, intervalo: 1500, aceleracao: 6, intervaloMin: 800 },
+    medio: { nome: 'Médio', velocidade: 108, intervalo: 1150, aceleracao: 10, intervaloMin: 520 },
+    dificil: { nome: 'Difícil', velocidade: 150, intervalo: 850, aceleracao: 14, intervaloMin: 420 }
+};
+
+let dificuldade = DIFICULDADES.medio;
+let currentSpeed = dificuldade.velocidade;
+let spawnInterval = dificuldade.intervalo;
 let lastTimestamp = null;
 let spawnTimer = 0;
 let speedUpTimer = 0;
 
 const SPEEDUP_INTERVAL_MS = 4500;
-const SPEEDUP_AMOUNT = 10;
 const SPAWN_DECREASE_MS = 35;
-const SPAWN_MIN_MS = 520;
 
 const PERFECT_PX = 16;
 const GOOD_PX = 36;
@@ -31,13 +38,14 @@ const OK_PX = 62;
 
 const keys = { 'q': 'left', 'Q': 'left', 'e': 'right', 'E': 'right' };
 
-function iniciarJogo() {
+function iniciarJogo(nivel) {
+    dificuldade = DIFICULDADES[nivel] || DIFICULDADES.medio;
     gameActive = true;
     breath = 50;
     score = 0;
     scoreVal.innerText = score;
-    currentSpeed = baseSpeed;
-    spawnInterval = 1150;
+    currentSpeed = dificuldade.velocidade;
+    spawnInterval = dificuldade.intervalo;
     lastTimestamp = null;
     spawnTimer = 0;
     speedUpTimer = 0;
@@ -61,8 +69,8 @@ function gameLoop(timestamp) {
 
     if (speedUpTimer >= SPEEDUP_INTERVAL_MS) {
         speedUpTimer -= SPEEDUP_INTERVAL_MS;
-        currentSpeed += SPEEDUP_AMOUNT;
-        spawnInterval = Math.max(SPAWN_MIN_MS, spawnInterval - SPAWN_DECREASE_MS);
+        currentSpeed += dificuldade.aceleracao;
+        spawnInterval = Math.max(dificuldade.intervaloMin, spawnInterval - SPAWN_DECREASE_MS);
     }
 
     if (spawnTimer >= spawnInterval) {
@@ -70,7 +78,6 @@ function gameLoop(timestamp) {
         createNote();
     }
 
-    const centerX = container.clientWidth / 2;
     const moveAmount = currentSpeed * (deltaMs / 1000);
 
     for (let i = notes.length - 1; i >= 0; i--) {
@@ -78,10 +85,11 @@ function gameLoop(timestamp) {
         n.x += n.lane === 'left' ? moveAmount : -moveAmount;
         n.el.style.left = n.x + 'px';
 
-        const noteCenterX = n.x + NOTE_WIDTH / 2;
+        const noteCenterX = n.x + n.width / 2;
+        const alvoX = alvoDaPista(n.lane);
         const passou = n.lane === 'left'
-            ? noteCenterX > centerX + OK_PX
-            : noteCenterX < centerX - OK_PX;
+            ? noteCenterX > alvoX + OK_PX
+            : noteCenterX < alvoX - OK_PX;
 
         if (passou) {
             n.el.remove();
@@ -97,21 +105,31 @@ function gameLoop(timestamp) {
     requestAnimationFrame(gameLoop);
 }
 
+// Ponto de encaixe de cada metade: o centro do lobo correspondente no pulmão
+// central, e não o meio exato do pulmão.
+function alvoDaPista(lane) {
+    const centerX = container.clientWidth / 2;
+    const offset = pulmaoCentral.offsetWidth * LOBE_OFFSET_RATIO;
+    return lane === 'left' ? centerX - offset : centerX + offset;
+}
+
 function createNote() {
     const lane = Math.random() < 0.5 ? 'left' : 'right';
     const el = document.createElement('div');
     el.className = `nota-pulmao lane-${lane}`;
-
-    const containerWidth = container.clientWidth;
-    const startX = lane === 'left' ? -NOTE_WIDTH : containerWidth;
-    el.style.left = startX + 'px';
 
     el.innerHTML = lane === 'left'
         ? '<svg viewBox="0 0 60 100" fill="currentColor" fill-opacity="0.9" stroke="none"><g transform="translate(60,0) scale(-1,1)"><use href="#lobo-pulmao"/></g></svg>'
         : '<svg viewBox="0 0 60 100" fill="currentColor" fill-opacity="0.9" stroke="none"><use href="#lobo-pulmao"/></svg>';
 
     container.appendChild(el);
-    notes.push({ el, lane, x: startX });
+
+    // A largura vem do CSS (menor no celular), então é lida depois de inserir
+    const width = el.offsetWidth;
+    const startX = lane === 'left' ? -width : container.clientWidth;
+    el.style.left = startX + 'px';
+
+    notes.push({ el, lane, x: startX, width });
 }
 
 function mostrarFeedbackTexto(texto) {
@@ -155,15 +173,15 @@ function triggerInput(lane) {
 }
 
 function checkHit(lane) {
-    const centerX = container.clientWidth / 2;
+    const alvoX = alvoDaPista(lane);
     let melhorIndice = -1;
     let melhorDistancia = Infinity;
 
     for (let i = 0; i < notes.length; i++) {
         const n = notes[i];
         if (n.lane !== lane) continue;
-        const noteCenterX = n.x + NOTE_WIDTH / 2;
-        const distancia = Math.abs(noteCenterX - centerX);
+        const noteCenterX = n.x + n.width / 2;
+        const distancia = Math.abs(noteCenterX - alvoX);
         if (distancia <= OK_PX && distancia < melhorDistancia) {
             melhorDistancia = distancia;
             melhorIndice = i;
@@ -231,11 +249,12 @@ function endGame(win) {
     const status = document.getElementById('final-status');
     const msg = document.getElementById('final-msg');
     const btnArea = document.getElementById('btn-area');
+    btnArea.classList.remove('dificuldade-linha');
 
     if (win) {
         localStorage.setItem('emblemaMental', 'ganhou');
         status.innerText = 'Fôlego cheio!';
-        msg.innerText = `Você fez ${score} pontos e encheu o pulmão de fôlego. Emblema de Bem-Estar Mental conquistado!`;
+        msg.innerText = `Você fez ${score} pontos no modo ${dificuldade.nome} e encheu o pulmão de fôlego. Emblema de Bem-Estar Mental conquistado!`;
 
         btnArea.innerHTML = `
             <a href="emblemas.html" class="btn-primary" style="text-decoration:none; display:block; text-align:center;">Ver meu Emblema</a>
@@ -243,7 +262,7 @@ function endGame(win) {
         `;
     } else {
         status.innerText = 'Faltou fôlego!';
-        msg.innerText = `Sua barra de fôlego esvaziou. Você fez ${score} pontos. Respire fundo e tente de novo!`;
+        msg.innerText = `Sua barra de fôlego esvaziou. Você fez ${score} pontos no modo ${dificuldade.nome}. Respire fundo e tente de novo!`;
 
         btnArea.innerHTML = '<button class="btn-primary" onclick="location.reload()" type="button">Tentar Novamente</button>';
     }

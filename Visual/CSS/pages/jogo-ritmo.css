@@ -2,15 +2,51 @@
    PÁGINA RITMO EM MOVIMENTO (jogo-ritmo.html)
    ========================================================================== */
 
+/* Cores das pistas inspiradas em Friday Night Funkin' */
 .game-screen {
-    --lane-0: #ef5678;
+    --lane-0: #c24b99;
     /* esquerda */
-    --lane-1: #3fa7e6;
+    --lane-1: #16b6e0;
     /* baixo */
-    --lane-2: #3ec97a;
+    --lane-2: #2fc43c;
     /* cima */
-    --lane-3: #a978f0;
+    --lane-3: #f0404a;
     /* direita */
+    --seta-contorno: #2a1c1c;
+    --seta-receptor: #9fb0b6;
+}
+
+/* ---------- Setas (SVG) ---------- */
+.seta {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    fill: var(--lane-color);
+    stroke: var(--seta-contorno);
+    stroke-width: 7;
+    stroke-linejoin: round;
+    paint-order: stroke;
+}
+
+/* O símbolo aponta para cima; cada pista gira a seta */
+.seta-0 {
+    --lane-color: var(--lane-0);
+    transform: rotate(-90deg);
+}
+
+.seta-1 {
+    --lane-color: var(--lane-1);
+    transform: rotate(180deg);
+}
+
+.seta-2 {
+    --lane-color: var(--lane-2);
+}
+
+.seta-3 {
+    --lane-color: var(--lane-3);
+    transform: rotate(90deg);
 }
 
 html,
@@ -165,17 +201,31 @@ body.modo-escuro-osu .receptors {
 }
 
 .receptor {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--lane-color) 12%, transparent);
-    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lane-color) 35%, transparent);
-    transition: transform 0.12s ease, opacity 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
-    opacity: 0.55;
+    width: 48px;
+    height: 48px;
+    transition: transform 0.12s ease, opacity 0.12s ease;
+    opacity: 0.85;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+}
+
+/* Receptor fica cinza como no FNF e acende na cor da pista ao apertar */
+.receptor .seta {
+    fill: var(--seta-receptor);
+    stroke: color-mix(in srgb, var(--seta-contorno) 70%, var(--seta-receptor));
+    transition: fill 0.12s ease;
+}
+
+.receptor.active .seta,
+.receptor.hit .seta {
+    fill: var(--lane-color);
+    stroke: var(--seta-contorno);
+}
+
+.receptor.miss .seta {
+    stroke: var(--color-red-accent);
 }
 
 .mov-alt-0 {
@@ -235,10 +285,8 @@ body.modo-escuro-osu .receptors {
 }
 
 .receptor.active {
-    transform: scale(1.3);
+    transform: scale(1.2);
     opacity: 1;
-    background: color-mix(in srgb, var(--lane-color) 30%, transparent);
-    box-shadow: inset 0 0 0 2px var(--lane-color);
 }
 
 .receptor.hit {
@@ -247,11 +295,11 @@ body.modo-escuro-osu .receptors {
 
 @keyframes receptorHit {
     0% {
-        transform: scale(1.3);
+        transform: scale(1.2);
     }
 
     45% {
-        transform: scale(1.55);
+        transform: scale(1.4);
     }
 
     100% {
@@ -270,7 +318,6 @@ body.modo-escuro-osu .receptors {
 
     20% {
         transform: translateX(-5px) scale(0.94);
-        box-shadow: inset 0 0 0 2px var(--color-red-accent);
     }
 
     45% {
@@ -320,30 +367,10 @@ body.modo-escuro-osu .receptors {
     z-index: 7;
 }
 
-.note::before {
-    content: '';
-    position: absolute;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--note-color, #999) 22%, #fff);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--note-color, #999) 55%, transparent);
-}
-
-.note.lane-0 {
-    --note-color: var(--lane-0);
-}
-
-.note.lane-1 {
-    --note-color: var(--lane-1);
-}
-
-.note.lane-2 {
-    --note-color: var(--lane-2);
-}
-
-.note.lane-3 {
-    --note-color: var(--lane-3);
+.note .seta {
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
 }
 
 .note.teleport {
@@ -402,7 +429,10 @@ body.modo-escuro-osu .receptors {
 
 .touch-btn {
     flex: 1;
-    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
     background-color: var(--color-brand);
     color: var(--color-bg);
     border: none;
@@ -412,6 +442,11 @@ body.modo-escuro-osu .receptors {
     cursor: pointer;
     touch-action: manipulation;
     transition: background-color 0.1s, transform 0.1s;
+}
+
+.touch-btn .seta {
+    width: 32px;
+    height: 32px;
 }
 
 .touch-btn:active {

@@ -57,7 +57,7 @@
     <main class="game-screen">
         <div class="game-info">
             <h2>Respire e Recarregue</h2>
-            <p>Aperte <b>Q</b> quando a metade da esquerda chegar ao centro e <b>E</b> quando for a da direita — ou
+            <p>Aperte <b>Q</b> quando a metade da esquerda encaixar no pulmão e <b>E</b> quando for a da direita — ou
                 toque nos botões.</p>
         </div>
 
@@ -72,7 +72,9 @@
             <div class="trilha-central" aria-hidden="true"></div>
 
             <div class="pulmao-central" id="pulmao-central">
-                <svg class="pulmao-svg" id="pulmao-svg" viewBox="0 0 200 220" fill="none" stroke="currentColor"
+                <!-- viewBox recortado para que o centro dos lobos (y≈125) fique no centro
+                     do SVG, na mesma linha por onde as metades viajam -->
+                <svg class="pulmao-svg" id="pulmao-svg" viewBox="0 10 200 230" fill="none" stroke="currentColor"
                     stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M100 14 L100 62" />
                     <path d="M100 62 L76 78" />
@@ -89,10 +91,12 @@
             <div id="feedback-overlay" class="feedback-overlay">
                 <h2 id="final-status">Respire e Recarregue</h2>
                 <p id="final-msg">Encha a barra de fôlego acertando o tempo certo de cada lado do pulmão. Aperte
-                    <b>Q</b> para a esquerda e <b>E</b> para a direita.
+                    <b>Q</b> para a esquerda e <b>E</b> para a direita. Escolha a dificuldade:
                 </p>
-                <div id="btn-area" class="dificuldade-container">
-                    <button class="btn-primary" onclick="iniciarJogo()" type="button">Começar</button>
+                <div id="btn-area" class="dificuldade-container dificuldade-linha">
+                    <button class="btn-dificuldade btn-facil" onclick="iniciarJogo('facil')" type="button">Fácil</button>
+                    <button class="btn-dificuldade btn-medio" onclick="iniciarJogo('medio')" type="button">Médio</button>
+                    <button class="btn-dificuldade btn-dificil" onclick="iniciarJogo('dificil')" type="button">Difícil</button>
                 </div>
             </div>
         </div>
@@ -126,7 +130,7 @@
             <div class="footer-social">
                 <span class="footer-social-label">Siga-nos</span>
                 <div class="social-icons">
-                    <a href="#" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
                     <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
                 </div>
             </div>

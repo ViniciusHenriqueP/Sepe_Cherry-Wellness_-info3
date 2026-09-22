@@ -16,6 +16,14 @@
 
 <body>
 
+    <!-- Seta compartilhada (estilo Friday Night Funkin'), desenhada apontando
+         para cima e girada por pista via CSS: receptores, notas e botões -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+        <symbol id="seta" viewBox="0 0 100 100">
+            <path d="M50 7 L94 51 L70 51 L70 91 L30 91 L30 51 L6 51 Z"></path>
+        </symbol>
+    </svg>
+
     <header class="navbar">
         <div class="logo-area">
             <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
@@ -59,16 +67,16 @@
         <div class="game-container" id="game-container">
             <div id="receptors-bar" class="receptors">
                 <div class="receptor-lane">
-                    <div id="receptor-0" class="receptor"></div>
+                    <div id="receptor-0" class="receptor"><svg class="seta seta-0" aria-hidden="true"><use href="#seta" /></svg></div>
                 </div>
                 <div class="receptor-lane">
-                    <div id="receptor-1" class="receptor"></div>
+                    <div id="receptor-1" class="receptor"><svg class="seta seta-1" aria-hidden="true"><use href="#seta" /></svg></div>
                 </div>
                 <div class="receptor-lane">
-                    <div id="receptor-2" class="receptor"></div>
+                    <div id="receptor-2" class="receptor"><svg class="seta seta-2" aria-hidden="true"><use href="#seta" /></svg></div>
                 </div>
                 <div class="receptor-lane">
-                    <div id="receptor-3" class="receptor"></div>
+                    <div id="receptor-3" class="receptor"><svg class="seta seta-3" aria-hidden="true"><use href="#seta" /></svg></div>
                 </div>
             </div>
 
@@ -85,10 +93,10 @@
         </div>
 
         <div class="touch-controls">
-            <button class="touch-btn" id="btn-0">⬅️</button>
-            <button class="touch-btn" id="btn-1">⬇️</button>
-            <button class="touch-btn" id="btn-2">⬆️</button>
-            <button class="touch-btn" id="btn-3">➡️</button>
+            <button class="touch-btn" id="btn-0" aria-label="Esquerda"><svg class="seta seta-0" aria-hidden="true"><use href="#seta" /></svg></button>
+            <button class="touch-btn" id="btn-1" aria-label="Baixo"><svg class="seta seta-1" aria-hidden="true"><use href="#seta" /></svg></button>
+            <button class="touch-btn" id="btn-2" aria-label="Cima"><svg class="seta seta-2" aria-hidden="true"><use href="#seta" /></svg></button>
+            <button class="touch-btn" id="btn-3" aria-label="Direita"><svg class="seta seta-3" aria-hidden="true"><use href="#seta" /></svg></button>
         </div>
     </main>
 
@@ -101,7 +109,7 @@
             <div class="footer-social">
                 <span class="footer-social-label">Siga-nos</span>
                 <div class="social-icons">
-                    <a href="#" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
                     <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
                 </div>
             </div>

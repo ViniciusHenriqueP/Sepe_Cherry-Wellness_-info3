@@ -158,6 +158,7 @@ function createNote() {
     const el = document.createElement('div');
     el.className = `note lane-${lane}`;
     el.style.left = (lane * 25) + '%';
+    el.innerHTML = `<svg class="seta seta-${lane}" aria-hidden="true"><use href="#seta"/></svg>`;
 
     let startY = 420;
 
