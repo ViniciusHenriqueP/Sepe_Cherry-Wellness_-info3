@@ -4,28 +4,6 @@ const scoreVal = document.getElementById('score-val');
 const overlay = document.getElementById('feedback-overlay');
 const pulmaoSvg = document.getElementById('pulmao-svg');
 
-// Áudios (reaproveita os mesmos efeitos do minijogo Ritmo em Movimento)
-const somAcerto = new Audio('AUDIO/du-bist-gut-genug.mp3');
-const somErro = new Audio('AUDIO/fnf-missnote-1.mp3');
-const somDerrota = new Audio('AUDIO/67.mp3');
-const somVitoria = new Audio('AUDIO/manoel-gomes-parabens.mp3');
-
-let timerAcerto = null;
-
-function tocarSomAcerto() {
-    if (somAcerto.ended) somAcerto.currentTime = 0;
-    if (timerAcerto) clearTimeout(timerAcerto);
-    somAcerto.play().catch(() => { });
-    timerAcerto = setTimeout(() => somAcerto.pause(), 670);
-}
-
-function tocarSomErro() {
-    if (timerAcerto) clearTimeout(timerAcerto);
-    somAcerto.pause();
-    somErro.currentTime = 0;
-    somErro.play().catch(() => { });
-}
-
 let gameActive = false;
 let breath = 50;
 let score = 0;
@@ -35,21 +13,21 @@ const NOTE_WIDTH = 52;
 
 // Velocidade em pixels/segundo e tempos em milissegundos — independente da
 // taxa de atualização da tela, como no minijogo de ritmo.
-let baseSpeed = 70;
+let baseSpeed = 108;
 let currentSpeed = baseSpeed;
-let spawnInterval = 1500;
+let spawnInterval = 1150;
 let lastTimestamp = null;
 let spawnTimer = 0;
 let speedUpTimer = 0;
 
-const SPEEDUP_INTERVAL_MS = 6000;
-const SPEEDUP_AMOUNT = 7;
-const SPAWN_DECREASE_MS = 30;
-const SPAWN_MIN_MS = 750;
+const SPEEDUP_INTERVAL_MS = 4500;
+const SPEEDUP_AMOUNT = 10;
+const SPAWN_DECREASE_MS = 35;
+const SPAWN_MIN_MS = 520;
 
 const PERFECT_PX = 16;
-const GOOD_PX = 34;
-const OK_PX = 60;
+const GOOD_PX = 36;
+const OK_PX = 62;
 
 const keys = { 'q': 'left', 'Q': 'left', 'e': 'right', 'E': 'right' };
 
@@ -59,7 +37,7 @@ function iniciarJogo() {
     score = 0;
     scoreVal.innerText = score;
     currentSpeed = baseSpeed;
-    spawnInterval = 1500;
+    spawnInterval = 1150;
     lastTimestamp = null;
     spawnTimer = 0;
     speedUpTimer = 0;
@@ -67,7 +45,6 @@ function iniciarJogo() {
     notes = [];
     updateBreath(0);
     overlay.style.display = 'none';
-    somAcerto.currentTime = 0;
 
     requestAnimationFrame(gameLoop);
 }
@@ -109,7 +86,6 @@ function gameLoop(timestamp) {
         if (passou) {
             n.el.remove();
             notes.splice(i, 1);
-            tocarSomErro();
             updateBreath(-6);
             reagirPulmao('reagir-erro');
         }
@@ -195,7 +171,6 @@ function checkHit(lane) {
     }
 
     if (melhorIndice === -1) {
-        tocarSomErro();
         updateBreath(-3);
         reagirPulmao('reagir-erro');
         return;
@@ -204,7 +179,6 @@ function checkHit(lane) {
     const n = notes[melhorIndice];
     n.el.remove();
     notes.splice(melhorIndice, 1);
-    tocarSomAcerto();
 
     if (melhorDistancia <= PERFECT_PX) {
         score += 100;
@@ -253,18 +227,12 @@ window.addEventListener('keydown', (e) => {
 function endGame(win) {
     gameActive = false;
 
-    if (timerAcerto) clearTimeout(timerAcerto);
-    somAcerto.pause();
-
     overlay.style.display = 'flex';
     const status = document.getElementById('final-status');
     const msg = document.getElementById('final-msg');
     const btnArea = document.getElementById('btn-area');
 
     if (win) {
-        somVitoria.currentTime = 0;
-        somVitoria.play().catch(() => { });
-
         localStorage.setItem('emblemaMental', 'ganhou');
         status.innerText = 'Fôlego cheio!';
         msg.innerText = `Você fez ${score} pontos e encheu o pulmão de fôlego. Emblema de Bem-Estar Mental conquistado!`;
@@ -274,9 +242,6 @@ function endGame(win) {
             <button class="btn-secondary" onclick="location.reload()" type="button">Jogar Novamente</button>
         `;
     } else {
-        somDerrota.currentTime = 0;
-        somDerrota.play().catch(() => { });
-
         status.innerText = 'Faltou fôlego!';
         msg.innerText = `Sua barra de fôlego esvaziou. Você fez ${score} pontos. Respire fundo e tente de novo!`;
 

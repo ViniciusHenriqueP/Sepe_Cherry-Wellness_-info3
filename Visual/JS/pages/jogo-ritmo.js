@@ -273,17 +273,17 @@ function checkHit(lane) {
                 // PERFECT!
                 score += 100;
                 updateHealth(8);
-                mostrarFeedbackTexto('PERFECT!', '#2eec71', lane, receptorY);
+                mostrarFeedbackTexto('PERFECT!', 'var(--color-green-mid)', lane, receptorY);
             } else if (distancia <= 35) {
                 // GOOD!
                 score += 50;
                 updateHealth(5);
-                mostrarFeedbackTexto('GOOD', '#f1c40f', lane, receptorY);
+                mostrarFeedbackTexto('GOOD', 'var(--color-yellow-accent)', lane, receptorY);
             } else {
                 // OK
                 score += 20;
                 updateHealth(2);
-                mostrarFeedbackTexto('OK', '#e67e22', lane, receptorY);
+                mostrarFeedbackTexto('OK', 'var(--color-green-accent)', lane, receptorY);
             }
 
             scoreVal.innerText = score;

@@ -113,9 +113,11 @@ body {
    NAVBAR
    ========================================================================== */
 /* Navbar/rodapé da trilha "Bem-Estar mental" (saudemental.html e seu minijogo)
-   seguem o verde da identidade, fixo independente do modo claro/escuro */
-.navbar--mental,
-.footer--mental {
+   seguem o verde da identidade, fixo independente do modo claro/escuro.
+   Seletor composto (.navbar.navbar--mental) para vencer .navbar/.footer por
+   especificidade, já que a ordem no arquivo sozinha não bastava. */
+.navbar.navbar--mental,
+.footer.footer--mental {
     background-color: var(--color-brand-mental);
 }
 
