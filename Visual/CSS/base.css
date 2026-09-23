@@ -8,6 +8,63 @@ html {
     scroll-behavior: smooth;
 }
 
+/* ==========================================================================
+   TIPOGRAFIA — três famílias com papéis fixos (tokens em variables.css)
+   Tamanhos continuam nos CSS de cada página; aqui só família, peso e ritmo.
+   ========================================================================== */
+body {
+    font-family: var(--font-body);
+}
+
+/* Títulos: Fraunces, serifada de cantos suaves */
+h1,
+h2,
+.stat-number {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+/* Subtítulos: serifada clássica, a mesma que o site usava antes */
+h3,
+.hero-subtitle,
+.card-tagline,
+.chart-title,
+.movimento-pill,
+.mood-pill,
+.lembrete-header,
+.fontes-section h2,
+.subtitulo-pagina,
+.stats-section-sub,
+.mental-dados-sub,
+.praticas-sub,
+.beneficios-intro > p,
+.nutrientes-intro > p,
+.dados-intro > p:not(.dados-contexto-global) {
+    font-family: var(--font-heading);
+    text-wrap: balance;
+}
+
+h3 {
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+/* Linha de apoio logo abaixo do título de cada seção */
+.stats-section-sub,
+.mental-dados-sub,
+.praticas-sub,
+.beneficios-intro > p,
+.nutrientes-intro > p,
+.dados-intro > p:not(.dados-contexto-global) {
+    font-size: 17px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
 /* Troca de página nativa (MPA View Transitions), com respeito a quem prefere menos movimento */
 @view-transition {
     navigation: auto;
@@ -583,7 +640,7 @@ a.stat-tile:focus-visible {
 
 .chart-title {
     display: block;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--color-text-strong);
     margin-bottom: 4px;
@@ -618,6 +675,7 @@ a.stat-tile:focus-visible {
 }
 
 .chart-bar-label {
+    text-align: left;
     color: var(--color-text);
     font-weight: 600;
 }
@@ -659,7 +717,7 @@ a.stat-tile:focus-visible {
 .fontes-section {
     max-width: 900px;
     margin: 0 auto;
-    padding: 40px 20px 60px;
+    padding: 40px 24px 60px;
 }
 
 .fontes-section h2 {

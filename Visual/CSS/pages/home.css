@@ -18,13 +18,13 @@
 
 .hero-content h1 {
     font-weight: bold;
-    font-size: 32px;
+    font-size: 38px;
     color: var(--color-text-strong);
     margin-bottom: 15px;
 }
 
 .hero-subtitle {
-    font-size: 16px;
+    font-size: 19px;
     color: var(--color-text-muted);
     margin-bottom: 20px;
 }
@@ -67,7 +67,7 @@
     }
 
     .hero-content h1 {
-        font-size: 48px;
+        font-size: 58px;
     }
 
     .hero-buttons,
@@ -91,7 +91,7 @@
 }
 
 .stats-section h2 {
-    font-size: 26px;
+    font-size: 34px;
     font-weight: bold;
     color: var(--color-text-strong);
     margin-bottom: 6px;
@@ -147,7 +147,7 @@
 }
 
 .card-header h3 {
-    font-size: 18px;
+    font-size: 21px;
     color: var(--color-text-strong);
     transition: transform var(--transition-base);
 }
@@ -206,12 +206,12 @@
     background-color: var(--color-red-soft);
 }
 
-.card-yellow .card-icon {
-    background-color: var(--color-yellow-soft);
+.card-mental .card-icon {
+    background-color: var(--color-sage-panel-soft);
 }
 
 .card-tagline {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--color-text-soft);
 }
 
@@ -248,8 +248,8 @@
     color: var(--color-red-accent);
 }
 
-.card-yellow .card-list li::before {
-    color: var(--color-yellow-accent);
+.card-mental .card-list li::before {
+    color: var(--color-sage);
 }
 
 @media (min-width: 600px) {

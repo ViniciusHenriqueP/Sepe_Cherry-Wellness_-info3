@@ -7,7 +7,7 @@
 .movimento-page {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px 60px;
+    padding: 40px 24px 60px;
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -36,7 +36,7 @@
 }
 
 .movimento-hero-content h1 {
-    font-size: 32px;
+    font-size: 40px;
     font-weight: bold;
     color: var(--color-text-strong);
     margin-bottom: 15px;
@@ -76,7 +76,7 @@
     }
 
     .movimento-hero-content h1 {
-        font-size: 40px;
+        font-size: 54px;
     }
 
     .movimento-hero-media img {
@@ -124,13 +124,17 @@
     transition: background-color var(--transition-base);
 }
 
-.movimento-icon img {
-    width: 36px;
-    height: auto;
+.movimento-icon {
+    color: var(--color-green-strong);
+}
+
+.movimento-icon .icon-line {
+    width: 32px;
+    height: 32px;
 }
 
 .movimento-card h3 {
-    font-size: 17px;
+    font-size: 19px;
     font-weight: bold;
     color: var(--color-text-strong);
     margin-bottom: 8px;
@@ -176,7 +180,7 @@
 }
 
 .movimento-cta h2 {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
     color: var(--color-text-strong);
 }

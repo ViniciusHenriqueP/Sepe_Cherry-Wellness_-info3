@@ -39,9 +39,6 @@
 
     /* Amarelo (avisos) */
     --color-yellow-accent: #D9A036;
-    --color-yellow-soft: #FDF1D6;
-    --color-yellow-dashed: #CC9C70;
-    --color-yellow-bg: #FFF4E5;
 
     /* Sálvia (Bem-estar mental) */
     --color-sage: #92A987;
@@ -57,6 +54,14 @@
     --radius-md: 16px;
     --radius-lg: 20px;
     --radius-pill: 50px;
+
+    /* Tipografia
+       --font-display: títulos (h1/h2), serifada suave que combina com os cantos arredondados
+       --font-heading: subtítulos (h3, pills, linhas de apoio), a serifada clássica original do site
+       --font-body: texto corrido, pensada para leitura */
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-heading: 'Times New Roman', Times, serif;
+    --font-body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
 
     /* Movimento */
     --transition-base: 0.3s ease;
@@ -94,9 +99,6 @@
         --color-red-soft: #351D1D;
 
         --color-yellow-accent: #E7B75B;
-        --color-yellow-soft: #332918;
-        --color-yellow-dashed: #A67A3F;
-        --color-yellow-bg: #2E2415;
 
         --color-sage: #7FA072;
         --color-sage-panel: #2C3B27;
@@ -139,9 +141,6 @@
     --color-red-soft: #351D1D;
 
     --color-yellow-accent: #E7B75B;
-    --color-yellow-soft: #332918;
-    --color-yellow-dashed: #A67A3F;
-    --color-yellow-bg: #2E2415;
 
     --color-sage: #7FA072;
     --color-sage-panel: #2C3B27;

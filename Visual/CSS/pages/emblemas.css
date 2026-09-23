@@ -22,7 +22,8 @@ body {
 }
 
 .titulo-pagina {
-    font-size: 28px;
+    color: var(--color-text-strong);
+    font-size: 38px;
     margin-bottom: 10px;
     font-weight: bold;
 }
@@ -107,9 +108,9 @@ body {
     font-style: italic;
     font-size: 16px;
     padding: 40px;
-    border: 1px dashed var(--color-yellow-dashed);
-    background-color: var(--color-yellow-bg);
-    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
     display: inline-block;
     margin: 0 auto;
 }

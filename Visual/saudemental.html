@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="CSS/variables.css">
     <link rel="stylesheet" href="CSS/base.css">
     <link rel="stylesheet" href="CSS/pages/saudemental.css">
-    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
         rel="stylesheet">
     <script src="JS/theme.js"></script>
 </head>
@@ -46,7 +48,7 @@
 
     <main class="mental-page">
 
-        <section class="mental-layout">
+        <section class="mental-layout" id="conversar">
             <div class="mental-intro">
                 <h2 data-reveal="left">Não guarde tudo para você</h2>
                 <div class="mental-intro-grid" data-reveal-group>
@@ -86,7 +88,7 @@
             </aside>
         </section>
 
-        <section class="mental-dados" data-reveal-group>
+        <section class="mental-dados" id="numeros" data-reveal-group>
             <h2 class="mental-dados-intro" data-reveal="up">Saúde mental em números</h2>
             <p class="mental-dados-sub" data-reveal="up">Falar sobre o assunto ajuda a entender que ansiedade e
                 tristeza fazem parte da experiência de muita gente — e que buscar apoio é um passo válido.</p>
@@ -112,7 +114,7 @@
             </div>
         </section>
 
-        <section class="mood-section" data-reveal="up">
+        <section class="mood-section" id="emocoes" data-reveal="up">
             <span class="mood-pill">Conheça suas emoções:</span>
             <div class="mood-question">
                 <p>Como está se sentindo hoje?</p>
@@ -132,7 +134,7 @@
             </div>
         </section>
 
-        <section class="praticas-section">
+        <section class="praticas-section" id="praticas">
             <h2 data-reveal="up">Práticas para o dia a dia</h2>
             <p class="praticas-sub" data-reveal="up">Pequenos hábitos que ajudam a cuidar da mente na rotina.</p>
             <div class="praticas-grid" data-reveal-group>
@@ -217,7 +219,7 @@
                 </div>
             </div>
         </div>
-        <p class="footer-copy">Projeto Integrador &mdash; IFC Araquari</p>
+        <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
     </footer>
 
     <script src="JS/reveal.js"></script>
