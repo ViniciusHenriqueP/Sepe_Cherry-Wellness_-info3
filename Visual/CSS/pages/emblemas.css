@@ -126,3 +126,34 @@ body {
         opacity: 1;
     }
 }
+
+/* Card da batalha final: preto e branco com o coração vermelho, no estilo
+   Undertale — igual nos dois temas, como a arena do jogo */
+.emblema-card--boss {
+    background-color: #000000;
+    border: 4px solid #FFFFFF;
+}
+
+.emblema-card--boss .emblema-titulo {
+    color: #FFFFFF;
+}
+
+.emblema-card--boss .emblema-descricao {
+    color: #CCCCCC;
+}
+
+.emblema-card--boss .emblema-img-area svg {
+    animation: coracaoPulsa 1.2s ease-in-out infinite;
+}
+
+@keyframes coracaoPulsa {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}

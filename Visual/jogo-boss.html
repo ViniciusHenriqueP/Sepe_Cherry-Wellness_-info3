@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Batalha Final</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/minijogo.css">
+    <link rel="stylesheet" href="CSS/pages/jogo-boss.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&family=VT323&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body class="corpo-boss">
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="jogo-movimento.html">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="boss-wrapper">
+        <div class="boss-info">
+            <h2>Batalha Final</h2>
+            <p>No turno do chefe, desvie com o coração usando as <b>setas</b> ou <b>WASD</b> (no celular, use o direcional ou arraste o dedo). No seu turno, escolha <b>LUTAR</b> e acerte a pergunta
+                para causar dano, ou use uma <b>AÇÃO</b>: comer, exercitar ou meditar.</p>
+        </div>
+
+        <section class="arena" id="arena">
+            <div class="boss-hp">
+                <span class="boss-nome">CEREJA PODRE</span>
+                <div class="barra-vida barra-vida--boss">
+                    <div class="barra-vida-fill" id="boss-hp-fill"></div>
+                </div>
+            </div>
+
+            <div class="boss-palco" id="boss-palco">
+                <div class="boss" id="boss">
+                    <svg viewBox="0 0 160 170" aria-label="Cereja Podre, o chefe final" role="img">
+                        <path d="M80 44 C78 24 92 10 112 4" fill="none" stroke="#8a5a2e" stroke-width="6"
+                            stroke-linecap="round" />
+                        <path d="M104 10 C120 2 138 8 142 22 C128 26 112 22 104 10 Z" fill="#6f7331" stroke="#fff"
+                            stroke-width="2" />
+                        <circle cx="80" cy="104" r="58" fill="#5a0f1c" stroke="#fff" stroke-width="3" />
+                        <circle cx="114" cy="124" r="9" fill="#7d8a3f" opacity="0.85" />
+                        <circle cx="46" cy="130" r="6" fill="#7d8a3f" opacity="0.85" />
+                        <circle cx="106" cy="70" r="5" fill="#7d8a3f" opacity="0.85" />
+                        <ellipse cx="56" cy="80" rx="8" ry="13" fill="#fff" opacity="0.14" />
+                        <ellipse cx="62" cy="98" rx="11" ry="9" fill="#fff" />
+                        <ellipse cx="98" cy="98" rx="11" ry="9" fill="#fff" />
+                        <circle class="boss-pupila" cx="65" cy="100" r="4.5" fill="#000" />
+                        <circle class="boss-pupila" cx="95" cy="100" r="4.5" fill="#000" />
+                        <path d="M46 82 L74 91 M114 82 L86 91" stroke="#1a0005" stroke-width="6"
+                            stroke-linecap="round" />
+                        <path d="M54 122 Q80 146 106 122 Z" fill="#1a0005" />
+                        <path d="M58 124 L64 131 L70 125 L76 133 L82 126 L88 133 L94 125 L100 130 L103 124"
+                            fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="fala" id="fala" aria-live="polite">
+                    <p id="fala-texto"></p>
+                </div>
+            </div>
+
+            <div class="battle-box modo-texto" id="battle-box">
+                <canvas id="campo" aria-label="Área de desvio"></canvas>
+                <p class="narracao" id="narracao" aria-live="polite"></p>
+                <div class="opcoes" id="opcoes"></div>
+                <div class="tempo-pergunta" id="tempo-pergunta">
+                    <div class="tempo-fill" id="tempo-fill"></div>
+                </div>
+            </div>
+
+            <div class="status">
+                <span class="status-nome">VOCÊ</span>
+                <span>LV 3</span>
+                <span class="status-hp">HP</span>
+                <div class="barra-vida barra-vida--jogador">
+                    <div class="barra-vida-fill" id="hp-fill"></div>
+                </div>
+                <span id="hp-texto">20 / 20</span>
+                <span class="buffs" id="buffs" aria-live="polite"></span>
+            </div>
+
+            <!-- Direcional para celular: aparece só em telas de toque -->
+            <div class="dpad" id="dpad">
+                <button class="dpad-btn dpad-cima" data-dir="cima" type="button" aria-label="Cima"><svg viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(0deg)"><path d="M12 5 L20 15 H4 Z" fill="currentColor"/></svg></button>
+                <button class="dpad-btn dpad-esquerda" data-dir="esquerda" type="button" aria-label="Esquerda"><svg viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(-90deg)"><path d="M12 5 L20 15 H4 Z" fill="currentColor"/></svg></button>
+                <button class="dpad-btn dpad-direita" data-dir="direita" type="button" aria-label="Direita"><svg viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(90deg)"><path d="M12 5 L20 15 H4 Z" fill="currentColor"/></svg></button>
+                <button class="dpad-btn dpad-baixo" data-dir="baixo" type="button" aria-label="Baixo"><svg viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(180deg)"><path d="M12 5 L20 15 H4 Z" fill="currentColor"/></svg></button>
+            </div>
+
+            <div id="feedback-overlay" class="feedback-overlay">
+                <span class="overlay-kicker">Batalha Final</span>
+                <h2>Cereja Podre</h2>
+                <p>Ela vive de sofá, fritura e celular até de madrugada. Mostre tudo o que você aprendeu no site!</p>
+                <div class="dificuldade-container">
+                    <button class="btn-dificuldade btn-facil" data-nivel="facil" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Fácil</span><span class="nivel-desc">Mais vida e ataques lentos</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                    </button>
+                    <button class="btn-dificuldade btn-medio" data-nivel="medio" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Médio</span><span class="nivel-desc">A batalha de verdade</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                    </button>
+                    <button class="btn-dificuldade btn-dificil" data-nivel="dificil" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Difícil</span><span class="nivel-desc">Ataques rápidos e mais longos</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                    </button>
+                    <button class="btn-dificuldade btn-impossivel" data-nivel="impossivel" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Impossível</span><span class="nivel-desc">Tempo para responder, e errar cura o chefe</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/minijogo.js"></script>
+    <script src="JS/pages/jogo-boss.js"></script>
+</body>
+
+</html>
