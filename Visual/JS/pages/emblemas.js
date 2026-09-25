@@ -46,6 +46,28 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
     }
 
+    // Com os três emblemas, libera a batalha final contra a Cereja Podre
+    if (ganhouPrato === 'ganhou' && ganhouMovimento === 'ganhou' && ganhouMental === 'ganhou') {
+        const venceuChefe = localStorage.getItem('emblemaFinal') === 'ganhou';
+        const venceuImpossivel = localStorage.getItem('emblemaImpossivel') === 'ganhou';
+        htmlFinal += `
+            <div class="emblema-card emblema-card--boss" data-reveal="scale">
+                <div class="emblema-img-area">
+                    <svg viewBox="-10 -10 20 18" width="110" height="100" aria-hidden="true">
+                        <path d="M0 6 C-2 4 -8 0 -8 -3 C-8 -6 -5 -8 -3 -8 C-1.5 -8 0 -7 0 -5 C0 -7 1.5 -8 3 -8 C5 -8 8 -6 8 -3 C8 0 2 4 0 6 Z" fill="#FF1A1A"></path>
+                    </svg>
+                </div>
+                <h3 class="emblema-titulo">${venceuChefe ? 'Chefe Derrotado' : 'Batalha Final'}</h3>
+                <p class="emblema-descricao">${venceuChefe
+                    ? (venceuImpossivel
+                        ? 'Você derrotou a Cereja Podre até no modo Impossível. Lenda do bem-estar!'
+                        : 'Você derrotou a Cereja Podre usando tudo o que aprendeu no site. Que tal tentar o modo Impossível?')
+                    : 'Você conquistou os três emblemas. Desvie dos ataques da Cereja Podre e acerte as perguntas para derrotá-la!'}</p>
+                <a href="jogo-boss.html" class="btn-primary">${venceuChefe ? 'Revanche' : 'Enfrentar o chefe'}</a>
+            </div>
+        `;
+    }
+
     if (!ganhouPrato && !ganhouMovimento && !ganhouMental) {
         htmlFinal = `
             <div class="sem-emblemas" data-reveal="up">
