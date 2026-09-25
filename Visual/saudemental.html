@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/reset.css">
     <link rel="stylesheet" href="CSS/variables.css">
     <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/beneficio-modal.css">
     <link rel="stylesheet" href="CSS/pages/saudemental.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -136,7 +137,8 @@
 
         <section class="praticas-section" id="praticas">
             <h2 data-reveal="up">Práticas para o dia a dia</h2>
-            <p class="praticas-sub" data-reveal="up">Pequenos hábitos que ajudam a cuidar da mente na rotina.</p>
+            <p class="praticas-sub" data-reveal="up">Pequenos hábitos que ajudam a cuidar da mente na rotina.
+                Toque em um card para entender o porquê.</p>
             <div class="praticas-grid" data-reveal-group>
                 <div class="pratica-card" data-reveal="up">
                     <div class="pratica-icon" aria-hidden="true">
@@ -148,6 +150,8 @@
                     </div>
                     <h3>Respiração</h3>
                     <p>Técnicas de respiração ajudam a acalmar a mente e reduzir a ansiedade.</p>
+                    <button type="button" class="beneficio-mais" data-beneficio="respiracao" aria-haspopup="dialog">Entenda
+                        por quê <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="pratica-card" data-reveal="up">
                     <div class="pratica-icon" aria-hidden="true">
@@ -161,6 +165,8 @@
                     <h3>Desconecte-se</h3>
                     <p>Pausas das telas ajudam a reduzir o estresse, melhorar o foco e trazer equilíbrio para o dia a
                         dia.</p>
+                    <button type="button" class="beneficio-mais" data-beneficio="desconecte" aria-haspopup="dialog">Entenda
+                        por quê <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="pratica-card" data-reveal="up">
                     <div class="pratica-icon" aria-hidden="true">
@@ -174,6 +180,8 @@
                     </div>
                     <h3>Organização mental</h3>
                     <p>Organizar pensamentos, prioridades e tarefas ajuda a tomar decisões mais claras.</p>
+                    <button type="button" class="beneficio-mais" data-beneficio="organizacao" aria-haspopup="dialog">Entenda
+                        por quê <span aria-hidden="true">→</span></button>
                 </div>
                 <div class="pratica-card" data-reveal="up">
                     <div class="pratica-icon" aria-hidden="true">
@@ -187,6 +195,8 @@
                     <h3>Cuide-se</h3>
                     <p>Reconhecer suas qualidades e celebrar pequenas conquistas ajuda a ter mais confiança e
                         segurança no dia a dia.</p>
+                    <button type="button" class="beneficio-mais" data-beneficio="cuidese" aria-haspopup="dialog">Entenda
+                        por quê <span aria-hidden="true">→</span></button>
                 </div>
             </div>
         </section>
@@ -223,6 +233,7 @@
     </footer>
 
     <script src="JS/reveal.js"></script>
+    <script src="JS/beneficio-modal.js"></script>
     <script src="JS/pages/saudemental.js"></script>
 </body>
 

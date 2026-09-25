@@ -305,33 +305,26 @@ function endGame(win) {
     if (timerAcerto) clearTimeout(timerAcerto);
     somAcerto.pause();
 
-    overlay.style.display = 'flex';
-    const status = document.getElementById('final-status');
-    const msg = document.getElementById('final-msg');
-    const btnArea = document.getElementById('btn-area');
+    const nomes = { facil: 'Fácil', medio: 'Médio', dificil: 'Difícil' };
 
     if (win) {
         somVitoria.currentTime = 0;
         somVitoria.play().catch(() => { });
 
         localStorage.setItem('emblemaMovimento', 'ganhou');
-        status.innerText = "RITMO PERFEITO!";
-        msg.innerText = `Parabéns! Você fez ${score} pontos no modo ${modoAtual.toUpperCase()} e conquistou o emblema Vida em Movimento.`;
-
-        btnArea.className = '';
-        btnArea.innerHTML = `
-            <a href="emblemas.html" class="btn-game">Ver meu Emblema</a>
-            <br>
-            <button class="btn-game" onclick="location.reload()" style="margin-top:10px;">Jogar Novamente</button>
-        `;
+        mostrarTelaResultado(overlay, {
+            vitoria: true,
+            titulo: 'Ritmo perfeito!',
+            mensagem: `<strong>${score} pontos</strong> no modo ${nomes[modoAtual]}. Emblema Vida em Movimento conquistado!`
+        });
     } else {
         somDerrota.currentTime = 0;
         somDerrota.play().catch(() => { });
 
-        status.innerText = "FORA DE RITMO!";
-        msg.innerText = `Sua barra de energia acabou. Você fez ${score} pontos no modo ${modoAtual.toUpperCase()}. Tente novamente!`;
-
-        btnArea.className = '';
-        btnArea.innerHTML = '<button class="btn-game" onclick="location.reload()">Tentar Novamente</button>';
+        mostrarTelaResultado(overlay, {
+            vitoria: false,
+            titulo: 'Fora de ritmo!',
+            mensagem: `A energia acabou com <strong>${score} pontos</strong> no modo ${nomes[modoAtual]}. Tente de novo!`
+        });
     }
 }

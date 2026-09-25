@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/reset.css">
     <link rel="stylesheet" href="CSS/variables.css">
     <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/beneficio-modal.css">
     <link rel="stylesheet" href="CSS/pages/jogo-movimento.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -249,31 +250,9 @@
         <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
     </footer>
 
-    <dialog class="beneficio-modal" id="beneficio-modal" aria-labelledby="beneficio-modal-titulo">
-        <div class="beneficio-modal-inner">
-            <button type="button" class="beneficio-modal-fechar" data-fechar aria-label="Fechar">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" aria-hidden="true">
-                    <path d="M18 6 6 18M6 6l12 12"></path>
-                </svg>
-            </button>
-            <div class="beneficio-modal-topo">
-                <span class="beneficio-modal-icone" id="beneficio-modal-icone"></span>
-                <span class="beneficio-modal-kicker">Por que isso acontece?</span>
-                <h2 id="beneficio-modal-titulo"></h2>
-                <p class="beneficio-modal-lead" id="beneficio-modal-lead"></p>
-            </div>
-            <h3 class="beneficio-modal-secao">Como funciona no corpo</h3>
-            <ol class="beneficio-modal-pontos" id="beneficio-modal-pontos"></ol>
-            <div class="beneficio-modal-pratica">
-                <h3 class="beneficio-modal-secao">Na prática</h3>
-                <p id="beneficio-modal-pratica"></p>
-            </div>
-            <button type="button" class="btn-primary beneficio-modal-ok" data-fechar>Entendi</button>
-        </div>
-    </dialog>
 
     <script src="JS/reveal.js"></script>
+    <script src="JS/beneficio-modal.js"></script>
     <script src="JS/pages/jogo-movimento.js"></script>
 </body>
 

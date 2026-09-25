@@ -245,25 +245,18 @@ window.addEventListener('keydown', (e) => {
 function endGame(win) {
     gameActive = false;
 
-    overlay.style.display = 'flex';
-    const status = document.getElementById('final-status');
-    const msg = document.getElementById('final-msg');
-    const btnArea = document.getElementById('btn-area');
-    btnArea.classList.remove('dificuldade-linha');
-
     if (win) {
         localStorage.setItem('emblemaMental', 'ganhou');
-        status.innerText = 'Fôlego cheio!';
-        msg.innerText = `Você fez ${score} pontos no modo ${dificuldade.nome} e encheu o pulmão de fôlego. Emblema de Bem-Estar Mental conquistado!`;
-
-        btnArea.innerHTML = `
-            <a href="emblemas.html" class="btn-primary" style="text-decoration:none; display:block; text-align:center;">Ver meu Emblema</a>
-            <button class="btn-secondary" onclick="location.reload()" type="button">Jogar Novamente</button>
-        `;
+        mostrarTelaResultado(overlay, {
+            vitoria: true,
+            titulo: 'Fôlego cheio!',
+            mensagem: `<strong>${score} pontos</strong> no modo ${dificuldade.nome}. Emblema de Bem-Estar Mental conquistado!`
+        });
     } else {
-        status.innerText = 'Faltou fôlego!';
-        msg.innerText = `Sua barra de fôlego esvaziou. Você fez ${score} pontos no modo ${dificuldade.nome}. Respire fundo e tente de novo!`;
-
-        btnArea.innerHTML = '<button class="btn-primary" onclick="location.reload()" type="button">Tentar Novamente</button>';
+        mostrarTelaResultado(overlay, {
+            vitoria: false,
+            titulo: 'Faltou fôlego!',
+            mensagem: `A barra esvaziou com <strong>${score} pontos</strong> no modo ${dificuldade.nome}. Respire fundo e tente de novo!`
+        });
     }
 }

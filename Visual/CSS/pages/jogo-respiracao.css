@@ -26,6 +26,10 @@ body.corpo-respiracao {
     width: 100%;
     max-width: 560px;
     margin: 0 auto;
+
+    /* Destaque das telas de início/resultado (CSS/minijogo.css) */
+    --jogo-accent: var(--color-sage-deep);
+    --jogo-accent-soft: var(--color-sage-panel-soft);
 }
 
 .game-info {
@@ -282,93 +286,7 @@ body.corpo-respiracao {
     }
 }
 
-/* ---------- Tela de início / resultado ---------- */
-.feedback-overlay {
-    position: absolute;
-    inset: 0;
-    background-color: color-mix(in srgb, var(--color-brand-mental) 93%, transparent);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #F4F8F0;
-    z-index: 100;
-    text-align: center;
-    padding: 25px;
-    gap: 14px;
-    overflow-y: auto;
-}
-
-.feedback-overlay h2 {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.feedback-overlay p {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #E2EFE0;
-    max-width: 360px;
-}
-
-.dificuldade-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    max-width: 220px;
-    margin-top: 8px;
-}
-
-/* O overlay é sempre escuro, então o botão contorno precisa de texto claro
-   fixo aqui, independente do tema claro/escuro do site */
-/* Na escolha de dificuldade os botões ficam lado a lado para caber na área
-   de jogo, que é baixa */
-.dificuldade-container.dificuldade-linha {
-    flex-direction: row;
-    max-width: 380px;
-}
-
-.dificuldade-linha .btn-dificuldade {
-    flex: 1;
-    padding: 11px 8px;
-}
-
-.btn-dificuldade {
-    padding: 13px 20px;
-    border: none;
-    border-radius: var(--radius-pill);
-    font-weight: bold;
-    font-size: 15px;
-    color: #FFFFFF;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.btn-dificuldade:hover {
-    transform: scale(1.05);
-}
-
-.btn-dificuldade:active {
-    transform: scale(0.97);
-}
-
-.btn-facil {
-    background-color: var(--color-green-mid);
-}
-
-.btn-medio {
-    background-color: #C28200;
-}
-
-.btn-dificil {
-    background-color: var(--color-red-accent);
-}
-
-.feedback-overlay .btn-secondary {
-    color: #F4F8F0;
-    border-color: rgba(244, 248, 240, 0.35);
-}
+/* Telas de dificuldade e resultado: CSS/minijogo.css */
 
 /* ---------- Controles de toque ---------- */
 .touch-controls {
@@ -420,7 +338,7 @@ body.corpo-respiracao {
 
 @media (max-width: 420px) {
     .game-container {
-        height: 220px;
+        height: 240px;
     }
 
     .pulmao-central {

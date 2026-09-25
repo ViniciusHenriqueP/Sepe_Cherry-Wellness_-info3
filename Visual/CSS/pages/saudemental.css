@@ -340,6 +340,29 @@
 .pratica-card:hover {
     transform: translateY(-6px);
     border-color: var(--color-sage);
+    box-shadow: var(--shadow-md);
+}
+
+/* O botão "Entenda por quê" cobre o card inteiro com um ::after, então
+   qualquer ponto do card abre o pop-up (estilos em CSS/beneficio-modal.css) */
+.pratica-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.pratica-card .beneficio-mais {
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+/* Pop-up no verde-sálvia da aba, em vez do verde de Vida em Movimento */
+.mental-page,
+.beneficio-modal {
+    --modal-accent: var(--color-sage-deep);
+    --modal-accent-soft: var(--color-sage-panel-soft);
 }
 
 .pratica-icon {

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/reset.css">
     <link rel="stylesheet" href="CSS/variables.css">
     <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/minijogo.css">
     <link rel="stylesheet" href="CSS/pages/jogo-ritmo.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,13 +84,22 @@
             </div>
 
             <div id="feedback-overlay" class="feedback-overlay">
-                <h2 id="final-status">Escolha a Dificuldade</h2>
-                <p id="final-msg">Selecione o ritmo desejado para começar:</p>
-                <div id="btn-area" class="dificuldade-container">
-                    <button class="btn-dificuldade btn-facil" onclick="iniciarComDificuldade('facil')"> Fácil</button>
-                    <button class="btn-dificuldade btn-medio" onclick="iniciarComDificuldade('medio')"> Médio</button>
-                    <button class="btn-dificuldade btn-dificil" onclick="iniciarComDificuldade('dificil')">
-                        Difícil</button>
+                <span class="overlay-kicker">Minijogo</span>
+                <h2>Escolha a dificuldade</h2>
+                <p>Acerte as setas quando elas chegarem no topo e encha a barra de energia.</p>
+                <div class="dificuldade-container">
+                    <button class="btn-dificuldade btn-facil" onclick="iniciarComDificuldade('facil')" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Fácil</span><span class="nivel-desc">Ritmo tranquilo</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </button>
+                    <button class="btn-dificuldade btn-medio" onclick="iniciarComDificuldade('medio')" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Médio</span><span class="nivel-desc">Um pouco mais rápido</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </button>
+                    <button class="btn-dificuldade btn-dificil" onclick="iniciarComDificuldade('dificil')" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Difícil</span><span class="nivel-desc">Rápido, com setas que se movem</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -119,6 +129,7 @@
         <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
     </footer>
 
+    <script src="JS/minijogo.js"></script>
     <script src="JS/pages/jogo-ritmo.js"></script>
 </body>
 

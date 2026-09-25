@@ -46,62 +46,73 @@
         </button>
     </header>
 
-    <main class="game-wrapper">
+    <main class="prato-jogo">
 
-        <section class="comidas-paleta">
-            <h3>Alimentos</h3>
-            <p>Arraste os emojis para o prato:</p>
+        <header class="prato-cabecalho">
+            <span class="prato-pill">Minijogo</span>
+            <h1>Monte seu Prato</h1>
+            <p>Arraste até 4 alimentos para o prato e descubra o quanto ele é saudável. Com 80% ou mais, você
+                conquista o Emblema do Prato Saudável!</p>
+        </header>
 
-            <div class="comidas-grid">
-                <div class="comida-card">
-                    <div id="alface" class="emoji-arrastavel">🥬</div>
-                    <span>Alface</span>
-                </div>
-                <div class="comida-card">
-                    <div id="file-frango" class="emoji-arrastavel">🍗</div>
-                    <span>Frango</span>
-                </div>
-                <div class="comida-card">
-                    <div id="arroz" class="emoji-arrastavel">🍚</div>
-                    <span>Arroz</span>
-                </div>
-                <div class="comida-card">
-                    <div id="azeite" class="emoji-arrastavel">🫒</div>
-                    <span>Azeite</span>
-                </div>
-                <div class="comida-card">
-                    <div id="linguica" class="emoji-arrastavel">🌭</div>
-                    <span>Linguiça</span>
-                </div>
-                <div class="comida-card">
-                    <div id="refrigerante" class="emoji-arrastavel">🥤</div>
-                    <span>Refri</span>
-                </div>
-            </div>
-        </section>
+        <div class="game-wrapper">
+            <section class="comidas-paleta" aria-labelledby="titulo-alimentos">
+                <h2 id="titulo-alimentos">Alimentos</h2>
+                <p>Arraste os alimentos até o prato</p>
 
-        <section class="prato-container">
-            <h3>Seu Prato</h3>
+                <div class="comidas-grid" id="comidas-grid">
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="alface" class="emoji-arrastavel">🥬</div></div>
+                        <span>Alface</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="file-frango" class="emoji-arrastavel">🍗</div></div>
+                        <span>Frango</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="arroz" class="emoji-arrastavel">🍚</div></div>
+                        <span>Arroz</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="azeite" class="emoji-arrastavel">🫒</div></div>
+                        <span>Azeite</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="linguica" class="emoji-arrastavel">🌭</div></div>
+                        <span>Linguiça</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="refrigerante" class="emoji-arrastavel">🥤</div></div>
+                        <span>Refri</span>
+                    </div>
+                </div>
+            </section>
 
-            <div id="prato-alvo" class="area-prato">
-                <p id="texto-ajuda" class="texto-ajuda">
-                    Arraste até 4 itens para cá!
-                </p>
-            </div>
+            <section class="prato-container" aria-labelledby="titulo-prato">
+                <div class="prato-topo">
+                    <h2 id="titulo-prato">Seu prato</h2>
+                    <span class="prato-contador" id="prato-contador">0/4 itens</span>
+                </div>
 
-            <div class="botoes-grupo">
-                <button class="btn-secondary" onclick="calcularSaude()">
-                    Calcular Saúde
-                </button>
-                <button class="btn-secondary" onclick="recomecarJogo()">
-                    Tentar de Novo
-                </button>
-            </div>
+                <div class="prato-mesa">
+                    <div id="prato-alvo" class="area-prato">
+                        <p id="texto-ajuda" class="texto-ajuda">Arraste até 4 itens para cá!</p>
+                    </div>
+                </div>
 
-            <div id="area-resultado" style="display: none; width: 100%;">
-                <div id="resultado-painel" class="painel-resultado"></div>
-            </div>
-        </section>
+                <p class="prato-aviso" id="prato-aviso" role="status" aria-live="polite">Toque em um alimento no prato
+                    para tirá-lo.</p>
+
+                <div class="botoes-grupo">
+                    <button class="btn-primary" type="button" onclick="calcularSaude()">Calcular saúde</button>
+                    <button class="btn-secondary" type="button" onclick="recomecarJogo()">Recomeçar</button>
+                </div>
+
+                <div id="area-resultado" class="area-resultado" hidden>
+                    <div id="resultado-painel" class="painel-resultado"></div>
+                </div>
+            </section>
+        </div>
 
     </main>
 

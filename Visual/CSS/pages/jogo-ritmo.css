@@ -14,6 +14,10 @@
     /* direita */
     --seta-contorno: #2a1c1c;
     --seta-receptor: #9fb0b6;
+
+    /* Destaque das telas de início/resultado (CSS/minijogo.css) */
+    --jogo-accent: var(--color-green-strong);
+    --jogo-accent-soft: var(--color-green-soft);
 }
 
 /* ---------- Setas (SVG) ---------- */
@@ -454,95 +458,7 @@ body.modo-escuro-osu .receptors {
     transform: scale(0.93);
 }
 
-.feedback-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: color-mix(in srgb, var(--color-brand) 95%, transparent);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-text-on-dark);
-    z-index: 100;
-    text-align: center;
-    padding: 25px;
-    gap: 15px;
-    overflow-y: auto;
-}
-
-.feedback-overlay h2 {
-    font-size: 26px;
-    font-weight: bold;
-    color: #FFFFFF;
-}
-
-.feedback-overlay p {
-    font-size: 14px;
-    line-height: 1.4;
-    color: var(--color-text-on-dark);
-}
-
-.dificuldade-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    max-width: 220px;
-    margin-top: 10px;
-}
-
-.btn-dificuldade {
-    padding: 13px 20px;
-    border: none;
-    border-radius: var(--radius-pill);
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    color: white;
-}
-
-.btn-dificuldade:hover {
-    transform: scale(1.05);
-}
-
-.btn-dificuldade:active {
-    transform: scale(0.97);
-}
-
-.btn-facil {
-    background-color: var(--color-green-strong);
-}
-
-.btn-medio {
-    background-color: #C28200;
-}
-
-.btn-dificil {
-    background-color: var(--color-red-accent);
-}
-
-.btn-game {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 12px 24px;
-    background-color: var(--color-bg);
-    color: var(--color-text-strong);
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: var(--radius-pill);
-    text-decoration: none;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.btn-game:hover {
-    transform: scale(1.05);
-    background-color: var(--color-bg-alt);
-}
+/* Telas de dificuldade e resultado: CSS/minijogo.css */
 
 @media (min-width: 768px) {
     .game-container {

@@ -1,0 +1,296 @@
+/* ==========================================================================
+   TELAS DE INÍCIO E RESULTADO DOS MINIJOGOS (Ritmo e Respiração)
+   Cartão claro por cima da área de jogo, no mesmo visual dos cards do site.
+   Cada jogo define a cor de destaque com --jogo-accent / --jogo-accent-soft.
+   ========================================================================== */
+
+.feedback-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 18px;
+    text-align: center;
+    background-color: color-mix(in srgb, var(--color-bg-elevated) 90%, transparent);
+    backdrop-filter: blur(6px);
+    color: var(--color-text);
+    animation: overlayEntra 0.35s ease-out both;
+}
+
+.overlay-kicker {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background-color: var(--jogo-accent-soft);
+    color: var(--jogo-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.feedback-overlay h2 {
+    font-size: 26px;
+    color: var(--color-text-strong);
+}
+
+.feedback-overlay p {
+    max-width: 320px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+}
+
+.feedback-overlay p strong {
+    color: var(--color-text-strong);
+}
+
+/* ---------- Escolha de dificuldade ---------- */
+.dificuldade-container {
+    display: grid;
+    gap: 8px;
+    width: 100%;
+    max-width: 270px;
+    margin-top: 6px;
+}
+
+.btn-dificuldade {
+    --nivel-cor: var(--color-green-mid);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 11px 16px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-alt);
+    color: var(--color-text-strong);
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-dificuldade:hover {
+    transform: translateY(-2px);
+    border-color: var(--nivel-cor);
+    background-color: var(--color-bg-elevated);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-dificuldade:active {
+    transform: scale(0.98);
+}
+
+.nivel-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.nivel-nome {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.nivel-desc {
+    font-size: 12px;
+    color: var(--color-text-soft);
+}
+
+/* Três barrinhas de intensidade, como um sinal de "força" */
+.nivel-barras {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.nivel-barras i {
+    width: 5px;
+    border-radius: 2px;
+    background-color: var(--color-border);
+}
+
+.nivel-barras i:nth-child(1) {
+    height: 8px;
+}
+
+.nivel-barras i:nth-child(2) {
+    height: 13px;
+}
+
+.nivel-barras i:nth-child(3) {
+    height: 18px;
+}
+
+.btn-facil .nivel-barras i:nth-child(-n + 1),
+.btn-medio .nivel-barras i:nth-child(-n + 2),
+.btn-dificil .nivel-barras i {
+    background-color: var(--nivel-cor);
+}
+
+.btn-medio {
+    --nivel-cor: var(--color-yellow-accent);
+}
+
+.btn-dificil {
+    --nivel-cor: var(--color-red-accent);
+}
+
+/* Versão em linha, para áreas de jogo baixas: nome em cima, barras embaixo */
+.dificuldade-linha {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 360px;
+}
+
+.dificuldade-linha .btn-dificuldade {
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 6px;
+    text-align: center;
+}
+
+.dificuldade-linha .nivel-desc {
+    display: none;
+}
+
+/* ---------- Resultado ---------- */
+.resultado-icone {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--jogo-accent-soft);
+    color: var(--jogo-accent);
+    animation: iconePula 0.55s 0.1s cubic-bezier(.2, .9, .3, 1.4) both;
+}
+
+.resultado-icone svg {
+    width: 26px;
+    height: 26px;
+}
+
+.resultado-icone.is-derrota {
+    background-color: var(--color-red-soft);
+    color: var(--color-red-accent);
+}
+
+.resultado-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.btn-game {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1.5px solid var(--jogo-accent);
+    border-radius: var(--radius-pill);
+    background-color: var(--jogo-accent);
+    color: var(--color-bg-elevated);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-game:hover {
+    transform: scale(1.05);
+    filter: brightness(1.08);
+}
+
+.btn-game--ghost {
+    background-color: transparent;
+    color: var(--jogo-accent);
+}
+
+.btn-game--ghost:hover {
+    background-color: var(--jogo-accent-soft);
+}
+
+/* ---------- Área de jogo baixa (celular) ----------
+   A área de jogo vira um "container" e, quando é baixa, a tela de resultado
+   fica mais compacta para caber inteira, sem barra de rolagem */
+.game-container {
+    container-type: size;
+}
+
+@container (max-height: 300px) {
+    .feedback-overlay {
+        gap: 6px;
+        padding: 12px;
+    }
+
+    .feedback-overlay h2 {
+        font-size: 21px;
+    }
+
+    .feedback-overlay p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .resultado-icone {
+        width: 36px;
+        height: 36px;
+    }
+
+    .resultado-icone svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .resultado-acoes {
+        margin-top: 2px;
+    }
+
+    .btn-game {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}
+
+@keyframes overlayEntra {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes iconePula {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .feedback-overlay,
+    .resultado-icone {
+        animation: none;
+    }
+}

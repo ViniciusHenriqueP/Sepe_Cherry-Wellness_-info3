@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="CSS/reset.css">
     <link rel="stylesheet" href="CSS/variables.css">
     <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/minijogo.css">
     <link rel="stylesheet" href="CSS/pages/jogo-respiracao.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,14 +92,21 @@
             </div>
 
             <div id="feedback-overlay" class="feedback-overlay">
-                <h2 id="final-status">Respire e Recarregue</h2>
-                <p id="final-msg">Encha a barra de fôlego acertando o tempo certo de cada lado do pulmão. Aperte
-                    <b>Q</b> para a esquerda e <b>E</b> para a direita. Escolha a dificuldade:
-                </p>
-                <div id="btn-area" class="dificuldade-container dificuldade-linha">
-                    <button class="btn-dificuldade btn-facil" onclick="iniciarJogo('facil')" type="button">Fácil</button>
-                    <button class="btn-dificuldade btn-medio" onclick="iniciarJogo('medio')" type="button">Médio</button>
-                    <button class="btn-dificuldade btn-dificil" onclick="iniciarJogo('dificil')" type="button">Difícil</button>
+                <span class="overlay-kicker">Minijogo</span>
+                <h2>Escolha a dificuldade</h2>
+                <div class="dificuldade-container dificuldade-linha">
+                    <button class="btn-dificuldade btn-facil" onclick="iniciarJogo('facil')" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Fácil</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </button>
+                    <button class="btn-dificuldade btn-medio" onclick="iniciarJogo('medio')" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Médio</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </button>
+                    <button class="btn-dificuldade btn-dificil" onclick="iniciarJogo('dificil')" type="button">
+                        <span class="nivel-texto"><span class="nivel-nome">Difícil</span></span>
+                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -140,6 +148,7 @@
         <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
     </footer>
 
+    <script src="JS/minijogo.js"></script>
     <script src="JS/pages/jogo-respiracao.js"></script>
 </body>
 
