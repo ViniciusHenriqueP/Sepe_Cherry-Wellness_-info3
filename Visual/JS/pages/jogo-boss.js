@@ -18,6 +18,9 @@ const overlay = document.getElementById('feedback-overlay');
 const tempoPergunta = document.getElementById('tempo-pergunta');
 const tempoFill = document.getElementById('tempo-fill');
 const buffsEl = document.getElementById('buffs');
+const bossNome = document.getElementById('boss-nome');
+const clarao = document.getElementById('clarao');
+const botaoMusica = document.getElementById('botao-musica');
 
 // Perguntas tiradas das páginas do site. A primeira opção é sempre a certa;
 // a ordem é embaralhada na hora de mostrar.
@@ -722,11 +725,64 @@ async function batalha() {
     }
 }
 
-async function vitoria() {
-    await falaBoss('Tá bom... você venceu. Acho que vou... beber uma água.', 1400);
+// ---------- Cutscene da vitória: a Cereja Podre vira uma cereja saudável ----------
+// As falas ficam aqui para facilitar a troca. A música da cutscene é a faixa
+// "final" (JS/trilha-sonora.js).
+const FALAS_TRANSFORMACAO = {
+    antes: ['Tá bom... você venceu.', 'Espera... o que está acontecendo comigo?'],
+    narracao: ['* Tudo o que você aprendeu começa a fazer efeito.', '* Água, salada, caminhada, uma boa noite de sono...'],
+    anuncio: '* A Cereja Podre se transformou em uma Cereja Saudável!',
+    depois: [
+        'Uau... eu me sinto tão leve!',
+        'Chega de sofá até as 3 da manhã. Agora eu durmo cedo!',
+        'Obrigada por não desistir de mim. Bora dar uma caminhada?'
+    ]
+};
+
+function soltarParticulas(quantidade) {
+    for (let i = 0; i < quantidade; i++) {
+        const p = document.createElement('span');
+        p.className = 'particula';
+        p.textContent = sortear(['✨', '💧', '🍎', '🥦', '⭐', '🍓']);
+        const angulo = (i / quantidade) * Math.PI * 2 + aleatorio(-0.2, 0.2);
+        const distancia = aleatorio(80, 150);
+        p.style.setProperty('--dx', `${Math.cos(angulo) * distancia}px`);
+        p.style.setProperty('--dy', `${Math.sin(angulo) * distancia}px`);
+        p.style.animationDelay = `${Math.round(aleatorio(0, 150))}ms`;
+        bossEl.appendChild(p);
+        setTimeout(() => p.remove(), 1800);
+    }
+}
+
+async function cutsceneTransformacao() {
+    for (const texto of FALAS_TRANSFORMACAO.antes) await falaBoss(texto, 900);
     esconderFala();
-    bossEl.classList.add('derrotado');
-    await narrar('* A Cereja Podre foi embora fazer uma caminhada.', 1200);
+
+    // A música some e o chefe começa a tremer e brilhar, perdendo as manchas
+    pararTrilha(1800);
+    bossEl.classList.add('transformando');
+    for (const texto of FALAS_TRANSFORMACAO.narracao) await narrar(texto, 800);
+
+    // Clarão branco: no auge dele, troca a cereja podre pela saudável
+    clarao.classList.add('ativo');
+    await esperar(450);
+    bossEl.classList.remove('transformando');
+    bossEl.classList.add('saudavel');
+    bossNome.textContent = 'CEREJA SAUDÁVEL';
+    bossVida = BOSS_VIDA_MAX;
+    atualizarVidaBoss();
+    soltarParticulas(16);
+    tocarTrilha('final');
+    await esperar(900);
+    clarao.classList.remove('ativo');
+
+    await narrar(FALAS_TRANSFORMACAO.anuncio, 1000);
+    for (const texto of FALAS_TRANSFORMACAO.depois) await falaBoss(texto, 1200);
+    esconderFala();
+}
+
+async function vitoria() {
+    await cutsceneTransformacao();
     estado = 'fim';
     localStorage.setItem('emblemaFinal', 'ganhou');
     if (dificuldade === DIFICULDADES.impossivel) localStorage.setItem('emblemaImpossivel', 'ganhou');
@@ -738,7 +794,7 @@ async function vitoria() {
     mostrarTelaResultado(overlay, {
         vitoria: true,
         titulo: dificuldade === DIFICULDADES.impossivel ? 'O impossível aconteceu!' : 'Você venceu!',
-        mensagem: `A Cereja Podre caiu no modo ${dificuldade.nome} com <strong>${acertos} acertos</strong> e ${vida} de HP sobrando. Emblema da Batalha Final conquistado!`
+        mensagem: `A Cereja Podre virou uma Cereja Saudável no modo ${dificuldade.nome}, com <strong>${acertos} acertos</strong> e ${vida} de HP sobrando. Emblema da Batalha Final conquistado!`
     });
 
     if (liberouDesafio) {
@@ -753,6 +809,7 @@ async function vitoria() {
 }
 
 async function derrota() {
+    pararTrilha(800);
     await esperar(400);
     estado = 'fim';
     mostrarTelaResultado(overlay, {
@@ -876,6 +933,23 @@ analogicoBase.addEventListener('pointermove', (e) => {
 ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(evento => analogicoBase.addEventListener(evento, soltarAnalogico));
 analogicoBase.addEventListener('contextmenu', (e) => e.preventDefault());
 
+// ---------- Música ----------
+function atualizarBotaoMusica() {
+    const mudo = estaMudo();
+    botaoMusica.innerHTML = mudo ? '&#9834; MUDO' : '&#9834; MÚSICA';
+    botaoMusica.setAttribute('aria-pressed', String(mudo));
+    botaoMusica.setAttribute('aria-label', mudo ? 'Ligar a música' : 'Desligar a música');
+    botaoMusica.classList.toggle('is-mudo', mudo);
+}
+
+botaoMusica.addEventListener('click', (e) => {
+    e.stopPropagation(); // não avança o diálogo
+    alternarMudo();
+    atualizarBotaoMusica();
+});
+botaoMusica.addEventListener('pointerdown', (e) => e.stopPropagation());
+atualizarBotaoMusica();
+
 // ---------- Início ----------
 const temTodosEmblemas = ['emblemaPrato', 'emblemaMovimento', 'emblemaMental']
     .every(chave => localStorage.getItem(chave) === 'ganhou');
@@ -895,6 +969,7 @@ if (!temTodosEmblemas) {
             ACOES.forEach(acao => (usosRestantes[acao.id] = dificuldade.usosAcao));
             overlay.style.display = 'none';
             atualizarVida();
+            tocarTrilha('batalha');
             batalha();
         });
     });

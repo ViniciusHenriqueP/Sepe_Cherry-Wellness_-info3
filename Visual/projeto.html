@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!--
+    ==========================================================================
+    GUIA DE EDIÇÃO — página "Nosso projeto" (aberta pelo botão da página inicial)
+    ==========================================================================
+    Todo o texto desta página já está pronto, mas pode (e deve!) ser ajustado
+    pela equipe. Procure por "✏️ EDITAR" neste arquivo: cada comentário fica
+    logo acima do trecho que ele explica. Resumo do que dá para mudar:
+
+    1. TOPO ............ título, frase de apoio e imagem dos mascotes
+    2. O NOME .......... explicação do trocadilho "Cherry Wellness"
+    3. OBJETIVO ........ por que o projeto existe e para quem ele é
+    4. COMO FUNCIONA ... os 4 passos (aprender → jogar → emblemas → chefe final)
+    5. EQUIPE .......... nomes, funções e frase de cada integrante
+                         (para usar fotos, veja o comentário da seção)
+    6. LINHA DO TEMPO .. etapas do projeto, tiradas das atas do README
+    7. TECNOLOGIAS ..... ferramentas usadas
+    8. CHAMADA FINAL ... texto e botões do fim da página
+
+    Estilos desta página: CSS/pages/projeto.css
+    ==========================================================================
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Nosso projeto</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/projeto.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="sepe/index.html">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="projeto-pagina">
+
+        <!-- ✏️ EDITAR (1. TOPO): título, frase de apoio e imagem.
+             Para trocar a imagem, mude o "src" (ex.: uma foto da equipe em IMG/). -->
+        <section class="projeto-hero">
+            <div class="projeto-hero-texto" data-reveal="left">
+                <span class="projeto-pill">Nosso projeto</span>
+                <h1>Cherry Wellness: um jeito leve de cuidar de si.</h1>
+                <p class="projeto-lead">Somos um grupo de estudantes do IFC Araquari que criou um site para
+                    mostrar, de forma simples e divertida, como movimento, alimentação e saúde mental andam juntos
+                    no dia a dia.</p>
+                <div class="projeto-hero-acoes">
+                    <a href="#equipe" class="projeto-botao">Conheça a equipe</a>
+                    <a href="#como-funciona" class="projeto-botao projeto-botao--contorno">Como o site funciona</a>
+                </div>
+            </div>
+            <div class="projeto-hero-imagem" data-reveal="scale">
+                <img src="IMG/BANNER.png" alt="Os dois mascotes do Cherry Wellness, duas cerejas sorridentes">
+            </div>
+        </section>
+
+        <div class="checkerboard-divider"></div>
+
+        <!-- ✏️ EDITAR (2. O NOME): a explicação do trocadilho. O texto veio da Ata 2 do README. -->
+        <section class="projeto-nome" data-reveal="up">
+            <img src="IMG/logo.png" alt="" class="projeto-nome-logo">
+            <div>
+                <h2>Por que "Cherry Wellness"?</h2>
+                <p>O nome é um trocadilho. <strong>Cherry</strong> é "cereja" em inglês e, falado em voz alta,
+                    lembra o nosso <strong>"seja"</strong>. <strong>Wellness</strong> quer dizer "bem-estar". Juntando
+                    os dois, o nome vira um convite: <em>seja saudável</em>. Por isso os nossos mascotes são duas
+                    cerejas, que acompanham você por todas as páginas.</p>
+            </div>
+        </section>
+
+        <!-- ✏️ EDITAR (3. OBJETIVO): por que o projeto existe e para quem ele é.
+             Os números são os mesmos da página inicial (fontes: OMS e Vigitel). -->
+        <section class="projeto-secao" id="objetivo">
+            <h2 data-reveal="up">Nosso objetivo</h2>
+            <p class="projeto-secao-sub" data-reveal="up">Informação confiável sobre saúde, explicada na linguagem de
+                quem tem a nossa idade.</p>
+            <div class="projeto-objetivo-grid" data-reveal-group>
+                <div class="projeto-card" data-reveal="up">
+                    <h3>O problema</h3>
+                    <p>A maioria dos adolescentes não se exercita o suficiente, a obesidade cresce no Brasil e muitos
+                        jovens convivem com ansiedade sem saber onde buscar ajuda. Muita informação sobre saúde é
+                        difícil de entender ou pouco confiável.</p>
+                </div>
+                <div class="projeto-card" data-reveal="up">
+                    <h3>A nossa ideia</h3>
+                    <p>Reunir em um só lugar o essencial sobre corpo, prato e mente, com dados de fontes como a OMS e
+                        o IBGE, e transformar o aprendizado em jogo: quem lê, joga, e quem joga, lembra.</p>
+                </div>
+                <div class="projeto-card" data-reveal="up">
+                    <h3>Para quem é</h3>
+                    <p>Para estudantes e qualquer pessoa que queira dar o primeiro passo para uma rotina mais
+                        saudável, sem cobrança e sem precisar ser perfeito.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ✏️ EDITAR (4. COMO FUNCIONA): os 4 passos. Se criarem um minijogo novo, é só
+             acrescentar no texto do passo 2. -->
+        <section class="projeto-secao projeto-secao--destaque" id="como-funciona">
+            <h2 data-reveal="up">Como o site funciona</h2>
+            <p class="projeto-secao-sub" data-reveal="up">Aprender, praticar e ganhar recompensas, em quatro passos.
+            </p>
+            <ol class="projeto-passos" data-reveal-group>
+                <li data-reveal="up">
+                    <span class="passo-numero">1</span>
+                    <h3>Aprenda</h3>
+                    <p>Explore os três pilares: <a href="sepe/index.html">Vida em movimento</a>, <a
+                            href="alimentacao.html">Prato & Saúde</a> e <a href="saudemental.html">Bem-Estar
+                            mental</a>.</p>
+                </li>
+                <li data-reveal="up">
+                    <span class="passo-numero">2</span>
+                    <h3>Jogue</h3>
+                    <p>Cada pilar tem um minijogo: o Ritmo em Movimento, o Monte seu Prato e o Respire e Recarregue.</p>
+                </li>
+                <li data-reveal="up">
+                    <span class="passo-numero">3</span>
+                    <h3>Ganhe emblemas</h3>
+                    <p>Vencer um minijogo libera um emblema, que fica guardado na página <a
+                            href="emblemas.html">Emblemas & Minijogos</a>.</p>
+                </li>
+                <li data-reveal="up">
+                    <span class="passo-numero">4</span>
+                    <h3>Enfrente o chefe</h3>
+                    <p>Com os três emblemas, você enfrenta a Cereja Podre na Batalha Final e mostra tudo o que
+                        aprendeu.</p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ✏️ EDITAR (5. EQUIPE): nome, função e frase de cada integrante.
+             - Para colocar o sobrenome, edite o <h3>.
+             - Para usar foto no lugar da inicial, troque
+                   <span class="membro-avatar">V</span>
+               por
+                   <img class="membro-avatar" src="IMG/equipe/vinicius.jpg" alt="Foto do Vinícius">
+               (crie a pasta IMG/equipe e salve as fotos lá, de preferência quadradas).
+             - A cor do círculo muda com a classe: membro--vermelho, membro--verde, membro--salvia ou membro--amarelo. -->
+        <section class="projeto-secao" id="equipe">
+            <h2 data-reveal="up">Quem faz o Cherry Wellness</h2>
+            <p class="projeto-secao-sub" data-reveal="up">Seis integrantes, cada um se destacando em uma função, mas
+                todo mundo ajudando em tudo.</p>
+            <ul class="projeto-equipe" data-reveal-group>
+                <li class="membro membro--vermelho" data-reveal="up">
+                    <span class="membro-avatar" aria-hidden="true">V</span>
+                    <h3>Vinícius</h3>
+                    <span class="membro-funcao">Programação e jogos</span>
+                    <p>Cuida do GitHub, dos minijogos, do sistema de emblemas e da Batalha Final.</p>
+                </li>
+                <li class="membro membro--verde" data-reveal="up">
+                    <span class="membro-avatar" aria-hidden="true">L</span>
+                    <h3>Lukas</h3>
+                    <span class="membro-funcao">Programação, CSS e atas</span>
+                    <p>Organiza os tópicos de conteúdo, registra as atas e trouxe a ideia dos gráficos.</p>
+                </li>
+                <li class="membro membro--salvia" data-reveal="up">
+                    <span class="membro-avatar" aria-hidden="true">G</span>
+                    <h3>Gabriela</h3>
+                    <span class="membro-funcao">Design no Figma</span>
+                    <p>Desenha a interface e os esboços das páginas antes de virarem código.</p>
+                </li>
+                <li class="membro membro--amarelo" data-reveal="up">
+                    <span class="membro-avatar" aria-hidden="true">L</span>
+                    <h3>Letícia</h3>
+                    <span class="membro-funcao">Design no Figma</span>
+                    <p>Cria o visual das páginas e ajuda a deixar cada detalhe pensado para quem usa.</p>
+                </li>
+                <li class="membro membro--vermelho" data-reveal="up">
+                    <span class="membro-avatar" aria-hidden="true">M</span>
+                    <h3>Murilo</h3>
+                    <span class="membro-funcao">CSS, mascotes e rede social</span>
+                    <p>Criou os mascotes e cuida do nosso Instagram e da apresentação da equipe.</p>
+                </li>
+                <li class="membro membro--verde" data-reveal="up">
+                    <span class="membro-avatar" aria-hidden="true">G</span>
+                    <h3>Gabrieli</h3>
+                    <span class="membro-funcao">HTML, CSS e mascotes</span>
+                    <p>Monta a estrutura das páginas e ajudou a criar os mascotes.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ✏️ EDITAR (6. LINHA DO TEMPO): etapas do projeto, resumidas das atas do README.
+             Para acrescentar uma etapa, copie um <li> inteiro e troque data e texto. -->
+        <section class="projeto-secao" id="linha-do-tempo">
+            <h2 data-reveal="up">Nossa trajetória</h2>
+            <p class="projeto-secao-sub" data-reveal="up">Do primeiro encontro até a Batalha Final.</p>
+            <ol class="projeto-tempo" data-reveal-group>
+                <li data-reveal="up">
+                    <span class="tempo-data">Junho de 2026</span>
+                    <h3>O começo</h3>
+                    <p>Dividimos as tarefas, escolhemos os três temas (corpo, alimentação e mente) e criamos o
+                        repositório no GitHub e a rede social.</p>
+                </li>
+                <li data-reveal="up">
+                    <span class="tempo-data">Julho de 2026</span>
+                    <h3>Nome, mascotes e o primeiro jogo</h3>
+                    <p>Nasceram o nome Cherry Wellness e as duas cerejas mascotes. Começamos o primeiro minijogo e o
+                        sistema de emblemas.</p>
+                </li>
+                <li data-reveal="up">
+                    <span class="tempo-data">Agosto de 2026</span>
+                    <h3>Mais jogos e um visual único</h3>
+                    <p>Novos minijogos, o design finalizado no Figma e a padronização do código de todas as páginas.
+                    </p>
+                </li>
+                <li data-reveal="up">
+                    <span class="tempo-data">Setembro de 2026</span>
+                    <h3>A Batalha Final</h3>
+                    <p>O chefe final ficou pronto e o site foi preparado para a apresentação na SEPE.</p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- ✏️ EDITAR (7. TECNOLOGIAS): ferramentas usadas no projeto. -->
+        <section class="projeto-secao" id="tecnologias">
+            <h2 data-reveal="up">Feito com</h2>
+            <ul class="projeto-tecnologias" data-reveal="up">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Figma</li>
+                <li>GitHub</li>
+            </ul>
+        </section>
+
+        <!-- ✏️ EDITAR (8. CHAMADA FINAL): texto e botões do fim da página. -->
+        <section class="projeto-cta" data-reveal="up">
+            <h2>Bora começar?</h2>
+            <p>Escolha um pilar, aprenda algo novo e conquiste seu primeiro emblema. Seu bem-estar agradece.</p>
+            <div class="projeto-hero-acoes">
+                <a href="index.html" class="projeto-botao">Explorar o site</a>
+                <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz"
+                    class="projeto-botao projeto-botao--contorno" target="_blank" rel="noopener">Siga no
+                    Instagram</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/reveal.js"></script>
+</body>
+
+</html>

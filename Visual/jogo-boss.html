@@ -57,8 +57,13 @@
         </div>
 
         <section class="arena" id="arena">
+            <!-- Liga/desliga a trilha sonora (arquivos e instruções em JS/trilha-sonora.js) -->
+            <button class="botao-musica" id="botao-musica" type="button" aria-pressed="false"
+                aria-label="Desligar a música">&#9834; MÚSICA</button>
+            <div class="clarao" id="clarao" aria-hidden="true"></div>
+
             <div class="boss-hp">
-                <span class="boss-nome">CEREJA PODRE</span>
+                <span class="boss-nome" id="boss-nome">CEREJA PODRE</span>
                 <div class="barra-vida barra-vida--boss">
                     <div class="barra-vida-fill" id="boss-hp-fill"></div>
                 </div>
@@ -66,15 +71,17 @@
 
             <div class="boss-palco" id="boss-palco">
                 <div class="boss" id="boss">
-                    <svg viewBox="0 0 160 170" aria-label="Cereja Podre, o chefe final" role="img">
+                    <!-- Raios de luz que aparecem atrás do chefe na cutscene final -->
+                    <div class="boss-raios" aria-hidden="true"></div>
+                    <svg class="boss-sprite boss-sprite--podre" viewBox="0 0 160 170" aria-label="Cereja Podre, o chefe final" role="img">
                         <path d="M80 44 C78 24 92 10 112 4" fill="none" stroke="#8a5a2e" stroke-width="6"
                             stroke-linecap="round" />
                         <path d="M104 10 C120 2 138 8 142 22 C128 26 112 22 104 10 Z" fill="#6f7331" stroke="#fff"
                             stroke-width="2" />
                         <circle cx="80" cy="104" r="58" fill="#5a0f1c" stroke="#fff" stroke-width="3" />
-                        <circle cx="114" cy="124" r="9" fill="#7d8a3f" opacity="0.85" />
-                        <circle cx="46" cy="130" r="6" fill="#7d8a3f" opacity="0.85" />
-                        <circle cx="106" cy="70" r="5" fill="#7d8a3f" opacity="0.85" />
+                        <circle class="boss-mancha" cx="114" cy="124" r="9" fill="#7d8a3f" opacity="0.85" />
+                        <circle class="boss-mancha" cx="46" cy="130" r="6" fill="#7d8a3f" opacity="0.85" />
+                        <circle class="boss-mancha" cx="106" cy="70" r="5" fill="#7d8a3f" opacity="0.85" />
                         <ellipse cx="56" cy="80" rx="8" ry="13" fill="#fff" opacity="0.14" />
                         <ellipse cx="62" cy="98" rx="11" ry="9" fill="#fff" />
                         <ellipse cx="98" cy="98" rx="11" ry="9" fill="#fff" />
@@ -85,6 +92,31 @@
                         <path d="M54 122 Q80 146 106 122 Z" fill="#1a0005" />
                         <path d="M58 124 L64 131 L70 125 L76 133 L82 126 L88 133 L94 125 L100 130 L103 124"
                             fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round" />
+                    </svg>
+                    <!-- Depois de derrotada, a Cereja Podre vira esta cereja saudável -->
+                    <svg class="boss-sprite boss-sprite--saudavel" viewBox="0 0 160 170"
+                        aria-label="Cereja Saudável, o chefe depois da transformação" role="img">
+                        <path d="M80 46 C79 26 92 12 112 5" fill="none" stroke="#6b4423" stroke-width="6"
+                            stroke-linecap="round" />
+                        <path d="M104 11 C122 -1 146 8 148 26 C128 32 110 26 104 11 Z" fill="#4CAF50" stroke="#fff"
+                            stroke-width="2" />
+                        <path d="M108 13 C120 13 132 17 142 23" fill="none" stroke="#2E7D32" stroke-width="2"
+                            stroke-linecap="round" />
+                        <circle cx="80" cy="104" r="58" fill="#E3263B" stroke="#fff" stroke-width="3" />
+                        <ellipse cx="44" cy="104" rx="6" ry="12" fill="#fff" opacity="0.4" />
+                        <!-- Faixa de exercício na testa -->
+                        <path d="M33 72 Q80 58 127 72 L129 83 Q80 69 31 83 Z" fill="#39D353" stroke="#fff"
+                            stroke-width="2" stroke-linejoin="round" />
+                        <path d="M62 102 Q66 94 71 102 M89 102 Q94 94 98 102" fill="none" stroke="#2a0008"
+                            stroke-width="4.5" stroke-linecap="round" />
+                        <ellipse cx="50" cy="116" rx="8" ry="5" fill="#FF9AAE" opacity="0.75" />
+                        <ellipse cx="110" cy="116" rx="8" ry="5" fill="#FF9AAE" opacity="0.75" />
+                        <path d="M64 120 Q80 138 96 120 Z" fill="#7a0f1f" stroke="#2a0008" stroke-width="3"
+                            stroke-linejoin="round" />
+                        <path d="M72 129 Q80 124 88 129 Q80 134 72 129 Z" fill="#FF6F86" />
+                        <path class="boss-brilho" d="M24 36 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 Z" fill="#FFE600" />
+                        <path class="boss-brilho" d="M138 60 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 Z" fill="#FFE600" />
+                        <path class="boss-brilho" d="M140 140 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 Z" fill="#fff" />
                     </svg>
                 </div>
                 <div class="fala" id="fala" aria-live="polite">
@@ -162,6 +194,7 @@
 
     <script src="JS/minijogo.js"></script>
     <script src="JS/desafio-secreto.js"></script>
+    <script src="JS/trilha-sonora.js"></script>
     <script src="JS/pages/jogo-boss.js"></script>
 </body>
 

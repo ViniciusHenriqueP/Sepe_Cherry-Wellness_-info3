@@ -23,7 +23,11 @@
          para cima e girada por pista via CSS: receptores, notas e botões -->
     <svg width="0" height="0" style="position: absolute" aria-hidden="true">
         <symbol id="seta" viewBox="0 0 100 100">
-            <path d="M50 7 L94 51 L70 51 L70 91 L30 91 L30 51 L6 51 Z"></path>
+            <!-- Corpo: cabeça larga e cantos arredondados, contorno escuro grosso (via CSS) -->
+            <path d="M50 8 C54 8 57 10 60 13 L90 43 C95 48 92 56 85 56 L68 56 L68 86 C68 90 65 93 61 93 L39 93 C35 93 32 90 32 86 L32 56 L15 56 C8 56 5 48 10 43 L40 13 C43 10 46 8 50 8 Z"></path>
+            <!-- Sombra na metade de baixo, que dá volume como nas notas do FNF -->
+            <path d="M32 62 L68 62 L68 86 C68 90 65 93 61 93 L39 93 C35 93 32 90 32 86 Z" fill="#000" fill-opacity="0.14"
+                stroke="none"></path>
         </symbol>
     </svg>
 
@@ -55,61 +59,131 @@
         </button>
     </header>
 
-    <main class="game-screen">
-        <div class="game-info">
-            <h2>Ritmo em Movimento</h2>
-            <p>Use <b>WASD</b>, <b>SETAS</b> ou toque nos botões!</p>
-        </div>
+    <main class="ritmo-pagina">
+        <section class="ritmo-intro">
+            <span class="ritmo-kicker">Minijogo &middot; Vida em movimento</span>
+            <h1>Ritmo em Movimento</h1>
+            <p>Acerte as setas quando elas chegarem à linha de cima e encha a barra de energia até o fim para
+                conquistar o Emblema Vida em Movimento.</p>
+        </section>
 
-        <div class="score-display">Pontos: <span id="score-val">0</span></div>
-
-        <div class="health-bar-container">
-            <div id="health-fill" class="health-bar-fill"></div>
-        </div>
-
-        <div class="game-container" id="game-container">
-            <div id="receptors-bar" class="receptors">
-                <div class="receptor-lane">
-                    <div id="receptor-0" class="receptor"><svg class="seta seta-0" aria-hidden="true"><use href="#seta" /></svg></div>
+        <section class="game-screen" aria-label="Área do jogo">
+            <div class="ritmo-hud">
+                <div class="hud-item">
+                    <span class="hud-rotulo">Pontos</span>
+                    <span class="hud-valor" id="score-val">0</span>
                 </div>
-                <div class="receptor-lane">
-                    <div id="receptor-1" class="receptor"><svg class="seta seta-1" aria-hidden="true"><use href="#seta" /></svg></div>
+                <div class="hud-item">
+                    <span class="hud-rotulo">Combo</span>
+                    <span class="hud-valor" id="combo-val">0</span>
                 </div>
-                <div class="receptor-lane">
-                    <div id="receptor-2" class="receptor"><svg class="seta seta-2" aria-hidden="true"><use href="#seta" /></svg></div>
-                </div>
-                <div class="receptor-lane">
-                    <div id="receptor-3" class="receptor"><svg class="seta seta-3" aria-hidden="true"><use href="#seta" /></svg></div>
+                <div class="hud-item">
+                    <span class="hud-rotulo">Recorde</span>
+                    <span class="hud-valor" id="recorde-val">0</span>
                 </div>
             </div>
 
-            <div id="feedback-overlay" class="feedback-overlay">
-                <span class="overlay-kicker">Minijogo</span>
-                <h2>Escolha a dificuldade</h2>
-                <p>Acerte as setas quando elas chegarem no topo e encha a barra de energia.</p>
-                <div class="dificuldade-container">
-                    <button class="btn-dificuldade btn-facil" onclick="iniciarComDificuldade('facil')" type="button">
-                        <span class="nivel-texto"><span class="nivel-nome">Fácil</span><span class="nivel-desc">Ritmo tranquilo</span></span>
-                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
-                    </button>
-                    <button class="btn-dificuldade btn-medio" onclick="iniciarComDificuldade('medio')" type="button">
-                        <span class="nivel-texto"><span class="nivel-nome">Médio</span><span class="nivel-desc">Um pouco mais rápido</span></span>
-                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
-                    </button>
-                    <button class="btn-dificuldade btn-dificil" onclick="iniciarComDificuldade('dificil')" type="button">
-                        <span class="nivel-texto"><span class="nivel-nome">Difícil</span><span class="nivel-desc">Rápido, com setas que se movem</span></span>
-                        <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
-                    </button>
+            <div class="energia">
+                <div class="energia-topo">
+                    <span class="energia-rotulo">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"></path>
+                        </svg>
+                        Energia
+                    </span>
+                    <span id="energia-val">50%</span>
+                </div>
+                <div class="health-bar-container" role="progressbar" aria-label="Energia" aria-valuemin="0"
+                    aria-valuemax="100" aria-valuenow="50" id="energia-barra">
+                    <div id="health-fill" class="health-bar-fill"></div>
                 </div>
             </div>
-        </div>
 
-        <div class="touch-controls">
+            <div class="game-container" id="game-container">
+                <!-- Faixas coloridas de cada seta, atrás das notas -->
+                <div class="pistas" aria-hidden="true">
+                    <span class="pista"></span><span class="pista"></span><span class="pista"></span><span class="pista"></span>
+                </div>
+
+                <div id="receptors-bar" class="receptors">
+                    <div class="receptor-lane">
+                        <div id="receptor-0" class="receptor"><svg class="seta seta-0" aria-hidden="true"><use href="#seta" /></svg></div>
+                    </div>
+                    <div class="receptor-lane">
+                        <div id="receptor-1" class="receptor"><svg class="seta seta-1" aria-hidden="true"><use href="#seta" /></svg></div>
+                    </div>
+                    <div class="receptor-lane">
+                        <div id="receptor-2" class="receptor"><svg class="seta seta-2" aria-hidden="true"><use href="#seta" /></svg></div>
+                    </div>
+                    <div class="receptor-lane">
+                        <div id="receptor-3" class="receptor"><svg class="seta seta-3" aria-hidden="true"><use href="#seta" /></svg></div>
+                    </div>
+                </div>
+
+                <div class="combo-pop" id="combo-pop" aria-hidden="true"></div>
+
+                <div id="feedback-overlay" class="feedback-overlay">
+                    <span class="overlay-kicker">Minijogo</span>
+                    <h2>Escolha a dificuldade</h2>
+                    <p>Acerte as setas quando elas chegarem no topo e encha a barra de energia.</p>
+                    <div class="dificuldade-container">
+                        <button class="btn-dificuldade btn-facil" onclick="iniciarComDificuldade('facil')" type="button">
+                            <span class="nivel-texto"><span class="nivel-nome">Fácil</span><span class="nivel-desc">Ritmo tranquilo</span></span>
+                            <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </button>
+                        <button class="btn-dificuldade btn-medio" onclick="iniciarComDificuldade('medio')" type="button">
+                            <span class="nivel-texto"><span class="nivel-nome">Médio</span><span class="nivel-desc">Um pouco mais rápido</span></span>
+                            <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </button>
+                        <button class="btn-dificuldade btn-dificil" onclick="iniciarComDificuldade('dificil')" type="button">
+                            <span class="nivel-texto"><span class="nivel-nome">Difícil</span><span class="nivel-desc">Rápido, com setas que se movem</span></span>
+                            <span class="nivel-barras" aria-hidden="true"><i></i><i></i><i></i></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="touch-controls">
             <button class="touch-btn" id="btn-0" aria-label="Esquerda"><svg class="seta seta-0" aria-hidden="true"><use href="#seta" /></svg></button>
             <button class="touch-btn" id="btn-1" aria-label="Baixo"><svg class="seta seta-1" aria-hidden="true"><use href="#seta" /></svg></button>
             <button class="touch-btn" id="btn-2" aria-label="Cima"><svg class="seta seta-2" aria-hidden="true"><use href="#seta" /></svg></button>
             <button class="touch-btn" id="btn-3" aria-label="Direita"><svg class="seta seta-3" aria-hidden="true"><use href="#seta" /></svg></button>
-        </div>
+            </div>
+        </section>
+
+        <section class="ritmo-guia" aria-label="Como jogar">
+            <div class="ritmo-bloco">
+                <h3>Controles</h3>
+                <ul class="ritmo-teclas">
+                        <li><span class="tecla-seta"><svg class="seta seta-0" aria-hidden="true"><use href="#seta" /></svg></span><kbd>←</kbd><kbd>A</kbd></li>
+                        <li><span class="tecla-seta"><svg class="seta seta-1" aria-hidden="true"><use href="#seta" /></svg></span><kbd>↓</kbd><kbd>S</kbd></li>
+                        <li><span class="tecla-seta"><svg class="seta seta-2" aria-hidden="true"><use href="#seta" /></svg></span><kbd>↑</kbd><kbd>W</kbd></li>
+                        <li><span class="tecla-seta"><svg class="seta seta-3" aria-hidden="true"><use href="#seta" /></svg></span><kbd>→</kbd><kbd>D</kbd></li>
+                </ul>
+                <p class="ritmo-nota">No celular, toque nos botões de seta abaixo da pista.</p>
+            </div>
+
+            <div class="ritmo-bloco">
+                <h3>Pontuação</h3>
+                <ul class="ritmo-pontos">
+                    <li><span class="selo selo-perfect">PERFECT</span><span>+100 pontos e bastante energia</span></li>
+                    <li><span class="selo selo-good">GOOD</span><span>+50 pontos</span></li>
+                    <li><span class="selo selo-ok">OK</span><span>+20 pontos</span></li>
+                    <li><span class="selo selo-miss">ERROU</span><span>Perde energia e zera o combo</span></li>
+                </ul>
+            </div>
+
+            <aside class="ritmo-dica">
+                <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 18h6M10 22h4"></path>
+                    <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"></path>
+                </svg>
+                <p><strong>Você sabia?</strong> Dançar também é atividade física: conta para os 150 minutos
+                    semanais de atividade moderada que a OMS recomenda.</p>
+            </aside>
+        </section>
     </main>
 
     <footer class="footer">

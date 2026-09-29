@@ -1,0 +1,541 @@
+/* ==========================================================================
+   PÁGINA NOSSO PROJETO (projeto.html)
+   ========================================================================== */
+
+.projeto-pagina {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 60px;
+}
+
+/* ---------- Botões e pill ---------- */
+.projeto-pill {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-red-soft);
+    color: var(--color-red-accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background-color var(--transition-base);
+}
+
+.projeto-hero-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.projeto-botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 24px;
+    border: 1.5px solid var(--color-brand);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-brand);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform var(--transition-base), background-color var(--transition-base), color var(--transition-base);
+}
+
+.projeto-botao:hover {
+    transform: scale(1.05);
+}
+
+.projeto-botao--contorno {
+    background-color: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text-strong);
+}
+
+.projeto-botao--contorno:hover {
+    border-color: var(--color-text-strong);
+}
+
+/* ---------- Topo ---------- */
+.projeto-hero {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.projeto-hero-texto h1 {
+    margin: 16px 0 14px;
+    font-size: 38px;
+    color: var(--color-text-strong);
+}
+
+.projeto-lead {
+    max-width: 560px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.projeto-hero .projeto-hero-acoes {
+    justify-content: center;
+}
+
+.projeto-hero-imagem img {
+    width: 80%;
+    max-width: 320px;
+    height: auto;
+}
+
+@media (min-width: 800px) {
+    .projeto-hero {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 64px 50px;
+        text-align: left;
+    }
+
+    .projeto-hero-texto {
+        max-width: 560px;
+    }
+
+    .projeto-hero-texto h1 {
+        font-size: 54px;
+    }
+
+    .projeto-lead {
+        margin: 0;
+    }
+
+    .projeto-hero .projeto-hero-acoes {
+        justify-content: flex-start;
+    }
+
+    .projeto-hero-imagem img {
+        width: 100%;
+        max-width: clamp(260px, 36vw, 460px);
+    }
+}
+
+/* ---------- O nome ---------- */
+.projeto-nome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    max-width: 880px;
+    margin: 50px 20px 0;
+    padding: 28px 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-bg-alt);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.projeto-nome-logo {
+    width: 84px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.projeto-nome h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: var(--color-text-strong);
+}
+
+.projeto-nome p {
+    line-height: 1.65;
+    color: var(--color-text-muted);
+}
+
+.projeto-nome strong,
+.projeto-nome em {
+    color: var(--color-text-strong);
+}
+
+@media (min-width: 700px) {
+    .projeto-nome {
+        flex-direction: row;
+        gap: 28px;
+        margin: 50px auto 0;
+        padding: 32px 36px;
+        text-align: left;
+    }
+
+    .projeto-nome-logo {
+        width: 110px;
+    }
+}
+
+/* ---------- Seções ---------- */
+.projeto-secao {
+    padding: 64px 20px 0;
+    text-align: center;
+    scroll-margin-top: 20px;
+}
+
+.projeto-secao h2 {
+    font-size: 34px;
+    color: var(--color-text-strong);
+}
+
+.projeto-secao-sub {
+    max-width: 560px;
+    margin: 10px auto 30px;
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-wrap: balance;
+}
+
+.projeto-card {
+    padding: 24px 22px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-elevated);
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.projeto-card h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
+    color: var(--color-text-strong);
+}
+
+.projeto-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.projeto-objetivo-grid {
+    display: grid;
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.projeto-objetivo-grid .projeto-card:nth-child(1) {
+    border-top: 4px solid var(--color-red-accent);
+}
+
+.projeto-objetivo-grid .projeto-card:nth-child(2) {
+    border-top: 4px solid var(--color-green-mid);
+}
+
+.projeto-objetivo-grid .projeto-card:nth-child(3) {
+    border-top: 4px solid var(--color-yellow-accent);
+}
+
+@media (min-width: 800px) {
+    .projeto-objetivo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ---------- Como funciona ---------- */
+.projeto-secao--destaque {
+    margin: 64px 20px 0;
+    padding: 48px 20px;
+    border-radius: var(--radius-lg);
+    background-color: var(--color-green-soft);
+    transition: background-color var(--transition-base);
+}
+
+.projeto-passos {
+    list-style: none;
+    display: grid;
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+    counter-reset: passo;
+}
+
+.projeto-passos li {
+    position: relative;
+    padding: 24px 20px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-elevated);
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), background-color var(--transition-base);
+}
+
+.projeto-passos li:hover {
+    transform: translateY(-4px);
+}
+
+.passo-numero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-bottom: 12px;
+    border-radius: 50%;
+    background-color: var(--color-green);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.projeto-passos h3 {
+    margin-bottom: 6px;
+    font-size: 19px;
+    color: var(--color-text-strong);
+}
+
+.projeto-passos p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+}
+
+.projeto-passos a {
+    color: var(--color-green-strong);
+    font-weight: 700;
+}
+
+@media (min-width: 600px) {
+    .projeto-passos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1000px) {
+    .projeto-secao--destaque {
+        margin: 64px 50px 0;
+    }
+
+    .projeto-passos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ---------- Equipe ---------- */
+.projeto-equipe {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.membro {
+    --membro-cor: var(--color-red-accent);
+    --membro-fundo: var(--color-red-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 26px 20px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-alt);
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.membro:hover {
+    transform: translateY(-6px);
+    border-color: var(--membro-cor);
+    box-shadow: var(--shadow-md);
+}
+
+.membro--verde {
+    --membro-cor: var(--color-green-mid);
+    --membro-fundo: var(--color-green-soft);
+}
+
+.membro--salvia {
+    --membro-cor: var(--color-sage);
+    --membro-fundo: var(--color-sage-panel-soft);
+}
+
+.membro--amarelo {
+    --membro-cor: var(--color-yellow-accent);
+    --membro-fundo: color-mix(in srgb, var(--color-yellow-accent) 18%, var(--color-bg-elevated));
+}
+
+/* Funciona tanto com a inicial (<span>) quanto com foto (<img>) */
+.membro-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    margin-bottom: 10px;
+    border: 3px solid var(--membro-cor);
+    border-radius: 50%;
+    background-color: var(--membro-fundo);
+    color: var(--membro-cor);
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    object-fit: cover;
+}
+
+.membro h3 {
+    font-size: 21px;
+    color: var(--color-text-strong);
+}
+
+.membro-funcao {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--membro-cor);
+}
+
+.membro p {
+    margin-top: 6px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+}
+
+/* ---------- Linha do tempo ---------- */
+.projeto-tempo {
+    list-style: none;
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto;
+    padding-left: 30px;
+    text-align: left;
+}
+
+/* A linha vertical que liga as etapas */
+.projeto-tempo::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    border-radius: 2px;
+    background-color: var(--color-border);
+}
+
+.projeto-tempo li {
+    position: relative;
+    padding: 0 0 28px 12px;
+}
+
+.projeto-tempo li:last-child {
+    padding-bottom: 0;
+}
+
+.projeto-tempo li::before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 4px;
+    width: 17px;
+    height: 17px;
+    border: 3px solid var(--color-bg);
+    border-radius: 50%;
+    background-color: var(--color-red-accent);
+    box-shadow: 0 0 0 2px var(--color-red-accent);
+}
+
+.tempo-data {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-red-accent);
+}
+
+.projeto-tempo h3 {
+    margin: 4px 0 6px;
+    font-size: 20px;
+    color: var(--color-text-strong);
+}
+
+.projeto-tempo p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+/* ---------- Tecnologias ---------- */
+.projeto-tecnologias {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.projeto-tecnologias li {
+    padding: 8px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-bg-elevated);
+    font-weight: 700;
+    color: var(--color-text-strong);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+/* ---------- Chamada final ---------- */
+.projeto-cta {
+    max-width: 760px;
+    margin: 70px 20px 0;
+    padding: 40px 24px;
+    border-radius: var(--radius-lg);
+    background-color: var(--color-brand);
+    color: var(--color-text-on-dark);
+    text-align: center;
+    transition: background-color var(--transition-base);
+}
+
+.projeto-cta h2 {
+    margin-bottom: 10px;
+    font-size: 32px;
+    color: #fff;
+}
+
+.projeto-cta p {
+    max-width: 460px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.projeto-cta .projeto-hero-acoes {
+    justify-content: center;
+}
+
+.projeto-cta .projeto-botao {
+    border-color: #fff;
+    background-color: #fff;
+    color: var(--color-brand);
+}
+
+.projeto-cta .projeto-botao--contorno {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+}
+
+.projeto-cta .projeto-botao--contorno:hover {
+    border-color: #fff;
+}
+
+@media (min-width: 800px) {
+    .projeto-cta {
+        margin: 80px auto 0;
+    }
+}

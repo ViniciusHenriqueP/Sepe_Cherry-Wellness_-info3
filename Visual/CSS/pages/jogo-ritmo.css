@@ -1,16 +1,18 @@
 /* ==========================================================================
    PÁGINA RITMO EM MOVIMENTO (jogo-ritmo.html)
+   Layout: no celular fica tudo em uma coluna (título → jogo → guia);
+   a partir de 900px o guia vai para a esquerda e o jogo para a direita.
    ========================================================================== */
 
 /* Cores das pistas inspiradas em Friday Night Funkin' */
-.game-screen {
+.ritmo-pagina {
     --lane-0: #c24b99;
     /* esquerda */
     --lane-1: #16b6e0;
     /* baixo */
     --lane-2: #2fc43c;
     /* cima */
-    --lane-3: #f0404a;
+    --lane-3: #d23c46; /* vermelho-cereja, puxado para o tom do site */
     /* direita */
     --seta-contorno: #2a1c1c;
     --seta-receptor: #9fb0b6;
@@ -18,6 +20,18 @@
     /* Destaque das telas de início/resultado (CSS/minijogo.css) */
     --jogo-accent: var(--color-green-strong);
     --jogo-accent-soft: var(--color-green-soft);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    transition: background-color 0.5s ease, color var(--transition-base);
 }
 
 /* ---------- Setas (SVG) ---------- */
@@ -28,7 +42,7 @@
     overflow: visible;
     fill: var(--lane-color);
     stroke: var(--seta-contorno);
-    stroke-width: 7;
+    stroke-width: 9;
     stroke-linejoin: round;
     paint-order: stroke;
 }
@@ -53,85 +67,327 @@
     transform: rotate(90deg);
 }
 
-html,
-body {
-    height: 100%;
+/* ---------- Estrutura da página ---------- */
+.ritmo-pagina {
+    flex: 1;
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 28px 16px 48px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "intro"
+        "jogo"
+        "guia";
+    gap: 22px;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    transition: background-color 0.5s ease, color var(--transition-base);
-}
-
-body.modo-escuro-osu {
-    background-color: var(--color-brand-strong) !important;
-}
-
-body.modo-escuro-osu .navbar,
-body.modo-escuro-osu .footer,
-body.modo-escuro-osu .game-info {
-    opacity: 0.1;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
+.ritmo-intro {
+    grid-area: intro;
+    text-align: center;
 }
 
 .game-screen {
-    flex: 1;
+    grid-area: jogo;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding: 20px 16px;
+    gap: 12px;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0 auto;
-    z-index: 10;
 }
 
-.game-info {
-    text-align: center;
-    margin-bottom: 10px;
+.ritmo-guia {
+    grid-area: guia;
+    display: grid;
+    gap: 14px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-.game-info h2 {
-    font-weight: bold;
-    font-size: 22px;
+@media (min-width: 900px) {
+    .ritmo-pagina {
+        grid-template-columns: minmax(0, 1fr) 400px;
+        grid-template-areas:
+            "intro jogo"
+            "guia jogo";
+        grid-template-rows: auto 1fr;
+        column-gap: 48px;
+        row-gap: 24px;
+        padding-top: 44px;
+        align-items: start;
+    }
+
+    .ritmo-intro {
+        text-align: left;
+        padding-top: 12px;
+    }
+
+    .ritmo-guia {
+        max-width: none;
+        margin: 0;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ritmo-dica {
+        grid-column: 1 / -1;
+    }
 }
 
-.game-info p {
-    color: var(--color-text-muted);
-    font-size: 14px;
+/* ---------- Título ---------- */
+.ritmo-kicker {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-green-soft);
+    color: var(--color-green-strong);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-.score-display {
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
+.ritmo-intro h1 {
+    margin: 12px 0 10px;
+    font-size: 38px;
     color: var(--color-text-strong);
-    margin-bottom: 8px;
 }
 
-body.modo-escuro-osu .score-display {
-    color: var(--color-text-on-dark);
+.ritmo-intro p {
+    max-width: 460px;
+    margin: 0 auto;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+@media (min-width: 900px) {
+    .ritmo-intro h1 {
+        font-size: 52px;
+    }
+
+    .ritmo-intro p {
+        margin: 0;
+        font-size: 17px;
+    }
+}
+
+/* ---------- Guia: controles, pontuação e dica ---------- */
+.ritmo-bloco {
+    padding: 18px 20px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-alt);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.ritmo-bloco h3 {
+    margin-bottom: 12px;
+    font-size: 19px;
+    color: var(--color-text-strong);
+}
+
+.ritmo-teclas,
+.ritmo-pontos {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+}
+
+.ritmo-teclas li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tecla-seta {
+    width: 28px;
+    height: 28px;
+    margin-right: 4px;
+}
+
+.tecla-seta .seta {
+    stroke-width: 9;
+}
+
+kbd {
+    min-width: 28px;
+    padding: 3px 7px;
+    border: 1px solid var(--color-border);
+    border-bottom-width: 3px;
+    border-radius: 6px;
+    background-color: var(--color-bg-elevated);
+    color: var(--color-text-strong);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.ritmo-nota {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--color-text-soft);
+}
+
+.ritmo-pontos li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--color-text-muted);
+}
+
+.selo {
+    flex-shrink: 0;
+    min-width: 74px;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-align: center;
+    color: #fff;
+}
+
+.selo-perfect {
+    background-color: var(--color-green-mid);
+}
+
+.selo-good {
+    background-color: var(--color-yellow-accent);
+    color: #2a1c1c;
+}
+
+.selo-ok {
+    background-color: var(--color-green-accent);
+}
+
+.selo-miss {
+    background-color: var(--color-red-accent);
+}
+
+.ritmo-dica {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-green-soft);
+    color: var(--color-green-strong);
+    transition: background-color var(--transition-base);
+}
+
+.ritmo-dica .icon-line {
+    width: 26px;
+    height: 26px;
+}
+
+.ritmo-dica p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+}
+
+.ritmo-dica strong {
+    color: var(--color-text-strong);
+}
+
+/* ---------- HUD: pontos, combo, recorde ---------- */
+.ritmo-hud {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+.hud-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 6px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bg-elevated);
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.hud-rotulo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+}
+
+.hud-valor {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-text-strong);
+    font-variant-numeric: tabular-nums;
+}
+
+.hud-valor.pulou {
+    animation: hudPula 0.25s ease-out;
+}
+
+@keyframes hudPula {
+    50% {
+        transform: scale(1.18);
+        color: var(--color-green-mid);
+    }
+}
+
+/* ---------- Barra de energia ---------- */
+.energia {
+    width: 100%;
+}
+
+.energia-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.energia-rotulo {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-text-strong);
+}
+
+.energia-rotulo .icon-line {
+    width: 16px;
+    height: 16px;
+    color: var(--color-yellow-accent);
 }
 
 .health-bar-container {
+    position: relative;
     width: 100%;
-    max-width: 360px;
-    height: 20px;
-    background: var(--color-border);
-    border-radius: 10px;
-    margin-bottom: 15px;
+    height: 16px;
     overflow: hidden;
-    border: 2px solid var(--color-text-strong);
+    border-radius: var(--radius-pill);
+    background-color: var(--color-border);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .health-bar-fill {
     width: 50%;
     height: 100%;
+    border-radius: inherit;
     background-color: var(--color-green-mid);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent 60%);
     transition: width 0.25s ease, background-color 0.2s ease;
 }
 
@@ -147,37 +403,85 @@ body.modo-escuro-osu .score-display {
     background-color: var(--color-red-accent);
 }
 
+/* ---------- Pista ---------- */
 .game-container {
     position: relative;
     width: 100%;
-    max-width: 360px;
     height: 420px;
-    background-color: var(--color-bg-soft);
-    border: 4px solid var(--color-brand);
     overflow: hidden;
+    border: 3px solid var(--color-green-strong);
     border-radius: var(--radius-lg);
+    background-color: var(--color-bg-elevated);
+    /* Linhas horizontais que "correm" para cima enquanto o jogo roda */
+    background-image:
+        repeating-linear-gradient(180deg, transparent 0 46px, color-mix(in srgb, var(--color-green-accent) 16%, transparent) 46px 48px),
+        linear-gradient(180deg, var(--color-bg-elevated), var(--color-green-soft));
     box-shadow: var(--shadow-lg);
     transition: box-shadow 0.5s ease, border-color 0.5s ease, background-color 0.5s ease;
 }
 
-body.modo-escuro-osu .game-container {
-    background-color: var(--color-brand-strong);
-    border-color: var(--color-red-accent);
+.game-container.jogando {
+    animation: pistaCorre 1s linear infinite;
 }
 
+@keyframes pistaCorre {
+    from {
+        background-position: 0 0, 0 0;
+    }
+
+    to {
+        background-position: 0 -48px, 0 0;
+    }
+}
+
+.pistas {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.pista {
+    flex: 1;
+    transition: background-color 0.25s ease;
+}
+
+.pista + .pista {
+    border-left: 1px dashed color-mix(in srgb, var(--color-text-soft) 30%, transparent);
+}
+
+.pista:nth-child(1) {
+    --lane-color: var(--lane-0);
+}
+
+.pista:nth-child(2) {
+    --lane-color: var(--lane-1);
+}
+
+.pista:nth-child(3) {
+    --lane-color: var(--lane-2);
+}
+
+.pista:nth-child(4) {
+    --lane-color: var(--lane-3);
+}
+
+/* A faixa escurece de leve ao apertar a tecla dela */
+.pista.acesa {
+    background-color: color-mix(in srgb, var(--color-text-soft) 10%, transparent);
+    transition-duration: 0s;
+}
+
+/* ---------- Receptores (topo da pista) ---------- */
 .receptors {
+    position: relative;
+    z-index: 6;
     display: flex;
     width: 100%;
     height: 60px;
-    border-bottom: 2px dashed var(--color-border);
-    background-color: var(--color-bg-elevated);
-    position: relative;
-    z-index: 6;
-}
-
-body.modo-escuro-osu .receptors {
-    background-color: color-mix(in srgb, var(--color-brand-strong) 75%, var(--color-red) 25%);
-    border-bottom-color: color-mix(in srgb, var(--color-red-accent) 45%, transparent);
+    background-color: color-mix(in srgb, var(--color-bg-elevated) 70%, transparent);
+    border-bottom: 3px solid var(--color-green-accent);
 }
 
 .receptor-lane {
@@ -232,6 +536,20 @@ body.modo-escuro-osu .receptors {
     stroke: var(--color-red-accent);
 }
 
+.receptor.active {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.receptor.hit {
+    animation: receptorHit 0.26s ease-out;
+}
+
+.receptor.miss {
+    animation: receptorMiss 0.32s ease-in-out;
+}
+
+/* Modo Difícil: os receptores sobem e descem */
 .mov-alt-0 {
     animation: mover0 3.0s ease-in-out infinite alternate;
 }
@@ -248,6 +566,186 @@ body.modo-escuro-osu .receptors {
     animation: mover3 3.2s ease-in-out infinite alternate;
 }
 
+/* ---------- Notas ---------- */
+.note {
+    position: absolute;
+    width: 25%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 7; /* por cima da barra de receptores */
+}
+
+.note .seta {
+    width: 48px;
+    height: 48px;
+}
+
+.note.teleport {
+    animation: flashTeleport 0.4s ease;
+}
+
+/* ---------- Efeitos de acerto ---------- */
+.hit-burst {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 3px solid color-mix(in srgb, var(--color-text-soft) 60%, transparent);
+    pointer-events: none;
+    z-index: 16;
+    animation: burstRing 0.45s ease-out forwards;
+}
+
+.hit-feedback {
+    position: absolute;
+    z-index: 20;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    -webkit-text-stroke: 3px var(--color-bg-elevated);
+    paint-order: stroke fill;
+    animation: subirEsumir 0.6s ease-out forwards;
+}
+
+/* Contador de combo que aparece grande no meio da pista */
+.combo-pop {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    z-index: 4;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    color: color-mix(in srgb, var(--color-green-strong) 30%, transparent);
+    pointer-events: none;
+    white-space: nowrap;
+    opacity: 0;
+}
+
+.combo-pop small {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-align: center;
+}
+
+.combo-pop.mostrar {
+    animation: comboPop 0.9s ease-out forwards;
+}
+
+/* ---------- Botões de toque (celular) ---------- */
+.touch-controls {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.touch-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 0;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-elevated);
+    box-shadow: 0 4px 0 var(--color-border);
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: transform 0.08s, box-shadow 0.08s, background-color 0.1s;
+}
+
+.touch-btn:nth-child(1) {
+    --lane-color: var(--lane-0);
+}
+
+.touch-btn:nth-child(2) {
+    --lane-color: var(--lane-1);
+}
+
+.touch-btn:nth-child(3) {
+    --lane-color: var(--lane-2);
+}
+
+.touch-btn:nth-child(4) {
+    --lane-color: var(--lane-3);
+}
+
+.touch-btn .seta {
+    width: 34px;
+    height: 34px;
+}
+
+.touch-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 transparent;
+    background-color: var(--color-bg-alt);
+}
+
+@media (min-width: 768px) {
+    .game-container {
+        height: 480px;
+    }
+
+    .touch-controls {
+        display: none;
+    }
+}
+
+/* ---------- Modo Difícil: luzes apagadas ---------- */
+body.modo-escuro-osu {
+    background-color: var(--color-brand-strong) !important;
+}
+
+body.modo-escuro-osu .navbar,
+body.modo-escuro-osu .footer,
+body.modo-escuro-osu .ritmo-intro,
+body.modo-escuro-osu .ritmo-guia {
+    opacity: 0.1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+body.modo-escuro-osu .hud-item {
+    background-color: color-mix(in srgb, var(--color-brand-strong) 70%, var(--color-green-strong) 30%);
+    border-color: color-mix(in srgb, var(--color-green-accent) 45%, transparent);
+}
+
+body.modo-escuro-osu .hud-valor,
+body.modo-escuro-osu .energia-rotulo {
+    color: var(--color-text-on-dark);
+}
+
+body.modo-escuro-osu .game-container {
+    background-color: var(--color-brand-strong);
+    background-image:
+        repeating-linear-gradient(180deg, transparent 0 46px, color-mix(in srgb, var(--color-green-accent) 18%, transparent) 46px 48px),
+        linear-gradient(180deg, var(--color-brand-strong), color-mix(in srgb, var(--color-brand-strong) 70%, var(--color-green-strong) 30%));
+    border-color: var(--color-green-accent);
+}
+
+body.modo-escuro-osu .receptors {
+    background-color: color-mix(in srgb, var(--color-brand-strong) 75%, var(--color-green-strong) 25%);
+    border-bottom-color: var(--color-green-accent);
+}
+
+body.modo-escuro-osu .hit-feedback {
+    -webkit-text-stroke-color: var(--color-brand-strong);
+}
+
+body.modo-escuro-osu .combo-pop {
+    color: color-mix(in srgb, var(--color-green-accent) 40%, transparent);
+}
+
+/* ---------- Animações ---------- */
 @keyframes mover0 {
     0% {
         transform: translateY(0px);
@@ -288,15 +786,6 @@ body.modo-escuro-osu .receptors {
     }
 }
 
-.receptor.active {
-    transform: scale(1.2);
-    opacity: 1;
-}
-
-.receptor.hit {
-    animation: receptorHit 0.26s ease-out;
-}
-
 @keyframes receptorHit {
     0% {
         transform: scale(1.2);
@@ -309,10 +798,6 @@ body.modo-escuro-osu .receptors {
     100% {
         transform: scale(1);
     }
-}
-
-.receptor.miss {
-    animation: receptorMiss 0.32s ease-in-out;
 }
 
 @keyframes receptorMiss {
@@ -337,18 +822,6 @@ body.modo-escuro-osu .receptors {
     }
 }
 
-.hit-burst {
-    position: absolute;
-    width: 44px;
-    height: 44px;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 3px solid var(--burst-color, #fff);
-    pointer-events: none;
-    z-index: 16;
-    animation: burstRing 0.45s ease-out forwards;
-}
-
 @keyframes burstRing {
     0% {
         transform: translate(-50%, -50%) scale(0.5);
@@ -359,26 +832,6 @@ body.modo-escuro-osu .receptors {
         transform: translate(-50%, -50%) scale(1.9);
         opacity: 0;
     }
-}
-
-.note {
-    position: absolute;
-    width: 25%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 7;
-}
-
-.note .seta {
-    width: 48px;
-    height: 48px;
-    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
-}
-
-.note.teleport {
-    animation: flashTeleport 0.4s ease;
 }
 
 @keyframes flashTeleport {
@@ -397,16 +850,6 @@ body.modo-escuro-osu .receptors {
     }
 }
 
-.hit-feedback {
-    position: absolute;
-    font-weight: bold;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    pointer-events: none;
-    z-index: 20;
-    animation: subirEsumir 0.6s ease-out forwards;
-}
-
 @keyframes subirEsumir {
     0% {
         opacity: 1;
@@ -423,49 +866,30 @@ body.modo-escuro-osu .receptors {
     }
 }
 
-.touch-controls {
-    display: flex;
-    width: 100%;
-    max-width: 360px;
-    gap: 10px;
-    margin-top: 15px;
+@keyframes comboPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
 }
 
-.touch-btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 0;
-    background-color: var(--color-brand);
-    color: var(--color-bg);
-    border: none;
-    border-radius: 12px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    touch-action: manipulation;
-    transition: background-color 0.1s, transform 0.1s;
-}
+@media (prefers-reduced-motion: reduce) {
 
-.touch-btn .seta {
-    width: 32px;
-    height: 32px;
-}
-
-.touch-btn:active {
-    background-color: var(--color-text-muted);
-    transform: scale(0.93);
+    .game-container.jogando,
+    .combo-pop.mostrar,
+    .hud-valor.pulou {
+        animation: none;
+    }
 }
 
 /* Telas de dificuldade e resultado: CSS/minijogo.css */
-
-@media (min-width: 768px) {
-    .game-container {
-        height: 480px;
-    }
-
-    .touch-controls {
-        display: none;
-    }
-}

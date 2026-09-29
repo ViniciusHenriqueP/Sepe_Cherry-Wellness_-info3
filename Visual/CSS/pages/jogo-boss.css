@@ -90,6 +90,7 @@ body {
 
 .boss {
     position: relative;
+    isolation: isolate; /* mantém os raios de luz (z-index: -1) dentro do chefe */
     width: 150px;
     flex-shrink: 0;
     animation: bossFlutua 2.4s ease-in-out infinite;
@@ -105,8 +106,139 @@ body {
     animation: bossTreme 0.45s linear;
 }
 
-.boss.derrotado {
-    animation: bossDerrotado 1.6s ease-in forwards;
+/* ---------- Cutscene: a Cereja Podre vira uma cereja saudável ----------
+   O JS (vitoria() em jogo-boss.js) liga as classes nesta ordem:
+   .transformando → .clarao.ativo → .saudavel */
+/* ".boss" no seletor para vencer ".boss svg { display: block }" */
+.boss .boss-sprite--saudavel {
+    display: none;
+}
+
+.boss.transformando {
+    animation: none;
+}
+
+.boss.transformando .boss-sprite--podre {
+    animation: bossVibra 0.09s linear infinite, bossAcende 3.5s ease-in forwards;
+}
+
+/* As manchas de mofo caem uma a uma */
+.boss.transformando .boss-mancha {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: manchaCai 1s ease-in forwards;
+}
+
+/* O 1º círculo do SVG é o corpo; as manchas são o 2º, 3º e 4º */
+.boss.transformando .boss-mancha:nth-of-type(3) {
+    animation-delay: 0.5s;
+}
+
+.boss.transformando .boss-mancha:nth-of-type(4) {
+    animation-delay: 1s;
+}
+
+.boss.saudavel {
+    animation: bossPula 1.1s ease-in-out infinite;
+}
+
+.boss.saudavel .boss-sprite--podre {
+    display: none;
+}
+
+.boss.saudavel .boss-sprite--saudavel {
+    display: block;
+    animation: bossSurge 0.8s cubic-bezier(.2, .9, .3, 1.4) both;
+}
+
+.boss-brilho {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: brilhoPisca 1.4s ease-in-out infinite;
+}
+
+.boss-brilho:nth-of-type(2n) {
+    animation-delay: 0.5s;
+}
+
+/* Raios de luz girando atrás do chefe */
+.boss-raios {
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    z-index: -1;
+    width: 280px;
+    height: 280px;
+    margin: -140px 0 0 -140px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(rgba(255, 230, 0, 0.35) 0deg 10deg, transparent 10deg 30deg);
+    mask-image: radial-gradient(circle, #000 25%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.boss.transformando .boss-raios {
+    opacity: 0.7;
+    animation: raiosGiram 6s linear infinite;
+}
+
+.boss.saudavel .boss-raios {
+    opacity: 1;
+    background: repeating-conic-gradient(rgba(57, 211, 83, 0.3) 0deg 10deg, transparent 10deg 30deg);
+    animation: raiosGiram 12s linear infinite;
+}
+
+/* Clarão branco que cobre a arena no momento da troca */
+.clarao {
+    position: absolute;
+    inset: 0;
+    z-index: 60;
+    background-color: var(--ut-branco);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.clarao.ativo {
+    animation: clarao 1.35s ease-out forwards;
+}
+
+/* Frutas e brilhos que explodem para fora quando a cereja se transforma */
+.particula {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    z-index: 5;
+    font-size: 22px;
+    pointer-events: none;
+    animation: particulaVoa 1.5s ease-out both;
+}
+
+/* Botão de música no canto da arena, acima até da tela de início */
+.botao-musica {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 101;
+    padding: 2px 10px;
+    border: 2px solid var(--ut-branco);
+    background-color: var(--ut-preto);
+    color: var(--ut-branco);
+    font-family: 'VT323', ui-monospace, monospace;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+.botao-musica:hover {
+    border-color: var(--ut-amarelo);
+    color: var(--ut-amarelo);
+}
+
+.botao-musica.is-mudo {
+    opacity: 0.6;
+    text-decoration: line-through;
 }
 
 .fala {
@@ -351,11 +483,107 @@ body {
     }
 }
 
-@keyframes bossDerrotado {
+@keyframes bossVibra {
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(-2px, 1px);
+    }
+
+    50% {
+        transform: translate(2px, -1px);
+    }
+
+    75% {
+        transform: translate(-1px, -2px);
+    }
+}
+
+@keyframes bossAcende {
+    to {
+        filter: brightness(3) saturate(0.4) drop-shadow(0 0 18px #fff);
+    }
+}
+
+@keyframes manchaCai {
+    to {
+        transform: translateY(70px) scale(0.3);
+        opacity: 0;
+    }
+}
+
+@keyframes bossSurge {
+    from {
+        opacity: 0;
+        transform: scale(0.4) rotate(-12deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes bossPula {
+    0%,
+    100% {
+        transform: translateY(0) scale(1, 1);
+    }
+
+    40% {
+        transform: translateY(-12px) scale(0.97, 1.03);
+    }
+
+    80% {
+        transform: translateY(0) scale(1.04, 0.96);
+    }
+}
+
+@keyframes brilhoPisca {
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scale(0.6);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes raiosGiram {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes clarao {
+    0% {
+        opacity: 0;
+    }
+
+    33% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes particulaVoa {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+
     to {
         opacity: 0;
-        transform: translateY(24px) scaleY(0.2);
-        filter: grayscale(1);
+        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.1);
     }
 }
 
@@ -404,8 +632,13 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .boss {
-        animation: none;
+
+    .boss,
+    .boss.saudavel,
+    .boss-raios,
+    .boss-brilho,
+    .boss.transformando .boss-sprite--podre {
+        animation: none !important;
     }
 }
 
@@ -413,7 +646,7 @@ body {
 @media (max-width: 560px) {
     .arena {
         min-height: 520px;
-        padding: 14px 12px 16px;
+        padding: 50px 12px 16px;
     }
 
     .boss {

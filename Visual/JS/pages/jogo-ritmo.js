@@ -3,6 +3,12 @@ const healthFill = document.getElementById('health-fill');
 const scoreVal = document.getElementById('score-val');
 const receptorsBar = document.getElementById('receptors-bar');
 const overlay = document.getElementById('feedback-overlay');
+const comboVal = document.getElementById('combo-val');
+const recordeVal = document.getElementById('recorde-val');
+const comboPop = document.getElementById('combo-pop');
+const energiaVal = document.getElementById('energia-val');
+const energiaBarra = document.getElementById('energia-barra');
+const pistas = document.querySelectorAll('.pista');
 const receptors = [
     document.getElementById('receptor-0'),
     document.getElementById('receptor-1'),
@@ -40,6 +46,33 @@ let gameActive = false;
 let health = 50;
 let score = 0;
 let notes = [];
+let combo = 0;
+
+// Recorde fica salvo no navegador (localStorage)
+let recorde = 0;
+try { recorde = Number(localStorage.getItem('recordeRitmo')) || 0; } catch (e) { /* sem localStorage */ }
+recordeVal.innerText = recorde;
+
+// Pontos e combo dão um "pulinho" quando mudam
+function atualizarNumero(el, valor) {
+    el.innerText = valor;
+    el.classList.remove('pulou');
+    void el.offsetWidth;
+    el.classList.add('pulou');
+}
+
+function mostrarCombo() {
+    if (combo < 5) return;
+    comboPop.innerHTML = `${combo}<small>COMBO</small>`;
+    comboPop.classList.remove('mostrar');
+    void comboPop.offsetWidth;
+    comboPop.classList.add('mostrar');
+}
+
+function perderCombo() {
+    combo = 0;
+    comboVal.innerText = combo;
+}
 
 let modoAtual = 'medio';
 
@@ -98,6 +131,9 @@ function iniciarComDificuldade(nivel) {
     health = 50;
     score = 0;
     scoreVal.innerText = score;
+    perderCombo();
+    updateHealth(0);
+    container.classList.add('jogando');
     currentSpeed = baseSpeed;
     lastTimestamp = null;
     spawnTimer = 0;
@@ -142,6 +178,7 @@ function gameLoop(timestamp) {
             n.el.remove();
             notes.splice(i, 1);
             tocarSomErro();
+            perderCombo();
             updateHealth(-6);
             triggerReceptorEffect(n.lane, 'miss', 320);
         }
@@ -160,7 +197,8 @@ function createNote() {
     el.style.left = (lane * 25) + '%';
     el.innerHTML = `<svg class="seta seta-${lane}" aria-hidden="true"><use href="#seta"/></svg>`;
 
-    let startY = 420;
+    // Nasce logo abaixo da borda de baixo da pista (420px no celular, 480px no computador)
+    let startY = container.clientHeight;
 
     // Teleporte mais previsível no modo Difícil (só surge na metade inferior da tela)
     if (modoAtual === 'dificil' && Math.random() < 0.20) {
@@ -189,7 +227,6 @@ function mostrarFeedbackTexto(texto, cor, lane, y) {
 function mostrarAcertoBurst(lane, y) {
     const burst = document.createElement('div');
     burst.className = 'hit-burst';
-    burst.style.setProperty('--burst-color', `var(--lane-${lane})`);
     burst.style.left = (lane * 25 + 12.5) + '%';
     burst.style.top = (y + 25) + 'px';
     container.appendChild(burst);
@@ -209,6 +246,8 @@ function updateHealth(amount) {
     if (health > 100) health = 100;
     if (health < 0) health = 0;
     healthFill.style.width = health + '%';
+    energiaVal.innerText = health + '%';
+    energiaBarra.setAttribute('aria-valuenow', health);
 
     healthFill.classList.remove('health-high', 'health-mid', 'health-low');
     if (health > 70) healthFill.classList.add('health-high');
@@ -219,8 +258,12 @@ function updateHealth(amount) {
 function triggerInput(lane) {
     if (!gameActive) return;
     receptors[lane].classList.add('active');
+    pistas[lane].classList.add('acesa');
     checkHit(lane);
-    setTimeout(() => receptors[lane].classList.remove('active'), 100);
+    setTimeout(() => {
+        receptors[lane].classList.remove('active');
+        pistas[lane].classList.remove('acesa');
+    }, 100);
 }
 
 // Teclado
@@ -287,19 +330,32 @@ function checkHit(lane) {
                 mostrarFeedbackTexto('OK', 'var(--color-green-accent)', lane, receptorY);
             }
 
-            scoreVal.innerText = score;
+            combo++;
+            atualizarNumero(scoreVal, score);
+            atualizarNumero(comboVal, combo);
+            mostrarCombo();
             return;
         }
     }
 
     tocarSomErro();
+    perderCombo();
     updateHealth(-3);
     triggerReceptorEffect(lane, 'miss', 320);
 }
 
 function endGame(win) {
     gameActive = false;
+    container.classList.remove('jogando');
     aplicarMovimentoAlternado(false);
+
+    const novoRecorde = score > recorde;
+    if (novoRecorde) {
+        recorde = score;
+        recordeVal.innerText = recorde;
+        try { localStorage.setItem('recordeRitmo', recorde); } catch (e) { /* sem localStorage */ }
+    }
+    const textoRecorde = novoRecorde ? ' Novo recorde!' : '';
     document.body.classList.remove('modo-escuro-osu');
 
     if (timerAcerto) clearTimeout(timerAcerto);
@@ -315,7 +371,7 @@ function endGame(win) {
         mostrarTelaResultado(overlay, {
             vitoria: true,
             titulo: 'Ritmo perfeito!',
-            mensagem: `<strong>${score} pontos</strong> no modo ${nomes[modoAtual]}. Emblema Vida em Movimento conquistado!`
+            mensagem: `<strong>${score} pontos</strong> no modo ${nomes[modoAtual]}.${textoRecorde} Emblema Vida em Movimento conquistado!`
         });
     } else {
         somDerrota.currentTime = 0;
@@ -324,7 +380,7 @@ function endGame(win) {
         mostrarTelaResultado(overlay, {
             vitoria: false,
             titulo: 'Fora de ritmo!',
-            mensagem: `A energia acabou com <strong>${score} pontos</strong> no modo ${nomes[modoAtual]}. Tente de novo!`
+            mensagem: `A energia acabou com <strong>${score} pontos</strong> no modo ${nomes[modoAtual]}.${textoRecorde} Tente de novo!`
         });
     }
 }
