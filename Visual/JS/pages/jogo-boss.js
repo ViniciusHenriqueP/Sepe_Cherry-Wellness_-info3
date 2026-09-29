@@ -125,24 +125,24 @@ const FORMA_CORACAO = new Path2D('M0 6 C-2 4 -8 0 -8 -3 C-8 -6 -5 -8 -3 -8 C-1.5
 // usosAcao: quantas vezes cada ação (comer, exercitar, meditar) pode ser usada.
 const DIFICULDADES = {
     facil: {
-        nome: 'Fácil', vida: 28, danoRecebido: 3, danoAcerto: 25, duracao: 7000, invencivel: 1100,
-        ritmo: 0.8, ritmoPorTurno: 0.04, ritmoMax: 1.1, comboAbaixoDe: 0, trioAbaixoDe: 0,
+        nome: 'Fácil', vida: 30, danoRecebido: 2, danoAcerto: 34, duracao: 6000, invencivel: 1300,
+        ritmo: 0.7, ritmoPorTurno: 0.03, ritmoMax: 1, comboAbaixoDe: 0, trioAbaixoDe: 0,
         tempoPergunta: 0, curaAoErrar: 0, usosAcao: 3
     },
     medio: {
-        nome: 'Médio', vida: 20, danoRecebido: 4, danoAcerto: 20, duracao: 8000, invencivel: 900,
-        ritmo: 1, ritmoPorTurno: 0.07, ritmoMax: 1.5, comboAbaixoDe: 40, trioAbaixoDe: 0,
-        tempoPergunta: 0, curaAoErrar: 0, usosAcao: 2
+        nome: 'Médio', vida: 24, danoRecebido: 3, danoAcerto: 25, duracao: 7000, invencivel: 1100,
+        ritmo: 0.9, ritmoPorTurno: 0.05, ritmoMax: 1.25, comboAbaixoDe: 30, trioAbaixoDe: 0,
+        tempoPergunta: 0, curaAoErrar: 0, usosAcao: 3
     },
     dificil: {
-        nome: 'Difícil', vida: 20, danoRecebido: 5, danoAcerto: 20, duracao: 9000, invencivel: 750,
-        ritmo: 1.2, ritmoPorTurno: 0.08, ritmoMax: 1.7, comboAbaixoDe: 60, trioAbaixoDe: 0,
+        nome: 'Difícil', vida: 24, danoRecebido: 4, danoAcerto: 25, duracao: 8000, invencivel: 950,
+        ritmo: 1.05, ritmoPorTurno: 0.06, ritmoMax: 1.4, comboAbaixoDe: 40, trioAbaixoDe: 0,
         tempoPergunta: 0, curaAoErrar: 0, usosAcao: 2
     },
     impossivel: {
-        nome: 'Impossível', vida: 12, danoRecebido: 4, danoAcerto: 10, duracao: 10000, invencivel: 500,
-        ritmo: 1.45, ritmoPorTurno: 0.05, ritmoMax: 1.8, comboAbaixoDe: 100, trioAbaixoDe: 30,
-        tempoPergunta: 7000, curaAoErrar: 10, usosAcao: 1
+        nome: 'Impossível', vida: 20, danoRecebido: 4, danoAcerto: 20, duracao: 8500, invencivel: 750,
+        ritmo: 1.2, ritmoPorTurno: 0.05, ritmoMax: 1.55, comboAbaixoDe: 60, trioAbaixoDe: 20,
+        tempoPergunta: 10000, curaAoErrar: 5, usosAcao: 2
     }
 };
 
@@ -402,6 +402,11 @@ function moverCoracao(dt) {
     if (dx && dy) {
         dx *= Math.SQRT1_2;
         dy *= Math.SQRT1_2;
+    }
+    // O analógico do celular é proporcional: quanto mais longe do centro, mais rápido
+    if (analogico.x || analogico.y) {
+        dx = analogico.x;
+        dy = analogico.y;
     }
     const velocidade = CORACAO_VEL * ataque.velocidade;
     coracao.x += dx * velocidade * dt;
@@ -725,11 +730,26 @@ async function vitoria() {
     estado = 'fim';
     localStorage.setItem('emblemaFinal', 'ganhou');
     if (dificuldade === DIFICULDADES.impossivel) localStorage.setItem('emblemaImpossivel', 'ganhou');
+
+    // Vencer no Difícil ou no Impossível libera o desafio secreto (JS/desafio-secreto.js)
+    const liberouDesafio = dificuldade === DIFICULDADES.dificil || dificuldade === DIFICULDADES.impossivel;
+    if (liberouDesafio) liberarDesafioSecreto(dificuldade.nome);
+
     mostrarTelaResultado(overlay, {
         vitoria: true,
         titulo: dificuldade === DIFICULDADES.impossivel ? 'O impossível aconteceu!' : 'Você venceu!',
         mensagem: `A Cereja Podre caiu no modo ${dificuldade.nome} com <strong>${acertos} acertos</strong> e ${vida} de HP sobrando. Emblema da Batalha Final conquistado!`
     });
+
+    if (liberouDesafio) {
+        const botao = document.createElement('button');
+        botao.type = 'button';
+        botao.className = 'btn-game';
+        botao.textContent = 'Desafio secreto';
+        botao.addEventListener('click', abrirDesafioSecreto);
+        overlay.querySelector('.resultado-acoes').prepend(botao);
+        setTimeout(abrirDesafioSecreto, 1200);
+    }
 }
 
 async function derrota() {
@@ -794,26 +814,67 @@ window.addEventListener('pointermove', (e) => {
 
 ['pointerup', 'pointercancel'].forEach(evento => window.addEventListener(evento, () => (arrasto = null)));
 
-// Direcional na tela (celular): segurar um botão é como segurar a seta do
-// teclado. No menu e nas perguntas, cada toque anda uma opção.
-document.querySelectorAll('.dpad-btn').forEach(btn => {
-    const direcao = btn.dataset.dir;
-    const soltar = () => {
-        teclas.delete(direcao);
-        btn.classList.remove('pressionado');
-    };
+// Analógico na tela (celular): arrastar a alavanca move o coração em qualquer
+// direção, com velocidade proporcional à distância do centro. Nas perguntas,
+// empurrar a alavanca para um lado anda uma opção.
+const analogico = { x: 0, y: 0 };
+const analogicoBase = document.getElementById('analogico');
+const analogicoAlavanca = document.getElementById('analogico-alavanca');
+const ZONA_MORTA = 0.15;
+let analogicoPonteiro = null;
+let analogicoNavegou = false;
 
-    btn.addEventListener('pointerdown', (e) => {
-        e.preventDefault();
-        e.stopPropagation(); // não começa um arrasto na arena
-        btn.setPointerCapture(e.pointerId);
-        btn.classList.add('pressionado');
-        if (estado === 'ataque') teclas.add(direcao);
-        else if (estado === 'pergunta' && perguntaAtual) navegarOpcoes(direcao);
-    });
-    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(evento => btn.addEventListener(evento, soltar));
-    btn.addEventListener('contextmenu', (e) => e.preventDefault());
+function moverAnalogico(e) {
+    const caixa = analogicoBase.getBoundingClientRect();
+    const alcance = caixa.width * 0.35; // até onde a alavanca sai do centro
+    let vx = e.clientX - (caixa.left + caixa.width / 2);
+    let vy = e.clientY - (caixa.top + caixa.height / 2);
+    const distancia = Math.hypot(vx, vy);
+    if (distancia > alcance) {
+        vx *= alcance / distancia;
+        vy *= alcance / distancia;
+    }
+    analogicoAlavanca.style.transform = `translate(${vx}px, ${vy}px)`;
+
+    const forca = Math.min(distancia / alcance, 1);
+    const ativa = forca > ZONA_MORTA;
+    analogico.x = ativa ? vx / alcance : 0;
+    analogico.y = ativa ? vy / alcance : 0;
+
+    if (estado === 'pergunta' && perguntaAtual) {
+        if (forca > 0.6 && !analogicoNavegou) {
+            analogicoNavegou = true;
+            navegarOpcoes(Math.abs(vx) > Math.abs(vy)
+                ? (vx > 0 ? 'direita' : 'esquerda')
+                : (vy > 0 ? 'baixo' : 'cima'));
+        } else if (forca < 0.3) {
+            analogicoNavegou = false;
+        }
+    }
+}
+
+function soltarAnalogico() {
+    analogicoPonteiro = null;
+    analogicoNavegou = false;
+    analogico.x = 0;
+    analogico.y = 0;
+    analogicoAlavanca.style.transform = '';
+    analogicoBase.classList.remove('pressionado');
+}
+
+analogicoBase.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    e.stopPropagation(); // não começa um arrasto na arena
+    analogicoPonteiro = e.pointerId;
+    analogicoBase.setPointerCapture(e.pointerId);
+    analogicoBase.classList.add('pressionado');
+    moverAnalogico(e);
 });
+analogicoBase.addEventListener('pointermove', (e) => {
+    if (e.pointerId === analogicoPonteiro) moverAnalogico(e);
+});
+['pointerup', 'pointercancel', 'lostpointercapture'].forEach(evento => analogicoBase.addEventListener(evento, soltarAnalogico));
+analogicoBase.addEventListener('contextmenu', (e) => e.preventDefault());
 
 // ---------- Início ----------
 const temTodosEmblemas = ['emblemaPrato', 'emblemaMovimento', 'emblemaMental']
