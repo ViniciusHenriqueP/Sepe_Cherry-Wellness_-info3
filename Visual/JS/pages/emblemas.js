@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         : 'Você derrotou a Cereja Podre usando tudo o que aprendeu no site. Que tal tentar o modo Impossível?')
                     : 'Você conquistou os três emblemas. Desvie dos ataques da Cereja Podre e acerte as perguntas para derrotá-la!'}</p>
                 <a href="jogo-boss.html" class="btn-primary">${venceuChefe ? 'Revanche' : 'Enfrentar o chefe'}</a>
+                ${desafioLiberado() ? '<button type="button" class="btn-primary desafio-abrir">Desafio secreto</button>' : ''}
             </div>
         `;
     }
@@ -77,6 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     container.innerHTML = htmlFinal;
+
+    const botaoDesafio = container.querySelector('.desafio-abrir');
+    if (botaoDesafio) botaoDesafio.addEventListener('click', abrirDesafioSecreto);
 
     if (window.CherryReveal) window.CherryReveal.refresh();
 });

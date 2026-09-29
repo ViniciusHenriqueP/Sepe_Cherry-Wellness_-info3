@@ -541,49 +541,43 @@ body {
 }
 
 /* ---------- Direcional (celular) ---------- */
-.dpad {
+.analogico {
+    position: relative;
     display: none;
-    grid-template-columns: repeat(3, 56px);
-    grid-template-rows: repeat(3, 56px);
-    grid-template-areas:
-        ". cima ."
-        "esquerda . direita"
-        ". baixo .";
-    gap: 4px;
-    touch-action: none;
-}
-
-.dpad-btn {
-    display: flex;
     align-items: center;
     justify-content: center;
+    width: 140px;
+    height: 140px;
     border: 3px solid var(--ut-branco);
-    border-radius: 10px;
+    border-radius: 50%;
     background-color: var(--ut-preto);
-    color: var(--ut-branco);
-    cursor: pointer;
     touch-action: none;
+    user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 
-.dpad-btn svg {
-    width: 26px;
-    height: 26px;
+.analogico-alavanca {
+    width: 58px;
+    height: 58px;
+    border: 3px solid var(--ut-branco);
+    border-radius: 50%;
+    background-color: var(--ut-vermelho);
+    pointer-events: none;
+    transition: transform 0.15s ease-out;
 }
 
-.dpad-btn.pressionado {
+/* Enquanto o dedo arrasta, a alavanca acompanha sem atraso */
+.analogico.pressionado {
     border-color: var(--ut-amarelo);
-    background-color: var(--ut-amarelo);
-    color: var(--ut-preto);
 }
 
-.dpad-cima { grid-area: cima; }
-.dpad-esquerda { grid-area: esquerda; }
-.dpad-direita { grid-area: direita; }
-.dpad-baixo { grid-area: baixo; }
+.analogico.pressionado .analogico-alavanca {
+    transition: none;
+    border-color: var(--ut-amarelo);
+}
 
 @media (pointer: coarse), (max-width: 560px) {
-    .dpad {
-        display: grid;
+    .analogico {
+        display: flex;
     }
 }

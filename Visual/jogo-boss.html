@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="CSS/base.css">
     <link rel="stylesheet" href="CSS/minijogo.css">
     <link rel="stylesheet" href="CSS/pages/jogo-boss.css">
+    <link rel="stylesheet" href="CSS/beneficio-modal.css">
+    <link rel="stylesheet" href="CSS/desafio-secreto.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&family=VT323&display=swap"
@@ -50,7 +52,7 @@
     <main class="boss-wrapper">
         <div class="boss-info">
             <h2>Batalha Final</h2>
-            <p>No turno do chefe, desvie com o coração usando as <b>setas</b> ou <b>WASD</b> (no celular, use o direcional ou arraste o dedo). No seu turno, escolha <b>LUTAR</b> e acerte a pergunta
+            <p>No turno do chefe, desvie com o coração usando as <b>setas</b> ou <b>WASD</b> (no celular, arraste o analógico ou o dedo na arena). No seu turno, escolha <b>LUTAR</b> e acerte a pergunta
                 para causar dano, ou use uma <b>AÇÃO</b>: comer, exercitar ou meditar.</p>
         </div>
 
@@ -110,12 +112,9 @@
                 <span class="buffs" id="buffs" aria-live="polite"></span>
             </div>
 
-            <!-- Direcional para celular: aparece só em telas de toque -->
-            <div class="dpad" id="dpad">
-                <button class="dpad-btn dpad-cima" data-dir="cima" type="button" aria-label="Cima"><svg viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(0deg)"><path d="M12 5 L20 15 H4 Z" fill="currentColor"/></svg></button>
-                <button class="dpad-btn dpad-esquerda" data-dir="esquerda" type="button" aria-label="Esquerda"><svg viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(-90deg)"><path d="M12 5 L20 15 H4 Z" fill="currentColor"/></svg></button>
-                <button class="dpad-btn dpad-direita" data-dir="direita" type="button" aria-label="Direita"><svg viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(90deg)"><path d="M12 5 L20 15 H4 Z" fill="currentColor"/></svg></button>
-                <button class="dpad-btn dpad-baixo" data-dir="baixo" type="button" aria-label="Baixo"><svg viewBox="0 0 24 24" aria-hidden="true" style="transform: rotate(180deg)"><path d="M12 5 L20 15 H4 Z" fill="currentColor"/></svg></button>
+            <!-- Analógico para celular: aparece só em telas de toque -->
+            <div class="analogico" id="analogico" aria-hidden="true">
+                <div class="analogico-alavanca" id="analogico-alavanca"></div>
             </div>
 
             <div id="feedback-overlay" class="feedback-overlay">
@@ -162,6 +161,7 @@
     </footer>
 
     <script src="JS/minijogo.js"></script>
+    <script src="JS/desafio-secreto.js"></script>
     <script src="JS/pages/jogo-boss.js"></script>
 </body>
 
