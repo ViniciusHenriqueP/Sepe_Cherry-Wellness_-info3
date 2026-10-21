@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="active">Início</a>
+            <a href="sepe/index.html">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content" data-reveal-group>
+            <h1 data-reveal="left">Seu bem-estar, todos os dias!</h1>
+            <p class="hero-subtitle" data-reveal="left">Dicas, informações e inspiração para você viver melhor em
+                todas as áreas da sua vida.</p>
+            <div class="hero-buttons">
+                <ul>
+                    <li data-reveal="up">
+                        <button class="btn-primary" onclick="window.location.href='projeto.html'">Nosso projeto →</button>
+                    </li>
+                    <li data-reveal="up">
+                        <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz"><button class="btn-secondary">Nossa Equipe ▾</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="IMG/BANNER.png" alt="Mascotes Cherry Wellness" data-reveal="scale">
+        </div>
+    </section>
+
+    <div class="checkerboard-divider"></div>
+
+    <section class="cards-container">
+        <ul data-reveal-group>
+            <li data-reveal="up">
+                <div class="card card-green">
+                    <div class="card-header">
+                        <div class="card-icon"><img src="IMG/home/academia.png" alt=""></div>
+                        <div>
+                            <h3><a href="sepe/index.html">Vida em movimento</a></h3>
+                            <p class="card-tagline">Corpo ativo, mente leve.</p>
+                        </div>
+                    </div>
+                    <ul class="card-list">
+                        <li><a href="sepe/index.html#beneficios-corpo">Benefícios para o corpo</a></li>
+                        <li><a href="jogo-movimento.html#pre-treino">Atividades pré-treino</a></li>
+                        <li><a href="jogo-movimento.html#beneficios-mente">Benefícios para a mente</a></li>
+                        <li><a href="jogo-movimento.html#numeros">Atividade física em números</a></li>
+                    </ul>
+                    <button class="btn-card green-btn"
+                        onclick="window.location.href='sepe/index.html'">Saiba mais →</button>
+                </div>
+            </li>
+            <li data-reveal="up">
+                <div class="card card-red">
+                    <div class="card-header">
+                        <div class="card-icon" id="prato"><img id="alimentacao-icon" src="IMG/home/alimentacao.png"
+                                alt=""></div>
+                        <div>
+                            <h3><a href="alimentacao.html">Prato & Saúde</a></h3>
+                            <p class="card-tagline"><a href="alimentacao.html">Alimente-se bem, viva melhor.</a></p>
+                        </div>
+                    </div>
+                    <ul class="card-list">
+                        <li><a href="alimentacao.html?nutriente=proteinas">Proteínas</a></li>
+                        <li><a href="alimentacao.html?nutriente=carboidratos">Carboidratos</a></li>
+                        <li><a href="alimentacao.html?nutriente=gorduras">Gorduras Boas</a></li>
+                        <li><a href="alimentacao.html?nutriente=vitaminas">Vitaminas e Minerais</a></li>
+                    </ul>
+                    <button class="btn-card red-btn" onclick="window.location.href='alimentacao.html'">Saiba mais
+                        →</button>
+                </div>
+            </li>
+            <li data-reveal="up">
+                <div class="card card-mental">
+                    <div class="card-header">
+                        <div class="card-icon"><img id="saudemental-icon" src="IMG/home/saudemental.png" alt=""></div>
+                        <div>
+                            <h3><a href="saudemental.html">Bem-Estar mental</a></h3>
+                            <p class="card-tagline">Equilíbrio que transforma.</p>
+                        </div>
+                    </div>
+                    <ul class="card-list">
+                        <li><a href="saudemental.html#conversar">Não guarde tudo para você</a></li>
+                        <li><a href="saudemental.html#emocoes">Conheça suas emoções</a></li>
+                        <li><a href="saudemental.html#praticas">Práticas para o dia a dia</a></li>
+                        <li><a href="saudemental.html#numeros">Saúde mental em números</a></li>
+                    </ul>
+                    <button class="btn-card green-btn"
+                        onclick="window.location.href='saudemental.html'">Saiba mais →</button>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="stats-section" data-reveal-group>
+        <h2 data-reveal="up">Por que isso importa</h2>
+        <p class="stats-section-sub" data-reveal="up">Três números que mostram por que movimento, alimentação e saúde
+            mental merecem atenção todos os dias.</p>
+        <div class="stats-grid">
+            <a href="jogo-movimento.html" class="stat-tile" style="--stat-accent: var(--color-green-strong);"
+                data-reveal="up">
+                <span class="stat-number">31%</span>
+                <p class="stat-desc">dos adultos do mundo não atingem o nível de atividade física recomendado pela
+                    OMS.</p>
+                <span class="stat-link">Vida em movimento →</span>
+                <span class="stat-source">OMS, 2024</span>
+            </a>
+            <a href="alimentacao.html" class="stat-tile" style="--stat-accent: var(--color-red-accent);"
+                data-reveal="up">
+                <span class="stat-number">24,3%</span>
+                <p class="stat-desc">dos brasileiros adultos vivem com obesidade — em 2006 eram 11,8%.</p>
+                <span class="stat-link">Prato & Saúde →</span>
+                <span class="stat-source">Ministério da Saúde, Vigitel 2023</span>
+            </a>
+            <a href="saudemental.html" class="stat-tile" style="--stat-accent: var(--color-sage-deep);"
+                data-reveal="up">
+                <span class="stat-number">1 em cada 7</span>
+                <p class="stat-desc">adolescentes de 10 a 19 anos vive com algum transtorno mental.</p>
+                <span class="stat-link">Bem-Estar mental →</span>
+                <span class="stat-source">OMS, agência da ONU</span>
+            </a>
+        </div>
+    </section>
+
+    <div class="phrase-bar" data-reveal="up">
+        <span>1,8 bilhão de adultos no mundo ainda não se movem o suficiente, segundo a OMS.</span>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/reveal.js"></script>
+</body>
+
+</html>

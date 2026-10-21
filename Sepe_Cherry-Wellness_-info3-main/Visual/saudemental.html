@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Bem-Estar mental</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/beneficio-modal.css">
+    <link rel="stylesheet" href="CSS/pages/saudemental.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar navbar--mental">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="sepe/index.html">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html" class="active">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="mental-page">
+
+        <section class="mental-layout" id="conversar">
+            <div class="mental-intro">
+                <h2 data-reveal="left">Não guarde tudo para você</h2>
+                <div class="mental-intro-grid" data-reveal-group>
+                    <div class="mental-media" data-reveal="scale">
+                        <img src="IMG/home/saudemental.png"
+                            alt="Mascotes de cereja do Cherry Wellness representando o cuidado com a saúde mental">
+                    </div>
+                    <div class="mental-card" data-reveal="up">
+                        <p>Conversar com alguém de confiança pode fazer toda a diferença quando algo está pesando
+                            demais.</p>
+                    </div>
+                    <div class="mental-card" data-reveal="up">
+                        <p>Quando os sentimentos estiverem atrapalhando sua rotina ou causando sofrimento, procurar um
+                            profissional de saúde mental também é uma forma de cuidado!</p>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="mental-aside">
+                <div class="lembrete-card" id="lembrete-card" data-reveal="right">
+                    <span class="lembrete-header">Lembrete!</span>
+                    <div class="lembrete-frase-wrap">
+                        <p class="lembrete-frase" id="lembrete-frase">Cuidar da mente é tão importante quanto cuidar
+                            do corpo.</p>
+                    </div>
+                    <button class="lembrete-ok" id="lembrete-ok" type="button">OK</button>
+                </div>
+
+                <div class="card card-sage minijogo-card" data-reveal="right">
+                    <h3>Minijogo: Respire e Recarregue</h3>
+                    <p>Acompanhe o ritmo da respiração e clique no momento certo para encher o pulmão e conquistar o
+                        Emblema de Bem-Estar Mental.</p>
+                    <a href="jogo-respiracao.html" style="text-decoration: none;">
+                        <button class="btn-secondary" type="button">Jogar Agora →</button>
+                    </a>
+                </div>
+            </aside>
+        </section>
+
+        <section class="mental-dados" id="numeros" data-reveal-group>
+            <h2 class="mental-dados-intro" data-reveal="up">Saúde mental em números</h2>
+            <p class="mental-dados-sub" data-reveal="up">Falar sobre o assunto ajuda a entender que ansiedade e
+                tristeza fazem parte da experiência de muita gente — e que buscar apoio é um passo válido.</p>
+            <div class="stats-grid">
+                <div class="stat-tile" style="--stat-accent: var(--color-sage-deep);" data-reveal="up">
+                    <span class="stat-number">1 em cada 7</span>
+                    <p class="stat-desc">adolescentes de 10 a 19 anos vive com algum transtorno mental — cerca de
+                        15% de toda a carga de doenças nessa faixa etária.</p>
+                    <span class="stat-source">OMS, agência da ONU</span>
+                </div>
+                <div class="stat-tile" style="--stat-accent: var(--color-sage-deep);" data-reveal="up">
+                    <span class="stat-number">470 milhões</span>
+                    <p class="stat-desc">de pessoas convivem com algum transtorno de ansiedade no mundo, sendo 146
+                        milhões crianças e adolescentes.</p>
+                    <span class="stat-source">OMS, 2023</span>
+                </div>
+                <div class="stat-tile" style="--stat-accent: var(--color-sage-deep);" data-reveal="up">
+                    <span class="stat-number">1 em cada 3</span>
+                    <p class="stat-desc">é a proporção de pessoas com depressão que recebe tratamento formal no
+                        mundo — por isso conversar e pedir ajuda faz diferença.</p>
+                    <span class="stat-source">OMS</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="mood-section" id="emocoes" data-reveal="up">
+            <span class="mood-pill">Conheça suas emoções:</span>
+            <div class="mood-question">
+                <p>Como está se sentindo hoje?</p>
+                <div class="mood-tracker" role="group" aria-label="Selecione como você está se sentindo hoje">
+                    <button class="mood-option" type="button" data-mood="triste" aria-pressed="false"
+                        aria-label="Triste">😢</button>
+                    <button class="mood-option" type="button" data-mood="chateado" aria-pressed="false"
+                        aria-label="Chateado">😟</button>
+                    <button class="mood-option" type="button" data-mood="neutro" aria-pressed="false"
+                        aria-label="Neutro">😐</button>
+                    <button class="mood-option" type="button" data-mood="bem" aria-pressed="false"
+                        aria-label="Bem">🙂</button>
+                    <button class="mood-option" type="button" data-mood="otimo" aria-pressed="false"
+                        aria-label="Ótimo">😄</button>
+                </div>
+                <p class="mood-feedback" id="mood-feedback"></p>
+            </div>
+        </section>
+
+        <section class="praticas-section" id="praticas">
+            <h2 data-reveal="up">Práticas para o dia a dia</h2>
+            <p class="praticas-sub" data-reveal="up">Pequenos hábitos que ajudam a cuidar da mente na rotina.
+                Toque em um card para entender o porquê.</p>
+            <div class="praticas-grid" data-reveal-group>
+                <div class="pratica-card" data-reveal="up">
+                    <div class="pratica-icon" aria-hidden="true">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 9c2 0 2 3 4 3s2-3 4-3 2 3 4 3 2-3 4-3 2 3 4 3"></path>
+                            <path d="M2 15c2 0 2 3 4 3s2-3 4-3 2 3 4 3 2-3 4-3 2 3 4 3"></path>
+                        </svg>
+                    </div>
+                    <h3>Respiração</h3>
+                    <p>Técnicas de respiração ajudam a acalmar a mente e reduzir a ansiedade.</p>
+                    <button type="button" class="beneficio-mais" data-beneficio="respiracao" aria-haspopup="dialog">Entenda
+                        por quê <span aria-hidden="true">→</span></button>
+                </div>
+                <div class="pratica-card" data-reveal="up">
+                    <div class="pratica-icon" aria-hidden="true">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="6" y="2" width="12" height="20" rx="2"></rect>
+                            <line x1="10" y1="18" x2="14" y2="18"></line>
+                            <line x1="3" y1="3" x2="21" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Desconecte-se</h3>
+                    <p>Pausas das telas ajudam a reduzir o estresse, melhorar o foco e trazer equilíbrio para o dia a
+                        dia.</p>
+                    <button type="button" class="beneficio-mais" data-beneficio="desconecte" aria-haspopup="dialog">Entenda
+                        por quê <span aria-hidden="true">→</span></button>
+                </div>
+                <div class="pratica-card" data-reveal="up">
+                    <div class="pratica-icon" aria-hidden="true">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 6h11M9 12h11M9 18h11"></path>
+                            <path d="M3.5 6.5 4.5 7.5 6.5 5.5"></path>
+                            <path d="M3.5 12.5 4.5 13.5 6.5 11.5"></path>
+                            <path d="M3.5 18.5 4.5 19.5 6.5 17.5"></path>
+                        </svg>
+                    </div>
+                    <h3>Organização mental</h3>
+                    <p>Organizar pensamentos, prioridades e tarefas ajuda a tomar decisões mais claras.</p>
+                    <button type="button" class="beneficio-mais" data-beneficio="organizacao" aria-haspopup="dialog">Entenda
+                        por quê <span aria-hidden="true">→</span></button>
+                </div>
+                <div class="pratica-card" data-reveal="up">
+                    <div class="pratica-icon" aria-hidden="true">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M12 7C10.5 4 7 3 4.5 5.5 1.5 8.5 3 12 12 20 21 12 22.5 8.5 19.5 5.5 17 3 13.5 4 12 7Z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Cuide-se</h3>
+                    <p>Reconhecer suas qualidades e celebrar pequenas conquistas ajuda a ter mais confiança e
+                        segurança no dia a dia.</p>
+                    <button type="button" class="beneficio-mais" data-beneficio="cuidese" aria-haspopup="dialog">Entenda
+                        por quê <span aria-hidden="true">→</span></button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <section class="fontes-section">
+        <h2>Fontes</h2>
+        <ul class="fontes-list">
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/mental-disorders" target="_blank"
+                    rel="noopener">Organização Mundial da Saúde (OMS) — Mental disorders</a>, ficha técnica sobre
+                transtornos mentais no mundo.</li>
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health" target="_blank"
+                    rel="noopener">Organização Mundial da Saúde (OMS) — Mental health of adolescents</a>, ficha
+                técnica sobre saúde mental na adolescência.</li>
+        </ul>
+    </section>
+
+    <footer class="footer footer--mental">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/reveal.js"></script>
+    <script src="JS/beneficio-modal.js"></script>
+    <script src="JS/pages/saudemental.js"></script>
+</body>
+
+</html>

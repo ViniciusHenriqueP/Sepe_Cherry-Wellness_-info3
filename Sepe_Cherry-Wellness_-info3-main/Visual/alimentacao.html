@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Prato & Saúde</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/home.css">
+    <link rel="stylesheet" href="CSS/pages/alimentacao.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="sepe/index.html">Vida em movimento</a>
+            <a href="alimentacao.html" class="active">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <section class="hero-section-clean">
+        <div class="hero-text-area" data-reveal="left">
+            <h1 class="hero-title">Prato & Saúde</h1>
+            <p class="hero-subtitle">Comer bem é um ato de cuidado com você.</p>
+            <p>Uma alimentação equilibrada fornece os nutrientes que seu corpo precisa para funcionar bem todos os
+                dias. A Organização Mundial da Saúde (OMS), agência da ONU responsável pela saúde, recomenda pelo
+                menos 400g de frutas e vegetais por dia — cerca de 5 porções. Aqui você encontra informações
+                confiáveis, com fonte, e dicas práticas para fazer escolhas mais saudáveis.</p>
+        </div>
+        <div class="hero-image-area" data-reveal="scale">
+            <img src="IMG/alimentacao/prato.png" alt="Prato equilibrado com alimentos saudáveis">
+        </div>
+    </section>
+
+    <div class="checkerboard-divider"></div>
+
+    <section class="hero-info">
+        <div class="hero-image-area" data-reveal="scale">
+            <img src="IMG/alimentacao/Comidas.webp" alt="Variedade de alimentos saudáveis">
+        </div>
+        <div class="hero-text-area" data-reveal="right">
+            <h1 class="hero-title">Escolhas que fazem a diferença</h1>
+            <p class="hero-subtitle">Pequenas mudanças, grandes resultados.</p>
+            <p>Conhecer os grupos alimentares e o papel de cada nutriente ajuda a montar refeições mais equilibradas
+                no dia a dia. Abaixo você encontra um resumo prático sobre proteínas, carboidratos, gorduras boas,
+                vitaminas e minerais — e como incorporá-los sem complicação na sua rotina.</p>
+        </div>
+    </section>
+
+    <section class="nutrientes-intro">
+        <h2>Nutrientes que fazem a diferença</h2>
+        <p>Clique em um nutriente abaixo para ler a sua explicação detalhada.</p>
+
+        <div class="grid-nutrientes" data-reveal-group>
+            <a href="#proteinas" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('proteinas')">
+                <div class="nutriente-card-click">
+                    <span class="emoji-nutriente">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="1" y="10" width="3" height="4" rx="1"></rect>
+                            <rect x="20" y="10" width="3" height="4" rx="1"></rect>
+                            <rect x="4" y="8" width="2" height="8" rx="1"></rect>
+                            <rect x="18" y="8" width="2" height="8" rx="1"></rect>
+                            <line x1="6" y1="12" x2="18" y2="12"></line>
+                        </svg>
+                    </span>
+                    <h3>Proteínas</h3>
+                    <p>Construção e reparação de tecidos.</p>
+                </div>
+            </a>
+
+            <a href="#carboidratos" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('carboidratos')">
+                <div class="nutriente-card-click">
+                    <span class="emoji-nutriente">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                            <path d="M12 6 9 4M12 6l3-2M12 10 9 8m3 2 3-2M12 14 9 12m3 2 3-2M12 18l-3-2m3 2 3-2">
+                            </path>
+                        </svg>
+                    </span>
+                    <h3>Carboidratos</h3>
+                    <p>A principal fonte de energia.</p>
+                </div>
+            </a>
+
+            <a href="#gorduras" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('gorduras')">
+                <div class="nutriente-card-click">
+                    <span class="emoji-nutriente">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M12 2C12 2 5 11 5 15a7 7 0 0 0 14 0C19 11 12 2 12 2Z"></path>
+                        </svg>
+                    </span>
+                    <h3>Gorduras Boas</h3>
+                    <p>Saúde hormonal e do coração.</p>
+                </div>
+            </a>
+
+            <a href="#vitaminas" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('vitaminas')">
+                <div class="nutriente-card-click">
+                    <span class="emoji-nutriente">
+                        <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 20c0-9 5-16 16-16 0 11-7 16-16 16Z"></path>
+                            <path d="M4 20c3-4 6-8 12-14"></path>
+                        </svg>
+                    </span>
+                    <h3>Vitaminas e Minerais</h3>
+                    <p>Regulação das funções vitais.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="detalhes-nutrientes-section">
+        <div class="container-detalhes">
+
+            <div id="mensagem-inicial" class="mensagem-inicial">
+                Selecione um dos nutrientes acima para exibir as informações completas e dicas práticas!
+            </div>
+
+            <div id="content-proteinas" class="nutriente-bloco content-escondido">
+                <h3>Proteínas: Construção e Reparo</h3>
+                <p>As proteínas são responsáveis pela construção e reparação de músculos, pele e órgãos, além de
+                    participarem da produção de enzimas e hormônios. Estão presentes em carnes, ovos, leguminosas e
+                    laticínios.</p>
+                <div class="dica-saudavel-box">
+                    <strong>Escolhas Práticas & Saudáveis:</strong> prefira fontes magras como frango, peixe, ovos e
+                    feijão, distribuindo o consumo ao longo do dia.
+                </div>
+            </div>
+
+            <div id="content-carboidratos" class="nutriente-bloco content-escondido">
+                <h3>Carboidratos: Combustível do Corpo</h3>
+                <p>São a principal fonte de energia para o corpo e o cérebro. Carboidratos complexos — aqueles que o
+                    corpo demora mais para digerir, como grãos integrais e tubérculos — liberam energia de forma
+                    gradual e ajudam a manter a saciedade. Eles também costumam vir acompanhados de fibras: a OMS
+                    recomenda pelo menos 25g de fibra alimentar por dia para adultos.</p>
+                <div class="dica-saudavel-box">
+                    <strong>Escolhas Práticas & Saudáveis:</strong> prefira arroz integral, aveia e batata-doce no
+                    lugar de versões muito refinadas.
+                </div>
+            </div>
+
+            <div id="content-gorduras" class="nutriente-bloco content-escondido">
+                <h3>Gorduras Boas: Protetoras do Coração e Cérebro</h3>
+                <p>Gorduras insaturadas, presentes no azeite, abacate e oleaginosas, ajudam na absorção de vitaminas e
+                    na saúde cardiovascular, além de serem essenciais para o funcionamento do cérebro. Já a gordura
+                    saturada (presente em frituras e embutidos) deve ficar abaixo de 10% das calorias do dia, e a
+                    gordura trans, abaixo de 1% — segundo os limites recomendados pela OMS.</p>
+                <div class="dica-saudavel-box">
+                    <strong>Escolhas Práticas & Saudáveis:</strong> use azeite de oliva, castanhas e abacate no lugar
+                    de gorduras industrializadas.
+                </div>
+            </div>
+
+            <div id="content-vitaminas" class="nutriente-bloco content-escondido">
+                <h3>Vitaminas e Minerais: Os Reguladores Invisíveis</h3>
+                <p>Vitaminas e minerais regulam funções vitais do organismo, do sistema imunológico à saúde dos ossos.
+                    Frutas, verduras e legumes coloridos garantem uma boa variedade desses nutrientes. Entre os
+                    minerais, vale atenção especial ao sódio: a OMS recomenda no máximo 5g de sal por dia (cerca de
+                    uma colher de chá), e boa parte do consumo em excesso vem de alimentos processados.</p>
+                <div class="dica-saudavel-box">
+                    <strong>Escolhas Práticas & Saudáveis:</strong> monte o prato com cores variadas de frutas e
+                    vegetais, e prefira temperos naturais no lugar do excesso de sal.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="dados-intro" data-reveal-group>
+        <h2 data-reveal="up">Alimentação em números</h2>
+        <p data-reveal="up">A alimentação brasileira vem mudando — e os números mostram por que escolhas melhores
+            fazem diferença.</p>
+
+        <div class="dados-grid">
+            <figure class="data-chart" data-reveal="up" style="--chart-color: var(--color-red-accent);"
+                aria-labelledby="chart-obesidade-titulo">
+                <figcaption>
+                    <span class="chart-title" id="chart-obesidade-titulo">Obesidade em adultos no Brasil</span>
+                    <span class="chart-note">Percentual da população adulta vivendo com obesidade</span>
+                </figcaption>
+                <ul class="chart-bars">
+                    <li class="chart-bar-row">
+                        <div class="chart-bar-top">
+                            <span class="chart-bar-label">2006</span>
+                            <span class="chart-bar-value">11,8%</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 11.8%;"></div>
+                        </div>
+                    </li>
+                    <li class="chart-bar-row">
+                        <div class="chart-bar-top">
+                            <span class="chart-bar-label">2023</span>
+                            <span class="chart-bar-value">24,3%</span>
+                        </div>
+                        <div class="chart-bar-track">
+                            <div class="chart-bar-fill" style="width: 24.3%;"></div>
+                        </div>
+                    </li>
+                </ul>
+                <p class="chart-source">Fonte: Ministério da Saúde, pesquisa Vigitel 2006–2023.</p>
+            </figure>
+
+            <a href="https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/vigitel/vigitel-2006-2023-estado-nutricional-e-consumo-alimentar/view"
+                target="_blank" rel="noopener" class="stat-tile" style="--stat-accent: var(--color-red-accent);"
+                data-reveal="up">
+                <span class="stat-number">31,4%</span>
+                <p class="stat-desc">dos brasileiros consomem frutas e verduras regularmente (5 dias ou mais por
+                    semana).</p>
+                <span class="stat-source">Ministério da Saúde, Vigitel 2023</span>
+            </a>
+        </div>
+
+        <p class="dados-contexto-global" data-reveal="up">No mundo, <strong>43% dos adultos</strong> estão com
+            sobrepeso e <strong>16% vivem com obesidade</strong>, segundo a Organização Mundial da Saúde (OMS,
+            2022) — mostrando que o desafio de comer bem vai muito além do Brasil.</p>
+    </section>
+
+    <section class="minijogo-cta">
+        <div class="card card-red" data-reveal="scale">
+            <h2>Minijogo: Monte seu Prato Saudável</h2>
+            <p>
+                Você aprendeu os segredos dos nutrientes. Agora é hora de provar que você é um Mestre do Prato
+                Saudável! <br>
+                Arraste os melhores alimentos para o seu prato e tente conseguir mais de 80% de saúde para conquistar
+                um Emblema exclusivo no seu perfil.
+            </p>
+            <a href="jogo-prato.html" style="text-decoration: none;">
+                <button class="btn-secondary">Jogar Agora →</button>
+            </a>
+        </div>
+    </section>
+
+    <section class="fontes-section">
+        <h2>Fontes</h2>
+        <ul class="fontes-list">
+            <li><a href="https://www.who.int/news-room/fact-sheets/detail/healthy-diet" target="_blank"
+                    rel="noopener">Organização Mundial da Saúde (OMS) — Healthy diet</a>, ficha técnica sobre
+                alimentação saudável (porções recomendadas, limites de açúcar, sal e gordura).</li>
+            <li><a href="https://www.gov.br/saude/pt-br/centrais-de-conteudo/publicacoes/svsa/vigitel/vigitel-2006-2023-estado-nutricional-e-consumo-alimentar/view"
+                    target="_blank" rel="noopener">Ministério da Saúde — Vigitel 2006–2023</a>, estado nutricional e
+                consumo alimentar da população brasileira.</li>
+        </ul>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/reveal.js"></script>
+    <script src="JS/pages/alimentacao.js"></script>
+</body>
+
+</html>
