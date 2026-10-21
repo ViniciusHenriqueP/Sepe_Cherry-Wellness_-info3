@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Wellness - Monte seu Prato</title>
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/jogo-prato.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
+        rel="stylesheet">
+    <script src="JS/theme.js"></script>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo-area">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <span class="logo-text">Cherry Wellness</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Início</a>
+            <a href="sepe/index.html">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
+            aria-pressed="false">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path
+                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41">
+                </path>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg>
+        </button>
+    </header>
+
+    <main class="prato-jogo">
+
+        <header class="prato-cabecalho">
+            <span class="prato-pill">Minijogo</span>
+            <h1>Monte seu Prato</h1>
+            <p>Arraste até 4 alimentos para o prato e descubra o quanto ele é saudável. Com 80% ou mais, você
+                conquista o Emblema do Prato Saudável!</p>
+        </header>
+
+        <div class="game-wrapper">
+            <section class="comidas-paleta" aria-labelledby="titulo-alimentos">
+                <h2 id="titulo-alimentos">Alimentos</h2>
+                <p>Arraste os alimentos até o prato</p>
+
+                <div class="comidas-grid" id="comidas-grid">
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="alface" class="emoji-arrastavel">🥬</div></div>
+                        <span>Alface</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="file-frango" class="emoji-arrastavel">🍗</div></div>
+                        <span>Frango</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="arroz" class="emoji-arrastavel">🍚</div></div>
+                        <span>Arroz</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="azeite" class="emoji-arrastavel">🫒</div></div>
+                        <span>Azeite</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="linguica" class="emoji-arrastavel">🌭</div></div>
+                        <span>Linguiça</span>
+                    </div>
+                    <div class="comida-card">
+                        <div class="comida-slot"><div id="refrigerante" class="emoji-arrastavel">🥤</div></div>
+                        <span>Refri</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="prato-container" aria-labelledby="titulo-prato">
+                <div class="prato-topo">
+                    <h2 id="titulo-prato">Seu prato</h2>
+                    <span class="prato-contador" id="prato-contador">0/4 itens</span>
+                </div>
+
+                <div class="prato-mesa">
+                    <div id="prato-alvo" class="area-prato">
+                        <p id="texto-ajuda" class="texto-ajuda">Arraste até 4 itens para cá!</p>
+                    </div>
+                </div>
+
+                <p class="prato-aviso" id="prato-aviso" role="status" aria-live="polite">Toque em um alimento no prato
+                    para tirá-lo.</p>
+
+                <div class="botoes-grupo">
+                    <button class="btn-primary" type="button" onclick="calcularSaude()">Calcular saúde</button>
+                    <button class="btn-secondary" type="button" onclick="recomecarJogo()">Recomeçar</button>
+                </div>
+
+                <div id="area-resultado" class="area-resultado" hidden>
+                    <div id="resultado-painel" class="painel-resultado"></div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
+                <span>Cherry Wellness</span>
+            </div>
+            <div class="footer-social">
+                <span class="footer-social-label">Siga-nos</span>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
+    </footer>
+
+    <script src="JS/pages/jogo-prato.js"></script>
+</body>
+
+</html>

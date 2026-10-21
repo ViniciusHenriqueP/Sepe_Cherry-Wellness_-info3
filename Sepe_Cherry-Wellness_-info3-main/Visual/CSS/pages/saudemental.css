@@ -1,0 +1,401 @@
+/* ==========================================================================
+   PÁGINA BEM-ESTAR MENTAL (saudemental.html)
+   ========================================================================== */
+
+/* Botões desta página preenchem com o verde da identidade "Bem-Estar mental"
+   no hover, em vez do vinho padrão do site (--color-brand) */
+.mental-page .btn-secondary:hover {
+    color: #F4F8F0;
+}
+
+.mental-page .btn-secondary::before {
+    background-color: var(--color-brand-mental);
+}
+
+.mental-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.mental-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+/* ---------- Introdução ---------- */
+.mental-intro h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--color-text-strong);
+    margin-bottom: 20px;
+}
+
+.mental-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.mental-card {
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    color: var(--color-text);
+    line-height: 1.6;
+    font-size: 15px;
+    transition: transform var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.mental-card:hover {
+    transform: translateY(-4px);
+}
+
+.mental-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-sage-panel-soft);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    transition: background-color var(--transition-base);
+}
+
+.mental-media img {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+}
+
+@media (min-width: 760px) {
+    .mental-layout {
+        grid-template-columns: 1.4fr 1fr;
+        align-items: start;
+    }
+
+    .mental-intro-grid {
+        grid-template-columns: 1fr 1.2fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .mental-media {
+        grid-row: 1 / 3;
+        height: 100%;
+    }
+}
+
+/* ---------- Lembrete + minijogo ---------- */
+.mental-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.lembrete-card {
+    background-color: var(--color-sage-panel);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--transition-base), opacity 0.4s ease, transform 0.4s ease;
+    transform-origin: top center;
+}
+
+/* Estágio 1: encolhe e desaparece */
+.lembrete-card.is-closing {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+    pointer-events: none;
+}
+
+/* Estágio 2 (após o fade terminar): recolhe o espaço suavemente */
+.lembrete-card.is-dismissed {
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    overflow: hidden;
+    box-shadow: none;
+    transition: height 0.35s ease, padding 0.35s ease, margin 0.35s ease;
+}
+
+.lembrete-header {
+    display: inline-block;
+    background-color: var(--color-sage-deep);
+    color: #F4F8F0;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 8px 22px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 18px;
+}
+
+:root[data-theme="dark"] .lembrete-header {
+    color: #10190D;
+}
+
+.lembrete-frase-wrap {
+    min-height: 3.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.lembrete-frase {
+    font-size: 19px;
+    font-weight: bold;
+    color: var(--color-sage-deep);
+    line-height: 1.4;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.lembrete-frase.is-changing {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.lembrete-ok {
+    background-color: var(--color-sage-deep);
+    color: #F4F8F0;
+    border: none;
+    padding: 10px 32px;
+    border-radius: var(--radius-pill);
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform var(--transition-base), filter var(--transition-base);
+}
+
+:root[data-theme="dark"] .lembrete-ok {
+    color: #10190D;
+}
+
+.lembrete-ok:hover {
+    transform: scale(1.06);
+    filter: brightness(1.1);
+}
+
+/* CTA do minijogo — mesmo modelo do card de "Minijogo" da página Prato & Saúde */
+.card-sage {
+    background-color: var(--color-sage-panel-soft);
+    border-color: var(--color-sage);
+}
+
+.minijogo-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.minijogo-card h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--color-text-strong);
+}
+
+.minijogo-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin-bottom: 6px;
+}
+
+/* ---------- Saúde mental em números ---------- */
+.mental-dados {
+    text-align: center;
+}
+
+.mental-dados-intro {
+    font-size: 34px;
+    font-weight: bold;
+    color: var(--color-text-strong);
+    margin-bottom: 6px;
+}
+
+.mental-dados-sub {
+    color: var(--color-text-muted);
+    max-width: 620px;
+    margin: 0 auto 26px;
+}
+
+/* ---------- Emoções ---------- */
+.mood-section {
+    background-color: var(--color-sage-panel);
+    border-radius: var(--radius-lg);
+    padding: 30px 24px;
+    text-align: center;
+    transition: background-color var(--transition-base);
+}
+
+.mood-pill {
+    display: inline-block;
+    background-color: var(--color-sage-deep);
+    color: #F4F8F0;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 8px 22px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 20px;
+}
+
+:root[data-theme="dark"] .mood-pill {
+    color: #10190D;
+}
+
+.mood-question {
+    background-color: var(--color-bg-elevated);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    max-width: 480px;
+    margin: 0 auto;
+    transition: background-color var(--transition-base);
+}
+
+.mood-question>p {
+    font-weight: bold;
+    color: var(--color-text-strong);
+    margin-bottom: 18px;
+}
+
+.mood-tracker {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.mood-option {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-color: var(--color-red-soft);
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform var(--transition-base), border-color var(--transition-base);
+}
+
+.mood-option:hover {
+    transform: translateY(-4px) scale(1.05);
+}
+
+.mood-option[aria-pressed="true"] {
+    border-color: var(--color-sage-deep);
+    transform: scale(1.1);
+}
+
+.mood-feedback {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--color-text-muted);
+    min-height: 1.4em;
+}
+
+/* ---------- Práticas para o dia a dia ---------- */
+.praticas-section {
+    text-align: center;
+}
+
+.praticas-section h2 {
+    color: var(--color-text-strong);
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.praticas-sub {
+    color: var(--color-text-muted);
+    max-width: 560px;
+    margin: 0 auto 26px;
+}
+
+.praticas-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: left;
+}
+
+.pratica-card {
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.pratica-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-sage);
+    box-shadow: var(--shadow-md);
+}
+
+/* O botão "Entenda por quê" cobre o card inteiro com um ::after, então
+   qualquer ponto do card abre o pop-up (estilos em CSS/beneficio-modal.css) */
+.pratica-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.pratica-card .beneficio-mais {
+    margin-top: auto;
+    padding-top: 14px;
+}
+
+/* Pop-up no verde-sálvia da aba, em vez do verde de Vida em Movimento */
+.mental-page,
+.beneficio-modal {
+    --modal-accent: var(--color-sage-deep);
+    --modal-accent-soft: var(--color-sage-panel-soft);
+}
+
+.pratica-icon {
+    margin-bottom: 12px;
+    color: var(--color-sage-deep);
+}
+
+.pratica-icon .icon-line {
+    width: 32px;
+    height: 32px;
+}
+
+.pratica-card h3 {
+    font-size: 19px;
+    font-weight: bold;
+    color: var(--color-text-strong);
+    margin-bottom: 8px;
+}
+
+.pratica-card p {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+@media (min-width: 600px) {
+    .praticas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 980px) {
+    .praticas-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
