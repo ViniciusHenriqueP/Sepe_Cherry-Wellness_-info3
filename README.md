@@ -314,9 +314,9 @@ Todo o grupo mantém o ritmo,trabalhando com base nas respectivas divisões de t
 ### Ata 11
 
 
-**Data:** 21/09/2026
+**Data:** 19/09/2026
 
-**Ausentes:** Ninguém
+**Ausentes:** Vinícius.
 
 ### Assuntos
 
@@ -347,8 +347,22 @@ Lukas= Atas,página, coleta de informações e reunião.
 Gabrieli=Wireframe da sua página.
 
 
+### Ata 12
+
+**Data:** 26/09/2026
+
+**Ausentes:** Ninguém
+
+### Assuntos
+
+Conversamos sobre como foi toda a sepe, discutimos a respeito dos benefícios que a sepe trouxe tanto para o nosso desenvolvimento interpessoal, quanto pessoal.
+Discutimos sobre os tantos aprendizados que cultivamos durante o processo do desenvolvimento do trabalho como um todo.
+Aprendemos a passar o que conhecemos de forma natural como uma conversa, graças a sepe.
 
 
+### Responsabilidades
+
+Todos apresentamos as nossas partes, conversamos e compartilhamos nossas vivências com a sala.
 
 
 
