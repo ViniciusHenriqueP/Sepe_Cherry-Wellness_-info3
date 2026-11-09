@@ -365,6 +365,26 @@ Aprendemos a passar o que conhecemos de forma natural como uma conversa, graças
 Todos apresentamos as nossas partes, conversamos e compartilhamos nossas vivências com a sala.
 
 
+### Ata 13
+
+
+**Data:** 09/11/2026
+
+### Assuntos
+
+Estamos trabalhando agora para estudar a codificação de cada página do nosso site. Além da revisão dos wireframes.
+
+### Responsabilidades
+
+Murilo nos códigos, letícia e gabriela nos wireframes. gabrieli nos estudos da sua página.
+vini nos códigos.
+Lukas nas atas.
+
+
+
+
+
+
 
 
 
