@@ -27,7 +27,7 @@ body {
     margin-bottom: 20px;
 }
 
-.boss-info h2 {
+.boss-info h1 {
     font-size: 34px;
     color: var(--color-text-strong);
     margin-bottom: 8px;

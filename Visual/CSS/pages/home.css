@@ -10,6 +10,13 @@
     text-align: center;
     padding: 30px 20px;
     gap: 20px;
+    /* Fundo via CSS: logo grande bem suave atrás do hero (véu na cor do tema, funciona no escuro) */
+    background-image:
+        linear-gradient(color-mix(in srgb, var(--color-bg) 94%, transparent), color-mix(in srgb, var(--color-bg) 94%, transparent)),
+        url("../../IMG/logo.png");
+    background-repeat: no-repeat;
+    background-position: center, right -40px center;
+    background-size: auto, 320px;
 }
 
 .hero-content {

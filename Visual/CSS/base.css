@@ -901,3 +901,12 @@ a.stat-tile:focus-visible {
 .fontes-list a:hover {
     text-decoration-color: currentColor;
 }
+
+/* ==========================================================================
+   UTILITÁRIOS — substituem estilos inline nos HTMLs
+   ========================================================================== */
+.link-limpo { text-decoration: none; }
+.svg-oculto { position: absolute; }
+.accent-green { --stat-accent: var(--color-green-strong); --chart-color: var(--color-green-strong); }
+.accent-red { --stat-accent: var(--color-red-accent); --chart-color: var(--color-red-accent); }
+.accent-sage { --stat-accent: var(--color-sage-deep); }
