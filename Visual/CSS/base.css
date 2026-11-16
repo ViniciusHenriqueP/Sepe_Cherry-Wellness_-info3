@@ -320,26 +320,32 @@ body {
     background-color: rgba(255, 255, 255, 0.16);
 }
 
-/* Os três tracinhos do hambúrguer */
-.menu-toggle span {
-    display: block;
+/* Os três tracinhos do hambúrguer: ::before (+ sombra = traço do meio) e ::after */
+.menu-toggle::before,
+.menu-toggle::after {
+    content: "";
     width: 18px;
     height: 2px;
     border-radius: 2px;
     background-color: var(--color-text-on-dark);
-    transition: transform var(--transition-base), opacity var(--transition-base);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.menu-toggle {
+    gap: 10px;
+}
+
+.menu-toggle::before {
+    box-shadow: 0 6px 0 var(--color-text-on-dark);
 }
 
 /* Menu aberto: os tracinhos viram um "X" */
-.navbar.menu-aberto .menu-toggle span:nth-child(1) {
+.navbar.menu-aberto .menu-toggle::before {
     transform: translateY(6px) rotate(45deg);
+    box-shadow: none;
 }
 
-.navbar.menu-aberto .menu-toggle span:nth-child(2) {
-    opacity: 0;
-}
-
-.navbar.menu-aberto .menu-toggle span:nth-child(3) {
+.navbar.menu-aberto .menu-toggle::after {
     transform: translateY(-6px) rotate(-45deg);
 }
 
@@ -651,6 +657,27 @@ a.btn-card {
     background-color: rgba(255, 255, 255, 0.22);
     transform: translateY(-3px) scale(1.06);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.footer-map ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 18px;
+    margin-top: 18px;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+}
+
+.footer-map a {
+    color: inherit;
+    opacity: 0.85;
+}
+
+.footer-map a:hover {
+    opacity: 1;
+    text-decoration: underline;
 }
 
 .footer-copy {
