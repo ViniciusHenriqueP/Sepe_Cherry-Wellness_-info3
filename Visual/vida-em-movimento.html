@@ -5,31 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cherry Wellness - Vida em Movimento</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="../CSS/variables.css">
-    <link rel="stylesheet" href="../CSS/base.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/pages/vida-em-movimento.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
         rel="stylesheet">
-    <script src="../JS/theme.js"></script>
+    <!-- Tema claro/escuro: fica no <head> para não "piscar" ao carregar -->
+    <script src="JS/theme.js"></script>
+    <script src="JS/menu.js" defer></script>
 </head>
 
-<body>
+<body data-voltar-ao-topo>
 
+    <!-- NAVBAR: logo, links para as páginas, menu do celular e botão de tema claro/escuro -->
     <header class="navbar">
         <div class="logo-area">
-            <img src="../IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
+            <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
             <span class="logo-text">Cherry Wellness</span>
         </div>
-        <nav class="nav-links">
-            <a href="../index.html">Início</a>
-            <a href="index.html" class="active">Vida em movimento</a>
-            <a href="../alimentacao.html">Prato & Saúde</a>
-            <a href="../saudemental.html">Bem-Estar mental</a>
-            <a href="../emblemas.html">Emblemas & Minijogos</a>
+        <nav class="nav-links" id="menu-principal" aria-label="Menu principal">
+            <a href="index.html">Início</a>
+            <a href="vida-em-movimento.html" class="active">Vida em movimento</a>
+            <a href="alimentacao.html">Prato & Saúde</a>
+            <a href="saudemental.html">Bem-Estar mental</a>
+            <a href="emblemas.html">Emblemas & Minijogos</a>
         </nav>
+        <!-- Botão ☰ do menu no celular (JS/menu.js) -->
+        <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="menu-principal">
+            <span></span><span></span><span></span>
+        </button>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
             aria-pressed="false">
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -46,8 +54,10 @@
         </button>
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL da página Vida em movimento -->
     <main class="movimento-page">
 
+        <!-- TOPO: o que o movimento faz pelo corpo -->
         <section class="movimento-hero">
             <div class="movimento-hero-content" data-reveal="left">
                 <span class="movimento-pill">Vida em movimento</span>
@@ -57,12 +67,13 @@
                     bem-estar.</p>
             </div>
             <div class="movimento-hero-media" data-reveal="scale">
-                <img src="img/musculo-removebg-preview.png" alt="Ilustração de músculo representando força e atividade física">
+                <img src="IMG/vida-movimento/musculo.png" alt="Ilustração de músculo representando força e atividade física">
             </div>
         </section>
 
         <div class="checkerboard-divider"></div>
 
+        <!-- BENEFÍCIOS PARA O CORPO: músculos, coração, pulmões... -->
         <section class="movimento-beneficios" id="beneficios-corpo">
             <span class="movimento-pill">Benefícios para o seu corpo:</span>
             <div class="movimento-grid" data-reveal-group>
@@ -130,35 +141,38 @@
             </div>
         </section>
 
+        <!-- Botão para continuar para a próxima parte (jogo-movimento.html) -->
         <section class="movimento-cta" data-reveal="up">
-            <img class="movimento-cta-icon" src="img/sim-removebg-preview 1.png" alt="">
+            <img class="movimento-cta-icon" src="IMG/vida-movimento/cereja-sim.png" alt="">
             <h2>Quer saber mais?</h2>
             <p>Veja como se preparar antes do treino, o que o exercício faz pela sua mente e os números da atividade
                 física entre os adolescentes. No fim, tem um minijogo te esperando!</p>
-            <button class="btn-primary" type="button" onclick="window.location.href='../jogo-movimento.html'">Continuar
-                explorando →</button>
+            <a href="jogo-movimento.html" class="btn-primary">Continuar
+                explorando →</a>
         </section>
 
     </main>
 
+    <!-- RODAPÉ: marca, redes sociais e créditos -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
-                <img src="../IMG/logo.png" alt="" class="footer-logo">
+                <img src="IMG/logo.png" alt="" class="footer-logo">
                 <span>Cherry Wellness</span>
             </div>
             <div class="footer-social">
                 <span class="footer-social-label">Siga-nos</span>
                 <div class="social-icons">
-                    <a href="#" class="icon" aria-label="Instagram"><img src="../IMG/icons/instagram.png" alt=""></a>
-                    <a href="#" class="icon" aria-label="Github"><img src="../IMG/icons/github.png" alt=""></a>
+                    <a href="#" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
+                    <a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="Github" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a>
                 </div>
             </div>
         </div>
         <p class="footer-copy">Projeto Integrador &mdash; IFC Araquari</p>
     </footer>
 
-    <script src="../JS/reveal.js"></script>
+    <!-- Scripts da página (ficam no fim para o HTML carregar primeiro) -->
+    <script src="JS/reveal.js"></script>
 </body>
 
 </html>

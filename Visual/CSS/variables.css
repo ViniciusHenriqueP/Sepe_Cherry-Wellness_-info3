@@ -2,6 +2,15 @@
    TOKENS DE DESIGN (cores, raios, sombras, transições)
    Toda a paleta do site vive aqui. As páginas usam var(--nome) em vez de
    cores fixas, então o modo escuro só precisa redefinir estas variáveis.
+
+   Como usar (é bem simples!):
+     color: var(--color-text);          → texto normal
+     background: var(--color-bg-alt);   → fundo um pouquinho diferente
+     border-radius: var(--radius-md);   → cantos arredondados padrão
+
+   Quer mudar uma cor do site inteiro? Mude AQUI, uma vez só. 🎨
+   Lembre de ajustar também a versão escura, lá embaixo
+   (blocos "prefers-color-scheme: dark" e [data-theme="dark"]).
    ========================================================================== */
 
 :root {

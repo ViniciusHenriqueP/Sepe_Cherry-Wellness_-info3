@@ -16,23 +16,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&family=VT323&display=swap"
         rel="stylesheet">
+    <!-- Tema claro/escuro: fica no <head> para não "piscar" ao carregar -->
     <script src="JS/theme.js"></script>
+    <script src="JS/menu.js" defer></script>
+    <!-- Emblemas conquistados (precisa vir antes dos scripts dos jogos) -->
+    <script src="JS/progresso.js"></script>
 </head>
 
 <body class="corpo-boss">
 
+    <!-- NAVBAR: logo, links para as páginas, menu do celular e botão de tema claro/escuro -->
     <header class="navbar">
         <div class="logo-area">
             <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
             <span class="logo-text">Cherry Wellness</span>
         </div>
-        <nav class="nav-links">
+        <nav class="nav-links" id="menu-principal" aria-label="Menu principal">
             <a href="index.html">Início</a>
             <a href="jogo-movimento.html">Vida em movimento</a>
             <a href="alimentacao.html">Prato & Saúde</a>
             <a href="saudemental.html">Bem-Estar mental</a>
             <a href="emblemas.html">Emblemas & Minijogos</a>
         </nav>
+        <!-- Botão ☰ do menu no celular (JS/menu.js) -->
+        <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="menu-principal">
+            <span></span><span></span><span></span>
+        </button>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
             aria-pressed="false">
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -49,6 +59,7 @@
         </button>
     </header>
 
+    <!-- BATALHA FINAL contra a Cereja Podre (lógica em JS/pages/jogo-boss.js) -->
     <main class="boss-wrapper">
         <div class="boss-info">
             <h2>Batalha Final</h2>
@@ -56,6 +67,7 @@
                 para causar dano, ou use uma <b>AÇÃO</b>: comer, exercitar ou meditar.</p>
         </div>
 
+        <!-- ARENA: o chefe, a caixa de batalha, o HP e os controles -->
         <section class="arena" id="arena">
             <!-- Liga/desliga a trilha sonora (arquivos e instruções em JS/trilha-sonora.js) -->
             <button class="botao-musica" id="botao-musica" type="button" aria-pressed="false"
@@ -175,6 +187,7 @@
         </section>
     </main>
 
+    <!-- RODAPÉ: marca, redes sociais e créditos -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
@@ -185,13 +198,14 @@
                 <span class="footer-social-label">Siga-nos</span>
                 <div class="social-icons">
                     <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
-                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                    <a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="Github" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a>
                 </div>
             </div>
         </div>
         <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
     </footer>
 
+    <!-- Scripts da página (ficam no fim para o HTML carregar primeiro) -->
     <script src="JS/minijogo.js"></script>
     <script src="JS/desafio-secreto.js"></script>
     <script src="JS/trilha-sonora.js"></script>

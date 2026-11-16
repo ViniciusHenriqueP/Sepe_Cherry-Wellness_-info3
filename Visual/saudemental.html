@@ -14,23 +14,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
         rel="stylesheet">
+    <!-- Tema claro/escuro: fica no <head> para não "piscar" ao carregar -->
     <script src="JS/theme.js"></script>
+    <script src="JS/menu.js" defer></script>
 </head>
 
-<body>
+<body data-voltar-ao-topo>
 
+    <!-- NAVBAR: logo, links para as páginas, menu do celular e botão de tema claro/escuro -->
     <header class="navbar navbar--mental">
         <div class="logo-area">
             <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
             <span class="logo-text">Cherry Wellness</span>
         </div>
-        <nav class="nav-links">
+        <nav class="nav-links" id="menu-principal" aria-label="Menu principal">
             <a href="index.html">Início</a>
-            <a href="sepe/index.html">Vida em movimento</a>
+            <a href="vida-em-movimento.html">Vida em movimento</a>
             <a href="alimentacao.html">Prato & Saúde</a>
             <a href="saudemental.html" class="active">Bem-Estar mental</a>
             <a href="emblemas.html">Emblemas & Minijogos</a>
         </nav>
+        <!-- Botão ☰ do menu no celular (JS/menu.js) -->
+        <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="menu-principal">
+            <span></span><span></span><span></span>
+        </button>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
             aria-pressed="false">
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -47,8 +55,10 @@
         </button>
     </header>
 
+    <!-- CONTEÚDO PRINCIPAL da página Bem-Estar mental -->
     <main class="mental-page">
 
+        <!-- "Não guarde tudo para você": incentivo a conversar e buscar ajuda -->
         <section class="mental-layout" id="conversar">
             <div class="mental-intro">
                 <h2 data-reveal="left">Não guarde tudo para você</h2>
@@ -68,6 +78,7 @@
                 </div>
             </div>
 
+            <!-- Card "Lembrete!" com frases que mudam sozinhas (JS/pages/saudemental.js) -->
             <aside class="mental-aside">
                 <div class="lembrete-card" id="lembrete-card" data-reveal="right">
                     <span class="lembrete-header">Lembrete!</span>
@@ -89,6 +100,7 @@
             </aside>
         </section>
 
+        <!-- NÚMEROS: saúde mental em dados -->
         <section class="mental-dados" id="numeros" data-reveal-group>
             <h2 class="mental-dados-intro" data-reveal="up">Saúde mental em números</h2>
             <p class="mental-dados-sub" data-reveal="up">Falar sobre o assunto ajuda a entender que ansiedade e
@@ -115,6 +127,7 @@
             </div>
         </section>
 
+        <!-- COMO VOCÊ ESTÁ HOJE? A pessoa marca o humor e recebe uma mensagem acolhedora -->
         <section class="mood-section" id="emocoes" data-reveal="up">
             <span class="mood-pill">Conheça suas emoções:</span>
             <div class="mood-question">
@@ -135,6 +148,7 @@
             </div>
         </section>
 
+        <!-- PRÁTICAS PARA O DIA A DIA: cada card abre um pop-up explicando por que ajuda -->
         <section class="praticas-section" id="praticas">
             <h2 data-reveal="up">Práticas para o dia a dia</h2>
             <p class="praticas-sub" data-reveal="up">Pequenos hábitos que ajudam a cuidar da mente na rotina.
@@ -203,6 +217,7 @@
 
     </main>
 
+    <!-- FONTES: de onde tiramos as informações -->
     <section class="fontes-section">
         <h2>Fontes</h2>
         <ul class="fontes-list">
@@ -215,6 +230,7 @@
         </ul>
     </section>
 
+    <!-- RODAPÉ: marca, redes sociais e créditos -->
     <footer class="footer footer--mental">
         <div class="footer-inner">
             <div class="footer-brand">
@@ -225,13 +241,14 @@
                 <span class="footer-social-label">Siga-nos</span>
                 <div class="social-icons">
                     <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
-                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                    <a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="Github" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a>
                 </div>
             </div>
         </div>
         <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
     </footer>
 
+    <!-- Scripts da página (ficam no fim para o HTML carregar primeiro) -->
     <script src="JS/reveal.js"></script>
     <script src="JS/beneficio-modal.js"></script>
     <script src="JS/pages/saudemental.js"></script>

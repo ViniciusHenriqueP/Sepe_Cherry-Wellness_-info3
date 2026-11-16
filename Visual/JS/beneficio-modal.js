@@ -1,8 +1,17 @@
+/* =====================================================================
+   beneficio-modal.js — Pop-up "Por que isso acontece?" 💬
+   ---------------------------------------------------------------------
+   Usado em: jogo-movimento.html e saudemental.html
+   Visual em: CSS/beneficio-modal.css
+   ===================================================================== */
+
 // Pop-up "Por que isso acontece?" compartilhado entre Vida em Movimento e Bem-Estar mental.
 // Cada página chama iniciarBeneficioModal(conteudo, seletorDoCard) com o texto de cada
 // chave; os botões dos cards têm class="beneficio-mais" e data-beneficio="chave".
 // Cada chave pode ter um vídeo: { id: 'ID do YouTube', titulo, canal }.
 
+// Esqueleto do pop-up. Os espaços marcados com data-campo="..." são
+// preenchidos na hora, com o texto do card que a pessoa clicou.
 const MODAL_HTML = `
     <div class="beneficio-modal-inner">
         <button type="button" class="beneficio-modal-fechar" data-fechar aria-label="Fechar">
@@ -34,8 +43,14 @@ const MODAL_HTML = `
         <button type="button" class="btn-primary beneficio-modal-ok" data-fechar>Entendi</button>
     </div>`;
 
+// Triângulo de "play" desenhado por cima da miniatura do vídeo
 const ICONE_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"></path></svg>';
 
+// Função principal: cria o pop-up uma única vez na página e liga cada
+// botão "Saiba mais" dos cards a ele.
+//   conteudo    → objeto com os textos de cada benefício
+//   seletorCard → classe dos cards (para pegar o ícone de cada um)
+//   opcoes      → textos opcionais do topo (kicker e título da seção)
 function iniciarBeneficioModal(conteudo, seletorCard, opcoes = {}) {
     const kicker = opcoes.kicker || 'Por que isso acontece?';
     const secao = opcoes.secao || 'Como funciona no corpo';
@@ -50,6 +65,8 @@ function iniciarBeneficioModal(conteudo, seletorCard, opcoes = {}) {
     campo('kicker').textContent = kicker;
     campo('secao').textContent = secao;
 
+    // Em vez de carregar o YouTube logo de cara (que deixa a página pesada),
+    // mostramos só a miniatura com um botão de play.
     function montarCapaDoVideo(video) {
         const capa = document.createElement('button');
         capa.type = 'button';
@@ -84,6 +101,7 @@ function iniciarBeneficioModal(conteudo, seletorCard, opcoes = {}) {
         return capa;
     }
 
+    // Preenche o pop-up com o conteúdo do card clicado e abre
     function abrir(botao) {
         const dados = conteudo[botao.dataset.beneficio];
         if (!dados) return;
@@ -97,6 +115,7 @@ function iniciarBeneficioModal(conteudo, seletorCard, opcoes = {}) {
         campo('pratica').textContent = dados.pratica;
 
         campo('pontos').replaceChildren();
+        // Cada ponto entra com um atrasinho diferente, para aparecerem em sequência
         dados.pontos.forEach(([termo, explicacao], i) => {
             const item = document.createElement('li');
             item.style.setProperty('--ponto-delay', `${0.12 + i * 0.08}s`);
@@ -123,6 +142,7 @@ function iniciarBeneficioModal(conteudo, seletorCard, opcoes = {}) {
         modal.querySelector('.beneficio-modal-inner').scrollTop = 0;
     }
 
+    // Fecha com animação (ou na hora, para quem prefere menos movimento)
     function fechar() {
         if (!modal.open || modal.classList.contains('is-closing')) return;
 
@@ -142,6 +162,7 @@ function iniciarBeneficioModal(conteudo, seletorCard, opcoes = {}) {
         });
     }
 
+    // ----- Ligando os botões -----
     document.querySelectorAll('.beneficio-mais').forEach((botao) => {
         botao.addEventListener('click', () => abrir(botao));
     });

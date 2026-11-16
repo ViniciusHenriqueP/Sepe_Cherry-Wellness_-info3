@@ -1,3 +1,16 @@
+/* =====================================================================
+   saudemental.js — Página "Bem-Estar mental" 🧠💚
+   ---------------------------------------------------------------------
+   Usado em: saudemental.html   (depende de JS/beneficio-modal.js)
+
+   Três coisinhas acontecem aqui:
+   1. O card "Lembrete!" troca de frase carinhosa a cada 7 segundos.
+   2. O seletor "Como você está hoje?" guarda o humor do dia e
+      responde com uma mensagem acolhedora.
+   3. Os textos do pop-up "Por que isso ajuda?" de cada prática.
+   ===================================================================== */
+
+// Quando a página termina de carregar, liga o lembrete e o humor
 document.addEventListener('DOMContentLoaded', function () {
     iniciarLembrete();
     iniciarHumor();
@@ -22,6 +35,7 @@ function iniciarLembrete() {
     let indice = 0;
     let intervalo = null;
 
+    // Passa para a próxima frase com um fade suave (350ms)
     function trocarFrase() {
         indice = (indice + 1) % frases.length;
         fraseEl.classList.add('is-changing');
@@ -31,7 +45,9 @@ function iniciarLembrete() {
         }, 350);
     }
 
-    intervalo = setInterval(trocarFrase, 7000);
+    intervalo = setInterval(trocarFrase, 7000); // nova frase a cada 7 segundos
+
+    // "Ok, entendi": para de trocar e o card se recolhe com carinho
 
     if (okBtn) {
         okBtn.addEventListener('click', function () {
@@ -56,6 +72,7 @@ function iniciarHumor() {
     const feedback = document.getElementById('mood-feedback');
     if (!opcoes.length) return;
 
+    // A resposta para cada humor — sempre acolhendo, nunca julgando
     const mensagens = {
         triste: 'Sentir isso é válido. Que tal conversar com alguém de confiança hoje?',
         chateado: 'Dias assim acontecem. Seja gentil consigo mesmo.',
@@ -64,7 +81,9 @@ function iniciarHumor() {
         otimo: 'Maravilha! Guarde esse sentimento com carinho.'
     };
 
-    const HOJE = new Date().toISOString().slice(0, 10);
+    // Se a pessoa já marcou o humor HOJE, mostramos de novo.
+    // De um dia para o outro, começa em branco.
+    const HOJE = new Date().toISOString().slice(0, 10); // ex.: "2026-11-09"
     const salvo = localStorage.getItem('humorDoDia');
     if (salvo) {
         try {
@@ -79,6 +98,7 @@ function iniciarHumor() {
         } catch (erro) { /* ignora dado corrompido */ }
     }
 
+    // Clicou num humor: destaca, guarda e responde
     opcoes.forEach(function (botao) {
         botao.addEventListener('click', function () {
             opcoes.forEach(o => o.setAttribute('aria-pressed', 'false'));

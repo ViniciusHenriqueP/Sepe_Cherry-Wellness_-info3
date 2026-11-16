@@ -1,3 +1,89 @@
+# 🍒 Cherry Wellness
+
+> **Cherry** soa como "Seja" + **Wellness** (bem-estar): **Seja Saudável!**
+
+Site educativo sobre bem-estar feito pela turma do **Info 3 — IFC Araquari** para o **SEPE**.
+Ele fala de três temas que andam juntos (**movimento**, **alimentação** e **saúde mental**)
+e ensina de um jeito leve, com minijogos, emblemas e uma batalha final contra a temida *Cereja Podre*.
+
+---
+
+## 🚀 Como abrir o site
+
+Não precisa instalar nada! O site é só HTML, CSS e JavaScript.
+
+1. Baixe ou clone este repositório.
+2. Abra o arquivo **`Visual/index.html`** no navegador.
+
+> 💡 Dica: no VS Code, a extensão **Live Server** atualiza a página sozinha a cada alteração.
+
+---
+
+## 🗺️ Páginas do site
+
+| Página | Arquivo | O que tem lá |
+|---|---|---|
+| Início | `index.html` | Boas-vindas, as 3 áreas, números da OMS, dica do dia e progresso |
+| Vida em movimento | `vida-em-movimento.html` | Benefícios do exercício para o corpo |
+| Vida em movimento (parte 2) | `jogo-movimento.html` | Pré-treino, benefícios para a mente e dados |
+| Prato & Saúde | `alimentacao.html` | Nutrientes, dados sobre alimentação |
+| Bem-Estar mental | `saudemental.html` | Lembretes, humor do dia, práticas para o dia a dia |
+| Emblemas & Minijogos | `emblemas.html` | A "estante" com os emblemas conquistados |
+| Nosso projeto | `projeto.html` | A história do projeto e a equipe |
+
+### 🎮 Minijogos e emblemas
+
+| Minijogo | Arquivo | Emblema |
+|---|---|---|
+| Monte seu Prato | `jogo-prato.html` | 🍽️ Prato Saudável |
+| Ritmo em Movimento | `jogo-ritmo.html` | 🎵 Ritmo em Movimento |
+| Respire e Recarregue | `jogo-respiracao.html` | 🫁 Bem-Estar Mental |
+| **Batalha Final** (libera com os 3 emblemas) | `jogo-boss.html` | 🍒 Chefe Derrotado |
+
+Os emblemas ficam guardados no navegador de quem joga (`localStorage`), via `Visual/JS/progresso.js`.
+
+---
+
+## 📁 Estrutura de pastas
+
+```
+Visual/
+├── *.html               → uma página por arquivo (comece pelo index.html)
+├── CSS/
+│   ├── reset.css        → zera os estilos padrão do navegador
+│   ├── variables.css    → TODAS as cores, sombras e raios (modo claro e escuro)
+│   ├── base.css         → navbar, rodapé, botões, menu do celular, animações
+│   ├── *.css            → peças compartilhadas (pop-ups, telas dos minijogos)
+│   └── pages/           → um CSS para cada página
+├── JS/
+│   ├── theme.js         → modo claro/escuro
+│   ├── menu.js          → menu ☰ do celular e botão "voltar ao topo"
+│   ├── reveal.js        → animação de aparecer ao rolar
+│   ├── progresso.js     → guarda os emblemas conquistados
+│   ├── *.js             → peças compartilhadas (pop-ups, música, resultado)
+│   └── pages/           → um JS para cada página
+├── IMG/                 → imagens (logo, mascotes, emblemas, fotos da equipe)
+└── AUDIO/               → sons dos minijogos
+ferramentas/
+└── gerador-enigma.html  → ferramenta interna do desafio secreto
+```
+
+Todo arquivo começa com um comentário explicando **o que faz** e **onde é usado**. É só abrir e ler! 😉
+
+---
+
+## 👩‍💻 Equipe
+
+| Pessoa | Destaque |
+|---|---|
+| Vinícius | JavaScript, minijogos, emblemas e GitHub |
+| Lukas | JavaScript, atas e CSS |
+| Gabriela | Figma e design |
+| Letícia | Figma e design |
+| Murilo | CSS, mascotes e rede social |
+| Gabrieli | CSS, HTML e mascotes |
+
+Siga a gente no Instagram: [@cherry_wellnes](https://www.instagram.com/cherry_wellnes)
 
 ---
 
@@ -5,14 +91,9 @@
 
 ### Ata 1
 
-* 
-**Data:** 01/06/2026 
+* **Data:** 01/06/2026
 
-
-* 
-**Ausentes:** Ninguém 
-
-
+* **Ausentes:** Ninguém
 
 #### Assuntos
 
@@ -20,53 +101,31 @@ Desenvolvemos primeiramente a divisão de tarefas uniformemente para o grupo. As
 
 #### Responsabilidades
 
-* 
-**Criação do GitHub:** Vinícius 
-
-
+* **Criação do GitHub:** Vinícius
 
 #### Prática
 
-* 
-**JavaScript e programação interna:** Vinícius e Lukas 
+* **JavaScript e programação interna:** Vinícius e Lukas
 
+* **Figma:** Gabriela e Letícia
 
-* 
-**Figma:** Gabriela e Letícia 
-
-
-* 
-**CSS:** Murilo e Gabrieli 
-
-
+* **CSS:** Murilo e Gabrieli
 
 #### 3 Tópicos Principais dos Temas
 
-1. 
-**Questões Biológicas (exercício físico e seus efeitos):** Lukas e Gabrieli 
+1. **Questões Biológicas (exercício físico e seus efeitos):** Lukas e Gabrieli
 
+2. **Questões Alimentares:** Letícia e Vinícius
 
-2. 
-**Questões Alimentares:** Letícia e Vinícius 
-
-
-3. 
-**Questões Psicológicas (saúde cognitiva):** Gabriela e Murilo 
-
-
+3. **Questões Psicológicas (saúde cognitiva):** Gabriela e Murilo
 
 ---
 
 ### Ata 2
 
-* 
-**Data:** 08/07/2026 
+* **Data:** 08/07/2026
 
-
-* 
-**Ausentes:** Ninguém 
-
-
+* **Ausentes:** Ninguém
 
 #### Assuntos
 
@@ -76,31 +135,19 @@ Decidimos os dois mascotes do site, sendo ambos uma cereja. O nome do site será
 
 #### Responsabilidades
 
-* 
-**Criação dos mascotes:** Gabrieli e Murilo 
+* **Criação dos mascotes:** Gabrieli e Murilo
 
+* **Ideias das possíveis interações divertidas:** Lukas e Vinícius
 
-* 
-**Ideias das possíveis interações divertidas:** Lukas e Vinícius 
-
-
-* 
-**Figma e esboço da página:** Letícia e Gabriela 
-
-
+* **Figma e esboço da página:** Letícia e Gabriela
 
 ---
 
 ### Ata 3
 
-* 
-**Data:** 15/06/2026 
+* **Data:** 15/06/2026
 
-
-* 
-**Ausentes:** Ninguém 
-
-
+* **Ausentes:** Ninguém
 
 #### Assuntos
 
@@ -110,68 +157,39 @@ A respeito das novas ideias, conseguimos separar os tópicos iniciais passados p
 
 * Letícia, Gabriela e Murilo continuam trabalhando no desenvolvimento da interface.
 
+* **Organização dos tópicos:** Lukas.
 
-* 
-**Organização dos tópicos:** Lukas.
-
-
-* 
-**Criação da Rede Social:** Murilo.
-
-
+* **Criação da Rede Social:** Murilo.
 
 #### Tópicos por Conteúdo
 
-**Questões Biológicas**
+**Questões Biológicas** * Roteiro de perguntas.
 
-* Roteiro de perguntas.
+* * Benefícios de exercícios físicos.
 
-* 
-
-* Benefícios de exercícios físicos. 
-
-* conceitos básicos de funcionamento do corpo. 
+* conceitos básicos de funcionamento do corpo.
 
 * Sugestão de atividades de alongamento, relaxamento e meditação.
 
+**Questões Alimentares** * Sugestões de alimentação.
 
-
-**Questões Alimentares**
-
-* Sugestões de alimentação. 
-
-
-* Hidratação antes, durante e após o exercício. 
-
+* Hidratação antes, durante e após o exercício.
 
 * O que são carboidratos, proteínas, gorduras, vitaminas, minerais e suas funções no corpo.
 
+**Questões Psicológicas** * Redução do estresse e da ansiedade
 
+* Melhor desempenho nos estudos e no trabalho
 
-**Questões Psicológicas**
-
-* Redução do estresse e da ansiedade 
-
-
-* Melhor desempenho nos estudos e no trabalho 
-
-
-* Proteção da saúde cerebral ao longo da vida 
-
-
+* Proteção da saúde cerebral ao longo da vida
 
 ---
 
 ### Ata 4
 
-* 
-**Data:** 22/06/2026 
+* **Data:** 22/06/2026
 
-
-* 
-**Ausentes:** Ninguém 
-
-
+* **Ausentes:** Ninguém
 
 #### Assuntos
 
@@ -185,14 +203,9 @@ Murilo começou a criação da rede social e fizemos uma bela sessão de fotos p
 
 ### Ata 5
 
-* 
-**Data:** 06/07/2026 
+* **Data:** 06/07/2026
 
-
-* 
-**Ausentes:** Gabrieli 
-
-
+* **Ausentes:** Gabrieli
 
 #### Assuntos
 
@@ -202,32 +215,23 @@ Vale lembrar que Vinícius deu uma ideia muito interessante que vamos aplicar ao
 
 #### Responsabilidades
 
-* 
-**Murilo:** Rede social 
+* **Murilo:** Rede social
 
+* **Vinícius:** Jogo interativo e sistemas de emblemas
 
-* 
-**Vinícius:** Jogo interativo e sistemas de emblemas 
+* **Letícia e Gabrieli:** Figma
 
-
-* 
-**Letícia e Gabrieli:** Figma 
-
-
-* 
-**Lukas:** Atas e ideia do gráfico
-
-
+* **Lukas:** Atas e ideia do gráfico
 
 ### Ata 6
 
-**Data:** 13/07/2026 
+**Data:** 13/07/2026
 
 **Ausentes:** Ninguém
 
 #### Assuntos
 
-O grupo está a todo vapor, vini está desenvolvendo suas últimas partes, murilo segue desenvolvendo a nossa bela rede social, e também está implementando a apresentação de cada integrante do grupo. Estamos ainda discutindo onde colocaríamos nossas descrições, se seriam na rede social, ou no próprio site, ou nos dois. 
+O grupo está a todo vapor, vini está desenvolvendo suas últimas partes, murilo segue desenvolvendo a nossa bela rede social, e também está implementando a apresentação de cada integrante do grupo. Estamos ainda discutindo onde colocaríamos nossas descrições, se seriam na rede social, ou no próprio site, ou nos dois.
 Murilo pediu um breve texto de apresentação do que cada integrante gosta, para apresentar uma divertida  descontração por trás dos códigos.
 
 Lukas está pensando em marcar uma reunião para podermos se comunicar, e poder continuar a trabalhar com sincronia.
@@ -273,29 +277,3 @@ Letícia Gabriela e Murilo = Figma.
 Gabrieli = Html.
 Lukas = Css e Atas.
 Vinícios = Jogo interativo.
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -14,23 +14,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
         rel="stylesheet">
+    <!-- Tema claro/escuro: fica no <head> para não "piscar" ao carregar -->
     <script src="JS/theme.js"></script>
+    <script src="JS/menu.js" defer></script>
 </head>
 
-<body>
+<body data-voltar-ao-topo>
 
+    <!-- NAVBAR: logo, links para as páginas, menu do celular e botão de tema claro/escuro -->
     <header class="navbar">
         <div class="logo-area">
             <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
             <span class="logo-text">Cherry Wellness</span>
         </div>
-        <nav class="nav-links">
+        <nav class="nav-links" id="menu-principal" aria-label="Menu principal">
             <a href="index.html">Início</a>
-            <a href="sepe/index.html">Vida em movimento</a>
+            <a href="vida-em-movimento.html">Vida em movimento</a>
             <a href="alimentacao.html" class="active">Prato & Saúde</a>
             <a href="saudemental.html">Bem-Estar mental</a>
             <a href="emblemas.html">Emblemas & Minijogos</a>
         </nav>
+        <!-- Botão ☰ do menu no celular (JS/menu.js) -->
+        <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="menu-principal">
+            <span></span><span></span><span></span>
+        </button>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar modo escuro"
             aria-pressed="false">
             <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -47,6 +55,7 @@
         </button>
     </header>
 
+    <!-- TOPO: título da página Prato & Saúde -->
     <section class="hero-section-clean">
         <div class="hero-text-area" data-reveal="left">
             <h1 class="hero-title">Prato & Saúde</h1>
@@ -63,6 +72,7 @@
 
     <div class="checkerboard-divider"></div>
 
+    <!-- Introdução: por que a alimentação faz diferença -->
     <section class="hero-info">
         <div class="hero-image-area" data-reveal="scale">
             <img src="IMG/alimentacao/Comidas.webp" alt="Variedade de alimentos saudáveis">
@@ -76,6 +86,7 @@
         </div>
     </section>
 
+    <!-- NUTRIENTES: a pessoa escolhe um nutriente para conhecer (JS/pages/alimentacao.js) -->
     <section class="nutrientes-intro">
         <h2>Nutrientes que fazem a diferença</h2>
         <p>Clique em um nutriente abaixo para ler a sua explicação detalhada.</p>
@@ -142,6 +153,7 @@
         </div>
     </section>
 
+    <!-- Blocos de detalhe de cada nutriente (só um aparece por vez) -->
     <section class="detalhes-nutrientes-section">
         <div class="container-detalhes">
 
@@ -199,6 +211,7 @@
         </div>
     </section>
 
+    <!-- NÚMEROS: dados sobre alimentação no Brasil e no mundo -->
     <section class="dados-intro" data-reveal-group>
         <h2 data-reveal="up">Alimentação em números</h2>
         <p data-reveal="up">A alimentação brasileira vem mudando — e os números mostram por que escolhas melhores
@@ -249,6 +262,7 @@
             2022) — mostrando que o desafio de comer bem vai muito além do Brasil.</p>
     </section>
 
+    <!-- Convite para o minijogo "Monte seu Prato" -->
     <section class="minijogo-cta">
         <div class="card card-red" data-reveal="scale">
             <h2>Minijogo: Monte seu Prato Saudável</h2>
@@ -264,6 +278,7 @@
         </div>
     </section>
 
+    <!-- FONTES: de onde tiramos as informações (transparência é tudo!) -->
     <section class="fontes-section">
         <h2>Fontes</h2>
         <ul class="fontes-list">
@@ -276,6 +291,7 @@
         </ul>
     </section>
 
+    <!-- RODAPÉ: marca, redes sociais e créditos -->
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand">
@@ -286,13 +302,14 @@
                 <span class="footer-social-label">Siga-nos</span>
                 <div class="social-icons">
                     <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
-                    <a href="#" class="icon" aria-label="Github"><img src="IMG/icons/github.png" alt=""></a>
+                    <a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="Github" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a>
                 </div>
             </div>
         </div>
         <p class="footer-copy">SEPE &mdash; IFC Araquari</p>
     </footer>
 
+    <!-- Scripts da página (ficam no fim para o HTML carregar primeiro) -->
     <script src="JS/reveal.js"></script>
     <script src="JS/pages/alimentacao.js"></script>
 </body>

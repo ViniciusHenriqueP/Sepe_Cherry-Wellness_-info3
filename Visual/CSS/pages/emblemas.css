@@ -157,3 +157,54 @@ body {
         transform: scale(1.1);
     }
 }
+
+/* ==========================================================================
+   BARRA DE PROGRESSO — "2 de 3 emblemas conquistados" (JS/pages/emblemas.js)
+   ========================================================================== */
+.progresso-emblemas {
+    max-width: 460px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.progresso-emblemas-texto {
+    color: var(--color-text-strong);
+    margin-bottom: 8px;
+}
+
+/* O "trilho" cinza da barra */
+.progresso-emblemas-barra {
+    height: 12px;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+/* A parte preenchida (a largura vem do JS) */
+.progresso-emblemas-barra div {
+    height: 100%;
+    border-radius: inherit;
+    background-color: var(--color-red-accent);
+    transition: width 0.6s ease;
+}
+
+.progresso-emblemas-frase {
+    margin-top: 8px;
+    color: var(--color-text-muted);
+    font-size: 15px;
+}
+
+/* Quando ainda não há emblemas: botões com os 3 jogos para começar */
+.sem-emblemas p + p {
+    margin-top: 8px;
+}
+
+.sem-emblemas-jogos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 18px;
+    font-style: normal;
+}
