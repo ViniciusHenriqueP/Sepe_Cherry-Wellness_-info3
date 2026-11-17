@@ -1,5 +1,29 @@
+/* =====================================================================
+   jogo-boss.js — Batalha Final contra a Cereja Podre 🍒💀
+   ---------------------------------------------------------------------
+   Usado em: jogo-boss.html
+   Depende de: JS/progresso.js, JS/minijogo.js, JS/trilha-sonora.js
+               e JS/desafio-secreto.js
+
+   Batalha por turnos, no estilo dos RPGs que a gente gosta:
+   • Turno do chefe: a pessoa desvia dos "maus hábitos" (doces, sofá,
+     fast-food, celular) com o coraçãozinho dentro da caixa.
+   • Turno da pessoa: responde uma pergunta sobre o que aprendeu no
+     site. Acertou = dano no chefe. Errou = ele se cura um pouco.
+     Também dá para usar AÇÕES (comer, exercitar, meditar).
+   • Quando o chefe chega a 0, ele vira uma cereja saudável. 💚
+
+   Mapa do arquivo (procure pelos títulos "---------- ... ----------"):
+     Elementos → Perguntas e falas → Configurações e dificuldades →
+     Estado → Utilitários → Diálogos → Padrões de ataque →
+     Turno do chefe → Turno do jogador → Efeitos → Fluxo da batalha →
+     Cutscene da vitória → Controles → Música → Início
+   ===================================================================== */
+
 // Batalha final no estilo Undertale: no turno do chefe você desvia com o
 // coração; no seu turno, acerta uma pergunta sobre o site para causar dano.
+
+// ---------- Elementos da página ----------
 
 const arena = document.getElementById('arena');
 const bossEl = document.getElementById('boss');
@@ -56,6 +80,8 @@ const PERGUNTAS = [
     { pergunta: 'Organizar pensamentos e tarefas ajuda a...', opcoes: ['Tomar decisões mais claras', 'Ficar mais confuso', 'Procrastinar', 'Esquecer prioridades'] }
 ];
 
+// ---------- Falas do chefe ----------
+// O que a Cereja Podre diz quando leva dano
 const FALAS_ACERTO = [
     'Ugh... isso doeu mais que abdominal.',
     'Tá, tá, você leu o site. Grande coisa.',
@@ -101,18 +127,21 @@ const ACOES = [
 
 const VELOCIDADE_EXERCICIO = 1.6;
 
+// Falas quando a pessoa usa uma ação em vez de atacar
 const FALAS_ACAO = [
     'Ei! Nada de hábito saudável na minha frente!',
     'Isso aí não vai te salvar. ...Vai?',
     'Argh. Que cheiro de salada.'
 ];
 
+// Falas quando a pessoa erra a pergunta (o chefe tira sarro)
 const FALAS_ERRO = [
     'Hehe. Errou! Volta lá e lê de novo.',
     'Isso. Esquece tudo e vem pro sofá comigo.',
     'Informação que entra por um ouvido e sai pelo outro. Adoro.'
 ];
 
+// ---------- Configurações gerais ----------
 // Tamanho lógico do campo de desvio; o canvas é escalado pelo CSS.
 const CAMPO = 240;
 const BOSS_VIDA_MAX = 100;
@@ -149,24 +178,28 @@ const DIFICULDADES = {
     }
 };
 
+// ---------- Estado da batalha (muda durante o jogo) ----------
 let dificuldade = DIFICULDADES.medio;
-let vida = dificuldade.vida;
-let bossVida = BOSS_VIDA_MAX;
+let vida = dificuldade.vida;     // HP da pessoa
+let bossVida = BOSS_VIDA_MAX;    // HP do chefe
 let turno = 0;
 let acertos = 0;
 let estado = 'inicio'; // inicio | dialogo | ataque | pergunta | fim
 let coracao = { x: CAMPO / 2, y: CAMPO / 2 };
-let projeteis = [];
-let invencivelAte = 0;
+let projeteis = [];              // tudo que está voando na caixa agora
+let invencivelAte = 0;           // depois de levar dano, fica uns instantes imune
 let filaPerguntas = [];
 let usosRestantes = {};
 const buffs = { velocidade: false, foco: false };
-const teclas = new Set();
+const teclas = new Set();        // teclas seguradas neste momento
+
+// ---------- Utilitários (pequenas ajudas) ----------
 
 const sortear = (lista) => lista[Math.floor(Math.random() * lista.length)];
 const aleatorio = (min, max) => min + Math.random() * (max - min);
 const esperar = (ms) => new Promise(r => setTimeout(r, ms));
 
+// Embaralha uma lista sem mexer na original (algoritmo de Fisher-Yates)
 function embaralhar(lista) {
     const copia = [...lista];
     for (let i = copia.length - 1; i > 0; i--) {
@@ -176,6 +209,7 @@ function embaralhar(lista) {
     return copia;
 }
 
+// Deixa o desenho nítido em telas de alta resolução (celulares, Retina)
 function prepararCanvas() {
     const dpr = window.devicePixelRatio || 1;
     canvas.width = CAMPO * dpr;
@@ -191,6 +225,7 @@ function avancar() {
     if (aoAvancar) aoAvancar();
 }
 
+// Escreve o texto letra por letra, como nos jogos antigos
 function digitar(el, texto, msPorLetra = 32) {
     return new Promise(resolve => {
         let i = 0;
@@ -210,6 +245,7 @@ function digitar(el, texto, msPorLetra = 32) {
     });
 }
 
+// Espera um tempinho (ou até a pessoa clicar para pular)
 function pausa(ms) {
     return new Promise(resolve => {
         const id = setTimeout(fim, ms);
@@ -222,6 +258,7 @@ function pausa(ms) {
     });
 }
 
+// Troca o que a caixa de batalha mostra: texto, campo de desvio ou opções
 function modoCaixa(modo) {
     box.classList.remove('modo-texto', 'modo-ataque', 'modo-pergunta');
     box.classList.add(`modo-${modo}`);
@@ -248,14 +285,17 @@ function esconderFala() {
 }
 
 // ---------- Padrões de ataque do chefe ----------
+// Cria um projétil de emoji (posição x/y e velocidade vx/vy)
 function emoji(simbolo, x, y, vx, vy) {
     return { tipo: 'emoji', simbolo, x, y, vx, vy };
 }
 
+// Cria uma barra retangular que atravessa a caixa (usada no ataque do sofá)
 function barra(x, y, w, h, vx) {
     return { tipo: 'barra', x, y, w, h, vx, vy: 0 };
 }
 
+// Cada ataque tem uma frase de narração e uma função que solta os projéteis
 const PADROES = {
     chuvaDoce: {
         frase: '* Começa a chover açúcar.',
@@ -342,6 +382,7 @@ function escolherPadroes() {
 // ---------- Turno do chefe (desvio) ----------
 let ataque = null;
 
+// Roda o turno do chefe: solta os ataques e espera acabar
 function faseAtaque(nomes) {
     return new Promise(resolve => {
         estado = 'ataque';
@@ -366,6 +407,7 @@ function faseAtaque(nomes) {
     });
 }
 
+// Laço de animação do desvio: move, confere batidas e desenha
 function loop(t) {
     if (!ataque) return;
     if (ataque.ultimo === null) ataque.ultimo = t;
@@ -390,11 +432,13 @@ function loop(t) {
     requestAnimationFrame(loop);
 }
 
+// Não deixa o coração sair da caixa
 function limitarCoracao() {
     coracao.x = Math.max(8, Math.min(CAMPO - 8, coracao.x));
     coracao.y = Math.max(8, Math.min(CAMPO - 8, coracao.y));
 }
 
+// Move o coração conforme teclado, arrasto ou analógico
 function moverCoracao(dt) {
     let dx = 0;
     let dy = 0;
@@ -417,6 +461,7 @@ function moverCoracao(dt) {
     limitarCoracao();
 }
 
+// Anda com cada projétil e remove os que saíram da caixa
 function moverProjeteis(dt) {
     for (let i = projeteis.length - 1; i >= 0; i--) {
         const p = projeteis[i];
@@ -432,6 +477,7 @@ function moverProjeteis(dt) {
     }
 }
 
+// O projétil p está encostando no coração?
 function encosta(p) {
     if (p.tipo === 'emoji') {
         return Math.hypot(p.x - coracao.x, p.y - coracao.y) < EMOJI_RAIO + CORACAO_RAIO;
@@ -441,6 +487,7 @@ function encosta(p) {
     return Math.hypot(px - coracao.x, py - coracao.y) < CORACAO_RAIO;
 }
 
+// Se encostou, a pessoa perde HP e fica invencível por um instante
 function checarColisoes(t) {
     if (t < invencivelAte) return;
     if (!projeteis.some(encosta)) return;
@@ -453,6 +500,7 @@ function checarColisoes(t) {
     box.classList.add('tremer');
 }
 
+// Desenha o coração e os projéteis no canvas
 function desenhar(t) {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, CAMPO, CAMPO);
@@ -483,16 +531,19 @@ function desenhar(t) {
     }
 }
 
+// Quanto HP a ação "comer" recupera
 function curaDeComer() {
     return Math.ceil(dificuldade.vida / 2);
 }
 
+// Mostra os bônus ativos (velocidade, foco) embaixo da caixa
 function atualizarBuffs() {
     buffsEl.innerHTML = '';
     if (buffs.velocidade) buffsEl.insertAdjacentHTML('beforeend', '<span class="buff">VEL+</span>');
     if (buffs.foco) buffsEl.insertAdjacentHTML('beforeend', '<span class="buff">FOCO x2</span>');
 }
 
+// Atualiza a barra e o texto de HP da pessoa
 function atualizarVida() {
     hpFill.style.width = (vida / dificuldade.vida) * 100 + '%';
     hpTexto.textContent = `${vida} / ${dificuldade.vida}`;
@@ -581,6 +632,7 @@ async function turnoJogador() {
     }
 }
 
+// Pega a próxima pergunta da fila (embaralhada) e mostra as opções
 function proximaPergunta() {
     if (filaPerguntas.length === 0) filaPerguntas = embaralhar(PERGUNTAS);
     return filaPerguntas.pop();
@@ -620,6 +672,7 @@ async function fasePergunta() {
     return { acertou: i === correta, esgotou: i === -1, correta: opcoes[correta].texto };
 }
 
+// Marca a opção i como selecionada
 function selecionar(i) {
     if (!perguntaAtual || perguntaAtual.botoes[i].disabled) return;
     perguntaAtual.selecionada = i;
@@ -644,6 +697,7 @@ function navegarOpcoes(tecla) {
 }
 
 // ---------- Efeitos no chefe ----------
+// Número de dano que pula em cima do chefe (ou "MISS")
 function mostrarNumero(texto, miss) {
     const n = document.createElement('span');
     n.className = 'numero-dano' + (miss === 'cura' ? ' is-cura' : miss ? ' is-miss' : '');
@@ -652,6 +706,7 @@ function mostrarNumero(texto, miss) {
     setTimeout(() => n.remove(), 900);
 }
 
+// Atualiza a barra de HP do chefe
 function atualizarVidaBoss() {
     bossHpFill.style.width = (bossVida / BOSS_VIDA_MAX) * 100 + '%';
 }
@@ -673,6 +728,8 @@ async function atacarBoss(dano) {
 }
 
 // ---------- Fluxo da batalha ----------
+// O roteiro da luta: falas de abertura e depois turnos alternados
+// (chefe ataca → pessoa responde) até alguém zerar o HP
 async function batalha() {
     await narrar('* A Cereja Podre bloqueia o caminho.', 700);
     await falaBoss('Heh. Então você juntou os três emblemas...');
@@ -739,6 +796,7 @@ const FALAS_TRANSFORMACAO = {
     ]
 };
 
+// Brilhinhos que saem da cereja na transformação
 function soltarParticulas(quantidade) {
     for (let i = 0; i < quantidade; i++) {
         const p = document.createElement('span');
@@ -781,11 +839,12 @@ async function cutsceneTransformacao() {
     esconderFala();
 }
 
+// Venceu! Cutscene, salva os emblemas e mostra o resultado
 async function vitoria() {
     await cutsceneTransformacao();
     estado = 'fim';
-    localStorage.setItem('emblemaFinal', 'ganhou');
-    if (dificuldade === DIFICULDADES.impossivel) localStorage.setItem('emblemaImpossivel', 'ganhou');
+    CherryProgresso.marcar('final');
+    if (dificuldade === DIFICULDADES.impossivel) CherryProgresso.marcar('impossivel');
 
     // Vencer no Difícil ou no Impossível libera o desafio secreto (JS/desafio-secreto.js)
     const liberouDesafio = dificuldade === DIFICULDADES.dificil || dificuldade === DIFICULDADES.impossivel;
@@ -820,6 +879,7 @@ async function derrota() {
 }
 
 // ---------- Controles ----------
+// Setas e W A S D movem o coração
 const MAPA_TECLAS = {
     ArrowLeft: 'esquerda', a: 'esquerda', A: 'esquerda',
     ArrowRight: 'direita', d: 'direita', D: 'direita',
@@ -881,6 +941,7 @@ const ZONA_MORTA = 0.15;
 let analogicoPonteiro = null;
 let analogicoNavegou = false;
 
+// Lê a posição da alavanca do analógico e converte em direção
 function moverAnalogico(e) {
     const caixa = analogicoBase.getBoundingClientRect();
     const alcance = caixa.width * 0.35; // até onde a alavanca sai do centro
@@ -910,6 +971,7 @@ function moverAnalogico(e) {
     }
 }
 
+// Soltou o analógico: a alavanca volta para o centro
 function soltarAnalogico() {
     analogicoPonteiro = null;
     analogicoNavegou = false;
@@ -934,6 +996,7 @@ analogicoBase.addEventListener('pointermove', (e) => {
 analogicoBase.addEventListener('contextmenu', (e) => e.preventDefault());
 
 // ---------- Música ----------
+// Mostra o ícone de som ligado/desligado no botão
 function atualizarBotaoMusica() {
     const mudo = estaMudo();
     botaoMusica.innerHTML = mudo ? '&#9834; MUDO' : '&#9834; MÚSICA';
@@ -951,14 +1014,15 @@ botaoMusica.addEventListener('pointerdown', (e) => e.stopPropagation());
 atualizarBotaoMusica();
 
 // ---------- Início ----------
-const temTodosEmblemas = ['emblemaPrato', 'emblemaMovimento', 'emblemaMental']
-    .every(chave => localStorage.getItem(chave) === 'ganhou');
+// A batalha só abre para quem conquistou os três emblemas dos minijogos.
+// Sem eles, mostramos um aviso gentil com o caminho até lá.
+const temTodosEmblemas = CherryProgresso.temTodosBase();
 
 if (!temTodosEmblemas) {
     overlay.innerHTML = `
         <span class="overlay-kicker">Bloqueado</span>
         <h2>Ainda não!</h2>
-        <p>Conquiste os três emblemas (Prato Saudável, Ritmo em Movimento e Bem-Estar Mental) para enfrentar o chefe final.</p>
+        <p>Você tem ${CherryProgresso.contarBase()} de 3 emblemas. Conquiste os que faltam (Prato Saudável, Ritmo em Movimento e Bem-Estar Mental) para enfrentar o chefe final. Estamos torcendo por você! 🍒</p>
         <div class="resultado-acoes"><a href="emblemas.html" class="btn-game">Ver meus emblemas</a></div>`;
 } else {
     overlay.querySelectorAll('[data-nivel]').forEach(btn => {

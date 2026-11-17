@@ -2,6 +2,7 @@
    PÁGINA PRATO & SAÚDE (alimentacao.html)
    ========================================================================== */
 
+/* ---------- Topo da página: título, subtítulo e imagem ---------- */
 .hero-section-clean,
 .hero-info {
     display: flex;
@@ -43,6 +44,7 @@
     border-radius: var(--radius-lg);
 }
 
+/* ---------- Introdução da seção de nutrientes ---------- */
 .nutrientes-intro {
     text-align: center;
     padding-top: 40px;
@@ -149,6 +151,7 @@
     animation: surgimentoSuave 0.4s ease-out forwards;
 }
 
+/* O bloco do nutriente aparece subindo de leve, para a troca não ser seca */
 @keyframes surgimentoSuave {
     from {
         opacity: 0;
@@ -178,6 +181,7 @@
     margin-bottom: 15px;
 }
 
+/* Caixinha de "dica saudável" dentro de cada nutriente */
 .dica-saudavel-box {
     background-color: var(--color-bg-alt);
     padding: 15px;
@@ -190,6 +194,7 @@
     color: var(--color-text-strong);
 }
 
+/* Classe usada pelo JS para esconder os nutrientes que não foram escolhidos */
 .content-escondido {
     display: none !important;
 }
@@ -239,6 +244,7 @@
     color: var(--color-text-strong);
 }
 
+/* A partir de telas médias, os dados ficam lado a lado */
 @media (min-width: 760px) {
     .dados-grid {
         flex-direction: row;
@@ -282,6 +288,7 @@
     color: var(--color-text-muted);
 }
 
+/* Ajustes para celular: textos e espaçamentos menores */
 @media (max-width: 768px) {
 
     .hero-section-clean,

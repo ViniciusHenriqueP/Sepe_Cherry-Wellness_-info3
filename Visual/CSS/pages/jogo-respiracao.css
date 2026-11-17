@@ -37,7 +37,7 @@ body.corpo-respiracao {
     margin-bottom: 10px;
 }
 
-.game-info h2 {
+.game-info h1 {
     font-weight: bold;
     font-size: 22px;
     color: var(--color-text-strong);

@@ -1,3 +1,9 @@
+/* =====================================================================
+   desafio-secreto.js — O cofre da Cereja Podre 🔒🍒
+   ---------------------------------------------------------------------
+   Usado em: emblemas.html e jogo-boss.html
+   ===================================================================== */
+
 // Desafio secreto: quem tem os três emblemas e vence a Cereja Podre no modo
 // Difícil ou Impossível pode pedir, por email, um enigma cuja resposta é a
 // palavra-chave do prêmio presencial. O envio é feito pelo EmailJS direto do
@@ -12,8 +18,6 @@ const EMAILJS = {
     templateId: 'template_ocodz8t'
 };
 
-const EMBLEMAS_BASE = ['emblemaPrato', 'emblemaMovimento', 'emblemaMental'];
-
 // Guarda o modo em que a pessoa venceu (o Impossível nunca é rebaixado)
 function liberarDesafioSecreto(modo) {
     if (localStorage.getItem('desafioSecreto') !== 'Impossível') {
@@ -21,11 +25,14 @@ function liberarDesafioSecreto(modo) {
     }
 }
 
+// O desafio só aparece para quem tem os 3 emblemas E já venceu o chefe
 function desafioLiberado() {
-    return EMBLEMAS_BASE.every(chave => localStorage.getItem(chave) === 'ganhou')
+    return CherryProgresso.temTodosBase()
         && Boolean(localStorage.getItem('desafioSecreto'));
 }
 
+// Esqueleto do pop-up, com duas "etapas": o formulário de email e a
+// mensagem de "enviado!". Só uma aparece por vez.
 const DESAFIO_HTML = `
     <div class="beneficio-modal-inner">
         <button type="button" class="beneficio-modal-fechar" data-fechar aria-label="Fechar">
@@ -69,6 +76,7 @@ const DESAFIO_HTML = `
         </div>
     </div>`;
 
+// O pop-up só é criado na primeira vez que alguém abre (economiza trabalho)
 let desafioModal = null;
 
 function montarDesafioModal() {
@@ -84,17 +92,20 @@ function montarDesafioModal() {
     const input = form.querySelector('input');
     const botaoEnviar = form.querySelector('.desafio-enviar');
 
+    // Alterna entre o formulário e a tela de "enviado"
     function mostrarEtapa(etapa) {
         form.hidden = etapa !== 'form';
         enviado.hidden = etapa !== 'enviado';
         if (etapa === 'enviado') campo('email').textContent = localStorage.getItem('desafioEnviadoPara');
     }
 
+    // Mostra uma mensagem embaixo do campo (em vermelho se for erro)
     function status(texto, erro = false) {
         campo('status').textContent = texto;
         campo('status').classList.toggle('is-erro', erro);
     }
 
+    // Enviar: confere o email, chama o EmailJS e lembra para quem já enviou
     form.addEventListener('submit', async (evento) => {
         evento.preventDefault();
         const email = input.value.trim();
@@ -179,6 +190,7 @@ function montarDesafioModal() {
     };
 }
 
+// Ponto de entrada: o botão "Desafio secreto" chama esta função
 function abrirDesafioSecreto() {
     if (!desafioLiberado()) return;
     if (!desafioModal) desafioModal = montarDesafioModal();

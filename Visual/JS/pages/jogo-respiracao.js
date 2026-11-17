@@ -1,3 +1,18 @@
+/* =====================================================================
+   jogo-respiracao.js — Minijogo "Respire e Recarregue" 🫁
+   ---------------------------------------------------------------------
+   Usado em: jogo-respiracao.html
+   Depende de: JS/progresso.js e JS/minijogo.js (tela de resultado)
+
+   Metades de pulmão vêm deslizando da esquerda e da direita. A pessoa
+   aperta Q (esquerda) ou E (direita) — ou toca nos botões — quando a
+   metade encaixa no pulmão do centro.
+
+   Cada encaixe enche a barra de fôlego; deixar passar ou errar esvazia.
+   Fôlego cheio = Emblema de Bem-Estar Mental. Fôlego zerado = fim.
+   ===================================================================== */
+
+// ----- Elementos da página -----
 const container = document.getElementById('game-container');
 const breathFill = document.getElementById('breath-fill');
 const scoreVal = document.getElementById('score-val');
@@ -5,10 +20,11 @@ const overlay = document.getElementById('feedback-overlay');
 const pulmaoSvg = document.getElementById('pulmao-svg');
 const pulmaoCentral = document.getElementById('pulmao-central');
 
+// ----- Estado da partida -----
 let gameActive = false;
-let breath = 50;
+let breath = 50;    // fôlego: começa pela metade (0 a 100)
 let score = 0;
-let notes = [];
+let notes = [];     // metades de pulmão na tela
 
 // Distância do centro de cada lobo até o meio do pulmão central, como fração
 // da largura do SVG (lobos centrados em x = 100 ± 39,4 no viewBox de 200).
@@ -16,6 +32,8 @@ const LOBE_OFFSET_RATIO = 39.4 / 200;
 
 // Velocidade em pixels/segundo e tempos em milissegundos — independente da
 // taxa de atualização da tela, como no minijogo de ritmo.
+// Cada nível: velocidade inicial, tempo entre peças, quanto acelera e
+// o menor tempo possível entre peças
 const DIFICULDADES = {
     facil: { nome: 'Fácil', velocidade: 80, intervalo: 1500, aceleracao: 6, intervaloMin: 800 },
     medio: { nome: 'Médio', velocidade: 108, intervalo: 1150, aceleracao: 10, intervaloMin: 520 },
@@ -29,15 +47,19 @@ let lastTimestamp = null;
 let spawnTimer = 0;
 let speedUpTimer = 0;
 
+// A cada 4,5s o jogo acelera um pouco
 const SPEEDUP_INTERVAL_MS = 4500;
 const SPAWN_DECREASE_MS = 35;
 
+// Distância (em pixels) do encaixe ideal para cada tipo de acerto
 const PERFECT_PX = 16;
 const GOOD_PX = 36;
 const OK_PX = 62;
 
+// Q = metade da esquerda, E = metade da direita
 const keys = { 'q': 'left', 'Q': 'left', 'e': 'right', 'E': 'right' };
 
+// Chamado pelos botões de dificuldade: zera tudo e começa
 function iniciarJogo(nivel) {
     dificuldade = DIFICULDADES[nivel] || DIFICULDADES.medio;
     gameActive = true;
@@ -57,6 +79,8 @@ function iniciarJogo(nivel) {
     requestAnimationFrame(gameLoop);
 }
 
+// ----- O coração do jogo -----
+// Roda a cada quadro: cria peças, move e confere quem passou do ponto
 function gameLoop(timestamp) {
     if (!gameActive) return;
 
@@ -91,6 +115,7 @@ function gameLoop(timestamp) {
             ? noteCenterX > alvoX + OK_PX
             : noteCenterX < alvoX - OK_PX;
 
+        // Passou do pulmão sem encaixar: perde fôlego
         if (passou) {
             n.el.remove();
             notes.splice(i, 1);
@@ -113,6 +138,7 @@ function alvoDaPista(lane) {
     return lane === 'left' ? centerX - offset : centerX + offset;
 }
 
+// Cria uma metade de pulmão vindo de um lado sorteado
 function createNote() {
     const lane = Math.random() < 0.5 ? 'left' : 'right';
     const el = document.createElement('div');
@@ -132,6 +158,7 @@ function createNote() {
     notes.push({ el, lane, x: startX, width });
 }
 
+// Texto "Perfeito!", "Bom" ou "OK" no meio da tela
 function mostrarFeedbackTexto(texto) {
     const fb = document.createElement('div');
     fb.className = 'hit-feedback';
@@ -140,6 +167,7 @@ function mostrarFeedbackTexto(texto) {
     setTimeout(() => fb.remove(), 650);
 }
 
+// Brilho colorido no momento do encaixe
 function mostrarBurst(cor) {
     const burst = document.createElement('div');
     burst.className = 'hit-burst';
@@ -148,6 +176,7 @@ function mostrarBurst(cor) {
     setTimeout(() => burst.remove(), 450);
 }
 
+// O pulmão do centro "respira" de alegria ou treme no erro
 function reagirPulmao(classe) {
     pulmaoSvg.classList.remove('reagir-perfeito', 'reagir-bom', 'reagir-erro');
     void pulmaoSvg.offsetWidth; // reinicia a animação
@@ -155,6 +184,7 @@ function reagirPulmao(classe) {
     setTimeout(() => pulmaoSvg.classList.remove(classe), 420);
 }
 
+// Soma ou tira fôlego e muda a cor da barra
 function updateBreath(amount) {
     breath += amount;
     if (breath > 100) breath = 100;
@@ -172,6 +202,7 @@ function triggerInput(lane) {
     checkHit(lane);
 }
 
+// Procura a peça daquele lado mais perto do encaixe e dá a nota
 function checkHit(lane) {
     const alvoX = alvoDaPista(lane);
     let melhorIndice = -1;
@@ -188,6 +219,7 @@ function checkHit(lane) {
         }
     }
 
+    // Apertou sem peça perto: perde um pouquinho
     if (melhorIndice === -1) {
         updateBreath(-3);
         reagirPulmao('reagir-erro');
@@ -242,11 +274,12 @@ window.addEventListener('keydown', (e) => {
     btn.addEventListener('click', () => triggerInput(lane));
 });
 
+// ----- Fim de partida -----
 function endGame(win) {
     gameActive = false;
 
     if (win) {
-        localStorage.setItem('emblemaMental', 'ganhou');
+        CherryProgresso.marcar('mental'); // 🏅 emblema conquistado!
         mostrarTelaResultado(overlay, {
             vitoria: true,
             titulo: 'Fôlego cheio!',

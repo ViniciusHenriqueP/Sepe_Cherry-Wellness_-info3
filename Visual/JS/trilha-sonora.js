@@ -1,3 +1,9 @@
+/* =====================================================================
+   trilha-sonora.js — A música da Batalha Final 🎶
+   ---------------------------------------------------------------------
+   Usado em: jogo-boss.html
+   ===================================================================== */
+
 // Trilha sonora da Batalha Final (jogo-boss.html).
 //
 // COMO TROCAR A MÚSICA
@@ -9,6 +15,7 @@
 // Se algum arquivo não existir, o jogo toca uma trilha chiptune própria,
 // gerada aqui mesmo pelo navegador (Web Audio API), então nunca fica mudo.
 
+// As duas músicas do jogo: a da luta e a da transformação final
 const FAIXAS = {
     batalha: { arquivo: 'AUDIO/undertale-batalha.mp3', volume: 0.45, loop: true, chiptune: 'batalha' },
     final: { arquivo: 'AUDIO/undertale-final.mp3', volume: 0.5, loop: true, chiptune: 'final' }
@@ -66,19 +73,22 @@ const CHIPTUNES = {
     }
 };
 
+// Converte uma nota MIDI na frequência do som em Hz (Lá 69 = 440 Hz)
 const frequencia = (nota) => 440 * Math.pow(2, (nota - 69) / 12);
 
 let contextoAudio = null;
 let tocando = null; // { audio } ou { sintetizador }
-let mudo = false;
+let mudo = false; // a escolha de "sem som" fica lembrada no navegador
 try { mudo = localStorage.getItem('bossMudo') === 'sim'; } catch (e) { /* sem localStorage */ }
 
+// O navegador só libera áudio depois de um clique; aqui criamos/acordamos o "mixer"
 function obterContexto() {
     if (!contextoAudio) contextoAudio = new (window.AudioContext || window.webkitAudioContext)();
     if (contextoAudio.state === 'suspended') contextoAudio.resume();
     return contextoAudio;
 }
 
+// Toca a trilha de reserva gerada pelo próprio navegador, nota por nota
 function iniciarChiptune(nome) {
     const faixa = CHIPTUNES[nome];
     const ac = obterContexto();
@@ -91,6 +101,7 @@ function iniciarChiptune(nome) {
     let indice = 0;
     let proximoTempo = ac.currentTime + 0.05;
 
+    // Uma nota: um oscilador com volume que sobe rápido e desce suave
     function tocarNota(voz, nota, tempo) {
         const osc = ac.createOscillator();
         const env = ac.createGain();
@@ -105,6 +116,7 @@ function iniciarChiptune(nome) {
         osc.stop(fim + 0.02);
     }
 
+    // O "tum" do bumbo: um som grave que cai de 140 Hz para 40 Hz
     function tocarBumbo(tempo) {
         const osc = ac.createOscillator();
         const env = ac.createGain();
@@ -140,6 +152,7 @@ function iniciarChiptune(nome) {
 }
 
 // ---------- API usada pelo jogo ----------
+// Toca uma faixa pelo nome ('batalha' ou 'final'); se o mp3 não existir, usa o chiptune
 function tocarTrilha(nome) {
     pararTrilha();
     const faixa = FAIXAS[nome];
@@ -200,6 +213,7 @@ function pararTrilha(fade = 0) {
     });
 }
 
+// Botão de som: liga/desliga e lembra a escolha
 function alternarMudo() {
     mudo = !mudo;
     try { localStorage.setItem('bossMudo', mudo ? 'sim' : 'nao'); } catch (e) { /* sem localStorage */ }
@@ -208,6 +222,7 @@ function alternarMudo() {
     return mudo;
 }
 
+// O som está desligado?
 function estaMudo() {
     return mudo;
 }
