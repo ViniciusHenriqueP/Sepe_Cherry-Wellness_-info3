@@ -145,7 +145,7 @@ html.modal-aberto {
 
 .beneficio-modal-kicker {
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -313,7 +313,7 @@ html.modal-aberto {
     align-items: baseline;
     gap: 4px 12px;
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.4;
     color: var(--color-text-muted);
 }
@@ -416,17 +416,3 @@ html.modal-aberto {
 }
 
 /* No celular, o pop-up ocupa quase a tela toda */
-@media (max-width: 768px) {
-    .beneficio-modal-inner {
-        padding: 28px 22px 24px;
-    }
-
-    .beneficio-modal-topo h2 {
-        font-size: 26px;
-    }
-
-    .video-capa-play {
-        width: 54px;
-        height: 54px;
-    }
-}

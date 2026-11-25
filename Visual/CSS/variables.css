@@ -24,8 +24,8 @@
     /* Texto */
     --color-text: #4A1515;
     --color-text-strong: #3D1111;
-    --color-text-muted: #6E5A5A;
-    --color-text-soft: #8A7676;
+    --color-text-muted: #55403F;
+    --color-text-soft: #6A5555;
     --color-text-on-dark: #E2D7C5;
 
     /* Marca / navbar / footer */
@@ -72,6 +72,20 @@
     --font-heading: 'Times New Roman', Times, serif;
     --font-body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
 
+    /* Tamanhos FIXOS de título (um por nível; o celular usa os valores menores, ver responsivo.css)
+       h1 > h2 > h3: a hierarquia visual é igual à hierarquia do HTML */
+    --fs-h1: 32px;
+    --fs-h2: 26px;
+    --fs-h3: 20px;
+    --fs-body: 17px;
+    --fs-small: 14px;
+
+    /* Margem lateral das faixas: 20px no mínimo e centraliza o conteúdo em 1100px */
+    --gutter: max(20px, calc((100% - 1100px) / 2));
+
+    /* Alvo mínimo de toque (recomendação WCAG/Apple/Google: 44–48px) */
+    --touch-min: 48px;
+
     /* Movimento */
     --transition-base: 0.3s ease;
     --transition-slow: 0.6s ease;
@@ -90,8 +104,8 @@
 
         --color-text: #F1E6DC;
         --color-text-strong: #FBEFE2;
-        --color-text-muted: #C9B4A9;
-        --color-text-soft: #A6897C;
+        --color-text-muted: #DCCABF;
+        --color-text-soft: #C2A99C;
         --color-text-on-dark: #F1E6DC;
 
         --color-brand: #150C0C;
@@ -132,8 +146,8 @@
 
     --color-text: #F1E6DC;
     --color-text-strong: #FBEFE2;
-    --color-text-muted: #C9B4A9;
-    --color-text-soft: #A6897C;
+    --color-text-muted: #DCCABF;
+    --color-text-soft: #C2A99C;
     --color-text-on-dark: #F1E6DC;
 
     --color-brand: #150C0C;

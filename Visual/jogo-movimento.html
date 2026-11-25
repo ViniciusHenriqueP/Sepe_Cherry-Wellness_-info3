@@ -10,29 +10,58 @@
     <link rel="stylesheet" href="CSS/base.css">
     <link rel="stylesheet" href="CSS/beneficio-modal.css">
     <link rel="stylesheet" href="CSS/pages/jogo-movimento.css">
+    <link rel="stylesheet" href="CSS/responsivo.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
         rel="stylesheet">
     <!-- Tema claro/escuro: fica no <head> para não "piscar" ao carregar -->
     <script src="JS/theme.js"></script>
+    <script src="JS/progresso.js"></script>
     <script src="JS/menu.js" defer></script>
 </head>
 
-<body data-voltar-ao-topo>
+<body class="pagina-conteudo" data-voltar-ao-topo>
 
     <!-- NAVBAR: logo, links para as páginas, menu do celular e botão de tema claro/escuro -->
     <header class="navbar">
-        <div class="logo-area">
+        <a href="index.html" class="logo-area" aria-label="Cherry Wellness: ir para a página inicial">
             <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
             <span class="logo-text">Cherry Wellness</span>
-        </div>
+        </a>
         <nav class="nav-links" id="menu-principal" aria-label="Menu principal">
-            <a href="index.html">Início</a>
-            <a href="vida-em-movimento.html">Vida em movimento</a>
-            <a href="alimentacao.html">Prato & Saúde</a>
-            <a href="saudemental.html">Bem-Estar mental</a>
-            <a href="emblemas.html">Emblemas & Minijogos</a>
+            <ul class="nav-lista">
+                <li><a href="index.html">Início</a></li>
+                <li class="tem-submenu">
+                    <a href="vida-em-movimento.html" class="active">Vida em movimento <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-movimento.html" aria-current="page">Atividades e números</a></li>
+                        <li><a href="jogo-ritmo.html">Minijogo: Ritmo em Movimento</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="alimentacao.html">Prato &amp; Saúde <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-prato.html">Minijogo: Monte seu Prato</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="saudemental.html">Bem-Estar mental <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-respiracao.html">Minijogo: Respire e Recarregue</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="emblemas.html">Emblemas &amp; Minijogos <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-ritmo.html">Ritmo em Movimento</a></li>
+                        <li><a href="jogo-prato.html">Monte seu Prato</a></li>
+                        <li><a href="jogo-respiracao.html">Respire e Recarregue</a></li>
+                        <li data-requer-emblemas hidden><a href="jogo-boss.html">Batalha Final</a></li>
+                    </ul>
+                </li>
+                <li><a href="projeto.html">Nosso projeto</a></li>
+            </ul>
         </nav>
         <!-- Botão ☰ do menu no celular (JS/menu.js) -->
         <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
@@ -71,7 +100,7 @@
         </div>
     </section>
 
-    <div class="checkerboard-divider"></div>
+    <hr class="checkerboard-divider">
 
     <!-- PRÉ-TREINO: como se preparar antes de se exercitar -->
     <section class="hero-info" id="pre-treino">
@@ -90,7 +119,7 @@
             </div>
         </div>
         <div class="hero-text-area" data-reveal="right">
-            <h2 class="hero-title">Atividades pré-treino</h2>
+            <h2>Atividades pré-treino</h2>
             <p class="hero-subtitle">Preparar o corpo evita lesões.</p>
             <p>Antes do treino, é importante fazer um aquecimento — corrida leve, caminhada ou exercícios de
                 mobilidade — para aumentar a temperatura corporal, melhorar a circulação e prevenir lesões. Manter
@@ -106,8 +135,8 @@
         <p>Além de fortalecer o corpo, os exercícios físicos fazem bem para a mente e para a rotina. Toque em um
             card para entender o porquê.</p>
 
-        <div class="grid-beneficios" data-reveal-group>
-            <div class="beneficio-card" data-reveal="up">
+        <ul class="grid-beneficios" data-reveal-group>
+            <li class="beneficio-card" data-reveal="up">
                 <span class="emoji-beneficio">
                     <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -121,9 +150,9 @@
                 <p>Libera hormônios que trazem sensação de bem-estar.</p>
                 <button type="button" class="beneficio-mais" data-beneficio="humor" aria-haspopup="dialog">Entenda
                     por quê <span aria-hidden="true">→</span></button>
-            </div>
+            </li>
 
-            <div class="beneficio-card" data-reveal="up">
+            <li class="beneficio-card" data-reveal="up">
                 <span class="emoji-beneficio">
                     <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -136,9 +165,9 @@
                 <p>Ajuda o corpo e a mente a relaxarem depois de um dia cheio.</p>
                 <button type="button" class="beneficio-mais" data-beneficio="estresse" aria-haspopup="dialog">Entenda
                     por quê <span aria-hidden="true">→</span></button>
-            </div>
+            </li>
 
-            <div class="beneficio-card" data-reveal="up">
+            <li class="beneficio-card" data-reveal="up">
                 <span class="emoji-beneficio">
                     <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -149,9 +178,9 @@
                 <p>Mais energia para as tarefas do dia a dia.</p>
                 <button type="button" class="beneficio-mais" data-beneficio="disposicao" aria-haspopup="dialog">Entenda
                     por quê <span aria-hidden="true">→</span></button>
-            </div>
+            </li>
 
-            <div class="beneficio-card" data-reveal="up">
+            <li class="beneficio-card" data-reveal="up">
                 <span class="emoji-beneficio">
                     <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -164,8 +193,8 @@
                 <p>Contribui para clareza mental e foco nas atividades.</p>
                 <button type="button" class="beneficio-mais" data-beneficio="concentracao" aria-haspopup="dialog">Entenda
                     por quê <span aria-hidden="true">→</span></button>
-            </div>
-        </div>
+            </li>
+        </ul>
     </section>
 
     <!-- NÚMEROS: atividade física em dados -->
@@ -188,27 +217,21 @@
                             <span class="chart-bar-label">Ativos (300 min/semana ou mais)</span>
                             <span class="chart-bar-value">28,1%</span>
                         </div>
-                        <div class="chart-bar-track">
-                            <div class="chart-bar-fill" style="width: 28.1%;"></div>
-                        </div>
+                        <progress class="chart-bar-fill" value="28.1" max="100">28,1%</progress>
                     </li>
                     <li class="chart-bar-row">
                         <div class="chart-bar-top">
                             <span class="chart-bar-label">Insuficientemente ativos (1 a 299 min/semana)</span>
                             <span class="chart-bar-value">61,8%</span>
                         </div>
-                        <div class="chart-bar-track">
-                            <div class="chart-bar-fill" style="width: 61.8%; opacity: 0.7;"></div>
-                        </div>
+                        <progress class="chart-bar-fill" value="61.8" max="100" style="--fill-opacity: 0.7;">61,8%</progress>
                     </li>
                     <li class="chart-bar-row">
                         <div class="chart-bar-top">
                             <span class="chart-bar-label">Inativos (0 min/semana)</span>
                             <span class="chart-bar-value">8,7%</span>
                         </div>
-                        <div class="chart-bar-track">
-                            <div class="chart-bar-fill" style="width: 8.7%; opacity: 0.45;"></div>
-                        </div>
+                        <progress class="chart-bar-fill" value="8.7" max="100" style="--fill-opacity: 0.45;">8,7%</progress>
                     </li>
                 </ul>
                 <p class="chart-source">Fonte: IBGE, Pesquisa Nacional de Saúde do Escolar (PeNSE), 2019.</p>
@@ -228,9 +251,7 @@
                 Agora é hora de testar seus reflexos! Acompanhe o ritmo, acerte as setas no tempo certo e tente
                 chegar ao final da barra de energia para conquistar o Emblema Vida em Movimento.
             </p>
-            <a href="jogo-ritmo.html" class="link-limpo">
-                <button class="btn-secondary">Jogar Agora →</button>
-            </a>
+            <a href="jogo-ritmo.html" class="btn-secondary">Jogar Agora →</a>
         </div>
     </section>
 
@@ -258,23 +279,64 @@
             </div>
             <div class="footer-social">
                 <span class="footer-social-label">Siga-nos</span>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
-                    <a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="Github" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a>
-                </div>
+                <ul class="social-icons">
+                    <li><a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram (abre em nova aba)" target="_blank" rel="noopener"><img src="IMG/icons/instagram.png" alt=""></a></li>
+                    <li><a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="GitHub (abre em nova aba)" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a></li>
+                </ul>
             </div>
         </div>
-        <nav class="footer-map" aria-label="Mapa do site">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="vida-em-movimento.html">Vida em movimento</a></li>
-                <li><a href="alimentacao.html">Prato &amp; Saúde</a></li>
-                <li><a href="saudemental.html">Bem-Estar mental</a></li>
-                <li><a href="emblemas.html">Emblemas &amp; Minijogos</a></li>
-                <li><a href="projeto.html">O projeto</a></li>
-            </ul>
-        </nav>
-        <p class="footer-copy">SEPE &mdash; IFC Araquari &mdash; Desenvolvido por Vinícius, Lukas, Gabriela, Letícia, Murilo e Gabrieli</p>
+
+        <div class="footer-cols">
+            <nav aria-labelledby="rodape-mapa">
+                <h2 id="rodape-mapa">Mapa do site</h2>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="vida-em-movimento.html">Vida em movimento</a></li>
+                    <li><a href="alimentacao.html">Prato &amp; Saúde</a></li>
+                    <li><a href="saudemental.html">Bem-Estar mental</a></li>
+                    <li><a href="emblemas.html">Emblemas &amp; Minijogos</a></li>
+                    <li><a href="projeto.html">Nosso projeto</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="rodape-contato">
+                <h2 id="rodape-contato">Contato</h2>
+                <ul>
+                    <li>IFC &mdash; Campus Araquari (SC)</li>
+                    <li>Projeto da SEPE, turma de Informática (Info 3)</li>
+                    <li><a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" target="_blank" rel="noopener">Instagram @cherry_wellnes</a></li>
+                    <li><a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" target="_blank" rel="noopener">Código no GitHub</a></li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="rodape-equipe">
+                <h2 id="rodape-equipe">Desenvolvido por</h2>
+                <ul>
+                    <li>Vinícius &mdash; programação e jogos</li>
+                    <li>Lukas &mdash; programação, CSS e atas</li>
+                    <li>Gabriela e Letícia &mdash; design no Figma</li>
+                    <li>Murilo &mdash; CSS e mascotes</li>
+                    <li>Gabrieli &mdash; HTML, CSS e mascotes</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="rodape-imagens">
+                <h2 id="rodape-imagens">Origem das imagens</h2>
+                <ul>
+                    <li><strong>Cerejas (nossa representação):</strong> mascotes, logo, banner e emblemas, geradas com inteligência artificial.</li>
+                    <li><strong>Demais imagens</strong> (corpo humano, pratos e alimentos): retiradas do Google. Os direitos pertencem aos autores originais.</li>
+                    <li><strong>Fotos da equipe:</strong> tiradas pelos próprios integrantes.</li>
+                    <li><strong>Ícones do Instagram e do GitHub:</strong> logotipos das marcas, usados só para identificar os links.</li>
+                    <li><strong>Dados e gráficos:</strong> OMS e Ministério da Saúde (fontes no fim de cada página).</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="footer-licenca">
+            <p><strong>Uso livre:</strong> o código e os textos deste site <em>não possuem copyright</em>: você pode copiar,
+                compartilhar e adaptar à vontade. As imagens retiradas do Google continuam sendo de seus autores.</p>
+            <p class="footer-copy">Cherry Wellness &mdash; SEPE &middot; IFC Araquari</p>
+        </div>
     </footer>
 
     <!-- Scripts da página (ficam no fim para o HTML carregar primeiro) -->

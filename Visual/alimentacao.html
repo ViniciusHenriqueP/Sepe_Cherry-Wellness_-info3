@@ -10,29 +10,60 @@
     <link rel="stylesheet" href="CSS/base.css">
     <link rel="stylesheet" href="CSS/pages/home.css">
     <link rel="stylesheet" href="CSS/pages/alimentacao.css">
+    <link rel="stylesheet" href="CSS/calculadoras.css">
+    <link rel="stylesheet" href="CSS/responsivo.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
         rel="stylesheet">
     <!-- Tema claro/escuro: fica no <head> para não "piscar" ao carregar -->
     <script src="JS/theme.js"></script>
+    <script src="JS/progresso.js"></script>
     <script src="JS/menu.js" defer></script>
+    <script src="JS/calculadoras.js" defer></script>
 </head>
 
-<body data-voltar-ao-topo>
+<body class="pagina-conteudo" data-voltar-ao-topo>
 
     <!-- NAVBAR: logo, links para as páginas, menu do celular e botão de tema claro/escuro -->
     <header class="navbar">
-        <div class="logo-area">
+        <a href="index.html" class="logo-area" aria-label="Cherry Wellness: ir para a página inicial">
             <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
             <span class="logo-text">Cherry Wellness</span>
-        </div>
+        </a>
         <nav class="nav-links" id="menu-principal" aria-label="Menu principal">
-            <a href="index.html">Início</a>
-            <a href="vida-em-movimento.html">Vida em movimento</a>
-            <a href="alimentacao.html" class="active">Prato & Saúde</a>
-            <a href="saudemental.html">Bem-Estar mental</a>
-            <a href="emblemas.html">Emblemas & Minijogos</a>
+            <ul class="nav-lista">
+                <li><a href="index.html">Início</a></li>
+                <li class="tem-submenu">
+                    <a href="vida-em-movimento.html">Vida em movimento <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-movimento.html">Atividades e números</a></li>
+                        <li><a href="jogo-ritmo.html">Minijogo: Ritmo em Movimento</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="alimentacao.html" class="active" aria-current="page">Prato &amp; Saúde <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-prato.html">Minijogo: Monte seu Prato</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="saudemental.html">Bem-Estar mental <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-respiracao.html">Minijogo: Respire e Recarregue</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="emblemas.html">Emblemas &amp; Minijogos <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-ritmo.html">Ritmo em Movimento</a></li>
+                        <li><a href="jogo-prato.html">Monte seu Prato</a></li>
+                        <li><a href="jogo-respiracao.html">Respire e Recarregue</a></li>
+                        <li data-requer-emblemas hidden><a href="jogo-boss.html">Batalha Final</a></li>
+                    </ul>
+                </li>
+                <li><a href="projeto.html">Nosso projeto</a></li>
+            </ul>
         </nav>
         <!-- Botão ☰ do menu no celular (JS/menu.js) -->
         <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
@@ -70,7 +101,7 @@
         </div>
     </section>
 
-    <div class="checkerboard-divider"></div>
+    <hr class="checkerboard-divider">
 
     <!-- Introdução: por que a alimentação faz diferença -->
     <section class="hero-info">
@@ -78,7 +109,7 @@
             <img src="IMG/alimentacao/Comidas.webp" alt="Variedade de alimentos saudáveis">
         </div>
         <div class="hero-text-area" data-reveal="right">
-            <h2 class="hero-title">Escolhas que fazem a diferença</h2>
+            <h2>Escolhas que fazem a diferença</h2>
             <p class="hero-subtitle">Pequenas mudanças, grandes resultados.</p>
             <p>Conhecer os grupos alimentares e o papel de cada nutriente ajuda a montar refeições mais equilibradas
                 no dia a dia. Abaixo você encontra um resumo prático sobre proteínas, carboidratos, gorduras boas,
@@ -91,8 +122,8 @@
         <h2>Nutrientes que fazem a diferença</h2>
         <p>Clique em um nutriente abaixo para ler a sua explicação detalhada.</p>
 
-        <div class="grid-nutrientes" data-reveal-group>
-            <a href="#proteinas" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('proteinas')">
+        <ul class="grid-nutrientes" data-reveal-group>
+            <li class="nutriente-item"><a href="#proteinas" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('proteinas')">
                 <div class="nutriente-card-click">
                     <span class="emoji-nutriente">
                         <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -107,9 +138,9 @@
                     <h3>Proteínas</h3>
                     <p>Construção e reparação de tecidos.</p>
                 </div>
-            </a>
+            </a></li>
 
-            <a href="#carboidratos" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('carboidratos')">
+            <li class="nutriente-item"><a href="#carboidratos" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('carboidratos')">
                 <div class="nutriente-card-click">
                     <span class="emoji-nutriente">
                         <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -122,9 +153,9 @@
                     <h3>Carboidratos</h3>
                     <p>A principal fonte de energia.</p>
                 </div>
-            </a>
+            </a></li>
 
-            <a href="#gorduras" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('gorduras')">
+            <li class="nutriente-item"><a href="#gorduras" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('gorduras')">
                 <div class="nutriente-card-click">
                     <span class="emoji-nutriente">
                         <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -135,9 +166,9 @@
                     <h3>Gorduras Boas</h3>
                     <p>Saúde hormonal e do coração.</p>
                 </div>
-            </a>
+            </a></li>
 
-            <a href="#vitaminas" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('vitaminas')">
+            <li class="nutriente-item"><a href="#vitaminas" class="nutriente-link" data-reveal="up" onclick="mostrarNutriente('vitaminas')">
                 <div class="nutriente-card-click">
                     <span class="emoji-nutriente">
                         <svg class="icon-line" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -149,8 +180,8 @@
                     <h3>Vitaminas e Minerais</h3>
                     <p>Regulação das funções vitais.</p>
                 </div>
-            </a>
-        </div>
+            </a></li>
+        </ul>
     </section>
 
     <!-- Blocos de detalhe de cada nutriente (só um aparece por vez) -->
@@ -230,18 +261,14 @@
                             <span class="chart-bar-label">2006</span>
                             <span class="chart-bar-value">11,8%</span>
                         </div>
-                        <div class="chart-bar-track">
-                            <div class="chart-bar-fill" style="width: 11.8%;"></div>
-                        </div>
+                        <progress class="chart-bar-fill" value="11.8" max="100">11,8%</progress>
                     </li>
                     <li class="chart-bar-row">
                         <div class="chart-bar-top">
                             <span class="chart-bar-label">2023</span>
                             <span class="chart-bar-value">24,3%</span>
                         </div>
-                        <div class="chart-bar-track">
-                            <div class="chart-bar-fill" style="width: 24.3%;"></div>
-                        </div>
+                        <progress class="chart-bar-fill" value="24.3" max="100">24,3%</progress>
                     </li>
                 </ul>
                 <p class="chart-source">Fonte: Ministério da Saúde, pesquisa Vigitel 2006–2023.</p>
@@ -262,6 +289,76 @@
             2022) — mostrando que o desafio de comer bem vai muito além do Brasil.</p>
     </section>
 
+    <!-- CALCULADORAS: a pessoa digita os dados, o JS calcula e mostra o resultado (JS/calculadoras.js) -->
+    <section class="calculadora-secao" id="calculadoras">
+        <h2 data-reveal="up">Calculadoras de saúde</h2>
+        <p class="calc-intro">Descubra quanto o seu corpo precisa de água e de energia por dia. São estimativas, não um plano alimentar.</p>
+        <ul class="calc-grid">
+                <li>
+                    <article class="calc-card" style="--calc-cor: var(--color-green-strong);">
+                        <h3>Quanta água beber por dia?</h3>
+                        <p>Depende do seu peso e do quanto você se exercita.</p>
+                        <form class="calc-form" data-calculo="agua" novalidate>
+                            <div class="calc-campo">
+                                <label for="agua-peso">Peso (kg)</label>
+                                <input id="agua-peso" name="peso" type="number" inputmode="decimal" step="0.1" placeholder="ex.: 62" required>
+                            </div>
+                            <div class="calc-campo">
+                                <label for="agua-min">Exercício por dia (min)</label>
+                                <input id="agua-min" name="minutos" type="number" inputmode="decimal" step="0.1" placeholder="ex.: 30" required>
+                            </div>
+                            <div class="calc-acoes">
+                                <button type="submit" class="btn-primary">Calcular água</button>
+                                <button type="reset" class="btn-secondary">Limpar</button>
+                            </div>
+                            <output class="calc-resultado" aria-live="polite">Preencha os campos e toque em calcular.</output>
+                        </form>
+                    </article>
+                </li>
+                <li>
+                    <article class="calc-card" style="--calc-cor: var(--color-red-accent);">
+                        <h3>Quantas calorias eu gasto?</h3>
+                        <p>Gasto de energia por dia, em repouso e com a sua rotina.</p>
+                        <form class="calc-form" data-calculo="calorias" novalidate>
+                            <fieldset class="calc-campo">
+                                <legend>Sexo biológico</legend>
+                                <div class="calc-opcoes">
+                                    <label><input type="radio" name="sexo" value="f" checked> Feminino</label>
+                                    <label><input type="radio" name="sexo" value="m"> Masculino</label>
+                                </div>
+                            </fieldset>
+                            <div class="calc-campo">
+                                <label for="cal-idade">Idade (anos)</label>
+                                <input id="cal-idade" name="idade" type="number" inputmode="decimal" step="0.1" placeholder="ex.: 16" required>
+                            </div>
+                            <div class="calc-campo">
+                                <label for="cal-peso">Peso (kg)</label>
+                                <input id="cal-peso" name="peso" type="number" inputmode="decimal" step="0.1" placeholder="ex.: 62" required>
+                            </div>
+                            <div class="calc-campo">
+                                <label for="cal-altura">Altura (cm)</label>
+                                <input id="cal-altura" name="altura" type="number" inputmode="decimal" step="0.1" placeholder="ex.: 168" required>
+                            </div>
+                            <div class="calc-campo">
+                                <label for="cal-ativ">Nível de atividade</label>
+                                <select id="cal-ativ" name="atividade">
+                                    <option value="1.2">Pouco ativo</option>
+                                    <option value="1.375" selected>Leve (1–3 dias/sem.)</option>
+                                    <option value="1.55">Moderado (3–5 dias/sem.)</option>
+                                    <option value="1.725">Intenso (6–7 dias/sem.)</option>
+                                </select>
+                            </div>
+                            <div class="calc-acoes">
+                                <button type="submit" class="btn-primary">Calcular calorias</button>
+                                <button type="reset" class="btn-secondary">Limpar</button>
+                            </div>
+                            <output class="calc-resultado" aria-live="polite">Preencha os campos e toque em calcular.</output>
+                        </form>
+                    </article>
+                </li>
+        </ul>
+    </section>
+
     <!-- Convite para o minijogo "Monte seu Prato" -->
     <section class="minijogo-cta">
         <div class="card card-red" data-reveal="scale">
@@ -272,9 +369,7 @@
                 Arraste os melhores alimentos para o seu prato e tente conseguir mais de 80% de saúde para conquistar
                 um Emblema exclusivo no seu perfil.
             </p>
-            <a href="jogo-prato.html" class="link-limpo">
-                <button class="btn-secondary">Jogar Agora →</button>
-            </a>
+            <a href="jogo-prato.html" class="btn-secondary">Jogar Agora →</a>
         </div>
     </section>
 
@@ -302,23 +397,64 @@
             </div>
             <div class="footer-social">
                 <span class="footer-social-label">Siga-nos</span>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
-                    <a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="Github" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a>
-                </div>
+                <ul class="social-icons">
+                    <li><a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram (abre em nova aba)" target="_blank" rel="noopener"><img src="IMG/icons/instagram.png" alt=""></a></li>
+                    <li><a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="GitHub (abre em nova aba)" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a></li>
+                </ul>
             </div>
         </div>
-        <nav class="footer-map" aria-label="Mapa do site">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="vida-em-movimento.html">Vida em movimento</a></li>
-                <li><a href="alimentacao.html">Prato &amp; Saúde</a></li>
-                <li><a href="saudemental.html">Bem-Estar mental</a></li>
-                <li><a href="emblemas.html">Emblemas &amp; Minijogos</a></li>
-                <li><a href="projeto.html">O projeto</a></li>
-            </ul>
-        </nav>
-        <p class="footer-copy">SEPE &mdash; IFC Araquari &mdash; Desenvolvido por Vinícius, Lukas, Gabriela, Letícia, Murilo e Gabrieli</p>
+
+        <div class="footer-cols">
+            <nav aria-labelledby="rodape-mapa">
+                <h2 id="rodape-mapa">Mapa do site</h2>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="vida-em-movimento.html">Vida em movimento</a></li>
+                    <li><a href="alimentacao.html">Prato &amp; Saúde</a></li>
+                    <li><a href="saudemental.html">Bem-Estar mental</a></li>
+                    <li><a href="emblemas.html">Emblemas &amp; Minijogos</a></li>
+                    <li><a href="projeto.html">Nosso projeto</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="rodape-contato">
+                <h2 id="rodape-contato">Contato</h2>
+                <ul>
+                    <li>IFC &mdash; Campus Araquari (SC)</li>
+                    <li>Projeto da SEPE, turma de Informática (Info 3)</li>
+                    <li><a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" target="_blank" rel="noopener">Instagram @cherry_wellnes</a></li>
+                    <li><a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" target="_blank" rel="noopener">Código no GitHub</a></li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="rodape-equipe">
+                <h2 id="rodape-equipe">Desenvolvido por</h2>
+                <ul>
+                    <li>Vinícius &mdash; programação e jogos</li>
+                    <li>Lukas &mdash; programação, CSS e atas</li>
+                    <li>Gabriela e Letícia &mdash; design no Figma</li>
+                    <li>Murilo &mdash; CSS e mascotes</li>
+                    <li>Gabrieli &mdash; HTML, CSS e mascotes</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="rodape-imagens">
+                <h2 id="rodape-imagens">Origem das imagens</h2>
+                <ul>
+                    <li><strong>Cerejas (nossa representação):</strong> mascotes, logo, banner e emblemas, geradas com inteligência artificial.</li>
+                    <li><strong>Demais imagens</strong> (corpo humano, pratos e alimentos): retiradas do Google. Os direitos pertencem aos autores originais.</li>
+                    <li><strong>Fotos da equipe:</strong> tiradas pelos próprios integrantes.</li>
+                    <li><strong>Ícones do Instagram e do GitHub:</strong> logotipos das marcas, usados só para identificar os links.</li>
+                    <li><strong>Dados e gráficos:</strong> OMS e Ministério da Saúde (fontes no fim de cada página).</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="footer-licenca">
+            <p><strong>Uso livre:</strong> o código e os textos deste site <em>não possuem copyright</em>: você pode copiar,
+                compartilhar e adaptar à vontade. As imagens retiradas do Google continuam sendo de seus autores.</p>
+            <p class="footer-copy">Cherry Wellness &mdash; SEPE &middot; IFC Araquari</p>
+        </div>
     </footer>
 
     <!-- Scripts da página (ficam no fim para o HTML carregar primeiro) -->

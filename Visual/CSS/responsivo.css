@@ -1,0 +1,642 @@
+/* ==========================================================================
+   RESPONSIVO — TODAS as media queries do site ficam aqui
+   --------------------------------------------------------------------------
+   Existe UM único ponto de quebra: 1100px.
+     • até 1099px  → celular e tablet (layout em coluna, espaçamentos compactos)
+     • 1100px ou + → computador
+   Este arquivo é carregado por último em todas as páginas, depois dos CSS
+   da página, por isso ele consegue ajustar qualquer regra anterior.
+   (As queries de acessibilidade — prefers-reduced-motion — ficam nos
+   arquivos de cada componente, pois não dependem de largura.)
+   ========================================================================== */
+
+/* ---------- base.css ---------- */
+@media (max-width: 1099px) {
+    .js .navbar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+        padding: 12px 16px;
+    }
+
+    .js .navbar .logo-area {
+        margin-right: auto; /* empurra os botões para a direita */
+    }
+
+    .js .navbar .theme-toggle {
+        order: 1;
+    }
+
+    .js .navbar .menu-toggle {
+        display: flex;
+        order: 2;
+    }
+
+    /* Menu aberto: cada link é uma "pílula" de 52px de altura com folga entre
+       elas, assim o dedo não toca na página errada sem querer. As subpáginas
+       aparecem logo abaixo da página-mãe, com recuo. */
+    .js .navbar .nav-links {
+        order: 3;
+        display: none;
+        width: 100%;
+        padding: 14px 0 8px;
+    }
+
+    .js .navbar .nav-lista {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    /* Subpáginas: ficam escondidas; aparecem flutuando abaixo do item quando
+       a pessoa SEGURA o dedo nele e arrasta até a opção (JS/menu.js) */
+    .js .navbar .tem-submenu {
+        position: relative;
+    }
+
+    .js .navbar .submenu {
+        left: 18px;
+        right: 0;
+        min-width: 0;
+        top: calc(100% - 4px);
+    }
+
+    .js .navbar .seta {
+        display: inline;
+    }
+
+    .js .navbar.menu-aberto .nav-links {
+        display: block;
+    }
+
+    .js .navbar .nav-links a {
+        display: flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 0 18px;
+        font-size: 18px;
+        border: 1px solid rgba(226, 215, 197, 0.3);
+        border-radius: var(--radius-md);
+        background-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .js .navbar .submenu a {
+        font-size: 16px;
+        min-height: 48px;
+        background-color: transparent;
+    }
+
+    .js .navbar .nav-links a::after {
+        display: none;
+    }
+
+    .js .navbar .nav-links a.active,
+    .js .navbar .nav-links a[aria-current="page"] {
+        background-color: rgba(255, 255, 255, 0.18);
+        font-weight: 700;
+    }
+
+    .js .navbar .theme-toggle,
+    .js .navbar .menu-toggle {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Títulos: um tamanho fixo por nível; maiores no tablet/computador */
+@media (min-width: 1100px) {
+    :root {
+        --fs-h1: 46px;
+        --fs-h2: 34px;
+        --fs-h3: 22px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .nav-lista {
+        flex-wrap: nowrap;
+        gap: 2px 4px;
+        white-space: nowrap;
+    }
+
+    .nav-lista > li > a {
+        gap: 4px;
+        padding: 0 4px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .nav-links a {
+        font-size: 15px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: auto;
+    }
+}
+
+@media (min-width: 1100px) {
+    .phrase-bar {
+        max-width: 600px;
+        margin: 40px auto;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .footer-social {
+        flex-direction: row;
+        align-items: center;
+        gap: 14px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ---------- beneficio-modal.css ---------- */
+@media (max-width: 1099px) {
+    .beneficio-modal-inner {
+        padding: 28px 22px 24px;
+    }
+
+    .beneficio-modal-topo h2 {
+        font-size: 26px;
+    }
+
+    .video-capa-play {
+        width: 54px;
+        height: 54px;
+    }
+}
+
+/* ---------- alimentacao.css ---------- */
+@media (min-width: 1100px) {
+    .dados-grid {
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+    }
+
+    .dados-grid .data-chart {
+        flex: 1.3;
+    }
+
+    .dados-grid .stat-tile {
+        flex: 1;
+    }
+}
+
+@media (max-width: 1099px) {
+
+    .hero-section-clean,
+    .hero-info {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .grid-nutrientes {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .nutriente-link {
+        width: 100%;
+        max-width: 340px;
+    }
+}
+
+/* ---------- home.css ---------- */
+@media (min-width: 1100px) {
+    .hero {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+        padding: 60px 50px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .hero-content {
+        max-width: 50%;
+    }
+
+    .hero-buttons,
+    .hero-buttons ul {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: clamp(250px, 40vw, 500px);
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+@media (min-width: 1100px) {
+    .cards-container>ul {
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 2vw;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .cards-container>ul>li {
+        width: 100%;
+        max-width: 380px;
+        flex: 1 1 280px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+    }
+}
+
+@media (min-width: 1100px) {
+    .home-cantinho {
+        grid-template-columns: 1.4fr 1fr;
+    }
+}
+
+/* ---------- jogo-boss.css ---------- */
+@media (max-width: 1099px) {
+    .arena {
+        min-height: 520px;
+        padding: 50px 12px 16px;
+    }
+
+    .boss {
+        width: 110px;
+    }
+
+    .fala {
+        width: 170px;
+        font-size: 18px;
+    }
+
+    .opcoes {
+        gap: 6px;
+        padding: 4px 10px 12px;
+    }
+
+    .opcao {
+        padding: 6px 6px 6px 22px;
+        font-size: 17px;
+    }
+
+    .opcao.selecionada::before {
+        left: 5px;
+        font-size: 16px;
+    }
+
+    .narracao {
+        padding: 10px 12px 6px;
+        font-size: 20px;
+    }
+
+    .status {
+        gap: 8px;
+        font-size: 19px;
+    }
+}
+
+@media (pointer: coarse), (max-width: 1099px) {
+    .analogico {
+        display: flex;
+    }
+}
+
+/* ---------- jogo-movimento.css ---------- */
+@media (max-width: 1099px) {
+
+    .hero-section-clean,
+    .hero-info {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 24px;
+    }
+
+    .beneficios-intro,
+    .dados-intro {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .dados-grid {
+        padding: 0;
+    }
+
+    .minijogo-cta {
+        padding: 50px 24px;
+    }
+
+    .minijogo-cta .card {
+        padding: 28px 22px;
+    }
+
+    .hidratacao-legendas {
+        justify-content: space-around;
+        margin: 10px auto 0;
+        padding: 0 8px;
+    }
+
+    .grid-beneficios {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .beneficio-card {
+        width: 100%;
+        max-width: 340px;
+    }
+}
+
+/* ---------- jogo-prato.css ---------- */
+@media (max-width: 1099px) {
+    .game-wrapper {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .prato-cabecalho h1 {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 1099px) {
+    .prato-jogo {
+        padding: 28px 16px 48px;
+    }
+
+    .comidas-paleta {
+        padding: 20px 14px;
+    }
+
+    .comidas-grid {
+        gap: 8px;
+    }
+
+    .comida-slot {
+        width: 54px;
+        height: 54px;
+    }
+
+    .emoji-arrastavel {
+        font-size: 30px;
+    }
+
+    .comida-no-prato {
+        font-size: 36px;
+    }
+}
+
+/* ---------- jogo-respiracao.css ---------- */
+@media (min-width: 1100px) {
+    .touch-controls {
+        display: none;
+    }
+}
+
+@media (max-width: 1099px) {
+    .game-container {
+        height: 240px;
+    }
+
+    .pulmao-central {
+        width: 133px;
+    }
+
+    .nota-pulmao {
+        width: 44px;
+    }
+}
+
+/* ---------- jogo-ritmo.css ---------- */
+@media (min-width: 1100px) {
+    .ritmo-pagina {
+        grid-template-columns: minmax(0, 1fr) 400px;
+        grid-template-areas:
+            "intro jogo"
+            "guia jogo";
+        grid-template-rows: auto 1fr;
+        column-gap: 48px;
+        row-gap: 24px;
+        padding-top: 44px;
+        align-items: start;
+    }
+
+    .ritmo-intro {
+        text-align: left;
+        padding-top: 12px;
+    }
+
+    .ritmo-guia {
+        max-width: none;
+        margin: 0;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ritmo-dica {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 1100px) {
+    .ritmo-intro h1 {
+        font-size: 52px;
+    }
+
+    .ritmo-intro p {
+        margin: 0;
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .game-container {
+        height: 480px;
+    }
+
+    .touch-controls {
+        display: none;
+    }
+}
+
+/* ---------- projeto.css ---------- */
+@media (min-width: 1100px) {
+    .projeto-hero {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 64px 50px;
+        text-align: left;
+    }
+
+    .projeto-hero-texto {
+        max-width: 560px;
+    }
+
+    .projeto-lead {
+        margin: 0;
+    }
+
+    .projeto-hero .projeto-hero-acoes {
+        justify-content: flex-start;
+    }
+
+    .projeto-hero-imagem img {
+        width: 100%;
+        max-width: clamp(260px, 36vw, 460px);
+    }
+}
+
+@media (min-width: 1100px) {
+    .projeto-nome {
+        flex-direction: row;
+        gap: 28px;
+        margin: 50px auto 0;
+        padding: 32px 36px;
+        text-align: left;
+    }
+
+    .projeto-nome-logo {
+        width: 110px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .projeto-objetivo-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .projeto-passos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .projeto-secao--destaque {
+        margin: 64px 50px 0;
+    }
+
+    .projeto-passos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .projeto-cta {
+        margin: 80px auto 0;
+    }
+}
+
+/* ---------- saudemental.css ---------- */
+@media (min-width: 1100px) {
+    .mental-layout {
+        grid-template-columns: 1.4fr 1fr;
+        align-items: start;
+    }
+
+    .mental-intro-grid {
+        grid-template-columns: 1fr 1.2fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .mental-media {
+        grid-row: 1 / 3;
+        height: 100%;
+    }
+}
+
+@media (min-width: 1100px) {
+    .praticas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .praticas-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ---------- vida-em-movimento.css ---------- */
+@media (min-width: 1100px) {
+    .movimento-hero {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .movimento-hero-content {
+        max-width: 55%;
+    }
+
+    .movimento-hero-media img {
+        max-width: 240px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .movimento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1100px) {
+    .movimento-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+
+/* ---------- Celular: menos espaço vazio nas laterais ---------- */
+@media (max-width: 1099px) {
+    .movimento-beneficios {
+        padding: 20px 12px;
+    }
+
+    .calculadora-secao {
+        padding: 32px 14px;
+    }
+
+    .calc-card {
+        padding: 20px 16px;
+    }
+
+    .pagina-conteudo main > section {
+        padding-block: 32px;
+    }
+}

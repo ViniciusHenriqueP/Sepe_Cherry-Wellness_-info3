@@ -29,7 +29,6 @@
 
 /* ---------- Introdução ---------- */
 .mental-intro h1 {
-    font-size: 32px;
     font-weight: bold;
     color: var(--color-text-strong);
     margin-bottom: 20px;
@@ -71,23 +70,6 @@
     width: 100%;
     max-width: 220px;
     height: auto;
-}
-
-@media (min-width: 760px) {
-    .mental-layout {
-        grid-template-columns: 1.4fr 1fr;
-        align-items: start;
-    }
-
-    .mental-intro-grid {
-        grid-template-columns: 1fr 1.2fr;
-        grid-template-rows: 1fr 1fr;
-    }
-
-    .mental-media {
-        grid-row: 1 / 3;
-        height: 100%;
-    }
 }
 
 /* ---------- Lembrete + minijogo ---------- */
@@ -197,7 +179,6 @@
 }
 
 .minijogo-card h3 {
-    font-size: 22px;
     font-weight: bold;
     color: var(--color-text-strong);
 }
@@ -310,7 +291,6 @@
 
 .praticas-section h2 {
     color: var(--color-text-strong);
-    font-size: 34px;
     font-weight: bold;
     margin-bottom: 6px;
 }
@@ -376,7 +356,6 @@
 }
 
 .pratica-card h3 {
-    font-size: 19px;
     font-weight: bold;
     color: var(--color-text-strong);
     margin-bottom: 8px;
@@ -386,16 +365,4 @@
     font-size: 14px;
     color: var(--color-text-muted);
     line-height: 1.5;
-}
-
-@media (min-width: 600px) {
-    .praticas-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 980px) {
-    .praticas-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
 }

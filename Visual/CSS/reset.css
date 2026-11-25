@@ -69,8 +69,6 @@ strong {
   font-weight: bolder;
 }
 
-
-
 /*
   Add the correct font size in all browsers.
 */
@@ -143,7 +141,6 @@ ul,
 menu {
   list-style: none;
 }
-
 
 /*
   1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)

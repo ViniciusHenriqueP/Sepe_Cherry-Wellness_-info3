@@ -643,50 +643,6 @@ body {
 }
 
 /* ---------- Celular ---------- */
-@media (max-width: 560px) {
-    .arena {
-        min-height: 520px;
-        padding: 50px 12px 16px;
-    }
-
-    .boss {
-        width: 110px;
-    }
-
-    .fala {
-        width: 170px;
-        font-size: 18px;
-    }
-
-    .opcoes {
-        gap: 6px;
-        padding: 4px 10px 12px;
-    }
-
-    .opcao {
-        padding: 6px 6px 6px 22px;
-        font-size: 17px;
-    }
-
-    .opcao.selecionada::before {
-        left: 5px;
-        font-size: 16px;
-    }
-
-    .opcao-desc {
-        font-size: 14px;
-    }
-
-    .narracao {
-        padding: 10px 12px 6px;
-        font-size: 20px;
-    }
-
-    .status {
-        gap: 8px;
-        font-size: 19px;
-    }
-}
 
 /* ---------- Dificuldades ----------
    Aqui são 4 níveis, então cada botão ganha uma 4ª barrinha */
@@ -807,10 +763,4 @@ body {
 .analogico.pressionado .analogico-alavanca {
     transition: none;
     border-color: var(--ut-amarelo);
-}
-
-@media (pointer: coarse), (max-width: 560px) {
-    .analogico {
-        display: flex;
-    }
 }

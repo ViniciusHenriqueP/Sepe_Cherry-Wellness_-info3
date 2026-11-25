@@ -46,6 +46,69 @@
         });
     }
 
+    // ----- 1a. Batalha Final só aparece no menu com os 3 emblemas -----
+    function liberarBatalhaFinal() {
+        var liberada = window.CherryProgresso && window.CherryProgresso.temTodosBase();
+        document.querySelectorAll('[data-requer-emblemas]').forEach(function (item) {
+            item.hidden = !liberada;
+        });
+    }
+
+    // ----- 1b. Submenus no toque: segurar o dedo, arrastar e soltar na opção -----
+    // No computador o submenu abre com o mouse (hover) ou com o teclado, só em CSS.
+    // No celular, um toque rápido abre a página do item; SEGURAR (0,35s) abre a
+    // lista, e ao soltar o dedo sobre uma opção a pessoa vai para ela.
+    function iniciarSubmenusNoToque() {
+        document.querySelectorAll('.tem-submenu').forEach(function (item) {
+            var link = item.querySelector(':scope > a');
+            var timer = null;
+            var aberto = false;
+            var alvo = null;
+
+            function marcar(novo) {
+                if (novo === alvo) return;
+                if (alvo) alvo.classList.remove('destaque');
+                alvo = novo;
+                if (alvo) alvo.classList.add('destaque');
+            }
+
+            function fechar() {
+                clearTimeout(timer);
+                aberto = false;
+                marcar(null);
+                item.classList.remove('submenu-aberto');
+            }
+
+            link.addEventListener('touchstart', function () {
+                timer = setTimeout(function () {
+                    aberto = true;
+                    item.classList.add('submenu-aberto');
+                }, 350);
+            }, { passive: true });
+
+            link.addEventListener('touchmove', function (evento) {
+                if (!aberto) { clearTimeout(timer); return; }
+                evento.preventDefault(); // não rola a página enquanto arrasta
+                var toque = evento.touches[0];
+                var sob = document.elementFromPoint(toque.clientX, toque.clientY);
+                var opcao = sob && sob.closest('.submenu a');
+                marcar(opcao && item.contains(opcao) ? opcao : null);
+            }, { passive: false });
+
+            link.addEventListener('touchend', function (evento) {
+                clearTimeout(timer);
+                if (!aberto) return; // toque rápido: segue o link normalmente
+                evento.preventDefault();
+                var destino = alvo;
+                fechar();
+                if (destino) window.location.href = destino.href;
+            });
+
+            link.addEventListener('touchcancel', fechar);
+            link.addEventListener('contextmenu', function (e) { if (aberto) e.preventDefault(); });
+        });
+    }
+
     // ----- 2. Voltar ao topo -----
     function iniciarVoltarAoTopo() {
         if (!document.body.hasAttribute('data-voltar-ao-topo')) return;
@@ -73,6 +136,8 @@
 
     document.addEventListener('DOMContentLoaded', function () {
         iniciarMenu();
+        liberarBatalhaFinal();
+        iniciarSubmenusNoToque();
         iniciarVoltarAoTopo();
     });
 })();

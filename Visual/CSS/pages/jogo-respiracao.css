@@ -329,23 +329,3 @@ body.corpo-respiracao {
     background-color: var(--color-sage-panel);
     transform: scale(0.94);
 }
-
-@media (min-width: 768px) {
-    .touch-controls {
-        display: none;
-    }
-}
-
-@media (max-width: 420px) {
-    .game-container {
-        height: 240px;
-    }
-
-    .pulmao-central {
-        width: 133px;
-    }
-
-    .nota-pulmao {
-        width: 44px;
-    }
-}

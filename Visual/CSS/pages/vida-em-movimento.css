@@ -37,7 +37,6 @@
 }
 
 .movimento-hero-content h1 {
-    font-size: 40px;
     font-weight: bold;
     color: var(--color-text-strong);
     margin-bottom: 15px;
@@ -63,26 +62,6 @@
     width: 100%;
     max-width: 200px;
     height: auto;
-}
-
-@media (min-width: 700px) {
-    .movimento-hero {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    }
-
-    .movimento-hero-content {
-        max-width: 55%;
-    }
-
-    .movimento-hero-content h1 {
-        font-size: 54px;
-    }
-
-    .movimento-hero-media img {
-        max-width: 240px;
-    }
 }
 
 /* ---------- Benefícios ---------- */
@@ -135,7 +114,6 @@
 }
 
 .movimento-card h3 {
-    font-size: 19px;
     font-weight: bold;
     color: var(--color-text-strong);
     margin-bottom: 8px;
@@ -145,18 +123,6 @@
     font-size: 14px;
     color: var(--color-text-muted);
     line-height: 1.5;
-}
-
-@media (min-width: 600px) {
-    .movimento-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 980px) {
-    .movimento-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
 }
 
 /* ---------- CTA para o jogo ---------- */
@@ -181,7 +147,6 @@
 }
 
 .movimento-cta h2 {
-    font-size: 30px;
     font-weight: bold;
     color: var(--color-text-strong);
 }

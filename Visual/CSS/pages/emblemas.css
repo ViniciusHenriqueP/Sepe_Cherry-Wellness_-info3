@@ -23,7 +23,6 @@ body {
 
 .titulo-pagina {
     color: var(--color-text-strong);
-    font-size: 38px;
     margin-bottom: 10px;
     font-weight: bold;
 }

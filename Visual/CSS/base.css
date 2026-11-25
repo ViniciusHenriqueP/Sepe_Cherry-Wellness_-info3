@@ -16,7 +16,14 @@ body {
     font-family: var(--font-body);
 }
 
-/* Títulos: Fraunces, serifada de cantos suaves */
+/* Texto corrido: maior e com respiro, para ler bem no celular */
+body {
+    font-size: var(--fs-body);
+    line-height: 1.6;
+}
+
+/* Títulos: Fraunces, serifada de cantos suaves.
+   Cada nível tem UM tamanho fixo (tokens --fs-h1/2/3 em variables.css). */
 h1,
 h2,
 .stat-number {
@@ -24,8 +31,37 @@ h2,
     font-optical-sizing: auto;
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.15;
     text-wrap: balance;
+}
+
+h1 {
+    font-size: var(--fs-h1);
+    color: var(--color-text-strong);
+}
+
+/* Título de SEÇÃO: maior que o texto, em negrito, com sublinhado amarelo
+   grosso. Assim dá para ver de longe onde uma seção começa. */
+h2 {
+    font-size: var(--fs-h2);
+    color: var(--color-text-strong);
+    text-decoration: underline;
+    text-decoration-color: var(--color-yellow-accent);
+    text-decoration-thickness: 5px;
+    text-underline-offset: 8px;
+    text-decoration-skip-ink: none;
+    margin-bottom: 12px;
+}
+
+/* Dentro de cartões, painéis de jogo e pop-ups o h2 não leva sublinhado */
+.card h2,
+.footer h2,
+.beneficio-modal h2,
+.prato-jogo h2,
+.game-screen h2,
+.ritmo-pagina h2,
+.boss-wrapper h2 {
+    text-decoration: none;
 }
 
 /* Subtítulos: serifada clássica, a mesma que o site usava antes */
@@ -49,7 +85,8 @@ h3,
 }
 
 h3 {
-    font-weight: 600;
+    font-size: var(--fs-h3);
+    font-weight: 700;
     line-height: 1.25;
 }
 
@@ -60,7 +97,7 @@ h3 {
 .beneficios-intro > p,
 .nutrientes-intro > p,
 .dados-intro > p:not(.dados-contexto-global) {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 500;
     margin-top: 10px;
 }
@@ -211,12 +248,13 @@ body {
     font-weight: 700;
 }
 
-.nav-links {
+.nav-lista {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 6px 18px;
+    list-style: none;
 }
 
 .nav-links a {
@@ -227,7 +265,14 @@ body {
     padding-bottom: 4px;
 }
 
-.nav-links a::after {
+.nav-lista > li > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+}
+
+.nav-lista > li > a::after {
     content: '';
     position: absolute;
     left: 0;
@@ -240,18 +285,19 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-.nav-links a:hover::after {
+.nav-lista > li > a:hover::after {
     transform: scaleX(1);
     transform-origin: left;
 }
 
-.nav-links a.active::after {
+.nav-lista > li > a.active::after {
     transform: scaleX(1);
     background-color: #FFFFFF;
 }
 
 .nav-links a:hover,
-.nav-links a.active {
+.nav-links a.active,
+.nav-links a[aria-current="page"] {
     color: #FFFFFF;
 }
 
@@ -350,45 +396,6 @@ body {
 }
 
 /* Só no celular e só se o JS estiver rodando (classe .js vem do theme.js) */
-@media (max-width: 599px) {
-    .js .navbar {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 10px;
-        padding: 12px 16px;
-    }
-
-    .js .navbar .logo-area {
-        margin-right: auto; /* empurra os botões para a direita */
-    }
-
-    .js .navbar .theme-toggle {
-        order: 1;
-    }
-
-    .js .navbar .menu-toggle {
-        display: flex;
-        order: 2;
-    }
-
-    .js .navbar .nav-links {
-        order: 3;
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        gap: 14px;
-        padding: 12px 0 6px;
-    }
-
-    .js .navbar.menu-aberto .nav-links {
-        display: flex;
-    }
-
-    .js .navbar .nav-links a {
-        font-size: 16px; /* dedo precisa de alvo maior */
-    }
-}
 
 /* ==========================================================================
    VOLTAR AO TOPO — botão redondo no canto, criado pelo JS/menu.js
@@ -530,19 +537,6 @@ a.btn-card {
     background-color: var(--color-red);
 }
 
-@media (min-width: 600px) {
-    .navbar {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 15px 50px;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-        width: auto;
-    }
-}
-
 /* ==========================================================================
    DIVISOR QUADRICULADO / FRASE
    ========================================================================== */
@@ -567,14 +561,6 @@ a.btn-card {
     font-weight: 700;
     border-radius: var(--radius-sm);
     transition: background-color var(--transition-base);
-}
-
-@media (min-width: 600px) {
-    .phrase-bar {
-        max-width: 600px;
-        margin: 40px auto;
-        font-size: 16px;
-    }
 }
 
 /* ==========================================================================
@@ -622,7 +608,7 @@ a.btn-card {
 
 .footer-social-label {
     display: block;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -659,46 +645,11 @@ a.btn-card {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-.footer-map ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px 18px;
-    margin-top: 18px;
-    padding: 0;
-    list-style: none;
-    font-size: 14px;
-}
-
-.footer-map a {
-    color: inherit;
-    opacity: 0.85;
-}
-
-.footer-map a:hover {
-    opacity: 1;
-    text-decoration: underline;
-}
-
 .footer-copy {
     margin: 18px auto 0;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     opacity: 0.6;
-}
-
-@media (min-width: 640px) {
-    .footer-inner {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    }
-
-    .footer-social {
-        flex-direction: row;
-        align-items: center;
-        gap: 14px;
-    }
 }
 
 /* ==========================================================================
@@ -773,29 +724,23 @@ a.stat-tile:focus-visible {
 }
 
 .stat-desc {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.5;
     color: var(--color-text-muted);
 }
 
 .stat-link {
     margin-top: 4px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
     color: var(--color-text-strong);
 }
 
 .stat-source {
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--color-text-soft);
-}
-
-@media (min-width: 700px) {
-    .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
 }
 
 /* ==========================================================================
@@ -821,7 +766,7 @@ a.stat-tile:focus-visible {
 
 .chart-note {
     display: block;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--color-text-muted);
     margin-bottom: 20px;
 }
@@ -859,24 +804,38 @@ a.stat-tile:focus-visible {
     white-space: nowrap;
 }
 
-.chart-bar-track {
-    height: 12px;
+.chart-bar-fill {
+    --fill-opacity: 1;
+    display: block;
+    width: 100%;
+    height: 14px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-pill);
     background-color: var(--color-bg-soft);
-    border: 1px solid var(--color-border);
     overflow: hidden;
 }
 
-.chart-bar-fill {
-    height: 100%;
-    border-radius: var(--radius-pill);
+.chart-bar-fill::-webkit-progress-bar {
+    background-color: var(--color-bg-soft);
+}
+
+.chart-bar-fill::-webkit-progress-value {
     background-color: var(--chart-color, var(--color-brand));
-    width: 0;
+    opacity: var(--fill-opacity);
+    border-radius: var(--radius-pill);
+}
+
+.chart-bar-fill::-moz-progress-bar {
+    background-color: var(--chart-color, var(--color-brand));
+    opacity: var(--fill-opacity);
+    border-radius: var(--radius-pill);
 }
 
 .chart-source {
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 14px;
     color: var(--color-text-soft);
 }
 
@@ -912,7 +871,7 @@ a.stat-tile:focus-visible {
 }
 
 .fontes-list li {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.6;
     color: var(--color-text-muted);
 }
@@ -937,3 +896,282 @@ a.stat-tile:focus-visible {
 .accent-green { --stat-accent: var(--color-green-strong); --chart-color: var(--color-green-strong); }
 .accent-red { --stat-accent: var(--color-red-accent); --chart-color: var(--color-red-accent); }
 .accent-sage { --stat-accent: var(--color-sage-deep); }
+
+/* ==========================================================================
+   LOGO CLICÁVEL — a logo + "Cherry Wellness" é um link para a página inicial
+   ========================================================================== */
+a.logo-area {
+    text-decoration: none;
+    min-height: var(--touch-min);
+}
+
+a.logo-area:focus-visible {
+    outline: 2px solid var(--color-yellow-accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.nav-links a {
+    font-size: 16px;
+}
+
+/* ==========================================================================
+   BOTÕES COM CARA DE BOTÃO — borda, "degrau" de sombra embaixo, sobe no hover
+   e afunda quando clicado. Vale para todos os botões e links-botão do site.
+   ========================================================================== */
+.btn-primary,
+.btn-secondary,
+.btn-card,
+.projeto-botao,
+.lembrete-ok {
+    min-height: var(--touch-min);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-brand-strong);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.35), 0 8px 14px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+}
+
+a.btn-card {
+    display: flex;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-card:hover,
+.projeto-botao:hover,
+.lembrete-ok:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 0 rgba(0, 0, 0, 0.35), 0 12px 18px rgba(0, 0, 0, 0.16);
+}
+
+.btn-primary:active,
+.btn-secondary:active,
+.btn-card:active,
+.projeto-botao:active,
+.lembrete-ok:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.btn-secondary {
+    border-color: var(--color-brand);
+    background-color: var(--color-bg-elevated);
+    color: var(--color-text-strong);
+}
+
+.projeto-botao--contorno {
+    border-color: var(--color-brand);
+    background-color: var(--color-bg-elevated);
+}
+
+/* ==========================================================================
+   SEÇÕES BEM DELIMITADAS — cada <section> do <main> é uma faixa: seções pares
+   ganham fundo diferente e uma linha no topo, então dá para ver onde uma
+   termina e a outra começa.
+   ========================================================================== */
+main > section:where(*) {
+    border-top: 1px solid var(--color-border);
+}
+
+main > section:where(:nth-of-type(even)) {
+    background-color: var(--color-bg-alt);
+}
+
+main > section:first-child {
+    border-top: 0;
+}
+
+/* Divisor quadriculado (agora é um <hr>, que já é a tag certa para "separador") */
+hr.checkerboard-divider {
+    border: 0;
+    height: 12px;
+}
+
+/* Texto só para leitor de tela (quem enxerga não vê, mas o título existe no HTML) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   RODAPÉ EM COLUNAS — mapa do site, contato, equipe e créditos das imagens
+   ========================================================================== */
+.footer-cols {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 0 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 28px 32px;
+    font-size: 16px;
+}
+
+.footer-cols h2 {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+}
+
+.footer-cols ul {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    list-style: none;
+}
+
+.footer-cols li {
+    line-height: 1.5;
+}
+
+.footer-cols a {
+    display: inline-block;
+    padding: 4px 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer-cols a:hover {
+    color: #FFFFFF;
+}
+
+.footer-licenca {
+    max-width: 1100px;
+    margin: 20px auto 0;
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.footer-copy {
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+/* Listas que antes eram <div>: o <li> só "empacota" o cartão, que ocupa a célula toda */
+.stats-grid > li {
+    display: flex;
+}
+
+.stats-grid > li > .stat-tile,
+.stats-grid > li > a.stat-tile {
+    flex: 1;
+}
+
+.social-icons {
+    list-style: none;
+}
+
+.logo-text {
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   SUBMENU (dropdown) — itens com subpáginas mostram a lista ao passar o mouse
+   ou ao receber foco do teclado. No celular a lista já aparece dentro do menu
+   aberto (ver responsivo.css).
+   ========================================================================== */
+.tem-submenu {
+    position: relative;
+}
+
+.seta {
+    font-size: 12px;
+    transition: transform var(--transition-base);
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 60;
+    min-width: 260px;
+    padding: 8px;
+    list-style: none;
+    background-color: var(--color-brand);
+    border: 1px solid rgba(226, 215, 197, 0.3);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+}
+
+.tem-submenu:hover > .submenu,
+.tem-submenu:focus-within > .submenu,
+.tem-submenu.submenu-aberto > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.tem-submenu:hover > a .seta,
+.tem-submenu:focus-within > a .seta {
+    transform: rotate(180deg);
+}
+
+.submenu a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+}
+
+.submenu a:hover,
+.submenu a:focus-visible,
+.submenu a.destaque,
+.submenu a[aria-current="page"] {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ==========================================================================
+   ESTRUTURA PADRÃO DAS PÁGINAS DE CONTEÚDO (body.pagina-conteudo)
+   <main> ocupa a largura toda; cada <section> é uma faixa de ponta a ponta,
+   e o conteúdo fica centralizado (máx. 1100px) pelo --gutter.
+   ========================================================================== */
+.pagina-conteudo main {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+.pagina-conteudo main > section {
+    max-width: none;
+    margin: 0;
+    padding: 48px var(--gutter);
+    border-radius: 0;
+    border-inline: 0;
+    box-shadow: none;
+}
+
+/* Segurar o dedo no item com submenu não deve abrir o menu de "copiar link" do celular */
+.tem-submenu > a {
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+.dados-grid > .data-chart {
+    width: 100%;
+}
+
+/* Trilha "Bem-Estar mental": o submenu e o hover também são verdes */
+.navbar--mental .submenu {
+    background-color: var(--color-brand-mental);
+}

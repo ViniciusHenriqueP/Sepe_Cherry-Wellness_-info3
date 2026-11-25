@@ -108,35 +108,6 @@ body {
     margin: 0 auto;
 }
 
-@media (min-width: 900px) {
-    .ritmo-pagina {
-        grid-template-columns: minmax(0, 1fr) 400px;
-        grid-template-areas:
-            "intro jogo"
-            "guia jogo";
-        grid-template-rows: auto 1fr;
-        column-gap: 48px;
-        row-gap: 24px;
-        padding-top: 44px;
-        align-items: start;
-    }
-
-    .ritmo-intro {
-        text-align: left;
-        padding-top: 12px;
-    }
-
-    .ritmo-guia {
-        max-width: none;
-        margin: 0;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .ritmo-dica {
-        grid-column: 1 / -1;
-    }
-}
-
 /* ---------- Título ---------- */
 .ritmo-kicker {
     display: inline-block;
@@ -161,17 +132,6 @@ body {
     margin: 0 auto;
     color: var(--color-text-muted);
     line-height: 1.6;
-}
-
-@media (min-width: 900px) {
-    .ritmo-intro h1 {
-        font-size: 52px;
-    }
-
-    .ritmo-intro p {
-        margin: 0;
-        font-size: 17px;
-    }
 }
 
 /* ---------- Guia: controles, pontuação e dica ---------- */
@@ -688,16 +648,6 @@ kbd {
     transform: translateY(4px);
     box-shadow: 0 0 0 transparent;
     background-color: var(--color-bg-alt);
-}
-
-@media (min-width: 768px) {
-    .game-container {
-        height: 480px;
-    }
-
-    .touch-controls {
-        display: none;
-    }
 }
 
 /* ---------- Modo Difícil: luzes apagadas ---------- */

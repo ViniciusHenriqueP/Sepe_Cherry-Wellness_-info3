@@ -20,7 +20,6 @@
 
 .hero-title {
     color: var(--color-text-strong);
-    font-size: 50px;
     margin: 10px 0;
     font-weight: bold;
 }
@@ -50,7 +49,7 @@
     justify-content: space-between;
     max-width: 450px;
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--color-text-muted);
 }
@@ -75,7 +74,6 @@
 
 .beneficios-intro h2 {
     color: var(--color-text-strong);
-    font-size: 34px;
     font-weight: bold;
 }
 
@@ -115,13 +113,12 @@
 }
 
 .beneficio-card h3 {
-    font-size: 19px;
     color: var(--color-text-strong);
     margin: 10px 0 5px 0;
 }
 
 .beneficio-card p {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--color-text-muted);
 }
 
@@ -151,7 +148,6 @@
 
 .dados-intro h2 {
     color: var(--color-text-strong);
-    font-size: 34px;
     font-weight: bold;
 }
 
@@ -198,7 +194,6 @@
 }
 
 .minijogo-cta h2 {
-    font-size: 34px;
     font-weight: bold;
     margin-bottom: 12px;
     color: var(--color-text-strong);
@@ -212,51 +207,3 @@
 }
 
 /* Ajustes para celular: textos e espaçamentos menores */
-@media (max-width: 768px) {
-
-    .hero-section-clean,
-    .hero-info {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px 24px;
-    }
-
-    .beneficios-intro,
-    .dados-intro {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-
-    .dados-grid {
-        padding: 0;
-    }
-
-    .minijogo-cta {
-        padding: 50px 24px;
-    }
-
-    .minijogo-cta .card {
-        padding: 28px 22px;
-    }
-
-    .hero-title {
-        font-size: 38px;
-    }
-
-    .hidratacao-legendas {
-        justify-content: space-around;
-        margin: 10px auto 0;
-        padding: 0 8px;
-    }
-
-    .grid-beneficios {
-        flex-direction: column;
-        align-items: center;
-        padding: 0;
-    }
-
-    .beneficio-card {
-        width: 100%;
-        max-width: 340px;
-    }
-}

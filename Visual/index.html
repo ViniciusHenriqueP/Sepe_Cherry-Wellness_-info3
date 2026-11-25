@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="CSS/variables.css">
     <link rel="stylesheet" href="CSS/base.css">
     <link rel="stylesheet" href="CSS/pages/home.css">
+    <link rel="stylesheet" href="CSS/responsivo.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght,SOFT@9..144,600..800,50&display=swap"
@@ -24,16 +25,43 @@
 
     <!-- NAVBAR: logo, links para as páginas, menu do celular e botão de tema claro/escuro -->
     <header class="navbar">
-        <div class="logo-area">
+        <a href="index.html" class="logo-area" aria-label="Cherry Wellness: ir para a página inicial">
             <img src="IMG/logo.png" alt="Cherry Wellness Logo" class="logo-img">
             <span class="logo-text">Cherry Wellness</span>
-        </div>
+        </a>
         <nav class="nav-links" id="menu-principal" aria-label="Menu principal">
-            <a href="index.html" class="active">Início</a>
-            <a href="vida-em-movimento.html">Vida em movimento</a>
-            <a href="alimentacao.html">Prato & Saúde</a>
-            <a href="saudemental.html">Bem-Estar mental</a>
-            <a href="emblemas.html">Emblemas & Minijogos</a>
+            <ul class="nav-lista">
+                <li><a href="index.html" class="active" aria-current="page">Início</a></li>
+                <li class="tem-submenu">
+                    <a href="vida-em-movimento.html">Vida em movimento <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-movimento.html">Atividades e números</a></li>
+                        <li><a href="jogo-ritmo.html">Minijogo: Ritmo em Movimento</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="alimentacao.html">Prato &amp; Saúde <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-prato.html">Minijogo: Monte seu Prato</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="saudemental.html">Bem-Estar mental <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-respiracao.html">Minijogo: Respire e Recarregue</a></li>
+                    </ul>
+                </li>
+                <li class="tem-submenu">
+                    <a href="emblemas.html">Emblemas &amp; Minijogos <span class="seta" aria-hidden="true">▾</span></a>
+                    <ul class="submenu">
+                        <li><a href="jogo-ritmo.html">Ritmo em Movimento</a></li>
+                        <li><a href="jogo-prato.html">Monte seu Prato</a></li>
+                        <li><a href="jogo-respiracao.html">Respire e Recarregue</a></li>
+                        <li data-requer-emblemas hidden><a href="jogo-boss.html">Batalha Final</a></li>
+                    </ul>
+                </li>
+                <li><a href="projeto.html">Nosso projeto</a></li>
+            </ul>
         </nav>
         <!-- Botão ☰ do menu no celular (JS/menu.js) -->
         <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
@@ -81,13 +109,14 @@
     </section>
 
     <!-- Divisor quadriculado (só enfeite, estilo toalha de piquenique) -->
-    <div class="checkerboard-divider"></div>
+    <hr class="checkerboard-divider">
 
     <!-- CARDS: as 3 áreas do site (movimento, alimentação e mente) -->
     <section class="cards-container">
+        <h2 data-reveal="up">Escolha por onde começar</h2>
         <ul data-reveal-group>
             <li data-reveal="up">
-                <div class="card card-green">
+                <article class="card card-green">
                     <div class="card-header">
                         <div class="card-icon"><img src="IMG/home/academia.png" alt=""></div>
                         <div>
@@ -102,10 +131,10 @@
                         <li><a href="jogo-movimento.html#numeros">Atividade física em números</a></li>
                     </ul>
                     <a href="vida-em-movimento.html" class="btn-card green-btn">Saiba mais →</a>
-                </div>
+                </article>
             </li>
             <li data-reveal="up">
-                <div class="card card-red">
+                <article class="card card-red">
                     <div class="card-header">
                         <div class="card-icon" id="prato"><img id="alimentacao-icon" src="IMG/home/alimentacao.png"
                                 alt=""></div>
@@ -122,10 +151,10 @@
                     </ul>
                     <a href="alimentacao.html" class="btn-card red-btn">Saiba mais
                         →</a>
-                </div>
+                </article>
             </li>
             <li data-reveal="up">
-                <div class="card card-mental">
+                <article class="card card-mental">
                     <div class="card-header">
                         <div class="card-icon"><img id="saudemental-icon" src="IMG/home/saudemental.png" alt=""></div>
                         <div>
@@ -140,7 +169,7 @@
                         <li><a href="saudemental.html#numeros">Saúde mental em números</a></li>
                     </ul>
                     <a href="saudemental.html" class="btn-card green-btn">Saiba mais →</a>
-                </div>
+                </article>
             </li>
         </ul>
     </section>
@@ -150,34 +179,35 @@
         <h2 data-reveal="up">Por que isso importa</h2>
         <p class="stats-section-sub" data-reveal="up">Três números que mostram por que movimento, alimentação e saúde
             mental merecem atenção todos os dias.</p>
-        <div class="stats-grid">
-            <a href="jogo-movimento.html" class="stat-tile accent-green"
+        <ul class="stats-grid">
+            <li><a href="jogo-movimento.html" class="stat-tile accent-green"
                 data-reveal="up">
                 <span class="stat-number">31%</span>
                 <p class="stat-desc">dos adultos do mundo não atingem o nível de atividade física recomendado pela
                     OMS.</p>
                 <span class="stat-link">Vida em movimento →</span>
                 <span class="stat-source">OMS, 2024</span>
-            </a>
-            <a href="alimentacao.html" class="stat-tile accent-red"
+            </a></li>
+            <li><a href="alimentacao.html" class="stat-tile accent-red"
                 data-reveal="up">
                 <span class="stat-number">24,3%</span>
                 <p class="stat-desc">dos brasileiros adultos vivem com obesidade — em 2006 eram 11,8%.</p>
                 <span class="stat-link">Prato & Saúde →</span>
                 <span class="stat-source">Ministério da Saúde, Vigitel 2023</span>
-            </a>
-            <a href="saudemental.html" class="stat-tile accent-sage"
+            </a></li>
+            <li><a href="saudemental.html" class="stat-tile accent-sage"
                 data-reveal="up">
                 <span class="stat-number">1 em cada 7</span>
                 <p class="stat-desc">adolescentes de 10 a 19 anos vive com algum transtorno mental.</p>
                 <span class="stat-link">Bem-Estar mental →</span>
                 <span class="stat-source">OMS, agência da ONU</span>
-            </a>
-        </div>
+            </a></li>
+        </ul>
     </section>
 
     <!-- SEU CANTINHO: dica do dia e progresso dos emblemas (JS/pages/home.js) -->
     <section class="home-cantinho" data-reveal-group>
+        <h2 class="sr-only">Seu cantinho: dica do dia e emblemas</h2>
         <div class="dica-do-dia" data-reveal="up">
             <span class="dica-kicker">Dica do dia</span>
             <!-- Este texto é só um "plano B": o JS troca pela dica de hoje -->
@@ -192,9 +222,9 @@
     </section>
 
     <!-- Faixa com uma frase de impacto -->
-    <div class="phrase-bar" data-reveal="up">
-        <span>1,8 bilhão de adultos no mundo ainda não se movem o suficiente, segundo a OMS.</span>
-    </div>
+    <aside class="phrase-bar" data-reveal="up">
+        <p>1,8 bilhão de adultos no mundo ainda não se movem o suficiente, segundo a OMS.</p>
+    </aside>
 
     <!-- RODAPÉ: marca, redes sociais e créditos -->
     </main>
@@ -207,23 +237,64 @@
             </div>
             <div class="footer-social">
                 <span class="footer-social-label">Siga-nos</span>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram"><img src="IMG/icons/instagram.png" alt=""></a>
-                    <a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="Github" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a>
-                </div>
+                <ul class="social-icons">
+                    <li><a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" class="icon" aria-label="Instagram (abre em nova aba)" target="_blank" rel="noopener"><img src="IMG/icons/instagram.png" alt=""></a></li>
+                    <li><a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" class="icon" aria-label="GitHub (abre em nova aba)" target="_blank" rel="noopener"><img src="IMG/icons/github.png" alt=""></a></li>
+                </ul>
             </div>
         </div>
-        <nav class="footer-map" aria-label="Mapa do site">
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="vida-em-movimento.html">Vida em movimento</a></li>
-                <li><a href="alimentacao.html">Prato &amp; Saúde</a></li>
-                <li><a href="saudemental.html">Bem-Estar mental</a></li>
-                <li><a href="emblemas.html">Emblemas &amp; Minijogos</a></li>
-                <li><a href="projeto.html">O projeto</a></li>
-            </ul>
-        </nav>
-        <p class="footer-copy">SEPE &mdash; IFC Araquari &mdash; Desenvolvido por Vinícius, Lukas, Gabriela, Letícia, Murilo e Gabrieli</p>
+
+        <div class="footer-cols">
+            <nav aria-labelledby="rodape-mapa">
+                <h2 id="rodape-mapa">Mapa do site</h2>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="vida-em-movimento.html">Vida em movimento</a></li>
+                    <li><a href="alimentacao.html">Prato &amp; Saúde</a></li>
+                    <li><a href="saudemental.html">Bem-Estar mental</a></li>
+                    <li><a href="emblemas.html">Emblemas &amp; Minijogos</a></li>
+                    <li><a href="projeto.html">Nosso projeto</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="rodape-contato">
+                <h2 id="rodape-contato">Contato</h2>
+                <ul>
+                    <li>IFC &mdash; Campus Araquari (SC)</li>
+                    <li>Projeto da SEPE, turma de Informática (Info 3)</li>
+                    <li><a href="https://www.instagram.com/cherry_wellnes?stkn=ZGIycnlqenRrbHNz" target="_blank" rel="noopener">Instagram @cherry_wellnes</a></li>
+                    <li><a href="https://github.com/ViniciusHenriqueP/Sepe_Cherry-Wellness_-info3" target="_blank" rel="noopener">Código no GitHub</a></li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="rodape-equipe">
+                <h2 id="rodape-equipe">Desenvolvido por</h2>
+                <ul>
+                    <li>Vinícius &mdash; programação e jogos</li>
+                    <li>Lukas &mdash; programação, CSS e atas</li>
+                    <li>Gabriela e Letícia &mdash; design no Figma</li>
+                    <li>Murilo &mdash; CSS e mascotes</li>
+                    <li>Gabrieli &mdash; HTML, CSS e mascotes</li>
+                </ul>
+            </section>
+
+            <section aria-labelledby="rodape-imagens">
+                <h2 id="rodape-imagens">Origem das imagens</h2>
+                <ul>
+                    <li><strong>Cerejas (nossa representação):</strong> mascotes, logo, banner e emblemas, geradas com inteligência artificial.</li>
+                    <li><strong>Demais imagens</strong> (corpo humano, pratos e alimentos): retiradas do Google. Os direitos pertencem aos autores originais.</li>
+                    <li><strong>Fotos da equipe:</strong> tiradas pelos próprios integrantes.</li>
+                    <li><strong>Ícones do Instagram e do GitHub:</strong> logotipos das marcas, usados só para identificar os links.</li>
+                    <li><strong>Dados e gráficos:</strong> OMS e Ministério da Saúde (fontes no fim de cada página).</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="footer-licenca">
+            <p><strong>Uso livre:</strong> o código e os textos deste site <em>não possuem copyright</em>: você pode copiar,
+                compartilhar e adaptar à vontade. As imagens retiradas do Google continuam sendo de seus autores.</p>
+            <p class="footer-copy">Cherry Wellness &mdash; SEPE &middot; IFC Araquari</p>
+        </div>
     </footer>
 
     <!-- Scripts da página (ficam no fim para o HTML carregar primeiro) -->
